@@ -1,0 +1,22 @@
+[
+  {
+    "name": "polkadot",
+    "rpc_endpoint": "wss://polkadot.io",
+    "color": "#e6007a",
+    "genesis_hash": "0x91b171bb158e2d3848fa23a9f1c",
+    "unit": "DOT",
+    "address_prefix": "P_",
+    "decimals": 10,
+    "chain_type": "substr"
+  },
+  {
+    "name": "kusama",
+    "rpc_endpoint": "wss://kusama.io",
+    "color": "#e6007a",
+    "genesis_hash": "0x00000000000e2d3848fa23a9f1c",
+    "unit": "KUSAM",
+    "address_prefix": "K_",
+    "decimals": 10,
+    "chain_type": "substr"
+  }
+]

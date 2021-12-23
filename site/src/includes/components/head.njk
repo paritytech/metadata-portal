@@ -1,0 +1,14 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% set css %}
+    {% include "styles/base.css" %}
+    {% include "styles/home.css" %}
+    {% include "styles/nav.css" %}
+    {% include "styles/post.css" %}
+    {% endset %}
+    <style>
+        {{ css | cssmin | safe }}
+    </style>
+    <title>{{title}}</title>
+</head>

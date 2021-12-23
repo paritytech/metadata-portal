@@ -1,0 +1,83 @@
+---
+layout: base.njk
+pagination:
+    data: chains
+    size: 1
+    alias: chain
+permalink: "/chains/{{ chain.name | slug }}/"
+---
+
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ chain.name }}</h1>
+        <div class="post-meta">
+            <time>{{ page.date.toUTCString() }}</time>
+        </div>
+    </header>
+    <div class="post-content">
+        <hr>
+        <h2>ℹ️&nbsp;Specifications</h2>
+        <table>
+            <tbody>
+                <tr><td>
+                    <label>Network Name</label>
+                    {{chain.name}}
+                </td></tr>
+                <tr><td>
+                    <label>Color</label>
+                    {{chain.color}}
+                </td></tr>
+                <tr><td>
+                    <label>Genesis Hash</label>
+                    {{chain.genesis_hash}}
+                </td></tr>
+                <tr><td>
+                    <label>Unit</label>
+                    {{chain.unit}}
+                </td></tr>
+                <tr><td>
+                    <label>Address Prefix</label>
+                    {{chain.address_prefix}}
+                </td></tr>
+                <tr><td>
+                    <label>Decimals</label>
+                    {{chain.decimals}}
+                </td></tr>
+                <tr><td>
+                    <label>Chain Type</label>
+                    {{chain.chain_type}}
+                </td></tr>
+            </tbody>
+        </table>
+        {% if qrs.signed[chain.name] %}
+            <hr>
+            <h2>✅️&nbsp;Signed by Parity</h2>
+            {%- for qr in qrs.signed[chain.name] -%}
+            <div class="toc">
+                <details>
+                    <summary>
+                        <span class="details">{{qr.kind}} {{qr.version}}</span>
+                    </summary>
+                    <div class="inner">
+                        <img src="{{ qr.path }}" alt="{{ chain.name }} metadata" loading="lazy" class="qr">
+                    </div>
+                </details>
+            </div>
+            {%- endfor -%}
+        {% endif %}
+        <hr>
+        <h2>⚠️&nbsp;Unsigned QRs</h2>
+        {%- for qr in qrs.unsigned[chain.name] -%}
+            <div class="toc">
+                <details>
+                    <summary>
+                        <span class="details">{{qr.kind}} {{qr.version}}</span>
+                    </summary>
+                    <div class="inner">
+                        <img src="{{ qr.path }}" alt="{{ chain.name }} metadata" loading="lazy" class="qr">
+                    </div>
+                </details>
+            </div>
+        {%- endfor -%}
+    </div>
+</article>

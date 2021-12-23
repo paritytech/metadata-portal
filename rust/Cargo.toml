@@ -1,0 +1,12 @@
+[workspace]
+
+members = [
+	"constants",
+	"db_handling",
+	"definitions",
+	"defaults",
+	"meta_reading",
+	"qr_generator",
+	"qrcode_static",
+	"qrcode_rtx",
+]

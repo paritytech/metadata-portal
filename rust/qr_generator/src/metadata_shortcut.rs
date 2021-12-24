@@ -2,11 +2,12 @@ use meta_reading::{decode_metadata::decode_version, fetch_metadata::{fetch_info,
 use constants::{COLOR, SECONDARY_COLOR};
 use definitions::{crypto::Encryption, metadata::MetaValues, network_specs::ChainSpecsToSend};
 use std::convert::TryInto;
+use std::fmt::format;
 use db_handling::{helpers::unhex, error::NotHex};
 use anyhow;
 use meta_reading::fetch_metadata::FetchedInfoWithChainSpecs;
-
 use crate::error::{Error, NotDecodeable};
+use crate::export::{ChainSpecs, MetaSpecs};
 
 
 /// Struct to store MetaValues and genesis hash for network
@@ -54,7 +55,7 @@ fn get_genesis_hash (fetched_genesis_hash: &str) -> anyhow::Result<[u8; 32]> {
 }
 
 
-pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecsShortCut>{
+pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs>{
     let new_info: FetchedInfoWithChainSpecs = match fetch_info_with_chainspecs(address) {
         Ok(a) => a,
         Err(e) => return Err(Error::FetchFailed{address: address.to_string(), error: e.to_string()}.show()),
@@ -68,22 +69,18 @@ pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecsShortCut>{
         Ok(a) => a,
         Err(e) => return Err(Error::BadNetworkProperties{address: address.to_string(), error: e.to_string()}.show()),
     };
-    let specs = ChainSpecsToSend {
+    let specs = ChainSpecs {
         base58prefix: new_properties.base58prefix,
         color: COLOR.to_string(),
         decimals: new_properties.decimals,
-        encryption: Encryption::Ed25519,
-        genesis_hash,
+        genesis_hash: format!("{:x?}", genesis_hash),
         logo: meta_values.name.to_string(),
         name: meta_values.name.to_string(),
-        path_id: format!("//{}", meta_values.name),
         secondary_color: SECONDARY_COLOR.to_string(),
-        title: "".to_string(),
         unit: new_properties.unit.to_string(),
     };
-    Ok(MetaSpecsShortCut{
+    Ok(MetaSpecs{
         meta_values,
-        specs,
-        update: true,
+        specs
     })
 }

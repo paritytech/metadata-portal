@@ -1,6 +1,6 @@
-rust/target
+target
 rust/*/target
-rust/db_handling/signer_database
-rust/qrcode_static/*.png
-rust/files/for_signing/*
-rust/files/signed/*
+db_handling/signer_database
+qrcode_static/*.png
+files/for_signing/*
+files/signed/*

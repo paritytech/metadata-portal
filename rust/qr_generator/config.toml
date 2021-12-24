@@ -1,7 +1,0 @@
-[[chains]]
-name = "polkadot"
-url = "wss://rpc.polkadot.io"
-
-#[[chains]]
-#name = "kusama"
-#url = "wss://kusama-rpc.polkadot.io"

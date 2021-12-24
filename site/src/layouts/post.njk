@@ -37,15 +37,11 @@ permalink: "/chains/{{ chain.name | slug }}/"
                 </td></tr>
                 <tr><td>
                     <label>Address Prefix</label>
-                    {{chain.address_prefix}}
+                    {{chain.base58prefix}}
                 </td></tr>
                 <tr><td>
                     <label>Decimals</label>
                     {{chain.decimals}}
-                </td></tr>
-                <tr><td>
-                    <label>Chain Type</label>
-                    {{chain.chain_type}}
                 </td></tr>
             </tbody>
         </table>

@@ -16,7 +16,6 @@ function get_qr_info(subfolder) {
         .filter(item => !item.isDirectory())
         .reduce((acc, item) => {
             const filename = item.name.split('.')[0]
-            console.log(filename)
             const [chain, kind, version] = filename.split('_')
             if (!chain || !kind || !version) {
                 return acc

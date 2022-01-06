@@ -60,7 +60,7 @@ pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs>{
         Ok(a) => a,
         Err(e) => return Err(Error::FetchFailed{address: address.to_string(), error: e.to_string()}.show()),
     };
-    let genesis_hash = get_genesis_hash(&new_info.genesis_hash)?;
+    // let genesis_hash = get_genesis_hash(&new_info.genesis_hash)?;
     let meta_values = match decode_version(&new_info.meta) {
         Ok(a) => a,
         Err(e) => return Err(Error::NotDecodeable(NotDecodeable::FetchedMetadata{address: address.to_string(), error: e.to_string()}).show())
@@ -73,7 +73,7 @@ pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs>{
         base58prefix: new_properties.base58prefix,
         color: COLOR.to_string(),
         decimals: new_properties.decimals,
-        genesis_hash: format!("{:x?}", genesis_hash),
+        genesis_hash: new_info.genesis_hash,
         logo: meta_values.name.to_string(),
         name: meta_values.name.to_string(),
         secondary_color: SECONDARY_COLOR.to_string(),

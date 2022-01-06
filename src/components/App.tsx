@@ -4,7 +4,7 @@ import {
     Route,
     HashRouter
 } from "react-router-dom";
-import {getChains} from "./data";
+import {getChains} from "../data";
 import InfoPage from "./InfoPage";
 
 export default function App() {

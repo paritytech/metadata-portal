@@ -1,7 +1,17 @@
+data_file_path = "src/chains.json"
+
+# QRs have to be inside `public` directory
+signed_qr_dir = "public/qr/signed"
+unsigned_qr_dir = "public/qr/unsigned"
+
 [[chains]]
 name = "polkadot"
-url = "wss://rpc.polkadot.io"
+rcp_endpoint = "wss://rpc.polkadot.io"
+color = "#e6007a"
+icon_path = "icons/polkadot.ico"
 
 [[chains]]
 name = "kusama"
-url = "wss://kusama-rpc.polkadot.io"
+rcp_endpoint = "wss://kusama-rpc.polkadot.io"
+color = "#000000"
+icon_path = "icons/kusama.ico"

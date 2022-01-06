@@ -1,4 +1,4 @@
-import {QrInfo} from "./data";
+import {QrInfo} from "../data";
 import {BadgeCheckIcon, ShieldExclamationIcon} from "@heroicons/react/solid";
 
 

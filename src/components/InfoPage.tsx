@@ -1,4 +1,4 @@
-import {Chains} from "./data";
+import {Chains} from "../data";
 import Selector from "./Selector";
 import QrCode from "./QrCode";
 import Specs from "./Specs";

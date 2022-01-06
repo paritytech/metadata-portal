@@ -1,4 +1,4 @@
-import {ChainSpec} from "./data";
+import {ChainSpec} from "../data";
 
 
 export default function Specs(chainSpec: ChainSpec) {

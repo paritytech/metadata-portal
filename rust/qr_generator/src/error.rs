@@ -1,3 +1,4 @@
+use std::path::PathBuf;
 use sled;
 use anyhow::anyhow;
 use definitions::{crypto::Encryption};
@@ -50,6 +51,8 @@ pub enum Error {
     Unexpected(Unexpected),
     UnknownCommand,
     NoCommand,
+
+    UnexpectedQrFilename(PathBuf)
 }
 
 pub enum NotDecodeable {
@@ -138,6 +141,7 @@ impl Error {
     pub fn show(&self) -> anyhow::Error {
         match &self {
             Error::InternalDatabaseError(e) => anyhow!("Database internal error. {}", e),
+            Error::UnexpectedQrFilename(s) => anyhow!("Unexpected filename in {}. Expected format is <chain>_<kind>_<version>", s.display()),
             Error::NotDecodeable(x) => {
                 match x {
                     NotDecodeable::AddressBookEntry => anyhow!("Unable to decode address book entry."),

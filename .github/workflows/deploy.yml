@@ -14,15 +14,25 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v2
 
+      - name: Cache ⚡
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
       - name: Install stable toolchain 🔧
         uses: actions-rs/toolchain@v1
         with:
-          profile: minimal
           toolchain: stable
-          override: true
+
+      - name: 🔎 Test
+        run: make rust.test
 
       - name: Run ⚙
-        run: make rust
+        run: make rust.run
 
       - name: Commit changes 📌
         run: |
@@ -40,8 +50,25 @@ jobs:
 
       - run: npm install -g yarn
 
+      - name: Get yarn cache directory path # get yarn cache path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2 # cache yarn
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install dependancies 🔧
         run: yarn
 
       - name: Deploy 🚀
-        run: yarn deploy
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          yarn deploy -u "github-actions-bot <support+actions@github.com>"
+        if: ${{ github.ref == 'refs/heads/main' }} # only deploy master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

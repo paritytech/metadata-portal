@@ -3,6 +3,7 @@ use std::fs::File;
 use std::io::prelude::*;
 
 use std::{fs, thread};
+use std::convert::TryFrom;
 use std::path::{Path, PathBuf};
 use anyhow;
 use definitions::metadata::MetaValues;
@@ -17,28 +18,32 @@ use crate::Error::UnexpectedQrFilename;
 mod error;
 pub mod config;
 mod export;
+mod qr;
+
 use crate::error::Error;
-use crate::export::{ExportChainSpec, QrCode};
+use crate::export::{ExportChainSpec, QrCode, ReactAssetPath};
 use crate::metadata_shortcut::fetch_chain_info;
-
-
+use crate::qr::QrFileName;
 
 
 pub fn full_run(app_config: AppConfig) -> anyhow::Result<()> {
-    println!("full_run");
-
     let saved_qr_codes = saved_qr_codes(&app_config)?;
 
     let mut specs = vec![];
     for chain in app_config.chains {
         let meta_specs = fetch_chain_info(&chain.rcp_endpoint)?;
-        // if let Err(e) = generate_metadata_qr(meta_specs.meta_values) {
-        //     eprintln!("Error generating QR for {}: {}", chain.name, e)
-        // }
 
-        let metadata_qr_codes = match saved_qr_codes.get(&chain.name) {
+        let metadata_qr_codes = match saved_qr_codes.get(chain.name.as_str()) {
+            Some(newest_qr) if newest_qr.version < meta_specs.meta_values.version => {
+                let png_path = generate_metadata_qr(&meta_specs.meta_values, &app_config.public.unsigned_qr_dir)?;
+                vec![QrCode{
+                    path: ReactAssetPath::from_fs_path(png_path, &app_config.public_dir_path)?,
+                    is_verified: false,
+                    version: meta_specs.meta_values.version
+                }]
+            },
             Some(qr) => vec![qr.clone()],
-            _ => vec![]
+            None => vec![],
         };
 
         specs.push(ExportChainSpec {
@@ -60,46 +65,47 @@ pub fn full_run(app_config: AppConfig) -> anyhow::Result<()> {
     Ok(())
 }
 
-fn saved_qr_codes(app_config: &AppConfig) -> anyhow::Result<HashMap<String, QrCode>> {
+fn saved_qr_codes(config: &AppConfig) -> anyhow::Result<HashMap<String, QrCode>> {
     let mut qrs = HashMap::new();
-
-    let signed_qr_dir = &app_config.public_dir.join(&app_config.signed_qr_dir);
-    read_qr_dir(&mut qrs, signed_qr_dir, &app_config.public_dir, true)?;
-
-    let unsigned_qr_dir = &app_config.public_dir.join(&app_config.unsigned_qr_dir);
-    read_qr_dir(&mut qrs, unsigned_qr_dir, &app_config.public_dir, false)?;
-
+    read_qr_dir(&mut qrs, &config.public.signed_qr_dir, &config.public_dir_path, true)?;
+    read_qr_dir(&mut qrs, &config.public.unsigned_qr_dir, &config.public_dir_path, false)?;
     Ok(qrs)
 }
 
 fn read_qr_dir(result: &mut HashMap<String, QrCode>, dir: &PathBuf, public_dir: &PathBuf, is_verified: bool) -> anyhow::Result<()>{
     for file in fs::read_dir(dir)? {
         let path = file?.path();
-        let file_name = path.file_stem().unwrap().to_str().unwrap();
-        let mut split = file_name.split('_');
-        match (split.next(), split.next(), split.next()) {
-            (Some(chain), Some(data_type), Some(version)) => {
+        let qr_file = QrFileName::try_from(path.clone())?;
 
-                result.insert(String::from(chain), QrCode{
-                    path: path.strip_prefix(public_dir).unwrap().to_path_buf(),
+        match result.get(&qr_file.chain).map(|qr| qr.version) {
+            Some(newest_version) if newest_version >= qr_file.version => (),
+            _ => {
+                result.insert(String::from(qr_file.chain), QrCode {
+                    path: ReactAssetPath::from_fs_path(path, public_dir)?,
                     is_verified,
-                    version: version.parse().unwrap()
+                    version: qr_file.version,
                 });
-            },
-            _ => return Err(UnexpectedQrFilename(path).show())
+            }
         }
     }
     Ok(())
 }
 
-pub fn generate_metadata_qr(meta_values: MetaValues) -> anyhow::Result<()> {
+pub fn generate_metadata_qr(meta_values: &MetaValues, target_dir: &PathBuf) -> anyhow::Result<PathBuf> {
     let crypto_type_code = "ff";
     let prelude = format!("53{}{}", crypto_type_code, "80");
-    let output_name= format!("../qr_codes/unsigned/{}_metadata_{}", meta_values.name, meta_values.version);
+
+    let file_name = QrFileName{
+        chain: meta_values.name.clone(),
+        kind: String::from("metadata"),
+        version: meta_values.version
+    }.to_string();
+    let path = target_dir.join(file_name);
+
     println!("generating QR for {}. It takes a while...", meta_values.name);
-    let complete_message = [hex::decode(prelude).expect("known value"), meta_values.meta].concat();
-    if let Err(e) = make_pretty_qr(&complete_message, &output_name) {
+    let complete_message = [hex::decode(prelude).expect("known value"), meta_values.meta.clone()].concat();
+    if let Err(e) = make_pretty_qr(&complete_message, &path.to_str().unwrap()) {
         return Err(Error::Qr(e.to_string()).show())
     }
-    Ok(())
+    Ok(path)
 }

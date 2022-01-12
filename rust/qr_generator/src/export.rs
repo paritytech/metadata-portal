@@ -3,6 +3,16 @@ use serde::{Serialize, Deserialize};
 
 use definitions::{crypto::Encryption, metadata::MetaValues};
 
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct ReactAssetPath(String);
+
+impl ReactAssetPath {
+    pub fn from_fs_path(path: PathBuf, public_dir: &PathBuf) -> anyhow::Result<ReactAssetPath> {
+        Ok(ReactAssetPath(format!("/{}", path.strip_prefix(public_dir).unwrap().to_str().unwrap())))
+    }
+}
+
+
 /// Struct to store MetaValues, genesis hash, and ChainSpecsToSend for network
 pub struct MetaSpecs {
     pub meta_values: MetaValues,
@@ -38,7 +48,7 @@ pub struct ExportChainSpec {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct QrCode {
-    pub path: PathBuf,
+    pub path: ReactAssetPath,
     pub is_verified: bool,
-    pub version: usize,
+    pub version: u32,
 }

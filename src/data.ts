@@ -14,7 +14,7 @@ export interface ChainSpec {
 export interface QrInfo {
     path: string,
     isVerified: boolean,
-    title: string,
+    version: number,
 
 }
 
@@ -23,5 +23,11 @@ export interface Chains {
 }
 
 export function getChains(): Chains {
-    return Object.assign({} as Chains, jsonData)
+    const chainList =  jsonData.map(chain => Object.assign({} as ChainSpec, chain))
+    return chainList.reduce((obj, chain) => {
+        return {
+            ...obj,
+            [chain.name]: chain
+        }
+    }, {});
 }

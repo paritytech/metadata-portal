@@ -20,7 +20,7 @@ export default function InfoPage({allChains, currentName}: Props) {
             <div className="flex flex-row flex-wrap justify-center gap-10">
                 <QrCode {...latestQr}/>
                 <div className="text-white">
-                    <h1 className="text-4xl mb-5">{latestQr.title}</h1>
+                    <h1 className="text-4xl mb-5">Metadata #{latestQr.version}</h1>
                     <Specs {...chain}/>
                 </div>
             </div>

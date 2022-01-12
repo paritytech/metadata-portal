@@ -1,8 +1,9 @@
 data_file_path = "src/chains.json"
+public_dir_path = "public"
 
-# QRs have to be inside `public` directory
-signed_qr_dir = "public/qr/signed"
-unsigned_qr_dir = "public/qr/unsigned"
+[public]
+signed_qr_dir = "qr/signed"
+unsigned_qr_dir = "qr/unsigned"
 
 [[chains]]
 name = "polkadot"

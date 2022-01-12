@@ -28,11 +28,8 @@ jobs:
         with:
           toolchain: stable
 
-      - name: 🔎 Test
-        run: make rust.test
-
       - name: ⚙ Run
-        run: make rust.run
+        run: make rust
 
       - name: 📌 Commit changes
         run: |
@@ -54,7 +51,7 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - uses: actions/cache@v2 # cache yarn
+      - uses: ⚡ actions/cache@v2 # cache yarn
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -68,7 +65,7 @@ jobs:
       - name: 🚀 Deploy
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          yarn deploy -u "github-actions-bot <support+actions@github.com>"
-#        if: ${{ github.ref == 'refs/heads/main' }} # only deploy master
+          yarn deploy -u "GitHub Action <action@github.com>"
+        if: ${{ github.ref == 'refs/heads/main' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

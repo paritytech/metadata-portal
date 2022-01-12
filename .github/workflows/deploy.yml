@@ -20,10 +20,10 @@ jobs:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
-            target
+            rust/target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Install stable toolchain 🔧
+      - name: 🔧 Install stable toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -38,7 +38,7 @@ jobs:
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
-          git commit -am "Update metadata"
+          git commit -am "Update metadata" || true
           git push
 
   deploy:

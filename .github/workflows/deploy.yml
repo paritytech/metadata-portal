@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 🛎
+      - name: 🛎 Checkout
         uses: actions/checkout@v2
 
-      - name: Cache ⚡
+      - name: ⚡ Cache
         uses: actions/cache@v2
         with:
           path: |
@@ -31,10 +31,10 @@ jobs:
       - name: 🔎 Test
         run: make rust.test
 
-      - name: Run ⚙
+      - name: ⚙ Run
         run: make rust.run
 
-      - name: Commit changes 📌
+      - name: 📌 Commit changes
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
@@ -45,7 +45,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎
+      - name: 🛎 Checkout
         uses: actions/checkout@v2
 
       - run: npm install -g yarn
@@ -62,13 +62,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install dependancies 🔧
+      - name: 🔧 Install dependancies
         run: yarn
 
-      - name: Deploy 🚀
+      - name: 🚀 Deploy
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           yarn deploy -u "github-actions-bot <support+actions@github.com>"
-        if: ${{ github.ref == 'refs/heads/main' }} # only deploy master
+#        if: ${{ github.ref == 'refs/heads/main' }} # only deploy master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

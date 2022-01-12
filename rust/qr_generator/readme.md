@@ -1,0 +1,2 @@
+
+# Crate `qr_generator`

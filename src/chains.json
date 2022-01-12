@@ -1,0 +1,34 @@
+[
+  {
+    "name": "polkadot",
+    "iconPath": "icons/polkadot.ico",
+    "rpcEndpoint": "wss://rpc.polkadot.io",
+    "genesisHash": "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3",
+    "color": "#e6007a",
+    "unit": "DOT",
+    "addressPrefix": "0",
+    "metadataQrCodes": [
+      {
+        "path": "/qr/signed/polkadot_metadata_9140.apng",
+        "isVerified": true,
+        "version": 9140
+      }
+    ]
+  },
+  {
+    "name": "kusama",
+    "iconPath": "icons/kusama.ico",
+    "rpcEndpoint": "wss://kusama-rpc.polkadot.io",
+    "genesisHash": "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe",
+    "color": "#000000",
+    "unit": "KSM",
+    "addressPrefix": "2",
+    "metadataQrCodes": [
+      {
+        "path": "/qr/signed/kusama_metadata_9130.apng",
+        "isVerified": true,
+        "version": 9130
+      }
+    ]
+  }
+]

@@ -19,7 +19,7 @@ pub struct PublicDir {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Chain {
     pub name: String,
-    pub rcp_endpoint: String,
+    pub rpc_endpoint: String,
     pub color: String,
     pub icon_path: String,
 }

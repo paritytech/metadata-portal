@@ -7,12 +7,12 @@ unsigned_qr_dir = "qr/unsigned"
 
 [[chains]]
 name = "polkadot"
-rcp_endpoint = "wss://rpc.polkadot.io"
+rpc_endpoint = "wss://rpc.polkadot.io"
 color = "#e6007a"
 icon_path = "icons/polkadot.ico"
 
 [[chains]]
 name = "kusama"
-rcp_endpoint = "wss://kusama-rpc.polkadot.io"
+rpc_endpoint = "wss://kusama-rpc.polkadot.io"
 color = "#000000"
 icon_path = "icons/kusama.ico"

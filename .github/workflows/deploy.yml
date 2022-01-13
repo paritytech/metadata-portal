@@ -3,15 +3,15 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
   schedule:
     - cron: '0 */6 * * *'
 
 jobs:
-  build:
+  backend:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,8 +24,8 @@ jobs:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
-            rust/target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('rust/Cargo.lock') }}
+            ./rust/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
 
       - name: 🔧 Install stable toolchain
         uses: actions-rs/toolchain@v1
@@ -36,15 +36,15 @@ jobs:
         run: make rust
 
       - name: 📌 Commit changes
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git commit -am "Update metadata" || true
           git push
 
-  deploy:
-    needs: build
+  frontend:
+    needs: backend
     runs-on: ubuntu-latest
     steps:
       - name: 🛎 Checkout
@@ -60,7 +60,7 @@ jobs:
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
@@ -68,7 +68,7 @@ jobs:
         run: yarn
 
       - name: 🚀 Deploy
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           yarn deploy -u "GitHub Action <action@github.com>"

@@ -29,7 +29,7 @@ export default function Selector({selectedName, allChains}: Props) {
     })
     return (
         <div className="text-right">
-            <Menu as="div" className="relative inline-block text-left w-48 text-2xl">
+            <Menu as="div" className="relative inline-block text-left text-2xl">
                 <div>
                     <Menu.Button className="inline-flex justify-center w-full items-center px-4 py-2 bg-white rounded-md border-2 border-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                         <img className="w-5 h-5 mr-2" src={selected.iconPath} alt="icon" />

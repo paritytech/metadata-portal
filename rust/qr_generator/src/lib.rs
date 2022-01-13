@@ -31,7 +31,7 @@ pub fn full_run(app_config: AppConfig) -> anyhow::Result<()> {
 
     let mut specs = vec![];
     for chain in app_config.chains {
-        let meta_specs = fetch_chain_info(&chain.rcp_endpoint)?;
+        let meta_specs = fetch_chain_info(&chain.rpc_endpoint)?;
 
         let metadata_qr_codes = match saved_qr_codes.get(chain.name.as_str()) {
             Some(newest_qr) if newest_qr.version < meta_specs.meta_values.version => {
@@ -49,7 +49,7 @@ pub fn full_run(app_config: AppConfig) -> anyhow::Result<()> {
         specs.push(ExportChainSpec {
             name: chain.name,
             icon_path: chain.icon_path,
-            rpc_endpoint: chain.rcp_endpoint,
+            rpc_endpoint: chain.rpc_endpoint,
             genesis_hash: meta_specs.specs.genesis_hash,
             color: chain.color,
             unit: meta_specs.specs.unit,

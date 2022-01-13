@@ -1,6 +1,6 @@
 CARGO_FILE=rust/qr_generator/Cargo.toml
 
-.PHONY: rust.run rust.run
+.PHONY: rust
 
 all: rust
 

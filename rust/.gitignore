@@ -1,6 +1,5 @@
 target
 rust/*/target
-db_handling/signer_database
 qrcode_static/*.png
 files/for_signing/*
 files/signed/*

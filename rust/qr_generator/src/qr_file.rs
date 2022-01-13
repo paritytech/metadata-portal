@@ -1,7 +1,7 @@
 use std::convert::TryFrom;
 use std::fmt;
 use std::path::PathBuf;
-use crate::{Error, UnexpectedQrFilename};
+use crate::{UnexpectedQrFilename};
 
 #[derive(Debug, PartialEq)]
 pub struct QrFileName{

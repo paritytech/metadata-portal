@@ -1,8 +1,6 @@
 [workspace]
 
 members = [
-	"constants",
-	"db_handling",
 	"definitions",
 	"defaults",
 	"meta_reading",

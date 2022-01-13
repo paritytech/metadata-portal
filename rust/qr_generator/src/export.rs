@@ -1,7 +1,7 @@
-use std::path::{Path, PathBuf};
+use std::path::{PathBuf};
 use serde::{Serialize, Deserialize};
 
-use definitions::{crypto::Encryption, metadata::MetaValues};
+use definitions::{metadata::MetaValues};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct ReactAssetPath(String);
@@ -22,12 +22,10 @@ pub struct MetaSpecs {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ChainSpecs {
     pub base58prefix: u16,
-    pub color: String,
     pub decimals: u8,
     pub genesis_hash: String,
     pub logo: String,
     pub name: String,
-    pub secondary_color: String,
     pub unit: String,
 }
 

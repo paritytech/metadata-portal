@@ -1,5 +1,4 @@
 use std::path::PathBuf;
-use std::thread;
 use qr_generator::{full_run, config::read_app_config};
 use clap::Parser;
 

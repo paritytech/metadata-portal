@@ -2,15 +2,13 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::prelude::*;
 
-use std::{fs, thread};
+use std::{fs};
 use std::convert::TryFrom;
-use std::path::{Path, PathBuf};
+use std::path::{PathBuf};
 use anyhow;
 use definitions::metadata::MetaValues;
 
-mod helpers;
 mod metadata_shortcut;
-    use metadata_shortcut::meta_shortcut;
 use qrcode_rtx::make_pretty_qr;
 use crate::config::AppConfig;
 use crate::Error::UnexpectedQrFilename;
@@ -18,12 +16,12 @@ use crate::Error::UnexpectedQrFilename;
 mod error;
 pub mod config;
 mod export;
-mod qr;
+mod qr_file;
 
 use crate::error::Error;
 use crate::export::{ExportChainSpec, QrCode, ReactAssetPath};
 use crate::metadata_shortcut::fetch_chain_info;
-use crate::qr::QrFileName;
+use crate::qr_file::QrFileName;
 
 
 pub fn full_run(app_config: AppConfig) -> anyhow::Result<()> {

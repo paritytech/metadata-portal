@@ -25,9 +25,9 @@
     "addressPrefix": "2",
     "metadataQrCodes": [
       {
-        "path": "/qr/signed/kusama_metadata_9130.apng",
-        "isVerified": true,
-        "version": 9130
+        "path": "/qr/unsigned/kusama_metadata_9150.apng",
+        "isVerified": false,
+        "version": 9150
       }
     ]
   }

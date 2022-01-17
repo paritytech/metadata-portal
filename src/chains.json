@@ -1,7 +1,6 @@
 [
   {
     "name": "polkadot",
-    "iconPath": "icons/polkadot.ico",
     "rpcEndpoint": "wss://rpc.polkadot.io",
     "genesisHash": "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3",
     "color": "#e6007a",
@@ -17,7 +16,6 @@
   },
   {
     "name": "kusama",
-    "iconPath": "icons/kusama.ico",
     "rpcEndpoint": "wss://kusama-rpc.polkadot.io",
     "genesisHash": "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe",
     "color": "#000000",
@@ -26,6 +24,21 @@
     "metadataQrCodes": [
       {
         "path": "/qr/signed/kusama_metadata_9150.apng",
+        "isVerified": true,
+        "version": 9150
+      }
+    ]
+  },
+  {
+    "name": "westend",
+    "rpcEndpoint": "wss://westend-rpc.polkadot.io",
+    "genesisHash": "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e",
+    "color": "#f27230",
+    "unit": "WND",
+    "addressPrefix": "42",
+    "metadataQrCodes": [
+      {
+        "path": "/qr/signed/westend_metadata_9150.apng",
         "isVerified": true,
         "version": 9150
       }

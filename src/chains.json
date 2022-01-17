@@ -9,9 +9,9 @@
     "addressPrefix": "0",
     "metadataQrCodes": [
       {
-        "path": "/qr/signed/polkadot_metadata_9140.apng",
+        "path": "/qr/signed/polkadot_metadata_9150.apng",
         "isVerified": true,
-        "version": 9140
+        "version": 9150
       }
     ]
   },
@@ -25,8 +25,8 @@
     "addressPrefix": "2",
     "metadataQrCodes": [
       {
-        "path": "/qr/unsigned/kusama_metadata_9150.apng",
-        "isVerified": false,
+        "path": "/qr/signed/kusama_metadata_9150.apng",
+        "isVerified": true,
         "version": 9150
       }
     ]

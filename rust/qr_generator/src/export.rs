@@ -33,7 +33,6 @@ pub struct ChainSpecs {
 #[serde(rename_all = "camelCase")]
 pub struct ExportChainSpec {
     pub name: String,
-    pub icon_path: String,
     pub rpc_endpoint: String,
     pub genesis_hash: String,
     pub color: String,

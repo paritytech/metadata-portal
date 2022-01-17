@@ -46,7 +46,6 @@ pub fn full_run(app_config: AppConfig) -> anyhow::Result<()> {
 
         specs.push(ExportChainSpec {
             name: chain.name,
-            icon_path: chain.icon_path,
             rpc_endpoint: chain.rpc_endpoint,
             genesis_hash: meta_specs.specs.genesis_hash,
             color: chain.color,

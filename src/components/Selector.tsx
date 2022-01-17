@@ -2,11 +2,19 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment} from 'react'
 import {ChevronDownIcon} from '@heroicons/react/solid'
 import {Link} from "react-router-dom";
-import {Chains} from "../data";
+import {Chains, ChainSpec} from "../data";
 
 interface Props{
     allChains: Chains
     selectedName: string
+}
+
+function ChainLogo(props: {chain: ChainSpec, className?: string}) {
+    return (
+        <span className={`web3-icon mr-2 ${props.className}`} style={{color: props.chain.color}}>
+          {props.chain.name}
+        </span>
+    )
 }
 
 export default function Selector({selectedName, allChains}: Props) {
@@ -20,7 +28,7 @@ export default function Selector({selectedName, allChains}: Props) {
                             active ? 'bg-gray-200' : 'text-gray-900'
                         } group flex rounded-md items-center w-full px-2 py-2 text-base`}
                     >
-                        <img className="w-5 h-5 mr-2" src={allChains[name].iconPath} alt="icon" />
+                        <ChainLogo chain={allChains[name]}/>
                         {name}
                     </button>
                 </Link>
@@ -32,7 +40,7 @@ export default function Selector({selectedName, allChains}: Props) {
             <Menu as="div" className="relative inline-block text-left text-2xl">
                 <div>
                     <Menu.Button className="inline-flex justify-center w-full items-center px-4 py-2 bg-white rounded-md border-2 border-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                        <img className="w-5 h-5 mr-2" src={selected.iconPath} alt="icon" />
+                        <ChainLogo chain={selected} className="text-4xl" />
                         {selected.name}
                         <ChevronDownIcon
                             className="w-5 h-5 ml-2"

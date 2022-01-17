@@ -21,7 +21,6 @@ pub struct Chain {
     pub name: String,
     pub rpc_endpoint: String,
     pub color: String,
-    pub icon_path: String,
 }
 
 pub fn read_app_config(config_file: PathBuf) -> anyhow::Result<AppConfig> {

@@ -11,7 +11,7 @@ on:
     - cron: '0 */6 * * *'
 
 jobs:
-  backend:
+  rust-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,21 +44,18 @@ jobs:
           git commit -m "Update metadata" || true
           git push
 
-  frontend:
-    needs: backend
+  react-build:
+    needs: rust-build
     runs-on: ubuntu-latest
     steps:
-      - name: 🛎 Checkout
-        uses: actions/checkout@v2
-
       - run: npm install -g yarn
 
-      - name: Get yarn cache directory path # get yarn cache path
+      - name: Get yarn cache path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - uses: actions/cache@v2 # cache yarn
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      - name: ⚡ NPM Cache
+        uses: actions/cache@v2
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
@@ -68,8 +65,12 @@ jobs:
       - name: 🔧 Install dependancies
         run: yarn
 
+  deploy-prod:
+    needs: react-build
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/master' }}
+    steps:
       - name: 🚀 Deploy
-        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           yarn deploy -u "GitHub Action <action@github.com>"

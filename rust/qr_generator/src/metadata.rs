@@ -1,7 +1,7 @@
 use meta_reading::{decode_metadata::decode_version, fetch_metadata::{fetch_info_with_chainspecs}, interpret_chainspecs::interpret_properties};
 use anyhow;
 use meta_reading::fetch_metadata::FetchedInfoWithChainSpecs;
-use crate::error::{Error, NotDecodeable};
+use crate::error::{Error, NotDecodable};
 use crate::export::{ChainSpecs, MetaSpecs};
 
 
@@ -12,7 +12,7 @@ pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs>{
     };
     let meta_values = match decode_version(&new_info.meta) {
         Ok(a) => a,
-        Err(e) => return Err(Error::NotDecodeable(NotDecodeable::FetchedMetadata{address: address.to_string(), error: e.to_string()}).show())
+        Err(e) => return Err(Error::NotDecodable(NotDecodable::FetchedMetadata{address: address.to_string(), error: e.to_string()}).show())
     };
     let new_properties = match interpret_properties(&new_info.properties) {
         Ok(a) => a,

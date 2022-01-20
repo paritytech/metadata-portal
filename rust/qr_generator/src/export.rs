@@ -3,12 +3,12 @@ use serde::{Serialize, Deserialize};
 
 use definitions::{metadata::MetaValues};
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct ReactAssetPath(String);
 
 impl ReactAssetPath {
     pub fn from_fs_path(path: PathBuf, public_dir: &PathBuf) -> anyhow::Result<ReactAssetPath> {
-        Ok(ReactAssetPath(format!("/{}", path.strip_prefix(public_dir).unwrap().to_str().unwrap())))
+        Ok(ReactAssetPath(format!("/{}", path.strip_prefix(public_dir)?.to_str().unwrap())))
     }
 }
 
@@ -48,4 +48,20 @@ pub struct QrCode {
     pub path: ReactAssetPath,
     pub is_verified: bool,
     pub version: u32,
+}
+
+
+#[cfg(test)]
+mod tests {
+    use std::path::Path;
+    use super::*;
+
+    #[test]
+    fn create_react_asset_path() {
+        let img_path = Path::new("./../public/qr/name_kind_9123.apng").to_path_buf();
+        let public_dir = Path::new("./../public").to_path_buf();
+        assert_eq!(ReactAssetPath::from_fs_path(img_path, &public_dir).unwrap(),
+                   ReactAssetPath("/qr/name_kind_9123.apng".to_string()));
+    }
+
 }

@@ -2,7 +2,7 @@ use std::path::PathBuf;
 use anyhow::anyhow;
 
 pub enum Error {
-    NotDecodeable(NotDecodeable),
+    NotDecodable(NotDecodable),
     FetchFailed{address: String, error: String},
     BadNetworkProperties{address: String, error: String},
     Qr(String),
@@ -10,7 +10,7 @@ pub enum Error {
     UnexpectedQrFilename(PathBuf)
 }
 
-pub enum NotDecodeable {
+pub enum NotDecodable {
     FetchedMetadata{address: String, error: String},
 }
 
@@ -19,9 +19,9 @@ impl Error {
     pub fn show(&self) -> anyhow::Error {
         match &self {
             Error::UnexpectedQrFilename(s) => anyhow!("Unexpected filename in {}. Expected format is <chain>_<kind>_<version>", s.display()),
-            Error::NotDecodeable(x) => {
+            Error::NotDecodable(x) => {
                 match x {
-                    NotDecodeable::FetchedMetadata{address, error} => anyhow!("Error decoding metadata fetched by rpc call at {}. {}", address, error),
+                    NotDecodable::FetchedMetadata{address, error} => anyhow!("Error decoding metadata fetched by rpc call at {}. {}", address, error),
                 }
             },
             Error::FetchFailed{address, error} => anyhow!("Error processing rpc call at {}. {}", address, error),

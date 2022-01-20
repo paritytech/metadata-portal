@@ -18,6 +18,11 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v2
 
+      - name: 🔧 Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
       - name: ⚡ Cache
         uses: actions/cache@v2
         with:
@@ -26,11 +31,6 @@ jobs:
             ~/.cargo/git
             ./rust/target
           key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
-
-      - name: 🔧 Install stable toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
 
       - name: ⚙ Run
         run: make rust

@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import {getChains} from "../data";
 import InfoPage from "./InfoPage";
+// @ts-ignore
+import GitHubForkRibbon from 'react-github-fork-ribbon';
 
 export default function App() {
     const allChains = getChains()
@@ -17,6 +19,9 @@ export default function App() {
             <Route path="/" element={<InfoPage currentName={chainsName[0]} allChains={allChains}/>} />
             {routes}
         </Routes>
+        <GitHubForkRibbon href="https://github.com/paritytech/metadata-portal" target="_blank" color="black" position="right-bottom">
+          Fork me on GitHub
+      </GitHubForkRibbon>
       </HashRouter>
   );
 }

@@ -16,7 +16,6 @@ struct Cli {
 
 fn main() -> Result<(), String> {
      let args = Cli::parse();
-    println!("{:?}", args);
 
     let app_config = match read_app_config(args.config) {
         Ok(x) => x,

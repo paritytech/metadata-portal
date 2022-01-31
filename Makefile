@@ -1,13 +1,9 @@
-CARGO_FILE=rust/qr_generator/Cargo.toml
+.PHONY: verifier generator
 
-.PHONY: rust
+all: verifier generator
 
-all: rust
+generator:
+	cargo run --manifest-path rust/qr_generator/Cargo.toml -- --config=config.toml
 
-rust: rust.test rust.run
-
-rust.test:
-	cargo test --manifest-path $(CARGO_FILE)
-
-rust.run:
-	cargo run --manifest-path $(CARGO_FILE) -- --config-file config.toml
+verifier:
+	cargo run --manifest-path rust/qr_verifier/Cargo.toml -- --config=config.toml

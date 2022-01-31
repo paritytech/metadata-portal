@@ -3,17 +3,13 @@ use std::fs::File;
 use std::io::prelude::*;
 
 use anyhow;
+use app_config::AppConfig;
 
 mod metadata;
-use crate::config::AppConfig;
-use crate::Error::UnexpectedQrFilename;
 
-mod error;
-pub mod config;
 mod export;
 mod qr_file;
 
-use crate::error::Error;
 use crate::export::{ExportChainSpec, QrCode, ReactAssetPath};
 use crate::metadata::fetch_chain_info;
 use crate::qr_file::{generate_metadata_qr, read_qr_dir};

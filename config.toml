@@ -5,6 +5,10 @@ public_dir_path = "public"
 signed_qr_dir = "qr/signed"
 unsigned_qr_dir = "qr/unsigned"
 
+[verifier]
+name = "Parity"
+public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+
 [[chains]]
 name = "polkadot"
 rpc_endpoint = "wss://rpc.polkadot.io"

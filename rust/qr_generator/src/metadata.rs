@@ -1,23 +1,23 @@
-use meta_reading::{decode_metadata::decode_version, fetch_metadata::{fetch_info_with_chainspecs}, interpret_chainspecs::interpret_properties};
-use anyhow;
-use meta_reading::fetch_metadata::FetchedInfoWithChainSpecs;
-use crate::error::{Error, NotDecodable};
+use anyhow::{anyhow, bail};
+use definitions::error::IncomingMetadataSourceActiveStr;
+use definitions::metadata::MetaValues;
+use generate_message::fetch_metadata::fetch_info_with_network_specs;
+use generate_message::interpret_specs::interpret_properties;
 use crate::export::{ChainSpecs, MetaSpecs};
 
 
 pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs>{
-    let new_info: FetchedInfoWithChainSpecs = match fetch_info_with_chainspecs(address) {
+    let new_info = match fetch_info_with_network_specs(address) {
         Ok(a) => a,
-        Err(e) => return Err(Error::FetchFailed{address: address.to_string(), error: e.to_string()}.show()),
+        Err(e) => bail!("failed to fetch chain info from {}: {}", address, e),
     };
-    let meta_values = match decode_version(&new_info.meta) {
+    let meta_values = MetaValues::from_str_metadata(&new_info.meta, IncomingMetadataSourceActiveStr::Fetch{url: address.to_string()}).map_err(|e| anyhow!("{:?}", e))?;
+
+    let new_properties = match interpret_properties(&new_info.properties, meta_values.optional_base58prefix, None) {
         Ok(a) => a,
-        Err(e) => return Err(Error::NotDecodable(NotDecodable::FetchedMetadata{address: address.to_string(), error: e.to_string()}).show())
+        Err(e) => bail!("{:?}", e),
     };
-    let new_properties = match interpret_properties(&new_info.properties) {
-        Ok(a) => a,
-        Err(e) => return Err(Error::BadNetworkProperties{address: address.to_string(), error: e.to_string()}.show()),
-    };
+
     let specs = ChainSpecs {
         base58prefix: new_properties.base58prefix,
         decimals: new_properties.decimals,

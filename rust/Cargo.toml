@@ -1,10 +1,8 @@
 [workspace]
 
 members = [
-	"definitions",
-	"defaults",
-	"meta_reading",
+	"app_config",
+	"file_names",
 	"qr_generator",
-	"qrcode_static",
-	"qrcode_rtx",
+	"qr_verifier",
 ]

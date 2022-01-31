@@ -1,6 +1,7 @@
 use std::path::PathBuf;
-use qr_generator::{full_run, config::read_app_config};
+use qr_generator::{full_run};
 use clap::Parser;
+use app_config::read_app_config;
 
 
 #[derive(Parser, Debug)]
@@ -8,13 +9,13 @@ use clap::Parser;
 struct Args {
 	/// Path to config file
 	#[clap(short, long)]
-	config_file: PathBuf,
+	config: PathBuf,
 }
 
 fn main() -> Result<(), String> {
 	let args = Args::parse();
 
-	let app_config = match read_app_config(args.config_file) {
+	let app_config = match read_app_config(args.config) {
 		Ok(x) => x,
 		Err(e) => return Err(format!("Error reading config file. {}", e)),
 	};

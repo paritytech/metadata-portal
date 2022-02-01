@@ -31,12 +31,14 @@ jobs:
             rust/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
 
-      - name: 📌 Commit changes
+      - name: 📌 Update automated/to-sign branch
         run:  |
-          git fetch
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
-          git merge origin/automated/to-sign --allow-unrelated-histories
+          git fetch
+          git switch automated/to-sign
+          git rebase master
+          git push origin
 
       - name: ⚙ Run generator
         run: make generator

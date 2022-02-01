@@ -41,9 +41,7 @@ jobs:
             rust/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
 
-
-
-      - name: ⚙ Run generator
+      - name: ⚙ Run QR generator
         run: make generator
 
       - name: Create Pull Request
@@ -51,6 +49,7 @@ jobs:
         with:
           commit-message: Update metadata
           branch: automated/to-sign
+          base: master
           delete-branch: true
           title: '[Automated] Sign new QR codes'
           body: |

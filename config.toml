@@ -1,9 +1,7 @@
-data_file_path = "src/chains.json"
-public_dir_path = "public"
+data_file = "src/chains.json"
+public_dir = "public"
 
-[public]
-signed_qr_dir = "qr/signed"
-unsigned_qr_dir = "qr/unsigned"
+qr_dir = "public/qr"
 
 [verifier]
 name = "Parity"

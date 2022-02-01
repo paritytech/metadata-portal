@@ -4,7 +4,7 @@ import {
     Route,
     HashRouter
 } from "react-router-dom";
-import {getChains} from "../data";
+import {getChains} from "../scheme";
 import InfoPage from "./InfoPage";
 // @ts-ignore
 import GitHubForkRibbon from 'react-github-fork-ribbon';

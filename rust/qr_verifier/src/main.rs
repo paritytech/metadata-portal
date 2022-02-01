@@ -22,7 +22,7 @@ fn main() -> Result<(), String> {
         Err(e) => return Err(format!("🔍 Error reading config file. {}", e)),
     };
 
-    match validate_signed_qrs(&app_config.public.signed_qr_dir, &app_config.verifier.public_key) {
+    match validate_signed_qrs(&app_config.qr_dir, &app_config.verifier.public_key) {
         Ok(_) => println!("Ok!"),
         Err(e) => return Err(format!("❌ Failed to verify: {}", e)),
     }

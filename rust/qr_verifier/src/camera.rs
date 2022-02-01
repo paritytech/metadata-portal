@@ -31,10 +31,6 @@ pub fn read_qr_movie(source_file: &PathBuf) -> anyhow::Result<String> {
             },
             Ready::Yes(a) => {
                 line.push_str(&hex::encode(&a));
-                match std::fs::write("decoded_output.txt", &line) {
-                    Ok(_) => (),
-                    Err(e) => println!("Unable to write decoded information in the file. {}", e)
-                };
                 break;
             },
         }

@@ -1,0 +1,51 @@
+name: Check updates
+
+on:
+  pull_request:
+    branches:
+      - master
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: ⚡ Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            rust/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
+
+      - name: 📌 Commit changes
+        run: git merge automated/to-sign
+
+      - name: ⚙ Run generator
+        run: make generator
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Update metadata
+          branch: automated/to-sign
+          delete-branch: true
+          title: '[Automated] Sign new QR codes'
+          body: |
+            - [ ] Sign new QR codes
+            - [ ] Remove  `unsigned_`  prefix in filenames
+          assignees: prybalko
+          reviewers: prybalko

@@ -1,22 +1,22 @@
-import {QrInfo} from "../data";
-import {BadgeCheckIcon, ShieldExclamationIcon} from "@heroicons/react/solid";
+import {QrInfo} from "../scheme";
+import {BadgeCheckIcon, ExclamationCircleIcon} from "@heroicons/react/solid";
 
 
-export default function QrCode({path, isVerified}: QrInfo) {
+export default function QrCode({path, signedBy}: QrInfo) {
     const svgClass = "inline mr-2 h-7"
     return (
         <div className="pb-5 bg-white">
             <img src={process.env.PUBLIC_URL + path} alt="metadata qr code"/>
             <div className="flex justify-center text-lg font-medium">
-                {isVerified ? (
+                {signedBy ? (
                         <div className="text-green-700">
                             <BadgeCheckIcon className={svgClass}/>
-                            Signed by Parity
+                            Signed by {signedBy}
                         </div>
                     )
                 : (
-                    <div className="text-amber-500">
-                        <ShieldExclamationIcon className={svgClass}/>
+                    <div className="text-red-500">
+                        <ExclamationCircleIcon className={svgClass}/>
                             Unsigned
                     </div>
                     )

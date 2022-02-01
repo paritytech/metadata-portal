@@ -8,12 +8,12 @@ export interface ChainSpec {
     color: string,
     unit: string,
     addressPrefix: number,
-    metadataQrCodes: QrInfo[]
+    metadataQr?: QrInfo
 }
 
 export interface QrInfo {
     path: string,
-    isVerified: boolean,
+    signedBy?: string,
     version: number,
 
 }

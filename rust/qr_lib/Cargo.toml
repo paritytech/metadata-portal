@@ -1,5 +1,5 @@
 [package]
-name = "file_names"
+name = "qr_lib"
 version = "0.1.0"
 authors = ["vera"]
 edition = "2018"
@@ -10,5 +10,5 @@ edition = "2018"
 anyhow = "1.0.42"
 
 [lib]
-name = "file_names"
+name = "qr_lib"
 crate-type = ["lib"]

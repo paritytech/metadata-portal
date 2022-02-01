@@ -2,7 +2,8 @@
 
 members = [
 	"app_config",
-	"file_names",
+	"data_collector",
 	"qr_generator",
 	"qr_verifier",
+	"qr_lib",
 ]

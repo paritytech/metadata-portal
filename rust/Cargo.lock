@@ -657,6 +657,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "data_collector"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "app_config",
+ "clap",
+ "constants",
+ "definitions",
+ "generate_message",
+ "hex",
+ "qr_lib",
+ "qrcode_rtx",
+ "qrcode_static",
+ "serde",
+ "serde_json",
+ "toml",
+]
+
+[[package]]
 name = "db_handling"
 version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
@@ -873,13 +892,6 @@ name = "fake-simd"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e88a8acf291dafb59c2d96e8f59828f3838bb1a70398823ade51a84de6a6deed"
-
-[[package]]
-name = "file_names"
-version = "0.1.0"
-dependencies = [
- "anyhow",
-]
 
 [[package]]
 name = "find-crate"
@@ -2431,16 +2443,18 @@ dependencies = [
  "anyhow",
  "app_config",
  "clap",
- "constants",
  "definitions",
- "file_names",
  "generate_message",
  "hex",
+ "qr_lib",
  "qrcode_rtx",
- "qrcode_static",
- "serde",
- "serde_json",
- "toml",
+]
+
+[[package]]
+name = "qr_lib"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
 ]
 
 [[package]]
@@ -2463,11 +2477,11 @@ dependencies = [
  "app_config",
  "clap",
  "definitions",
- "file_names",
  "hex",
  "image",
  "opencv",
  "parser",
+ "qr_lib",
  "qr_reader_phone",
  "quircs",
  "sp-core",

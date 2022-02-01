@@ -9,7 +9,7 @@ use definitions::metadata::MetaValues;
 use definitions::network_specs::{Verifier, VerifierValue};
 use definitions::qr_transfers::ContentLoadMeta;
 use transaction_parsing::check_signature::pass_crypto;
-use file_names::QrFileName;
+use qr_lib::filename::QrFileName;
 
 mod camera;
     use crate::camera::read_qr_movie;
@@ -53,7 +53,7 @@ fn verify_signature(verifier: &Verifier, public_key: &str) -> anyhow::Result<()>
 }
 
 fn verify_filename(meta_values: &MetaValues, actual_qr_name: &QrFileName) -> anyhow::Result<()> {
-    let expected = QrFileName{kind: "metadata".to_string(), chain: meta_values.name.clone(), version: meta_values.version};
+    let expected = QrFileName{kind: "metadata".to_string(), chain: meta_values.name.clone(), version: meta_values.version, is_signed: true};
     ensure!(actual_qr_name == &expected, "filename mismatch! Expected {}, got {}", expected, actual_qr_name);
     Ok(())
 }

@@ -50,7 +50,6 @@ jobs:
           commit-message: Update metadata
           branch: automated/to-sign
           base: master
-          delete-branch: true
           title: '[Automated] Sign new QR codes'
           body: |
             - [ ] Sign new QR codes

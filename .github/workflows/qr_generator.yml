@@ -23,6 +23,7 @@ jobs:
           git switch automated/to-sign
           git rebase origin/master
           git push origin
+          git checkout $GITHUB_REF
 
       - name: 🔧 Install stable toolchain
         uses: actions-rs/toolchain@v1

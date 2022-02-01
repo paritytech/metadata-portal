@@ -34,7 +34,7 @@ jobs:
       - name: 📌 Commit changes
         run:  |
           git fetch
-          git merge origin/automated/to-sign
+          git merge origin/automated/to-sign --allow-unrelated-histories
 
       - name: ⚙ Run generator
         run: make generator

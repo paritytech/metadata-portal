@@ -20,6 +20,9 @@ pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
             Some(qr) if qr.version < meta_specs.meta_values.version => {
                 generate_metadata_qr(&meta_specs.meta_values, &config.qr_dir)?;
             },
+            None => {
+                generate_metadata_qr(&meta_specs.meta_values, &config.qr_dir)?;
+            }
             _ => (),
         };
     }

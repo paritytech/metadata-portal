@@ -17,12 +17,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 📌 Merge changes from automated/to-sign branch
+      - name: Hack for not generating already generated QR codes
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
-          git fetch
-          git merge origin/automated/to-sign
+          git merge origin/automated/to-sign && git reset HEAD~ || true
 
       - name: 🔧 Install stable toolchain
         uses: actions-rs/toolchain@v1

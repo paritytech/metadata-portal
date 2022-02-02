@@ -17,7 +17,7 @@ pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
     for chain in config.chains {
         let meta_specs = fetch_chain_info(&chain.rpc_endpoint)?;
         match saved_qr_codes.get(chain.name.as_str()) {
-            Some(qr) if qr.version <= meta_specs.meta_values.version => (),
+            Some(saved) if saved.version >= meta_specs.meta_values.version => (),
             _ => {
                 generate_metadata_qr(&meta_specs.meta_values, &config.qr_dir)?;
             },

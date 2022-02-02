@@ -15,17 +15,15 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v2
 
-      - name: 📌 Update automated/to-sign branch
+      - name: 📌 Merge changes from automated/to-sign branch
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git fetch
-          git switch automated/to-sign
-          git rebase origin/master
-          git push origin
-          git checkout $GITHUB_SHA
+          git merge origin/automated/to-sign
 
       - name: 🔧 Install stable toolchain
+        if: ${{ always() }}
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -49,8 +47,11 @@ jobs:
         with:
           commit-message: Update metadata
           branch: automated/to-sign
+          delete-branch: true
           base: master
           title: '[Automated] Sign new QR codes'
+          add-paths: |
+            public/qr
           body: |
             - [ ] Sign new QR codes
             - [ ] Remove  `unsigned_`  prefix in filenames

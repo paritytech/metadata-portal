@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: 🔧 Install stable toolchain
-        uses: actions-rs/toolchain@v1
+        uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f
         with:
           toolchain: stable
 
@@ -25,9 +25,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            ./rust/target
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            rust/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
 
       - name: ⚙ Run collector

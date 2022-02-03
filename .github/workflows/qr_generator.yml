@@ -1,11 +1,11 @@
 name: Check updates
 
 on:
-  pull_request:
-    branches:
-      - master
   schedule:
     - cron: '0 */6 * * *'
+
+env:
+  AUTOMATED_BRANCH: qr-generator/to-sign
 
 jobs:
   generate:
@@ -14,9 +14,17 @@ jobs:
     steps:
       - name: 🛎 Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Fetch changes from automated branch, so we don't generate same QRs again
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git merge origin/$AUTOMATED_BRANCH && git reset HEAD~ || true
 
       - name: 🔧 Install stable toolchain
-        uses: actions-rs/toolchain@v1
+        uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f
         with:
           toolchain: stable
 
@@ -31,21 +39,20 @@ jobs:
             rust/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
 
-      - name: 📌 Commit changes
-        run: git merge automated/to-sign
-
-      - name: ⚙ Run generator
+      - name: ⚙ Run QR generator
         run: make generator
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330
         with:
-          commit-message: Update metadata
-          branch: automated/to-sign
+          commit-message: add unsigned QR codes
+          branch: ${{ env.AUTOMATED_BRANCH }}
           delete-branch: true
+          base: master
           title: '[Automated] Sign new QR codes'
+          add-paths: |
+            public/qr
           body: |
-            - [ ] Sign new QR codes
-            - [ ] Remove  `unsigned_`  prefix in filenames
+            - [ ] Sign new QR codes and push them to this branch
           assignees: prybalko
           reviewers: prybalko

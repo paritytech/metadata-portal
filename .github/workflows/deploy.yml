@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Install yarn
+        run: npm install -g yarn
+
+      - name: Get yarn cache path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: ⚡ NPM Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+
+      - name: 🔧 Install dependancies
+        run: yarn
+
+      - name: 🚀 Deploy
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          yarn deploy -u "GitHub Action <action@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

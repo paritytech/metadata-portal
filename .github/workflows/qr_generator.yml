@@ -49,7 +49,7 @@ jobs:
         uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330
         with:
           commit-message: add unsigned QR codes
-          branch: $AUTOMATED_BRANCH
+          branch: ${{ AUTOMATED_BRANCH }}
           delete-branch: true
           base: master
           title: '[Automated] Sign new QR codes'

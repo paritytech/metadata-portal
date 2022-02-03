@@ -7,3 +7,6 @@ generator:
 
 verifier:
 	cargo run --manifest-path rust/qr_verifier/Cargo.toml -- --config=config.toml
+
+collector:
+	cargo run --manifest-path rust/data_collector/Cargo.toml -- --config=config.toml

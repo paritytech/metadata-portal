@@ -1,2 +1,3 @@
+# QR generator
 
-# Crate `qr_generator`
+Check chains for updates and generates unsigned metadata QR codes.

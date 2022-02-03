@@ -1,48 +1,17 @@
-name: Build and Deploy
+name: Deploy
 
 on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
-  schedule:
-    - cron: '0 */6 * * *'
 
 jobs:
-  build-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: 🛎 Checkout
         uses: actions/checkout@v2
-
-      - name: 🔧 Install stable toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-
-      - name: ⚡ Cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            ./rust/target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
-
-      - name: ⚙ Run generator
-        run: make generator
-
-      - name: 📌 Commit changes
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add .
-          git commit -m "Update metadata" || true
-          git push
 
       - name: 🔧 Install yarn
         run: npm install -g yarn
@@ -61,7 +30,6 @@ jobs:
         run: yarn
 
       - name: 🚀 Deploy
-        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           yarn deploy -u "GitHub Action <action@github.com>"

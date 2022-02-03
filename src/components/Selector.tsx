@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment} from 'react'
 import {ChevronDownIcon} from '@heroicons/react/solid'
 import {Link} from "react-router-dom";
-import {Chains, ChainSpec} from "../data";
+import {Chains, ChainSpec} from "../scheme";
 
 interface Props{
     allChains: Chains

@@ -459,6 +459,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "collector"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "app_config",
+ "clap",
+ "constants",
+ "definitions",
+ "generate_message",
+ "hex",
+ "qr_lib",
+ "qrcode_rtx",
+ "qrcode_static",
+ "serde",
+ "serde_json",
+ "toml",
+]
+
+[[package]]
 name = "color_quant"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -654,25 +673,6 @@ checksum = "a5bbed42daaa95e780b60a50546aa345b8413a1e46f9a40a12907d3598f038db"
 dependencies = [
  "data-encoding",
  "syn",
-]
-
-[[package]]
-name = "data_collector"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "app_config",
- "clap",
- "constants",
- "definitions",
- "generate_message",
- "hex",
- "qr_lib",
- "qrcode_rtx",
- "qrcode_static",
- "serde",
- "serde_json",
- "toml",
 ]
 
 [[package]]
@@ -2437,20 +2437,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "qr_generator"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "app_config",
- "clap",
- "definitions",
- "generate_message",
- "hex",
- "qr_lib",
- "qrcode_rtx",
-]
-
-[[package]]
 name = "qr_lib"
 version = "0.1.0"
 dependencies = [
@@ -2467,6 +2453,20 @@ dependencies = [
  "hex",
  "raptorq",
  "serde_json",
+]
+
+[[package]]
+name = "qr_updater"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "app_config",
+ "clap",
+ "definitions",
+ "generate_message",
+ "hex",
+ "qr_lib",
+ "qrcode_rtx",
 ]
 
 [[package]]

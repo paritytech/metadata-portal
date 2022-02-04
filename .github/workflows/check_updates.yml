@@ -8,7 +8,7 @@ env:
   AUTOMATED_BRANCH: qr-generator/to-sign
 
 jobs:
-  generate:
+  update:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,15 +17,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Fetch changes from automated branch, so we don't generate same QRs again
+      - name: Try to checkout to the existing automated branch
+        id: checkout-automated
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git merge origin/$AUTOMATED_BRANCH && git reset HEAD~ || true
+          ok=$(git checkout $AUTOMATED_BRANCH >> /dev/null && echo "true" || echo "false")
+          echo "::set-output name=ok::$ok"
 
       - name: 🔧 Install stable toolchain
         uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f
         with:
+          profile: minimal
           toolchain: stable
 
       - name: ⚡ Cache
@@ -39,10 +40,19 @@ jobs:
             rust/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
 
-      - name: ⚙ Run QR generator
-        run: make generator
+      - name: ⚙ Run QR updater
+        run: make updater
 
-      - name: Create Pull Request
+      - name: 📌 Commit changes if PR exists
+        if: ${{ steps.checkout-automated.outputs.ok == 'true' }}
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git commit -am "add unsigned QR code" || true
+          git push
+
+      - name: Create Pull Request if not exist
+        if: ${{ steps.checkout-automated.outputs.ok == 'false' }}
         uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330
         with:
           commit-message: add unsigned QR codes

@@ -18,6 +18,7 @@ jobs:
       - name: 🔧 Install stable toolchain
         uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f
         with:
+          profile: minimal
           toolchain: stable
 
       - name: ⚡ Cache
@@ -30,9 +31,6 @@ jobs:
             ~/.cargo/git/db/
             rust/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
-
-      - name: ⚙ Run backend tests
-        run: make tests
 
       - name: ⚙ Run collector
         run: make collector
@@ -59,3 +57,21 @@ jobs:
 
       - name: 🔧 Install dependancies
         run: yarn
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔨 Install system dependancies
+        run: |
+          sudo apt install -y clang libclang-dev libopencv-dev
+
+      - uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f
+        with:
+          profile: minimal
+          toolchain: stable
+
+      - name: ⚙ Run backend tests
+        run: make tests

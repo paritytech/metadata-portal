@@ -32,10 +32,6 @@
     "color": "#f27230",
     "unit": "WND",
     "addressPrefix": "42",
-    "metadataQr": {
-      "path": "/qr/westend_metadata_9151.apng",
-      "signedBy": "Parity",
-      "version": 9151
-    }
+    "metadataQr": null
   }
 ]

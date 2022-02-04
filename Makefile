@@ -1,12 +1,15 @@
-.PHONY: verifier generator
+.PHONY: verifier updater collector tests
 
-all: verifier generator
+all: tests verifier updater collector
 
-generator:
-	cargo run --manifest-path rust/qr_generator/Cargo.toml -- --config=config.toml
+updater:
+	cargo run --manifest-path rust/qr_updater/Cargo.toml -- --config=config.toml
 
 verifier:
 	cargo run --manifest-path rust/qr_verifier/Cargo.toml -- --config=config.toml
 
 collector:
-	cargo run --manifest-path rust/data_collector/Cargo.toml -- --config=config.toml
+	cargo run --manifest-path rust/collector/Cargo.toml -- --config=config.toml
+
+tests:
+	cargo test --manifest-path rust/Cargo.toml

@@ -1,5 +1,5 @@
 use std::path::PathBuf;
-use data_collector::{full_run};
+use collector::{full_run};
 use clap::Parser;
 use app_config::read_app_config;
 

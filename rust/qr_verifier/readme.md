@@ -24,5 +24,3 @@ Use this manual: https://docs.opencv.org/4.5.3/d7/d9f/tutorial_linux_install.htm
 #### Examples
 
 * `cargo run -- --config=../../config.toml`
-
-

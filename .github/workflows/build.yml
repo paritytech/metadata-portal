@@ -31,6 +31,9 @@ jobs:
             rust/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
 
+      - name: ⚙ Run backend tests
+        run: make tests
+
       - name: ⚙ Run collector
         run: make collector
 

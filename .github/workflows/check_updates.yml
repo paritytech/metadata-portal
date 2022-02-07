@@ -43,6 +43,12 @@ jobs:
       - name: ⚙ Run QR updater
         run: make updater
 
+      - name: ⚙ Run collector
+        run: make collector
+
+      - name: ⚙ Run cleaner
+        run: make cleaner
+
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-automated.outputs.ok == 'true' }}
         run: |

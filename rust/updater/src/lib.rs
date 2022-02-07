@@ -1,6 +1,6 @@
 use anyhow;
 use app_config::AppConfig;
-use qr_lib::fs::read_qr_dir;
+use qr_lib::fs::latest_qr_per_chain;
 
 mod metadata;
 
@@ -12,7 +12,7 @@ use crate::qr_file::{generate_metadata_qr};
 
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
-    let saved_qr_codes = read_qr_dir(&config.qr_dir)?;
+    let saved_qr_codes = latest_qr_per_chain(&config.qr_dir)?;
 
     for chain in config.chains {
         let meta_specs = fetch_chain_info(&chain.rpc_endpoint)?;

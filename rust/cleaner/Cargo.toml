@@ -1,5 +1,5 @@
 [package]
-name = "qr_updater"
+name = "cleaner"
 version = "0.1.0"
 authors = ["vera"]
 edition = "2018"
@@ -9,9 +9,5 @@ edition = "2018"
 [dependencies]
 app_config = {path = "../app_config"}
 qr_lib = {path = "../qr_lib"}
-qrcode_rtx = {git = "https://github.com/paritytech/parity-signer"}
-definitions = {git = "https://github.com/paritytech/parity-signer"}
-generate_message = {git = "https://github.com/paritytech/parity-signer"}
 anyhow = "1.0.42"
-hex = "0.4.3"
 clap = { version = "3.0.1", features = ["derive"] }

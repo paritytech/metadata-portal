@@ -1,5 +1,5 @@
 use std::path::PathBuf;
-use qr_updater::{full_run};
+use cleaner::{full_run};
 use clap::Parser;
 use app_config::read_app_config;
 

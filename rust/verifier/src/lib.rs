@@ -1,6 +1,6 @@
 use std::convert::TryFrom;
 use std::fs;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use anyhow::{anyhow, bail, ensure};
 
 use definitions::error::{Signer, TransferContent};
@@ -10,12 +10,18 @@ use definitions::network_specs::{Verifier, VerifierValue};
 use definitions::qr_transfers::ContentLoadMeta;
 use transaction_parsing::check_signature::pass_crypto;
 use qr_lib::filename::QrFileName;
+use qr_lib::fs::latest_qr_per_chain;
 
 mod camera;
     use crate::camera::read_qr_movie;
 
 
-pub fn validate_signed_qrs(folder: &PathBuf, public_key: &str) -> anyhow::Result<()> {
+pub fn validate_signed_qrs(folder: impl AsRef<Path>, public_key: &str) -> anyhow::Result<()> {
+    // Quick check that latest files are signed
+    for qr_file in latest_qr_per_chain(&folder)?.values() {
+        ensure!(qr_file.is_signed, "{} is not signed", qr_file);
+    }
+
     for file in fs::read_dir(folder)? {
         let path = file?.path();
         let f_name = path.file_name().unwrap().to_str().unwrap();
@@ -29,7 +35,9 @@ pub fn validate_signed_qrs(folder: &PathBuf, public_key: &str) -> anyhow::Result
 
 
 fn validate_qr(file_path: &PathBuf, public_key: &str) -> anyhow::Result<()> {
-    let file_name = QrFileName::try_from(file_path.to_path_buf())?;
+    let file_name = QrFileName::try_from(file_path)?;
+    ensure!(file_name.is_signed, "{} is not signed", file_path.to_str().unwrap());
+
     let data_hex = read_qr_movie(file_path)?;
     let signed = pass_crypto(&data_hex, TransferContent::LoadMeta).map_err(|e| anyhow!("{:?}", e))?;
 

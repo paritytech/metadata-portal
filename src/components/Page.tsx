@@ -2,13 +2,14 @@ import {Chains} from "../scheme";
 import Selector from "./Selector";
 import QrCode from "./QrCode";
 import Specs from "./Specs";
+import AddToSigner from "./AddToSigner";
 
 interface Props{
     allChains: Chains
     currentName: string
 }
 
-export default function InfoPage({allChains, currentName}: Props) {
+export default function Page({allChains, currentName}: Props) {
     const chain = allChains[currentName]
     const metadataQr = chain.metadataQr;
     document.body.style.backgroundColor = chain.color;
@@ -19,10 +20,12 @@ export default function InfoPage({allChains, currentName}: Props) {
             </div>
             <div className="flex flex-row flex-wrap justify-center gap-10">
                 { metadataQr && (
-                    <><QrCode {...metadataQr} />
+                    <>
+                        <QrCode {...metadataQr} />
                         <div className="text-white">
-                            <h1 className="text-4xl mb-5">Metadata #{metadataQr.version}</h1>
+                            <h1 className="text-5xl mb-5">Metadata #{metadataQr.version}</h1>
                             <Specs {...chain} />
+                            <AddToSigner />
                         </div>
                     </>
                 )}
@@ -30,4 +33,3 @@ export default function InfoPage({allChains, currentName}: Props) {
         </div>
     )
 }
-

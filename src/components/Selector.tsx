@@ -9,6 +9,10 @@ interface Props{
     selectedName: string
 }
 
+function capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function ChainLogo(props: {chain: ChainSpec, className?: string}) {
     return (
         <span className={`web3-icon mr-2 ${props.className}`} style={{color: props.chain.color}}>
@@ -19,7 +23,7 @@ function ChainLogo(props: {chain: ChainSpec, className?: string}) {
 
 export default function Selector({selectedName, allChains}: Props) {
     const selected = allChains[selectedName]
-    const dropdownItems = Object.keys(allChains).filter(name => name !== selectedName).map(name => {
+    const dropdownItems = Object.keys(allChains).map(name => {
         return <Menu.Item key={name}>
             {({ active }) => (
                 <Link to={`/${name}`}>
@@ -29,21 +33,21 @@ export default function Selector({selectedName, allChains}: Props) {
                         } group flex rounded-md items-center w-full px-2 py-2 text-base`}
                     >
                         <ChainLogo chain={allChains[name]}/>
-                        {name}
+                        {capitalizeFirstLetter(name)}
                     </button>
                 </Link>
             )}
         </Menu.Item>
     })
     return (
-        <div className="text-right">
+        <div className="shadow-lg text-right">
             <Menu as="div" className="relative inline-block text-left text-2xl">
                 <div>
                     <Menu.Button className="inline-flex justify-center w-full items-center px-4 py-2 bg-white rounded-md border-2 border-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                        <ChainLogo chain={selected} className="text-4xl" />
-                        {selected.name}
+                        <ChainLogo chain={selected} className="" />
+                        {capitalizeFirstLetter(selected.name)}
                         <ChevronDownIcon
-                            className="w-5 h-5 ml-2"
+                            className="w-5 h-5 ml-2 text-3xl"
                             aria-hidden="true"
                         />
                     </Menu.Button>

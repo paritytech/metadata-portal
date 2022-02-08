@@ -70,5 +70,7 @@ jobs:
             public/qr
           body: |
             - [ ] Sign new QR codes and push them to this branch
-          assignees: prybalko
+            - [ ] Remove unsigned QRs
+          draft: true
+          assignees: kirushik
           reviewers: prybalko

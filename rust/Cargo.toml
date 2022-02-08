@@ -2,8 +2,9 @@
 
 members = [
 	"app_config",
+	"cleaner",
 	"collector",
 	"qr_lib",
-	"qr_updater",
-	"qr_verifier",
+	"updater",
+	"verifier",
 ]

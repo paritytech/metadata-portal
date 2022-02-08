@@ -43,6 +43,12 @@ jobs:
       - name: ⚙ Run QR updater
         run: make updater
 
+      - name: ⚙ Run collector
+        run: make collector
+
+      - name: ⚙ Run cleaner
+        run: make cleaner
+
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-automated.outputs.ok == 'true' }}
         run: |
@@ -64,5 +70,7 @@ jobs:
             public/qr
           body: |
             - [ ] Sign new QR codes and push them to this branch
-          assignees: prybalko
+            - [ ] Remove unsigned QRs
+          draft: true
+          assignees: kirushik
           reviewers: prybalko

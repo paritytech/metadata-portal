@@ -5,7 +5,7 @@ use anyhow::{bail};
 
 const UNSIGNED_PREFIX: &'static str = "unsigned_";
 
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Hash, Eq)]
 pub struct QrFileName{
     pub chain: String,
     pub kind: String,
@@ -13,10 +13,10 @@ pub struct QrFileName{
     pub is_signed: bool,
 }
 
-impl TryFrom<PathBuf> for QrFileName {
+impl TryFrom<&PathBuf> for QrFileName {
     type Error = anyhow::Error;
 
-    fn try_from(path: PathBuf) -> Result<Self, Self::Error> {
+    fn try_from(path: &PathBuf) -> Result<Self, Self::Error> {
         let filename = path.file_stem().unwrap().to_str().unwrap();
 
         let (stripped, is_signed) = match filename.strip_prefix(UNSIGNED_PREFIX) {
@@ -53,13 +53,12 @@ impl fmt::Display for QrFileName {
 
 #[cfg(test)]
 mod tests {
-    use std::path::Path;
     use super::*;
 
     #[test]
     fn parse_valid_filename() {
-        let path = Path::new("./foo/bar/name_kind_9123.apng");
-        let parse_result = QrFileName::try_from(path.to_path_buf());
+        let path = PathBuf::from("./foo/bar/name_kind_9123.apng");
+        let parse_result = QrFileName::try_from(&path);
         assert!(parse_result.is_ok());
         assert_eq!(parse_result.unwrap(), QrFileName{
             chain: "name".to_string(),
@@ -71,8 +70,8 @@ mod tests {
 
     #[test]
     fn parse_unsigned_qr() {
-        let path = Path::new("./foo/bar/unsigned_polkadot_metadata_9123.apng");
-        let parse_result = QrFileName::try_from(path.to_path_buf());
+        let path = PathBuf::from("./foo/bar/unsigned_polkadot_metadata_9123.apng");
+        let parse_result = QrFileName::try_from(&path);
         assert!(parse_result.is_ok());
         assert_eq!(parse_result.unwrap(), QrFileName{
             chain: "polkadot".to_string(),
@@ -84,8 +83,8 @@ mod tests {
 
     #[test]
     fn parse_invalid_filename() {
-        let path = Path::new("./foo/bar/invalid_9123.apng");
-        let parse_result = QrFileName::try_from(path.to_path_buf());
+        let path = PathBuf::from("./foo/bar/invalid_9123.apng");
+        let parse_result = QrFileName::try_from(&path);
         assert!(parse_result.is_err());
     }
 

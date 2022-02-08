@@ -2,7 +2,7 @@ use std::path::{PathBuf};
 
 use clap::{Parser};
 use app_config::read_app_config;
-use qr_verifier::{validate_signed_qrs};
+use verifier::{validate_signed_qrs};
 
 
 #[derive(Parser, Debug)]

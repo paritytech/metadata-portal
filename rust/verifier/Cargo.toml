@@ -1,5 +1,5 @@
 [package]
-name = "qr_verifier"
+name = "verifier"
 version = "0.2.0"
 authors = ["vera"]
 edition = "2018"

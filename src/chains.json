@@ -33,9 +33,9 @@
     "unit": "WND",
     "addressPrefix": "42",
     "metadataQr": {
-      "path": "/qr/westend_metadata_9151.apng",
+      "path": "/qr/unsigned_westend_metadata_9160.apng",
       "signedBy": "Parity",
-      "version": 9151
+      "version": 9160
     }
   }
 ]

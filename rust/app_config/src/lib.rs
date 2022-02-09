@@ -17,8 +17,7 @@ pub struct Verifier {
     pub public_key: String,
 }
 
-#[derive(Serialize, Default, Deserialize, Debug)]
-#[serde(default)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Chain {
     pub name: String,
     pub rpc_endpoint: String,

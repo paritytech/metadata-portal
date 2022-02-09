@@ -10,7 +10,8 @@
       "path": "/qr/polkadot_metadata_9151.apng",
       "signedBy": "Parity",
       "version": 9151
-    }
+    },
+    "addToSigner": false
   },
   {
     "name": "kusama",
@@ -23,7 +24,8 @@
       "path": "/qr/kusama_metadata_9151.apng",
       "signedBy": "Parity",
       "version": 9151
-    }
+    },
+    "addToSigner": false
   },
   {
     "name": "westend",
@@ -36,6 +38,7 @@
       "path": "/qr/westend_metadata_9151.apng",
       "signedBy": "Parity",
       "version": 9151
-    }
+    },
+    "addToSigner": true
   }
 ]

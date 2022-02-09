@@ -17,11 +17,19 @@ pub struct Verifier {
     pub public_key: String,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Default, Deserialize, Debug)]
+#[serde(default)]
 pub struct Chain {
     pub name: String,
     pub rpc_endpoint: String,
     pub color: String,
+
+    #[serde(default = "add_to_signer_default")]
+    pub add_to_signer: bool,
+}
+
+fn add_to_signer_default() -> bool{
+    false
 }
 
 pub fn read_app_config(config_file: PathBuf) -> anyhow::Result<AppConfig> {

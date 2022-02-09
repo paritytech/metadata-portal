@@ -23,7 +23,8 @@ pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
 fn save_to_file(specs: &Vec<ExportChainSpec>, path: impl AsRef<Path>) -> anyhow::Result<()> {
     let serialized = serde_json::to_string_pretty(specs).unwrap();
     let mut file = File::create(path)?;
-    file.write_all(&serialized.as_bytes())?;
+    file.write_all(serialized.as_bytes())?;
+    file.write_all("\n".as_bytes())?;
     Ok(())
 }
 
@@ -37,11 +38,15 @@ fn export_specs(config: &AppConfig) ->  anyhow::Result<Vec<ExportChainSpec>> {
 
         let qr_code = match saved_qr_codes.get(chain.name.as_str()) {
             Some(qr) => {
-                let png_path = config.qr_dir.join(qr.to_string());
+                // Optimistic approach. Give user a hint on how it should look like after he signs the QR
+                let mut signed_qr = qr.clone();
+                signed_qr.is_signed = true;
+
+                let png_path = config.qr_dir.join(signed_qr.to_string());
                 Some(QrCode{
                     path: ReactAssetPath::from_fs_path(png_path, &config.public_dir).unwrap(),
                     signed_by: Some(config.verifier.name.clone()),
-                    version: qr.version
+                    version: signed_qr.version
                 })
             },
             _ => None
@@ -54,6 +59,7 @@ fn export_specs(config: &AppConfig) ->  anyhow::Result<Vec<ExportChainSpec>> {
             unit: meta_specs.specs.unit,
             address_prefix: meta_specs.specs.base58prefix.to_string(),
             metadata_qr: qr_code,
+            add_to_signer: chain.add_to_signer,
         });
     }
     Ok(specs)

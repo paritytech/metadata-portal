@@ -40,6 +40,7 @@ pub struct ExportChainSpec {
     pub address_prefix: String,
 
     pub metadata_qr: Option<QrCode>,
+    pub add_to_signer: bool,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]

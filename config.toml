@@ -21,3 +21,4 @@ color = "#000000"
 name = "westend"
 rpc_endpoint = "wss://westend-rpc.polkadot.io"
 color = "#f27230"
+add_to_signer = true

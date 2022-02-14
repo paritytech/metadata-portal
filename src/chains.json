@@ -20,9 +20,9 @@
     "unit": "KSM",
     "addressPrefix": "2",
     "metadataQr": {
-      "path": "/qr/kusama_metadata_9151.apng",
+      "path": "/qr/unsigned_kusama_metadata_9160.apng",
       "signedBy": "Parity",
-      "version": 9151
+      "version": 9160
     }
   },
   {

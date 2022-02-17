@@ -475,13 +475,13 @@ dependencies = [
  "anyhow",
  "app_config",
  "clap",
- "constants",
- "definitions",
- "generate_message",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "generate_message 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "hex",
  "qr_lib",
- "qrcode_rtx",
- "qrcode_static",
+ "qrcode_rtx 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "qrcode_static 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "serde",
  "serde_json",
  "toml",
@@ -494,10 +494,30 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3d7b894f5411737b7867f4827955924d7c254fc9f4d91a6aad6b097804b1018b"
 
 [[package]]
+name = "console"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a28b32d32ca44b70c3e4acd7db1babf555fa026e385fb95f18028f88848b3c31"
+dependencies = [
+ "encode_unicode",
+ "libc",
+ "once_cell",
+ "regex",
+ "terminal_size",
+ "unicode-width",
+ "winapi",
+]
+
+[[package]]
 name = "constant_time_eq"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "245097e9a4535ee1e3e3931fcfcd55a796a44c643e8596ff6566d68f09b87bbc"
+
+[[package]]
+name = "constants"
+version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
 
 [[package]]
 name = "constants"
@@ -688,20 +708,45 @@ dependencies = [
 [[package]]
 name = "db_handling"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
 dependencies = [
  "blake2-rfc",
  "chrono",
- "constants",
- "defaults",
- "definitions",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "defaults 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
  "hex",
  "lazy_static",
  "parity-scale-codec",
  "parity-scale-codec-derive",
  "plot_icon",
  "png",
- "qrcode_static",
+ "qrcode_static 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "regex",
+ "sled",
+ "sp-core",
+ "sp-runtime",
+ "tiny-bip39",
+ "zeroize",
+]
+
+[[package]]
+name = "db_handling"
+version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
+dependencies = [
+ "blake2-rfc",
+ "chrono",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "defaults 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "hex",
+ "lazy_static",
+ "parity-scale-codec",
+ "parity-scale-codec-derive",
+ "plot_icon",
+ "png",
+ "qrcode_static 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "regex",
  "sled",
  "sp-core",
@@ -713,9 +758,22 @@ dependencies = [
 [[package]]
 name = "defaults"
 version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
+dependencies = [
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "hex",
+ "lazy_static",
+ "regex",
+ "sp-core",
+ "sp-runtime",
+]
+
+[[package]]
+name = "defaults"
+version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
 dependencies = [
- "definitions",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "hex",
  "lazy_static",
  "regex",
@@ -726,11 +784,34 @@ dependencies = [
 [[package]]
 name = "definitions"
 version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
+dependencies = [
+ "anyhow",
+ "blake2-rfc",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "frame-metadata",
+ "hex",
+ "lazy_static",
+ "parity-scale-codec",
+ "parity-scale-codec-derive",
+ "plot_icon",
+ "png",
+ "regex",
+ "sled",
+ "sp-core",
+ "sp-runtime",
+ "sp-version",
+ "wasm-testbed",
+]
+
+[[package]]
+name = "definitions"
+version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
 dependencies = [
  "anyhow",
  "blake2-rfc",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "frame-metadata",
  "hex",
  "lazy_static",
@@ -767,6 +848,18 @@ dependencies = [
  "quote",
  "rustc_version",
  "syn",
+]
+
+[[package]]
+name = "dialoguer"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "61579ada4ec0c6031cfac3f86fdba0d195a7ebeb5e36693bd53cb5999a25beeb"
+dependencies = [
+ "console",
+ "lazy_static",
+ "tempfile",
+ "zeroize",
 ]
 
 [[package]]
@@ -850,6 +943,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e78d4f1cc4ae33bbfc157ed5d5a5ef3bc29227303d595861deb238fcec4e9457"
 
 [[package]]
+name = "encode_unicode"
+version = "0.3.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a357d28ed41a50f9c765dbfe56cbc04a64e53e5fc58ba79fbc34c10ef3df831f"
+
+[[package]]
 name = "enum-iterator"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -902,6 +1001,15 @@ name = "fake-simd"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e88a8acf291dafb59c2d96e8f59828f3838bb1a70398823ade51a84de6a6deed"
+
+[[package]]
+name = "fastrand"
+version = "1.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c3fcf0cee53519c866c09b5de1f6c56ff9d647101f81c1964fa632e148896cdf"
+dependencies = [
+ "instant",
+]
 
 [[package]]
 name = "find-crate"
@@ -1082,16 +1190,37 @@ dependencies = [
 [[package]]
 name = "generate_message"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
 dependencies = [
- "constants",
- "db_handling",
- "definitions",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "db_handling 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
  "hex",
  "jsonrpsee-types 0.2.0",
  "jsonrpsee-ws-client 0.2.0",
  "parity-scale-codec",
- "qrcode_rtx",
+ "qrcode_rtx 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "serde_json",
+ "sled",
+ "sp-core",
+ "tokio",
+ "wasm-loader",
+ "wasm-testbed",
+]
+
+[[package]]
+name = "generate_message"
+version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
+dependencies = [
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "db_handling 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "hex",
+ "jsonrpsee-types 0.2.0",
+ "jsonrpsee-ws-client 0.2.0",
+ "parity-scale-codec",
+ "qrcode_rtx 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "serde_json",
  "sled",
  "sp-core",
@@ -1443,6 +1572,18 @@ checksum = "282a6247722caba404c065016bbfa522806e51714c34f5dfc3e4a3a46fcb4223"
 dependencies = [
  "autocfg",
  "hashbrown 0.11.2",
+]
+
+[[package]]
+name = "indicatif"
+version = "0.16.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2d207dc617c7a380ab07ff572a6e52fa202a2a8f355860ac9c38e23f8196be1b"
+dependencies = [
+ "console",
+ "lazy_static",
+ "number_prefix",
+ "regex",
 ]
 
 [[package]]
@@ -2020,6 +2161,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "number_prefix"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "830b246a0e5f20af87141b25c173cd1b609bd7779a4617d6ec582abaf90870f3"
+
+[[package]]
 name = "object"
 version = "0.27.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2207,18 +2354,40 @@ dependencies = [
 [[package]]
 name = "parser"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
 dependencies = [
  "bitvec",
- "defaults",
- "definitions",
+ "defaults 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
  "frame-metadata",
  "hex",
  "lazy_static",
  "num-bigint 0.4.3",
  "parity-scale-codec",
  "parity-scale-codec-derive",
- "printing_balance",
+ "printing_balance 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "regex",
+ "scale-info",
+ "sp-arithmetic",
+ "sp-core",
+ "sp-runtime",
+]
+
+[[package]]
+name = "parser"
+version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
+dependencies = [
+ "bitvec",
+ "defaults 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "frame-metadata",
+ "hex",
+ "lazy_static",
+ "num-bigint 0.4.3",
+ "parity-scale-codec",
+ "parity-scale-codec-derive",
+ "printing_balance 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "regex",
  "scale-info",
  "sp-arithmetic",
@@ -2386,6 +2555,11 @@ dependencies = [
 [[package]]
 name = "printing_balance"
 version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
+
+[[package]]
+name = "printing_balance"
+version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
 
 [[package]]
@@ -2451,15 +2625,36 @@ name = "qr_lib"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "hex",
+ "image",
+ "indicatif",
+ "opencv",
+ "qr_reader_pc",
+ "qr_reader_phone",
+ "quircs",
+]
+
+[[package]]
+name = "qr_reader_pc"
+version = "0.2.0"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
+dependencies = [
+ "anyhow",
+ "hex",
+ "image",
+ "indicatif",
+ "opencv",
+ "qr_reader_phone",
+ "quircs",
 ]
 
 [[package]]
 name = "qr_reader_phone"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
 dependencies = [
  "anyhow",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
  "hex",
  "raptorq",
  "serde_json",
@@ -2468,14 +2663,39 @@ dependencies = [
 [[package]]
 name = "qrcode_rtx"
 version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
+dependencies = [
+ "apng-encoder",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "hex",
+ "qrcode_static 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "qrcodegen",
+ "raptorq",
+]
+
+[[package]]
+name = "qrcode_rtx"
+version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
 dependencies = [
  "apng-encoder",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "hex",
- "qrcode_static",
+ "qrcode_static 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "qrcodegen",
  "raptorq",
+]
+
+[[package]]
+name = "qrcode_static"
+version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
+dependencies = [
+ "anyhow",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "hex",
+ "png",
+ "qrcodegen",
 ]
 
 [[package]]
@@ -2484,7 +2704,7 @@ version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
 dependencies = [
  "anyhow",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "hex",
  "png",
  "qrcodegen",
@@ -2698,6 +2918,15 @@ name = "regex-syntax"
 version = "0.6.25"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f497285884f3fcff424ffc933e56d7cbca511def0c9831a7f9b5f6153e3cc89b"
+
+[[package]]
+name = "remove_dir_all"
+version = "0.5.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3acd125665422973a33ac9d3dd2df85edad0f4ae9b00dafb1a05e43a9f5ef8e7"
+dependencies = [
+ "winapi",
+]
 
 [[package]]
 name = "ring"
@@ -3069,6 +3298,27 @@ name = "signature"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f054c6c1a6e95179d6f23ed974060dcefb2d9388bb7256900badad682c499de4"
+
+[[package]]
+name = "signer"
+version = "0.2.0"
+dependencies = [
+ "anyhow",
+ "app_config",
+ "clap",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "dialoguer",
+ "generate_message 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "hex",
+ "image",
+ "indicatif",
+ "parity-scale-codec",
+ "qr_lib",
+ "qr_reader_pc",
+ "qr_reader_phone",
+ "quircs",
+ "transaction_parsing 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+]
 
 [[package]]
 name = "siphasher"
@@ -3613,12 +3863,36 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "55937e1799185b12863d447f42597ed69d9928686b8d88a1df17376a097d8369"
 
 [[package]]
+name = "tempfile"
+version = "3.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5cdb1ef4eaeeaddc8fbd371e5017057064af0911902ef36b39801f67cc6d79e4"
+dependencies = [
+ "cfg-if 1.0.0",
+ "fastrand",
+ "libc",
+ "redox_syscall",
+ "remove_dir_all",
+ "winapi",
+]
+
+[[package]]
 name = "termcolor"
 version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2dfed899f0eb03f32ee8c6a0aabdb8a7949659e3466561fc0adf54e26d88c5f4"
 dependencies = [
  "winapi-util",
+]
+
+[[package]]
+name = "terminal_size"
+version = "0.1.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "633c1a546cee861a1a6d0dc69ebeca693bf4296661ba7852b9d21d159e0506df"
+dependencies = [
+ "libc",
+ "winapi",
 ]
 
 [[package]]
@@ -3869,22 +4143,49 @@ dependencies = [
 [[package]]
 name = "transaction_parsing"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
+source = "git+https://github.com/paritytech/parity-signer?branch=add-progress-bar#ab17a71787c827f8644822a8a52d1fa400c44d3a"
 dependencies = [
  "bitvec",
  "blake2-rfc",
- "constants",
- "db_handling",
- "definitions",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "db_handling 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
  "frame-metadata",
  "hex",
  "lazy_static",
  "num-bigint 0.4.3",
  "parity-scale-codec",
  "parity-scale-codec-derive",
- "parser",
+ "parser 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
  "plot_icon",
- "printing_balance",
+ "printing_balance 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
+ "regex",
+ "scale-info",
+ "sled",
+ "sp-arithmetic",
+ "sp-core",
+ "sp-runtime",
+]
+
+[[package]]
+name = "transaction_parsing"
+version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer#5312d19dbc75980fcae71666c59a53aa33d94afd"
+dependencies = [
+ "bitvec",
+ "blake2-rfc",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "db_handling 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "frame-metadata",
+ "hex",
+ "lazy_static",
+ "num-bigint 0.4.3",
+ "parity-scale-codec",
+ "parity-scale-codec-derive",
+ "parser 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "plot_icon",
+ "printing_balance 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "regex",
  "scale-info",
  "sled",
@@ -3981,6 +4282,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8895849a949e7845e06bd6dc1aa51731a103c42707010a5b591c0038fb73385b"
 
 [[package]]
+name = "unicode-width"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3ed742d4ea2bd1176e236172c8429aaf54486e7ac098db29ffe6529e0ce50973"
+
+[[package]]
 name = "unicode-xid"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4005,11 +4312,10 @@ dependencies = [
  "anyhow",
  "app_config",
  "clap",
- "definitions",
- "generate_message",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer)",
+ "generate_message 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=add-progress-bar)",
  "hex",
  "qr_lib",
- "qrcode_rtx",
 ]
 
 [[package]]
@@ -4037,17 +4343,13 @@ dependencies = [
  "anyhow",
  "app_config",
  "clap",
- "definitions",
+ "definitions 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "hex",
- "image",
- "opencv",
- "parser",
+ "parser 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "qr_lib",
- "qr_reader_phone",
- "quircs",
  "sp-core",
  "sp-runtime",
- "transaction_parsing",
+ "transaction_parsing 0.1.0 (git+https://github.com/paritytech/parity-signer)",
 ]
 
 [[package]]

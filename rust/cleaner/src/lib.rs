@@ -1,39 +1,36 @@
 use std::collections::HashSet;
-use std::convert::TryFrom;
 use std::fs;
-use std::path::{Path, PathBuf};
+use std::path::{Path};
 
 use anyhow;
 use app_config::{AppConfig};
-use qr_lib::filename::QrFileName;
-use qr_lib::fs::latest_qr_per_chain;
+use qr_lib::path::{QrPath};
+use qr_lib::read::{latest_qr_per_chain, read_qr_dir};
 
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
     let chains: HashSet<String> = config.chains.into_iter().map(|chain| chain.name).collect();
     for path in files_to_remove(&config.qr_dir, chains)? {
-        fs::remove_file(path)?;
+        fs::remove_file(path.to_path_buf())?;
+        println!("🗑 {} was deleted", path);
     }
     Ok(())
 }
 
 
-fn files_to_remove(dir: impl AsRef<Path>, chains: HashSet<String>) -> anyhow::Result<Vec<PathBuf>> {
+fn files_to_remove(dir: impl AsRef<Path>, chains: HashSet<String>) -> anyhow::Result<Vec<QrPath>> {
     let newest_qrs = latest_qr_per_chain(&dir)?;
-    let keep: HashSet<QrFileName> = newest_qrs
+    let keep: HashSet<QrPath> = newest_qrs
         .into_iter()
-        .filter(|(chain, _qr)| chains.contains(chain))
+        .filter(|(chain, _)| chains.contains(chain))
         .map(|(_chain, qr)| qr)
         .collect();
-    let mut to_remove = vec![];
-    for file in fs::read_dir(dir)? {
-        let path = file?.path();
-        if keep.contains(&QrFileName::try_from(&path)?) {
-            continue
-        }
-        to_remove.push(path);
-    }
-    Ok(to_remove)
+
+    let to_remove = read_qr_dir(&dir)?
+        .into_iter()
+        .filter(|qr_path| !keep.contains(qr_path))
+        .collect();
+     Ok(to_remove)
 }
 
 #[cfg(test)]
@@ -47,7 +44,7 @@ mod tests {
         let chains = HashSet::from(["kusama".to_string()]);
         let to_remove = files_to_remove(path, chains).unwrap();
         assert_eq!(to_remove.len(), 1);
-        assert_eq!(to_remove[0], path.join("kusama_metadata_9"));
+        assert_eq!(to_remove[0].to_path_buf(), path.join("kusama_metadata_9"));
     }
 
     #[test]
@@ -56,7 +53,7 @@ mod tests {
         let chains = HashSet::from(["kusama".to_string()]);
         let to_remove = files_to_remove(path, chains).unwrap();
         assert_eq!(to_remove.len(), 1);
-        assert_eq!(to_remove[0], path.join("polkadot_metadata_10"));
+        assert_eq!(to_remove[0].to_path_buf(), path.join("polkadot_metadata_10"));
     }
 
     #[test]
@@ -65,6 +62,6 @@ mod tests {
         let chains = HashSet::from(["kusama".to_string()]);
         let to_remove = files_to_remove(path, chains).unwrap();
         assert_eq!(to_remove.len(), 1);
-        assert_eq!(to_remove[0], path.join("unsigned_kusama_metadata_10"));
+        assert_eq!(to_remove[0].to_path_buf(), path.join("unsigned_kusama_metadata_10"));
     }
 }

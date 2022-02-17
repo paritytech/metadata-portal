@@ -70,6 +70,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: 🔨 Install system dependancies
+        run: |
+          sudo apt install -y clang libclang-dev libopencv-dev
+
       - name: 🔧 Install stable toolchain
         uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f
         with:

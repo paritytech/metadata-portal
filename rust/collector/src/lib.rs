@@ -4,7 +4,7 @@ use std::path::Path;
 
 use anyhow;
 use app_config::{AppConfig};
-use qr_lib::fs::latest_qr_per_chain;
+use qr_lib::read::latest_qr_per_chain;
 
 mod metadata;
 
@@ -37,16 +37,16 @@ fn export_specs(config: &AppConfig) ->  anyhow::Result<Vec<ExportChainSpec>> {
         let meta_specs = fetch_chain_info(&chain.rpc_endpoint)?;
 
         let qr_code = match saved_qr_codes.get(chain.name.as_str()) {
-            Some(qr) => {
+            Some(qr_path) => {
                 // Optimistic approach. Give user a hint on how it should look like after he signs the QR
-                let mut signed_qr = qr.clone();
-                signed_qr.is_signed = true;
+                let mut signed_qr = qr_path.clone();
+                signed_qr.file_name.is_signed = true;
 
-                let png_path = config.qr_dir.join(signed_qr.to_string());
+                let png_path = signed_qr.to_path_buf();
                 Some(QrCode{
                     path: ReactAssetPath::from_fs_path(png_path, &config.public_dir).unwrap(),
                     signed_by: Some(config.verifier.name.clone()),
-                    version: signed_qr.version
+                    version: signed_qr.file_name.version
                 })
             },
             _ => None

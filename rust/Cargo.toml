@@ -5,6 +5,7 @@ members = [
 	"cleaner",
 	"collector",
 	"qr_lib",
+	"signer",
 	"updater",
 	"verifier",
 ]

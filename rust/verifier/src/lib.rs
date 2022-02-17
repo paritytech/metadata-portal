@@ -1,6 +1,4 @@
-use std::convert::TryFrom;
-use std::fs;
-use std::path::{Path, PathBuf};
+use std::path::{Path};
 use anyhow::{anyhow, bail, ensure};
 
 use definitions::error::{Signer, TransferContent};
@@ -9,23 +7,20 @@ use definitions::metadata::MetaValues;
 use definitions::network_specs::{Verifier, VerifierValue};
 use definitions::qr_transfers::ContentLoadMeta;
 use transaction_parsing::check_signature::pass_crypto;
-use qr_lib::filename::QrFileName;
-use qr_lib::fs::latest_qr_per_chain;
-
-mod camera;
-    use crate::camera::read_qr_movie;
+use qr_lib::camera::read_qr_movie;
+use qr_lib::path::{QrFileName, QrPath};
+use qr_lib::read::{latest_qr_per_chain, read_qr_dir};
 
 
 pub fn validate_signed_qrs(folder: impl AsRef<Path>, public_key: &str) -> anyhow::Result<()> {
     // Quick check that latest files are signed
-    for qr_file in latest_qr_per_chain(&folder)?.values() {
-        ensure!(qr_file.is_signed, "{} is not signed", qr_file);
+    for qr_path in latest_qr_per_chain(&folder)?.values() {
+        ensure!(qr_path.file_name.is_signed, "{} is not signed", qr_path.file_name);
     }
 
-    for file in fs::read_dir(folder)? {
-        let path = file?.path();
-        let f_name = path.file_name().unwrap().to_str().unwrap();
-        match validate_qr(&path, public_key) {
+    for qr_path in read_qr_dir(folder)? {
+        let f_name = &qr_path.file_name;
+        match validate_qr(&qr_path, public_key) {
             Ok(_) => println!("🎉 {} is verified!", f_name),
             Err(e) => bail!("failed to verify {}: {}", f_name, e),
         }
@@ -34,11 +29,10 @@ pub fn validate_signed_qrs(folder: impl AsRef<Path>, public_key: &str) -> anyhow
 }
 
 
-fn validate_qr(file_path: &PathBuf, public_key: &str) -> anyhow::Result<()> {
-    let file_name = QrFileName::try_from(file_path)?;
-    ensure!(file_name.is_signed, "{} is not signed", file_path.to_str().unwrap());
+fn validate_qr(qr_path: &QrPath, public_key: &str) -> anyhow::Result<()> {
+    ensure!(qr_path.file_name.is_signed, "{} is not signed", qr_path.file_name);
 
-    let data_hex = read_qr_movie(file_path)?;
+    let data_hex = read_qr_movie(&qr_path.to_path_buf())?;
     let signed = pass_crypto(&data_hex, TransferContent::LoadMeta).map_err(|e| anyhow!("{:?}", e))?;
 
     verify_signature(&signed.verifier, public_key)?;
@@ -46,7 +40,7 @@ fn validate_qr(file_path: &PathBuf, public_key: &str) -> anyhow::Result<()> {
     let (meta, _) = ContentLoadMeta::from_vec(&signed.message).meta_genhash::<Signer>().map_err(|e| anyhow!("{:?}", e))?;
     let meta_values = MetaValues::from_vec_metadata(&meta).map_err(|e| anyhow!("{:?}", e))?;
 
-    verify_filename(&meta_values, &file_name)?;
+    verify_filename(&meta_values, &qr_path.file_name)?;
     Ok(())
 }
 
@@ -61,7 +55,7 @@ fn verify_signature(verifier: &Verifier, public_key: &str) -> anyhow::Result<()>
 }
 
 fn verify_filename(meta_values: &MetaValues, actual_qr_name: &QrFileName) -> anyhow::Result<()> {
-    let expected = QrFileName{kind: "metadata".to_string(), chain: meta_values.name.clone(), version: meta_values.version, is_signed: true};
+    let expected = QrFileName::new(&meta_values.name, meta_values.version, true);
     ensure!(actual_qr_name == &expected, "filename mismatch! Expected {}, got {}", expected, actual_qr_name);
     Ok(())
 }

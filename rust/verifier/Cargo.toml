@@ -9,7 +9,6 @@ edition = "2018"
 [dependencies]
 app_config = {path = "../app_config"}
 qr_lib = {path = "../qr_lib"}
-qr_reader_phone = {git = "https://github.com/paritytech/parity-signer"}
 definitions = {git = "https://github.com/paritytech/parity-signer"}
 parser = {git = "https://github.com/paritytech/parity-signer"}
 transaction_parsing = {git = "https://github.com/paritytech/parity-signer"}
@@ -18,10 +17,3 @@ clap = { version = "3.0.1", features = ["derive"] }
 hex = "0.4.3"
 sp-core = "3.0.0"
 sp-runtime = "3.0.0"
-image = "0.23.14"
-quircs = "0.10.0"
-
-[dependencies.opencv]
-version = "0.60"
-default-features = false
-features = ["clang-runtime", "videoio", "imgproc", "highgui"]

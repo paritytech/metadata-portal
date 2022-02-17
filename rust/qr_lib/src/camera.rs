@@ -2,6 +2,7 @@ use std::path::{PathBuf};
 use anyhow::anyhow;
 use qr_reader_phone::process_payload::{process_decoded_payload, InProgress, Ready};
 use image::{Luma, GrayImage, ImageBuffer};
+use indicatif::ProgressBar;
 
 use opencv::{
     prelude::*,
@@ -21,15 +22,21 @@ pub fn read_qr_movie(source_file: &PathBuf) -> anyhow::Result<String> {
     let mut out = Ready::NotYet(InProgress::None);
     let mut line = String::new();
 
+    let pb = ProgressBar::new(1);
     loop {
         match out {
             Ready::NotYet(decoding) => {
+                if let InProgress::Fountain(f) = &decoding {
+                    pb.set_length(f.total as u64);
+                    pb.set_position(f.collected() as u64)
+                }
                 out = match camera_capture(&mut camera) {
                     Ok(img) => process_qr_image(&img, decoding)?,
                     Err(_) => Ready::NotYet(decoding),
                 };
             },
             Ready::Yes(a) => {
+                pb.finish_and_clear();
                 line.push_str(&hex::encode(&a));
                 break;
             },

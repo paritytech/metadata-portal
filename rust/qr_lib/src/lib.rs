@@ -1,3 +1,5 @@
-pub mod fs;
+pub mod read;
 
-pub mod filename;
+pub mod path;
+
+pub mod camera;

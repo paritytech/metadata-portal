@@ -21,9 +21,9 @@
     "unit": "KSM",
     "addressPrefix": "2",
     "metadataQr": {
-      "path": "/qr/kusama_metadata_9151.apng",
+      "path": "/qr/kusama_metadata_9160.apng",
       "signedBy": "Parity",
-      "version": 9151
+      "version": 9160
     },
     "addToSigner": false
   },
@@ -35,9 +35,9 @@
     "unit": "WND",
     "addressPrefix": "42",
     "metadataQr": {
-      "path": "/qr/westend_metadata_9151.apng",
+      "path": "/qr/westend_metadata_9160.apng",
       "signedBy": "Parity",
-      "version": 9151
+      "version": 9160
     },
     "addToSigner": true
   }

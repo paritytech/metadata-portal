@@ -3,6 +3,7 @@ runs:
   steps:
     - name: 🔨 Install system dependancies
       run: sudo apt install -y clang libclang-dev libopencv-dev
+      shell: bash
 
     - name: 🔧 Install stable toolchain
       uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f

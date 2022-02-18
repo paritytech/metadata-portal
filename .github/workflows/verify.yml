@@ -16,25 +16,7 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v2
 
-      - name: 🔨 Install system dependancies
-        run: |
-          sudo apt install -y clang libclang-dev libopencv-dev
-
-      - uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f
-        with:
-          profile: minimal
-          toolchain: stable
-
-      - name: ⚡ Cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            rust/target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
+      - uses: ./.github/workflows/rust-install
 
       - name: ⚙ Run verifier
         run: make verifier

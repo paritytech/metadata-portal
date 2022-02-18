@@ -16,7 +16,7 @@ pub fn select_file(files_to_sign: &Vec<QrPath>) -> usize {
 
 pub fn want_to_continue() -> bool {
     Confirm::with_theme(&ColorfulTheme::default())
-        .with_prompt("Ready to scan signed QR?")
+        .with_prompt("Ready to scan signature QR?")
         .default(true)
         .interact()
         .unwrap()

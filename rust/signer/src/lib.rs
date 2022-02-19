@@ -52,7 +52,7 @@ fn run_for_file(qr_path: &QrPath) -> anyhow::Result<()> {
     };
 
     sign_qr(qr_path, &signature)?;
-
+    println!("🎉 Signed!");
     Ok(())
 }
 
@@ -62,8 +62,6 @@ fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
 
     let mut signed_qr = unsigned_qr.clone();
     signed_qr.file_name.is_signed = true;
-
-    println!("{}", signed_qr.to_string());
 
     let raw_read = read_qr_movie(&unsigned_qr.to_path_buf())?;
     let passed_crypto = pass_crypto(&raw_read, TransferContent::LoadMeta)

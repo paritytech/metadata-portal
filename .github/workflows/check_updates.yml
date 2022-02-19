@@ -17,32 +17,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🔨 Install system dependancies
-        run: |
-          sudo apt install -y clang libclang-dev libopencv-dev
+      - uses: ./.github/workflows/rust-install
 
       - name: Try to checkout to the existing automated branch
         id: checkout-automated
         run: |
           ok=$(git checkout $AUTOMATED_BRANCH >> /dev/null && echo "true" || echo "false")
           echo "::set-output name=ok::$ok"
-
-      - name: 🔧 Install stable toolchain
-        uses: actions-rs/toolchain@b2417cde72dcf67f306c0ae8e0828a81bf0b189f
-        with:
-          profile: minimal
-          toolchain: stable
-
-      - name: ⚡ Cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            rust/target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
 
       - name: ⚙ Run QR updater
         run: make updater
@@ -72,9 +53,10 @@ jobs:
           base: master
           title: '[Automated] Sign new QR codes'
           body: |
-            - [ ] Clone the repo and checkout $AUTOMATED_BRANCH branch
+            - [ ] Clone the repo and checkout this branch
             - [ ] Run `make signer` to sign files
-            - [ ] [Optional] Run `make cleaner` to remove old QRs
+            - [ ] Run `make cleaner` to remove old QRs
             - [ ] Commit changes and push
           draft: true
+          assignees: kirushik
           reviewers: prybalko

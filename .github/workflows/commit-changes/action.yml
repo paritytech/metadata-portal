@@ -1,0 +1,17 @@
+name: 'Commit changes'
+description: 'Add, commit and push changes to the origin'
+inputs:
+  message:
+    description: 'Commit message'
+    default: 'automated update'
+runs:
+  using: "composite"
+  steps:
+    - name: 📌 Commit changes
+      run: |
+        git config --global user.name 'GitHub Action'
+        git config --global user.email 'action@github.com'
+        git add .
+        git commit -m "${{ inputs.message }}" || true
+        git push
+      shell: bash

@@ -3,9 +3,6 @@ name: Check updates
 on:
   schedule:
     - cron: '0 */4 * * *'
-  pull_request:
-    branches:
-      - master
 
 env:
   SIGN_ME_PREFIX: sign-me
@@ -57,7 +54,7 @@ jobs:
         if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
         id: new-branch
         run: |
-          NAME="$AUTOMATED_BRANCH-$(date '+%Y-%m-%d')"
+          NAME="$SIGN_ME_PREFIX-$(date '+%Y-%m-%d')"
           echo "::set-output name=name::$NAME"
 
       - name: Create Pull Request if not exist

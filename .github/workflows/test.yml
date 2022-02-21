@@ -1,4 +1,4 @@
-name: Build & test
+name: test
 
 on:
   pull_request:
@@ -6,19 +6,20 @@ on:
       - master
 
 jobs:
-  rust-test:
+  rust:
     runs-on: ubuntu-latest
 
     steps:
       - name: 🛎 Checkout
         uses: actions/checkout@v2
 
-      - uses: ./.github/workflows/rust-install
+      - name: 🔧 Install rust dependancies
+        uses: ./.github/workflows/rust-install
 
       - name: ⚙ Run backend tests
         run: make tests
 
-  frontend-test:
+  frontend:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,29 +41,3 @@ jobs:
 
       - name: 🔧 Install dependancies
         run: yarn
-
-  build:
-    runs-on: ubuntu-latest
-    needs: rust-test
-
-    steps:
-      - name: 🛎 Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-
-      - uses: ./.github/workflows/rust-install
-
-      - name: ⚙ Run collector
-        run: make collector
-
-      - name: ⚙ Run cleaner
-        run: make cleaner
-
-      - name: 📌 Commit changes
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add .
-          git commit -m "Update data" || true
-          git push

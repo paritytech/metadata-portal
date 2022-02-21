@@ -9,16 +9,16 @@ use definitions::qr_transfers::ContentLoadMeta;
 use transaction_parsing::check_signature::pass_crypto;
 use qr_lib::camera::read_qr_movie;
 use qr_lib::path::{QrFileName, QrPath};
-use qr_lib::read::{latest_qr_per_chain, read_qr_dir};
+use qr_lib::read::{latest_qrs};
 
 
-pub fn validate_signed_qrs(folder: impl AsRef<Path>, public_key: &str) -> anyhow::Result<()> {
+pub fn validate_signed_qrs(dir: impl AsRef<Path>, public_key: &str) -> anyhow::Result<()> {
     // Quick check that latest files are signed
-    for qr_path in latest_qr_per_chain(&folder)?.values() {
+    for qr_path in latest_qrs(&dir)? {
         ensure!(qr_path.file_name.is_signed, "{} is not signed", qr_path.file_name);
     }
 
-    for qr_path in read_qr_dir(folder)? {
+    for qr_path in latest_qrs(&dir)? {
         let f_name = &qr_path.file_name;
         match validate_qr(&qr_path, public_key) {
             Ok(_) => println!("🎉 {} is verified!", f_name),

@@ -23,6 +23,10 @@ pub fn latest_qr_per_chain(dir: impl AsRef<Path>) -> anyhow::Result<HashMap<Chai
     Ok(newest)
 }
 
+pub fn latest_qrs(dir: impl AsRef<Path>) -> anyhow::Result<Vec<QrPath>> {
+    Ok(latest_qr_per_chain(dir)?.values().map(|v| v.to_owned()).collect())
+}
+
 
 pub fn read_qr_dir(dir: impl AsRef<Path>) -> anyhow::Result<Vec<QrPath>>{
     let mut files = vec![];

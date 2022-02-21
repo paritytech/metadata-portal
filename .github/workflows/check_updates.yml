@@ -17,7 +17,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: ./.github/workflows/rust-install
+      - name: 🔧 Install rust dependancies
+        uses: ./.github/workflows/rust-install
 
       - name: Try to checkout exising PR branch
         id: checkout-pr
@@ -43,12 +44,9 @@ jobs:
 
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add .
-          git commit -m "add unsigned QR code" || true
-          git push
+        uses: ./.github/workflows/commit-changes
+        with:
+          message: 'add unsigned QR code'
 
       - name: New PR branch
         if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
@@ -69,6 +67,7 @@ jobs:
           body: |
             - [ ] Clone the repo and checkout this branch
             - [ ] Run `make signer` to sign files
+            - [ ] Run `make cleaner` to remove old QRs
             - [ ] Commit changes and push
           draft: true
           reviewers: prybalko

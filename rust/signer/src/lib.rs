@@ -12,14 +12,14 @@ use transaction_parsing::check_signature::pass_crypto;
 use app_config::{AppConfig};
 use qr_lib::camera::read_qr_movie;
 use qr_lib::path::{QrPath};
-use qr_lib::read::{hex_to_bytes, read_qr_dir};
+use qr_lib::read::{hex_to_bytes, latest_qrs};
 
 mod prompt;
     use crate::prompt::{select_file, want_to_continue};
 
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
-    let mut files_to_sign: Vec<QrPath> = read_qr_dir(config.qr_dir)?
+    let mut files_to_sign: Vec<QrPath> = latest_qrs(config.qr_dir)?
         .into_iter()
         .filter(|qr| !qr.file_name.is_signed)
         .collect();
@@ -35,8 +35,6 @@ pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
     }
     Ok(())
 }
-
-
 
 fn run_for_file(qr_path: &QrPath) -> anyhow::Result<()> {
     open_in_browser(qr_path)?;
@@ -77,8 +75,6 @@ fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
     make_message(make).map_err(anyhow::Error::msg)?;
     Ok(signed_qr)
 }
-
-
 
 fn open_in_browser(file: &QrPath) -> anyhow::Result<()> {
     let cmd = format!("python -mwebbrowser file://{}", file);

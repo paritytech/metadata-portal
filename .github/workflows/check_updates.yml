@@ -3,9 +3,12 @@ name: Check updates
 on:
   schedule:
     - cron: '0 */4 * * *'
+  pull_request:
+    branches:
+      - master
 
 env:
-  AUTOMATED_BRANCH: qr-generator/to-sign
+  SIGN_ME_PREFIX: sign-me
 
 jobs:
   update:
@@ -19,11 +22,18 @@ jobs:
 
       - uses: ./.github/workflows/rust-install
 
-      - name: Try to checkout to the existing automated branch
-        id: checkout-automated
+      - name: Try to checkout exising PR branch
+        id: checkout-pr
         run: |
-          ok=$(git checkout $AUTOMATED_BRANCH >> /dev/null && echo "true" || echo "false")
-          echo "::set-output name=ok::$ok"
+          SIGN_ME_BRANCH=$(git branch -r --list 'origin/${SIGN_ME_PREFIX}-*' --sort=-refname | head -n 1)
+          if [ -z "$SIGN_ME_BRANCH" ]
+          then
+            switched="false"
+          else
+            git checkout $SIGN_ME_BRANCH
+            switched="true"
+          fi
+          echo "::set-output name=switched::$switched"
 
       - name: ⚙ Run QR updater
         run: make updater
@@ -35,7 +45,7 @@ jobs:
         run: make cleaner
 
       - name: 📌 Commit changes if PR exists
-        if: ${{ steps.checkout-automated.outputs.ok == 'true' }}
+        if: ${{ steps.checkout-pr.outputs.switched == 'true' }}
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
@@ -43,20 +53,25 @@ jobs:
           git commit -m "add unsigned QR code" || true
           git push
 
+      - name: New PR branch
+        if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
+        id: new-branch
+        run: |
+          NAME="$AUTOMATED_BRANCH-$(date '+%Y-%m-%d')"
+          echo "::set-output name=name::$NAME"
+
       - name: Create Pull Request if not exist
-        if: ${{ steps.checkout-automated.outputs.ok == 'false' }}
+        if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
         uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330
         with:
           commit-message: add unsigned QR codes
-          branch: ${{ env.AUTOMATED_BRANCH }}
+          branch: ${{ steps.new-branch.outputs.name }}
           delete-branch: true
           base: master
           title: '[Automated] Sign new QR codes'
           body: |
             - [ ] Clone the repo and checkout this branch
             - [ ] Run `make signer` to sign files
-            - [ ] Run `make cleaner` to remove old QRs
             - [ ] Commit changes and push
           draft: true
-          assignees: kirushik
           reviewers: prybalko

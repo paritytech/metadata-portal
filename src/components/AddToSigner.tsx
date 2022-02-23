@@ -32,7 +32,7 @@ export default function AddToSigner({ chain }: Props) {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto bg-black/75"
+          className="fixed inset-0 z-10 overflow-y-auto bg-black/90"
           onClose={closeModal}
         >
           <div className="px-4 text-center">
@@ -71,8 +71,8 @@ export default function AddToSigner({ chain }: Props) {
                 >
                   Scan this code with your signer device
                 </Dialog.Title>
-                <div className="mt-2">
-                  <img src={process.env.PUBLIC_URL + "add_to_signer/" + chain + ".png"} className="ml-auto mr-auto" alt="metadata qr code" />
+                <div className="mt-2 h-[180px]">
+                  <img src={process.env.PUBLIC_URL + "add_to_signer/" + chain + ".png"} className="ml-auto mr-auto" alt="loading..." />
                 </div>
 
                 <div className="mt-4">

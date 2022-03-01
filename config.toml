@@ -1,6 +1,5 @@
 data_file = "src/chains.json"
 public_dir = "public"
-
 qr_dir = "public/qr"
 
 [verifier]

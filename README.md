@@ -31,19 +31,46 @@ This flow is for security-oriented users and Parity itself. It allows chain owne
 - Owner of the repository accepts the PR
 - Github action is triggered to regenerate and re-deploy the Github Page
 
-## How to add / remove chain to the portal?
-It's configured in `config.toml` file. Add/remove `[[chains]]` section with appropriate fields.
+## How to add new chain to the portal?
+Add new `[[chains]]` section to the `config.toml` config file.
 
-## Where to put signed QRs?
-By default, `public/qr/signed`. It's configured by `public_dir_path` field in the config file.
+## Dependencies
+The main requirement is the OpenCV. You can check this manual: https://crates.io/crates/opencv
 
-⚠️ File names are meaningful and should follow `<chain>_metadata_<version>.apng` format.
 
-## Development
+### Arch Linux:
 
-In the project directory, you can run:
+OpenCV package in Arch is suitable for this.
 
-### `yarn start`
+    pacman -S clang qt5-base opencv
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Ubuntu:
+
+    sudo apt install libopencv-dev clang libclang-dev
+
+### Other Linux:
+You have several options of getting the OpenCV library:
+
+* install it from the repository, make sure to install `-dev` packages because they contain headers necessary
+  for the crate build (also check that your package contains `pkg_config` or `cmake` files).
+
+* build OpenCV manually and set up the following environment variables prior to building the project with
+  `opencv` crate:
+    * `PKG_CONFIG_PATH` for the location of `*.pc` files or `OpenCV_DIR` for the location of `*.cmake` files
+    * `LD_LIBRARY_PATH` for where to look for the installed `*.so` files during runtime
+
+Additionally, please make sure to install `clang` package or its derivative that contains `libclang.so` and
+`clang` binary.
+* Gentoo, Fedora: `clang`
+* Debian, Ubuntu: `clang` and `libclang-dev`
+
+### MacOs:
+
+    brew install opencv
+
+If you're getting `dyld: Library not loaded: @rpath/libclang.dylib`:
+OS can't find libclang.dylib dynamic library because it resides in a non-standard path, set up the DYLD_FALLBACK_LIBRARY_PATH environment variable to point to the path where libclang.dylib can be found, e.g. for XCode:
+
+   ```
+   export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
+   ```

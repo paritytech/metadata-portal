@@ -13,13 +13,5 @@ runs:
         profile: minimal
         toolchain: stable
 
-    - name: ⚡ Cache
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.cargo/bin/
-          ~/.cargo/registry/index/
-          ~/.cargo/registry/cache/
-          ~/.cargo/git/db/
-          rust/target/
-        key: ${{ runner.os }}-cargo-${{ hashFiles('./rust/Cargo.lock') }}
+    - name: Rust Cache
+      uses: Swatinem/rust-cache@842ef286fff290e445b90b4002cc9807c3669641

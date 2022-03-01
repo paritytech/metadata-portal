@@ -10,7 +10,12 @@ use qr_lib::read::{latest_qr_per_chain, read_qr_dir};
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
     let chains: HashSet<String> = config.chains.into_iter().map(|chain| chain.name).collect();
-    for path in files_to_remove(&config.qr_dir, chains)? {
+    let files = files_to_remove(&config.qr_dir, chains)?;
+    if files.is_empty() {
+        println!("✔ Nothing to delete");
+        return Ok(())
+    }
+    for path in files {
         fs::remove_file(path.to_path_buf())?;
         println!("🗑 {} was deleted", path);
     }

@@ -8,8 +8,7 @@ edition = "2018"
 
 [dependencies]
 anyhow = "1.0.42"
-qr_reader_phone = {git = "https://github.com/paritytech/parity-signer", branch = "add-progress-bar"}
-qr_reader_pc = {git = "https://github.com/paritytech/parity-signer", branch = "add-progress-bar"}
+qr_reader_phone = {git = "https://github.com/paritytech/parity-signer"}
 image = "0.23.14"
 quircs = "0.10.0"
 hex = "0.4.3"

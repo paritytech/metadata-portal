@@ -10,7 +10,7 @@ edition = "2018"
 app_config = {path = "../app_config"}
 qr_lib = {path = "../qr_lib"}
 definitions = {git = "https://github.com/paritytech/parity-signer"}
-generate_message = {git = "https://github.com/paritytech/parity-signer", branch = "add-progress-bar"}
+generate_message = {git = "https://github.com/paritytech/parity-signer"}
 anyhow = "1.0.42"
 hex = "0.4.3"
 clap = { version = "3.0.1", features = ["derive"] }

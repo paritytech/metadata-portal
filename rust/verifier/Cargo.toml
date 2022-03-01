@@ -10,7 +10,6 @@ edition = "2018"
 app_config = {path = "../app_config"}
 qr_lib = {path = "../qr_lib"}
 definitions = {git = "https://github.com/paritytech/parity-signer"}
-parser = {git = "https://github.com/paritytech/parity-signer"}
 transaction_parsing = {git = "https://github.com/paritytech/parity-signer"}
 anyhow = "1.0.42"
 clap = { version = "3.0.1", features = ["derive"] }

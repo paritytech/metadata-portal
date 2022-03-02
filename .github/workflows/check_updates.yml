@@ -5,7 +5,8 @@ on:
     - cron: '0 */6 * * *'
 
 env:
-  SIGN_ME_PREFIX: sign-me
+  BRANCH_PREFIX: sign-me
+  NOTIFY_MATRIX: true
 
 jobs:
   update:
@@ -23,7 +24,7 @@ jobs:
       - name: Try to checkout exising PR branch
         id: checkout-pr
         run: |
-          SIGN_ME_BRANCH=$(git branch -r --list 'origin/${SIGN_ME_PREFIX}-*' --sort=-refname | head -n 1)
+          SIGN_ME_BRANCH=$(git branch -r --list "origin/$BRANCH_PREFIX-*" --sort=-refname | head -n 1)
           if [ -z "$SIGN_ME_BRANCH" ]
           then
             switched="false"
@@ -35,9 +36,6 @@ jobs:
 
       - name: ⚙ Run QR updater
         run: make updater
-
-      - name: ⚙ Run collector
-        run: make collector
 
       - name: ⚙ Run cleaner
         run: make cleaner
@@ -52,7 +50,7 @@ jobs:
         if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
         id: new-branch
         run: |
-          NAME="$SIGN_ME_PREFIX-$(date '+%Y-%m-%d')"
+          NAME="$BRANCH_PREFIX-$(date '+%Y-%m-%d')"
           echo "::set-output name=name::$NAME"
 
       - name: Create Pull Request if not exist
@@ -71,11 +69,10 @@ jobs:
             - [ ] Run `make cleaner` to remove old QRs
             - [ ] Commit changes and push
           draft: true
-          reviewers: prybalko
 
       - name: Notify Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3
-        if: ${{ steps.cpr.outputs.pull-request-operation == 'created' }}
+        if: ${{ env.NOTIFY_MATRIX == 'true' && steps.cpr.outputs.pull-request-operation == 'created' }}
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}

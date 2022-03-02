@@ -13,6 +13,8 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v2
 
+      - uses: ./.github/workflows/rust-install
+
       - name: 🔧 Install yarn
         run: npm install -g yarn
 
@@ -28,6 +30,12 @@ jobs:
 
       - name: 🔧 Install dependancies
         run: yarn
+
+      - name: ⚙ Run verifier
+        run: make verifier
+
+      - name: ⚙ Run collector
+        run: make collector
 
       - name: 🚀 Deploy
         run: |

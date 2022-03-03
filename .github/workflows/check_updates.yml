@@ -29,7 +29,7 @@ jobs:
           then
             switched="false"
           else
-            git checkout $SIGN_ME_BRANCH
+            git checkout --track $SIGN_ME_BRANCH
             switched="true"
           fi
           echo "::set-output name=switched::$switched"

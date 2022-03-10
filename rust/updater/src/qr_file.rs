@@ -13,7 +13,7 @@ pub fn generate_metadata_qr(meta_specs: &MetaSpecs, target_dir: &PathBuf) -> any
     let content = ContentLoadMeta::generate(&meta_specs.meta_values.meta, &genesis_hash);
 
     let file_name = QrFileName::new(
-        &meta_specs.meta_values.name,
+        &meta_specs.meta_values.name.to_lowercase(),
         meta_specs.meta_values.version,
         false
     ).to_string();

@@ -16,11 +16,19 @@ Metadata Portal supports two metadata sources in parallel. Both are equally impo
 
 This flow is important for all users who want to always have the latest metadata in their signing devices to parse and sign their transactions right away.
 
-- Cron job runs every N hours and checks every known network for the latest metadata version
-- If nothing has changed, the process is complete
-- If any network has a new version of metadata that has not yet been published on the Metadata Portal, a script is run to generate a special video QR code in Rust
-- That newly generated QR code committed into the same repo
-- A new page is generated and posted as Github Pages
+- Cron job
+  - runs every N hours and checks every known network for the latest metadata version
+  - If any network has a new version of metadata that has not yet been published on the Metadata Portal
+    - generates unsigned metadata QR code
+    - creates new pull request to the repo
+    - sends notification to a Matrix channel
+- Release manager
+  - checkouts pull request's branch locally
+  - runs `make signer` locally to sign new metadata using his signing air-gapped device
+  - commit and push changes to the same branch
+- Owner of the repository
+  - accept and merge the PR
+- Github action is triggered to regenerate and re-deploy the Github Page
 
 ### 2. Showing manually uploaded and signed QR codes via PRs
 
@@ -31,10 +39,17 @@ This flow is for security-oriented users and Parity itself. It allows chain owne
 - Owner of the repository accepts the PR
 - Github action is triggered to regenerate and re-deploy the Github Page
 
-## How to use it?
-You can self-host the metadata-portal for your set of chains
+## Deployment
+### Requirements
+1. install https://github.com/paritytech/parity-signer to your signing device
+
+### Steps
+
+You can use Github Pages to host the metadata-portal for your set of chains
 1. Fork this repo
-2. Add/remove chains from `config.toml`
+2. Edit `config.toml`
+   1. Add/remove chains
+   2. Edit signer's name and public key. The key can be exported from [parity-signer](https://github.com/paritytech/parity-signer)
 3. Configure GitHub Pages to build from `gh-pages` branch (`Settings` -> `Pages` -> `Source`)
 4. Edit domain name in:
    1. `homepage` field in `package.json`
@@ -85,11 +100,9 @@ OS can't find libclang.dylib dynamic library because it resides in a non-standar
 
 
 ### Frontend
-Before running the frontend locally, you need to generate a data file with present QR info codes and chain specs.
+Before running the frontend locally, you need to generate a data file:
 
-In the project directory, you can run:
-
-`make collector`
+    make collector
 
  And then run the app in the development mode
 

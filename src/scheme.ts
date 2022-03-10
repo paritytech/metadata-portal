@@ -1,4 +1,4 @@
-import jsonData from "./chains.json";
+import jsonData from "./chains.json";  // Dynamically generated datafile. Run `make collector` to create
 
 export interface ChainSpec {
   name: string;
@@ -23,10 +23,10 @@ export interface Chains {
 }
 
 export function getChains(): Chains {
-  const chainList = jsonData.map((chain) =>
+  const chainList = jsonData.map((chain: object) =>
     Object.assign({} as ChainSpec, chain)
   );
-  return chainList.reduce((obj, chain) => {
+  return chainList.reduce((obj: Chains, chain: ChainSpec) => {
     return {
       ...obj,
       [chain.name]: chain,

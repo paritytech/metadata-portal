@@ -1,5 +1,10 @@
 .PHONY: tests
 
+UNAME := $(shell uname)
+ifeq ($(UNAME), Darwin)
+	export DYLD_FALLBACK_LIBRARY_PATH=$(shell xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib
+endif
+
 all: tests verifier updater collector cleaner
 
 %:

@@ -12,6 +12,7 @@ interface Props {
 export default function Page({ allChains, currentName }: Props) {
   const chain = allChains[currentName];
   const metadataQr = chain.metadataQr;
+  const specsQr = chain.specsQr;
   document.body.style.backgroundColor = chain.color;
   return (
     <div className="flex flex-col m-6">
@@ -25,7 +26,7 @@ export default function Page({ allChains, currentName }: Props) {
             <div className="text-white">
               <h1 className="text-5xl mb-5">Metadata #{metadataQr.version}</h1>
               <Specs {...chain} />
-              { chain.addToSigner && <AddToSigner chain={currentName} />}
+                {specsQr && <AddToSigner {...specsQr} />}
             </div>
           </>
         )}

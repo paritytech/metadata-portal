@@ -9,13 +9,13 @@ export interface ChainSpec {
   unit: string;
   addressPrefix: number;
   metadataQr?: QrInfo;
-  addToSigner: boolean;
+  specsQr?: QrInfo;
 }
 
 export interface QrInfo {
   path: string;
   signedBy?: string;
-  version: number;
+  version?: number;
 }
 
 export interface Chains {

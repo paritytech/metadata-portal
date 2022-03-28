@@ -85,10 +85,13 @@ fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
 }
 
 fn open_in_browser(file: &QrPath) -> anyhow::Result<()> {
-    let cmd = format!("python -mwebbrowser file://{}", file);
-    Command::new("sh")
+    let cmd = format!("python3 -mwebbrowser file://{}", file);
+    let output = Command::new("sh")
         .arg("-c")
         .arg(cmd)
         .output()?;
+    if !output.stderr.is_empty() {
+        bail!("error showing QR code: {}", String::from_utf8_lossy(&output.stderr))
+    }
     Ok(())
 }

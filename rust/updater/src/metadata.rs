@@ -8,6 +8,7 @@ use definitions::network_specs::NetworkSpecsToSend;
 use generate_message::fetch_metadata::fetch_info_with_network_specs;
 use generate_message::interpret_specs::interpret_properties;
 use qr_lib::read::hex_to_bytes;
+use qr_lib::string::capitalize;
 use crate::export::{MetaSpecs};
 
 
@@ -35,7 +36,7 @@ pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs>{
         name: meta_values.name.to_string(),
         path_id: format!("//{}", meta_values.name),
         secondary_color: SECONDARY_COLOR.to_string(),
-        title: format!("{}-{}", meta_values.name, encryption.show()),
+        title: capitalize(&meta_values.name),
         unit: new_properties.unit.to_string(),
     };
     Ok(MetaSpecs{

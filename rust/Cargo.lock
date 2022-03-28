@@ -4150,6 +4150,7 @@ dependencies = [
  "anyhow",
  "app_config",
  "clap",
+ "constants",
  "definitions",
  "generate_message",
  "hex",

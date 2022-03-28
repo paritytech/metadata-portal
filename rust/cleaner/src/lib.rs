@@ -5,7 +5,7 @@ use std::path::{Path};
 use anyhow;
 use app_config::{AppConfig};
 use qr_lib::path::{QrPath};
-use qr_lib::read::{latest_qr_per_chain, read_qr_dir};
+use qr_lib::read::{all_qrs_in_dir, raw_read_qr_dir};
 
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
@@ -24,14 +24,13 @@ pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
 
 
 fn files_to_remove(dir: impl AsRef<Path>, chains: HashSet<String>) -> anyhow::Result<Vec<QrPath>> {
-    let newest_qrs = latest_qr_per_chain(&dir)?;
+    let newest_qrs = all_qrs_in_dir(&dir)?;
     let keep: HashSet<QrPath> = newest_qrs
         .into_iter()
-        .filter(|(chain, _)| chains.contains(chain))
-        .map(|(_chain, qr)| qr)
+        .filter(|qr| chains.contains(&qr.file_name.chain))
         .collect();
 
-    let to_remove = read_qr_dir(&dir)?
+    let to_remove = raw_read_qr_dir(&dir)?
         .into_iter()
         .filter(|qr_path| !keep.contains(qr_path))
         .collect();

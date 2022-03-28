@@ -10,16 +10,16 @@ use generate_message::parser::{Crypto, Goal, Make, Msg};
 use qr_reader_pc::{CameraSettings, run_with_camera};
 use transaction_parsing::check_signature::pass_crypto;
 use app_config::{AppConfig};
-use qr_lib::camera::read_qr_movie;
-use qr_lib::path::{QrPath};
-use qr_lib::read::{hex_to_bytes, latest_qrs};
+use qr_lib::camera::read_qr_file;
+use qr_lib::path::{ContentType, QrPath};
+use qr_lib::read::{hex_to_bytes, all_qrs_in_dir};
 
 mod prompt;
     use crate::prompt::{select_file, want_to_continue};
 
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
-    let mut files_to_sign: Vec<QrPath> = latest_qrs(config.qr_dir)?
+    let mut files_to_sign: Vec<QrPath> = all_qrs_in_dir(config.qr_dir)?
         .into_iter()
         .filter(|qr| !qr.file_name.is_signed)
         .collect();
@@ -61,26 +61,37 @@ fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
     let mut signed_qr = unsigned_qr.clone();
     signed_qr.file_name.is_signed = true;
 
-    let raw_read = read_qr_movie(&unsigned_qr.to_path_buf())?;
-    let passed_crypto = pass_crypto(&raw_read, TransferContent::LoadMeta)
+    let raw_read = read_qr_file(&unsigned_qr.to_path_buf())?;
+    let transfer_content = match unsigned_qr.file_name.content_type {
+        ContentType::Metadata(_) => TransferContent::LoadMeta,
+        ContentType::Specs => TransferContent::AddSpecs,
+    };
+    let passed_crypto = pass_crypto(&raw_read, transfer_content)
         .map_err(|e| anyhow::Error::msg(format!("{:?}", e)))?;
 
+    let msg_type = match unsigned_qr.file_name.content_type {
+        ContentType::Metadata(_) => Msg::LoadMetadata,
+        ContentType::Specs => Msg::AddSpecs,
+    };
     let make = Make {
         goal: Goal::Qr,
         crypto: Crypto::Sufficient(sufficient_crypto),
-        msg: Msg::LoadMetadata(passed_crypto.message),
+        msg: msg_type(passed_crypto.message),
         name: Some(signed_qr.to_string())
     };
-    println!("⚙ generating {}. It takes a while...", signed_qr);
+    println!("⚙ generating {}...", signed_qr);
     make_message(make).map_err(anyhow::Error::msg)?;
     Ok(signed_qr)
 }
 
 fn open_in_browser(file: &QrPath) -> anyhow::Result<()> {
-    let cmd = format!("python -mwebbrowser file://{}", file);
-    Command::new("sh")
+    let cmd = format!("python3 -mwebbrowser file://{}", file);
+    let output = Command::new("sh")
         .arg("-c")
         .arg(cmd)
         .output()?;
+    if !output.stderr.is_empty() {
+        bail!("error showing QR code: {}", String::from_utf8_lossy(&output.stderr))
+    }
     Ok(())
 }

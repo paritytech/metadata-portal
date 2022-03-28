@@ -1,7 +1,7 @@
 use std::convert::TryFrom;
 use std::{fmt};
 use std::path::PathBuf;
-use anyhow::{bail};
+use anyhow::{bail, Context};
 
 #[derive(Debug, PartialEq, Clone, Hash, Eq)]
 pub struct QrPath{
@@ -34,26 +34,58 @@ impl fmt::Display for QrPath {
     }
 }
 
+#[derive(Debug, PartialEq, Clone, Hash, Eq)]
+pub enum ContentType {
+    Metadata(u32),
+    Specs,
+}
+
+impl fmt::Display for ContentType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            ContentType::Metadata(version) => write!(f, "metadata_{}", version),
+            ContentType::Specs => write!(f, "specs"),
+        }
+    }
+}
+
+impl TryFrom<&str> for ContentType {
+    type Error = anyhow::Error;
+
+    fn try_from(content_type: &str) -> Result<Self, Self::Error> {
+        if let "specs" = content_type {
+            return Ok(Self::Specs)
+        }
+        let mut split = content_type.split('_');
+        match (split.next(), split.next()) {
+            (Some("metadata"), Some(version)) => Ok(Self::Metadata(version.parse()?)),
+            _ => bail!("unable to parse content type {}", content_type)
+        }
+    }
+}
 
 #[derive(Debug, PartialEq, Clone, Hash, Eq)]
 pub struct QrFileName{
     pub chain: String,
-    pub kind: String,
-    pub version: u32,
     pub is_signed: bool,
+    pub content_type: ContentType,
     extension: Option<String>
 }
 
 impl QrFileName{
     const UNSIGNED_PREFIX: &'static str = "unsigned_";
 
-    pub fn new(chain: &str, version: u32, is_signed: bool) -> Self {
+    pub fn new(chain: &str, content_type: ContentType, is_signed: bool) -> Self {
+        let extension = match content_type {
+            ContentType::Metadata(_) => "apng",
+            ContentType::Specs => "png"
+        };
+
         QrFileName{
             chain: chain.to_owned(),
-            version,
-            kind: "metadata".to_owned(),
+            content_type,
             is_signed,
-            extension: Some("apng".to_owned())
+            extension: Some(extension.to_string())
         }
     }
 }
@@ -70,20 +102,19 @@ impl TryFrom<&PathBuf> for QrFileName {
             None => (filename, true)
         };
 
-        let mut split = stripped.split('_');
-        match (split.next(), split.next(), split.next()) {
-            (Some(chain), Some(kind), Some(version)) => {
-                Ok(
-                    Self {
-                        chain: String::from(chain),
-                        kind: String::from(kind),
-                        version: version.parse()?,
-                        is_signed,
-                        extension
-                    })
-            },
-            _ => bail!("QR filename does not follow the format <chain>_<kind>_<version>")
-        }
+        let mut split = stripped.splitn(2, '_');
+        let chain = split.next().context("error parsing chain name")?;
+        let content_type = split.next().context("error parsing context type")?;
+        let content_type = ContentType::try_from(content_type)?;
+
+        Ok(
+            Self {
+                chain: String::from(chain),
+                content_type,
+                is_signed,
+                extension
+            }
+        )
     }
 }
 
@@ -93,8 +124,7 @@ impl fmt::Display for QrFileName {
             false => QrFileName::UNSIGNED_PREFIX,
             true => ""
         };
-        let file_name = format!("{}{}_{}_{}", prefix, self.chain, self.kind, self.version);
-
+        let file_name = format!("{}{}_{}", prefix, self.chain, self.content_type);
         match &self.extension {
             Some(ext) => write!(f, "{}.{}", file_name, ext),
             None => write!(f, "{}", file_name)
@@ -108,22 +138,22 @@ mod tests {
     use super::*;
 
     #[test]
-    fn parse_valid_qr_path() {
+    fn parse_valid_metadata_qr_path() {
         let path = PathBuf::from("./foo/bar/name_metadata_9123.apng");
         let result = QrPath::try_from(&path);
         assert!(result.is_ok());
         let parsed = result.unwrap();
         assert_eq!(parsed.dir, PathBuf::from("./foo/bar/"));
-        assert_eq!(parsed.file_name, QrFileName::new("name", 9123, true));
+        assert_eq!(parsed.file_name, QrFileName::new("name", ContentType::Metadata(9123), true));
         assert_eq!(parsed.to_path_buf(), path)
     }
 
     #[test]
-    fn parse_unsigned_qr() {
+    fn parse_unsigned_metadata_qr() {
         let path = PathBuf::from("./foo/bar/unsigned_polkadot_metadata_9123.apng");
         let parse_result = QrFileName::try_from(&path);
         assert!(parse_result.is_ok());
-        assert_eq!(parse_result.unwrap(), QrFileName::new("polkadot", 9123, false))
+        assert_eq!(parse_result.unwrap(), QrFileName::new("polkadot", ContentType::Metadata(9123), false))
     }
 
     #[test]
@@ -134,14 +164,37 @@ mod tests {
     }
 
     #[test]
-    fn qr_signed_to_string() {
-        let obj = QrFileName::new("chain", 9000, true);
-        assert_eq!(obj.to_string(), format!("{}_{}_{}.apng", obj.chain, obj.kind, obj.version));
+    fn qr_signed_metadata_to_string() {
+        let obj = QrFileName::new("chain", ContentType::Metadata(9000), true);
+        assert_eq!(obj.to_string(), "chain_metadata_9000.apng");
     }
 
     #[test]
     fn qr_unsigned_to_string() {
-        let obj = QrFileName::new("chain", 9000, false);
-        assert_eq!(obj.to_string(), format!("unsigned_{}_{}_{}.apng", obj.chain, obj.kind, obj.version));
+        let obj = QrFileName::new("chain", ContentType::Metadata(9000), false);
+        assert_eq!(obj.to_string(), "unsigned_chain_metadata_9000.apng");
+    }
+
+    #[test]
+    fn parse_specs_qr_path() {
+        let path = PathBuf::from("./foo/bar/polkadot_specs.png");
+        let result = QrPath::try_from(&path);
+        assert!(result.is_ok());
+        let parsed = result.unwrap();
+        assert_eq!(parsed.dir, PathBuf::from("./foo/bar/"));
+        assert_eq!(parsed.file_name, QrFileName::new("polkadot", ContentType::Specs, true));
+        assert_eq!(parsed.to_path_buf(), path)
+    }
+
+    #[test]
+    fn parse_specs_qr_to_string() {
+        let obj = QrFileName::new("polkadot", ContentType::Specs, true);
+        assert_eq!(obj.to_string(), "polkadot_specs.png");
+    }
+
+    #[test]
+    fn parse_unsigned_specs_qr_to_string() {
+        let obj = QrFileName::new("polkadot", ContentType::Specs, false);
+        assert_eq!(obj.to_string(), "unsigned_polkadot_specs.png");
     }
 }

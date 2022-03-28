@@ -1,12 +1,11 @@
 use std::path::{PathBuf};
-use anyhow::anyhow;
+use anyhow::{bail};
 use qr_reader_phone::process_payload::{process_decoded_payload, InProgress, Ready};
 use image::{Luma, GrayImage, ImageBuffer};
 use indicatif::ProgressBar;
 
 use opencv::{
     prelude::*,
-    Result,
     videoio,
     imgproc::{COLOR_BGR2GRAY, cvt_color,},
 };
@@ -16,7 +15,7 @@ const DEFAULT_WIDTH: u32 = 640;
 const DEFAULT_HEIGHT: u32 = 480;
 
 
-pub fn read_qr_movie(source_file: &PathBuf) -> anyhow::Result<String> {
+pub fn read_qr_file(source_file: &PathBuf) -> anyhow::Result<String> {
     let mut camera = create_camera(source_file)?;
 
     let mut out = Ready::NotYet(InProgress::None);
@@ -48,20 +47,16 @@ pub fn read_qr_movie(source_file: &PathBuf) -> anyhow::Result<String> {
 fn create_camera(source_file: &PathBuf) -> anyhow::Result<videoio::VideoCapture>
 {
     #[cfg(not(ocvrs_opencv_branch_32))]
-    let mut camera = videoio::VideoCapture::from_file(source_file.to_str().unwrap(), videoio::CAP_ANY)?;
-
-    let mut frame = Mat::default();
-
-    match camera.read(&mut frame) {
-        Ok(_) if frame.size()?.width > 0 => Ok(camera),
-        Ok(_) => Err(anyhow!("Zero frame size.")),
-        Err(e) => Err(anyhow!("Can`t read camera. {}", e)),
-    }
+    Ok(videoio::VideoCapture::from_file(source_file.to_str().unwrap(), videoio::CAP_ANY)?)
 }
 
-fn camera_capture(camera: &mut videoio::VideoCapture) -> Result<GrayImage> {
+fn camera_capture(camera: &mut videoio::VideoCapture) -> anyhow::Result<GrayImage> {
     let mut frame = Mat::default();
-    camera.read(&mut frame)?;
+    match camera.read(&mut frame) {
+        Ok(_) if frame.size()?.width > 0 => (),
+        Ok(_) => bail!("Zero frame size."),
+        Err(e) => bail!("Can`t read camera. {}", e),
+    };
 
     let mut image: GrayImage = ImageBuffer::new(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     let mut ocv_gray_image = Mat::default();

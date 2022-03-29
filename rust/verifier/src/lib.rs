@@ -7,20 +7,20 @@ use definitions::metadata::MetaValues;
 use definitions::network_specs::{Verifier, VerifierValue};
 use definitions::qr_transfers::ContentLoadMeta;
 use transaction_parsing::check_signature::pass_crypto;
-use qr_lib::camera::read_qr_movie;
-use qr_lib::path::{QrFileName, QrPath};
-use qr_lib::read::{latest_qrs};
+use qr_lib::camera::read_qr_file;
+use qr_lib::path::{ContentType, QrFileName, QrPath};
+use qr_lib::read::{all_qrs_in_dir, metadata_qr_in_dir};
 
 
 pub fn validate_signed_qrs(dir: impl AsRef<Path>, public_key: &str) -> anyhow::Result<()> {
     // Quick check that latest files are signed
-    for qr_path in latest_qrs(&dir)? {
+    for qr_path in all_qrs_in_dir(&dir)? {
         ensure!(qr_path.file_name.is_signed, "{} is not signed", qr_path.file_name);
     }
 
-    for qr_path in latest_qrs(&dir)? {
+    for (qr_path, _) in metadata_qr_in_dir(&dir)?.values() {
         let f_name = &qr_path.file_name;
-        match validate_qr(&qr_path, public_key) {
+        match validate_metadata_qr(&qr_path, public_key) {
             Ok(_) => println!("🎉 {} is verified!", f_name),
             Err(e) => bail!("failed to verify {}: {}", f_name, e),
         }
@@ -29,10 +29,10 @@ pub fn validate_signed_qrs(dir: impl AsRef<Path>, public_key: &str) -> anyhow::R
 }
 
 
-fn validate_qr(qr_path: &QrPath, public_key: &str) -> anyhow::Result<()> {
+fn validate_metadata_qr(qr_path: &QrPath, public_key: &str) -> anyhow::Result<()> {
     ensure!(qr_path.file_name.is_signed, "{} is not signed", qr_path.file_name);
 
-    let data_hex = read_qr_movie(&qr_path.to_path_buf())?;
+    let data_hex = read_qr_file(&qr_path.to_path_buf())?;
     let signed = pass_crypto(&data_hex, TransferContent::LoadMeta).map_err(|e| anyhow!("{:?}", e))?;
 
     verify_signature(&signed.verifier, public_key)?;
@@ -55,7 +55,11 @@ fn verify_signature(verifier: &Verifier, public_key: &str) -> anyhow::Result<()>
 }
 
 fn verify_filename(meta_values: &MetaValues, actual_qr_name: &QrFileName) -> anyhow::Result<()> {
-    let expected = QrFileName::new(&meta_values.name, meta_values.version, true);
+    let expected = QrFileName::new(
+        &meta_values.name,
+        ContentType::Metadata(meta_values.version),
+        true
+    );
     ensure!(actual_qr_name == &expected, "filename mismatch! Expected {}, got {}", expected, actual_qr_name);
     Ok(())
 }

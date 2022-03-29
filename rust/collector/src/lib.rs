@@ -5,7 +5,7 @@ use std::path::Path;
 
 use anyhow;
 use app_config::{AppConfig};
-use qr_lib::read::latest_qr_per_chain;
+use qr_lib::read::{metadata_qr_in_dir, specs_qr_in_dir};
 
 mod metadata;
 
@@ -31,9 +31,10 @@ fn save_to_file(specs: &Vec<ExportChainSpec>, path: impl AsRef<Path>) -> anyhow:
 
 
 fn export_specs(config: &AppConfig) ->  anyhow::Result<Vec<ExportChainSpec>> {
-    let saved_qr_codes = latest_qr_per_chain(&config.qr_dir)?;
+    let metadata_qrs_for_chain = metadata_qr_in_dir(&config.qr_dir)?;
+    let specs_qrs_for_chain = specs_qr_in_dir(&config.qr_dir)?;
 
-    let mut specs = vec![];
+    let mut export_specs = vec![];
     for chain in &config.chains {
         print!("Collecting {} info...", chain.name);
         // ensure the output is emitted immediately
@@ -41,7 +42,21 @@ fn export_specs(config: &AppConfig) ->  anyhow::Result<Vec<ExportChainSpec>> {
 
         let meta_specs = fetch_chain_info(&chain.rpc_endpoint)?;
 
-        let qr_code = match saved_qr_codes.get(chain.name.as_str()) {
+        let metadata_qr = match metadata_qrs_for_chain.get(chain.name.as_str()) {
+            Some((qr_path, version)) => {
+                let signed_by = match qr_path.file_name.is_signed {
+                    true => Some(config.verifier.name.clone()),
+                    false => None
+                };
+                Some(QrCode{
+                    path: ReactAssetPath::from_fs_path(qr_path.to_path_buf(), &config.public_dir).unwrap(),
+                    signed_by,
+                    version: Some(*version),
+                })
+            },
+            _ => None
+        };
+        let specs_qr = match specs_qrs_for_chain.get(chain.name.as_str()) {
             Some(qr_path) => {
                 let signed_by = match qr_path.file_name.is_signed {
                     true => Some(config.verifier.name.clone()),
@@ -50,22 +65,22 @@ fn export_specs(config: &AppConfig) ->  anyhow::Result<Vec<ExportChainSpec>> {
                 Some(QrCode{
                     path: ReactAssetPath::from_fs_path(qr_path.to_path_buf(), &config.public_dir).unwrap(),
                     signed_by,
-                    version: qr_path.file_name.version
+                    version: None,
                 })
             },
             _ => None
         };
-        specs.push(ExportChainSpec {
+        export_specs.push(ExportChainSpec {
             name: chain.name.clone(),
             rpc_endpoint: chain.rpc_endpoint.clone(),
             genesis_hash: meta_specs.specs.genesis_hash,
             color: chain.color.clone(),
             unit: meta_specs.specs.unit,
             address_prefix: meta_specs.specs.base58prefix.to_string(),
-            metadata_qr: qr_code,
-            add_to_signer: chain.add_to_signer,
+            metadata_qr,
+            specs_qr,
         });
         println!("Ok!");
     }
-    Ok(specs)
+    Ok(export_specs)
 }

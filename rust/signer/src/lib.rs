@@ -90,7 +90,7 @@ fn open_in_browser(file: &QrPath) -> anyhow::Result<()> {
         .arg("-c")
         .arg(cmd)
         .output()?;
-    if !output.stderr.is_empty() {
+    if !output.status.success() {
         bail!("error showing QR code: {}", String::from_utf8_lossy(&output.stderr))
     }
     Ok(())

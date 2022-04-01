@@ -29,7 +29,7 @@ export default function AddToSigner({ path }: QrInfo) {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto bg-black/90"
+          className="fixed inset-0 z-10 overflow-y-auto bg-black/90 backdrop-blur"
           onClose={closeModal}
         >
           <div className="px-4 text-center">

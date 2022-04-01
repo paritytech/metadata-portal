@@ -23,8 +23,8 @@ export default function Page({ allChains, currentName }: Props) {
         {metadataQr && (
           <>
             <QrCode {...metadataQr} />
-            <div className="text-white">
-              <h1 className="text-5xl mb-5">Metadata #{metadataQr.version}</h1>
+            <div className="text-white overflow-auto">
+              <h1 className="text-3xl sm:text-5xl mb-5">Metadata #{metadataQr.version}</h1>
               <Specs {...chain} />
                 {specsQr && <AddToSigner {...specsQr} />}
             </div>

@@ -3,20 +3,15 @@ public_dir = "public"
 qr_dir = "public/qr"
 
 [verifier]
-name = "Parity"
-public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+name = "Centrifuge"
+public_key = "f60bf544f6fc9cc4e30bacbabb52bbc523d1ad77addf8303b724ad59717d766f"
 
 [[chains]]
-name = "polkadot"
-rpc_endpoint = "wss://rpc.polkadot.io"
-color = "#e6007a"
+name = "centrifuge"
+rpc_endpoint = "wss://fullnode.parachain.centrifuge.io"
+color = "#fcc367"
 
 [[chains]]
-name = "kusama"
-rpc_endpoint = "wss://kusama-rpc.polkadot.io"
-color = "#000000"
-
-[[chains]]
-name = "westend"
-rpc_endpoint = "wss://westend-rpc.polkadot.io"
-color = "#f27230"
+name = "altair"
+rpc_endpoint = "wss://fullnode.altair.centrifuge.io"
+color = "#ffb700"

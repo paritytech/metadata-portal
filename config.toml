@@ -15,3 +15,8 @@ color = "#fcc367"
 name = "altair"
 rpc_endpoint = "wss://fullnode.altair.centrifuge.io"
 color = "#ffb700"
+
+[[chains]]
+name = "catalyst"
+rpc_endpoint = "wss://fullnode.catalyst.cntrfg.com"
+color = "#000000"

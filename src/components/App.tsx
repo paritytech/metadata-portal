@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { getChains } from "../scheme";
+import { useEffect, useState } from "react";
+import { ChainSpec, getChains, QrInfo } from "../scheme";
 import QrCode from "./QrCode";
 import Specs from "./Specs";
 import AddToSigner from "./AddToSigner";
@@ -18,14 +18,28 @@ import GitHub from "../assets/gh.png";
 export default function App() {
   const allChains = getChains();
   const currentName = Object.keys(allChains)[0] || "polkadot";
-  const chain = allChains[currentName];
-  const metadataQr = chain.metadataQr;
-  const specsQr = chain.specsQr;
   const svgClass = "inline mr-2 h-7";
-
   const [currentNetwork, setCurrentNetwork] = useState<
     NetworkDetails | undefined
   >(getSubNetworkDetails(currentName));
+  const [metadataQr, setMetadataQr] = useState<QrInfo | undefined>(
+    allChains[currentName].metadataQr
+  );
+
+  const [specsQr, setSpecsQr] = useState<QrInfo | undefined>(
+    allChains[currentName].specsQr
+  );
+
+  const [chain, setChain] = useState<ChainSpec>(allChains[currentName]);
+
+  useEffect(() => {
+    const name = currentNetwork?.name?.toLocaleLowerCase();
+    if (name) {
+      setChain(allChains[name]);
+      setMetadataQr(allChains[name]?.metadataQr);
+      setSpecsQr(allChains[name]?.specsQr);
+    }
+  }, [currentNetwork?.name]);
 
   document.body.style.backgroundColor = currentNetwork?.secondaryColor || "";
 
@@ -58,8 +72,8 @@ export default function App() {
       </div>
       <div className="flex flex-row flex-wrap justify-center pt-8">
         {metadataQr && (
-          <Card st={{ minWidth: "500px" }}>
-            <div className="flex justify-between p-8">
+          <Card st={{ minWidth: "50rem" }}>
+            <div className="flex justify-between mx-8 py-8 border-b-2 border-gray-200 ">
               <h1
                 className="text-xl sm:text-4xl"
                 style={{ color: currentNetwork?.primaryColor }}
@@ -80,7 +94,7 @@ export default function App() {
                 )}
               </div>
             </div>
-            <div className="flex">
+            <div className="flex pt-8">
               <QrCode path={metadataQr.path} />
               <div className="text-black overflow-auto p-5 w-72">
                 <Specs
@@ -92,6 +106,24 @@ export default function App() {
             </div>
           </Card>
         )}
+      </div>
+      <div className="flex fixed bottom-0 w-full pt-8 pb-8 justify-evenly items-center">
+        <a
+          href="https://www.parity.io/"
+          target="_blank"
+          className="text-white underline"
+          rel="noreferrer"
+        >
+          Developed by Parity
+        </a>
+        <a
+          href="https://www.parity.io/terms/"
+          target="_blank"
+          className="text-white underline"
+          rel="noreferrer"
+        >
+          Terms of Service
+        </a>
       </div>
     </div>
   );

@@ -19,7 +19,6 @@ export const copyToClipboard = (text: string): void => {
 
 export default function Specs({ chainSpecs, color }: SpecsProps) {
   const { rpcEndpoint, genesisHash, unit, addressPrefix } = chainSpecs;
-
   const [copied, setCopied] = useState<boolean>(false);
 
   useEffect(() => {
@@ -28,9 +27,7 @@ export default function Specs({ chainSpecs, color }: SpecsProps) {
 
   const elipsisHash = (el: string) => {
     const sliced = el.slice(0, 6) + "..." + el.slice(el.length - 4, el.length);
-
     const cName = copied ? "fade" : "hidden";
-    console.log("copied", copied);
     return (
       <>
         <div className="flex float-left">{sliced}</div>

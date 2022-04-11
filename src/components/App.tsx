@@ -35,7 +35,7 @@ export default function App() {
         className="flex pt-8 pb-8 justify-around items-center"
         style={{ backgroundColor: currentNetwork?.primaryColor }}
       >
-        <div className="text-white w-1 font-bold text-2xl">
+        <div className="text-white w-1 font-bold text-2xl opacity-0 md:opacity-100 ">
           Metadata Update Portal
         </div>
         <NetworkSlider
@@ -58,7 +58,7 @@ export default function App() {
       </div>
       <div className="flex flex-row flex-wrap justify-center pt-8">
         {metadataQr && (
-          <Card st={{ minWidth: "500px;" }}>
+          <Card st={{ minWidth: "500px" }}>
             <div className="flex justify-between p-8">
               <h1
                 className="text-xl sm:text-4xl"
@@ -82,7 +82,7 @@ export default function App() {
             </div>
             <div className="flex">
               <QrCode path={metadataQr.path} />
-              <div className="text-black overflow-auto p-5">
+              <div className="text-black overflow-auto p-5 w-72">
                 <Specs
                   chainSpecs={{ ...chain }}
                   color={currentNetwork?.primaryColor}

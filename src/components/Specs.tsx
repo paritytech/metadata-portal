@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { ChainSpec } from "../scheme";
+import "./Specs.css";
 import Copy from "../assets/copy.png";
 
 interface SpecsProps {
@@ -17,21 +18,34 @@ export const copyToClipboard = (text: string): void => {
 };
 
 export default function Specs({ chainSpecs, color }: SpecsProps) {
+  const { rpcEndpoint, genesisHash, unit, addressPrefix } = chainSpecs;
+
+  const [copied, setCopied] = useState<boolean>(false);
+
+  useEffect(() => {
+    setTimeout(() => copied && setCopied(false), 2000);
+  }, [copied]);
+
   const elipsisHash = (el: string) => {
     const sliced = el.slice(0, 6) + "..." + el.slice(el.length - 4, el.length);
+
+    const cName = copied ? "fade" : "hidden";
+    console.log("copied", copied);
     return (
       <>
         <div className="flex float-left">{sliced}</div>
         <img
           className="w-5 h-5 ml-2 cursor-pointer"
           src={Copy}
-          onClick={() => copyToClipboard(el)}
+          onClick={() => {
+            setCopied(true);
+            copyToClipboard(el);
+          }}
         />
+        <div className={"text-green-500 ml-3 ".concat(cName)}>Copied</div>
       </>
     );
   };
-
-  const { rpcEndpoint, genesisHash, unit, addressPrefix } = chainSpecs;
 
   return (
     <ul>

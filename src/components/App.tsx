@@ -7,7 +7,7 @@ import { BadgeCheckIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import {
   NetworkSlider,
   Network,
-  getSubNetworkDetails,
+  getChain,
   NetworkDetails,
   Card,
 } from "mottled-library";
@@ -21,7 +21,7 @@ export default function App() {
   const svgClass = "inline mr-2 h-7";
   const [currentNetwork, setCurrentNetwork] = useState<
     NetworkDetails | undefined
-  >(getSubNetworkDetails(currentName));
+  >(getChain(currentName));
   const [metadataQr, setMetadataQr] = useState<QrInfo | undefined>(
     allChains[currentName].metadataQr
   );
@@ -41,15 +41,15 @@ export default function App() {
     }
   }, [currentNetwork?.name]);
 
-  document.body.style.backgroundColor = currentNetwork?.secondaryColor || "";
+  document.body.style.backgroundColor = currentNetwork?.secColor || "";
 
   return (
     <div className="flex flex-col">
       <div
-        className="flex pt-8 pb-8 justify-around items-center"
-        style={{ backgroundColor: currentNetwork?.primaryColor }}
+        className="lg:flex lg:p-8 p-5 justify-around items-center"
+        style={{ backgroundColor: currentNetwork?.color }}
       >
-        <div className="text-white w-1 font-bold text-2xl opacity-0 md:opacity-100 ">
+        <div className="text-white lg:w-1 font-bold text-2xl mb-5 lg:text-left text-center">
           Metadata Update Portal
         </div>
         <NetworkSlider
@@ -59,7 +59,7 @@ export default function App() {
         />
         <div className="text-white font-bold">
           <a
-            className="w-5"
+            className="lg:text-left text-center lg:mt-0 mt-5 lg:block inline-block lg:w-fit w-full"
             href="https://github.com/paritytech/metadata-portal"
             target={"blank"}
           >
@@ -70,13 +70,13 @@ export default function App() {
           </a>
         </div>
       </div>
-      <div className="flex flex-row flex-wrap justify-center pt-8">
+      <div className="md:flex flex-row flex-wrap justify-center lg:pt-8">
         {metadataQr && (
-          <Card st={{ minWidth: "50rem" }}>
+          <Card>
             <div className="flex justify-between mx-8 py-8 border-b-2 border-gray-200 ">
               <h1
-                className="text-xl sm:text-4xl"
-                style={{ color: currentNetwork?.primaryColor }}
+                className="text-2xl lg:text-4xl"
+                style={{ color: currentNetwork?.color }}
               >
                 Metadata #{metadataQr.version}
               </h1>
@@ -94,12 +94,12 @@ export default function App() {
                 )}
               </div>
             </div>
-            <div className="flex pt-8">
+            <div className="lg:flex grid justify-center pt-8">
               <QrCode path={metadataQr.path} />
               <div className="text-black overflow-auto p-5 w-72">
                 <Specs
                   chainSpecs={{ ...chain }}
-                  color={currentNetwork?.primaryColor}
+                  color={currentNetwork?.color}
                 />
                 {specsQr && <AddToSigner {...specsQr} />}
               </div>
@@ -107,7 +107,7 @@ export default function App() {
           </Card>
         )}
       </div>
-      <div className="flex fixed bottom-0 w-full pt-8 pb-8 justify-evenly items-center">
+      <div className="flex w-full pt-8 pb-8 justify-evenly items-center">
         <a
           href="https://www.parity.io/"
           target="_blank"

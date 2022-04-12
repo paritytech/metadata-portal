@@ -34,13 +34,17 @@ pub struct ChainSpecs {
 pub struct ExportChainSpec {
     pub name: String,
     pub rpc_endpoint: String,
-    pub genesis_hash: String,
     pub color: String,
-    pub unit: String,
-    pub address_prefix: String,
 
-    pub metadata_qr: Option<QrCode>,
-    pub specs_qr: Option<QrCode>,
+    pub genesis_hash: String,
+    pub unit: String,
+    pub base58prefix: String,
+    pub logo: String,
+    pub decimals: u8,
+
+    pub metadata_version: u32,
+    pub metadata_qr: QrCode,
+    pub specs_qr: QrCode,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -48,7 +52,6 @@ pub struct ExportChainSpec {
 pub struct QrCode {
     pub path: ReactAssetPath,
     pub signed_by: Option<String>,
-    pub version: Option<u32>,
 }
 
 

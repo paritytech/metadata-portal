@@ -2,9 +2,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import React from "react";
 import {QrInfo} from "../scheme";
+import Button from "./Button";
 
 export default function AddToSigner({ path }: QrInfo) {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -17,13 +18,10 @@ export default function AddToSigner({ path }: QrInfo) {
   return (
     <>
       <div className="flex items-center mt-5">
-        <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-black border-2 border-white rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Add to Signer
-        </button>
+        <Button
+            onClick={openModal}
+            label="Add to Signer"
+        />
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>

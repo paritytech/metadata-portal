@@ -18,7 +18,7 @@ export const copyToClipboard = (text: string): void => {
 };
 
 export default function Specs({ chainSpecs, color }: SpecsProps) {
-  const { rpcEndpoint, genesisHash, unit, addressPrefix } = chainSpecs;
+  const { rpcEndpoint, genesisHash, unit, base58prefix} = chainSpecs;
   const [copied, setCopied] = useState<boolean>(false);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function Specs({ chainSpecs, color }: SpecsProps) {
         </>
       )}
       {row("Unit", unit)}
-      {row("Address prefix", addressPrefix.toString())}
+      {row("Address prefix", base58prefix.toString())}
     </ul>
   );
 }

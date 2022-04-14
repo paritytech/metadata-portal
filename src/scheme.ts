@@ -7,15 +7,17 @@ export interface ChainSpec {
   genesisHash: string;
   color: string;
   unit: string;
-  addressPrefix: number;
-  metadataQr?: QrInfo;
-  specsQr?: QrInfo;
+  base58prefix: number;
+  decimals: number;
+  metadataVersion: number;
+  logo: string;
+  metadataQr: QrInfo;
+  specsQr: QrInfo;
 }
 
 export interface QrInfo {
   path: string;
   signedBy?: string;
-  version?: number;
 }
 
 export interface Chains {

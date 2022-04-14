@@ -3,14 +3,11 @@ import { Fragment } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { Chains, ChainSpec } from "../scheme";
+import {capitalizeFirstLetter} from "../utils";
 
 interface Props {
   allChains: Chains;
   selectedName: string;
-}
-
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function ChainLogo(props: { chain: ChainSpec; className?: string }) {

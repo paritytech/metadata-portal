@@ -9,14 +9,11 @@ public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
 [[chains]]
 name = "polkadot"
 rpc_endpoint = "wss://rpc.polkadot.io"
-color = "#e6007a"
 
 [[chains]]
 name = "kusama"
 rpc_endpoint = "wss://kusama-rpc.polkadot.io"
-color = "#000000"
 
 [[chains]]
 name = "westend"
 rpc_endpoint = "wss://westend-rpc.polkadot.io"
-color = "#f27230"

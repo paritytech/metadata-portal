@@ -1,22 +1,21 @@
+use anyhow::bail;
 use std::process::Command;
-use anyhow::{bail};
 
 use definitions::crypto::SufficientCrypto;
 use definitions::error::TransferContent;
 use parity_scale_codec::Decode;
 
+use app_config::AppConfig;
 use generate_message::make_message::make_message;
 use generate_message::parser::{Crypto, Goal, Make, Msg};
-use qr_reader_pc::{CameraSettings, run_with_camera};
-use transaction_parsing::check_signature::pass_crypto;
-use app_config::{AppConfig};
 use qr_lib::camera::read_qr_file;
 use qr_lib::path::{ContentType, QrPath};
-use qr_lib::read::{hex_to_bytes, all_qrs_in_dir};
+use qr_lib::read::{all_qrs_in_dir, hex_to_bytes};
+use qr_reader_pc::{run_with_camera, CameraSettings};
+use transaction_parsing::check_signature::pass_crypto;
 
 mod prompt;
-    use crate::prompt::{select_file, want_to_continue};
-
+use crate::prompt::{select_file, want_to_continue};
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
     let mut files_to_sign: Vec<QrPath> = all_qrs_in_dir(config.qr_dir)?
@@ -31,7 +30,7 @@ pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
                 let i = select_file(&files_to_sign);
                 run_for_file(&files_to_sign.swap_remove(i))?
             }
-        },
+        }
     }
     Ok(())
 }
@@ -44,7 +43,7 @@ fn run_for_file(qr_path: &QrPath) -> anyhow::Result<()> {
         return Ok(());
     }
 
-    let signature = match run_with_camera(CameraSettings{index: Some(0)}) {
+    let signature = match run_with_camera(CameraSettings { index: Some(0) }) {
         Ok(line) => line,
         Err(e) => bail!("QR reading error. {}", e),
     };
@@ -77,7 +76,7 @@ fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
         goal: Goal::Qr,
         crypto: Crypto::Sufficient(sufficient_crypto),
         msg: msg_type(passed_crypto.message),
-        name: Some(signed_qr.to_string())
+        name: Some(signed_qr.to_string()),
     };
     println!("⚙ generating {}...", signed_qr);
     make_message(make).map_err(anyhow::Error::msg)?;
@@ -86,12 +85,12 @@ fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
 
 fn open_in_browser(file: &QrPath) -> anyhow::Result<()> {
     let cmd = format!("python3 -mwebbrowser file://{}", file);
-    let output = Command::new("sh")
-        .arg("-c")
-        .arg(cmd)
-        .output()?;
+    let output = Command::new("sh").arg("-c").arg(cmd).output()?;
     if !output.status.success() {
-        bail!("error showing QR code: {}", String::from_utf8_lossy(&output.stderr))
+        bail!(
+            "error showing QR code: {}",
+            String::from_utf8_lossy(&output.stderr)
+        )
     }
     Ok(())
 }

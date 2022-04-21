@@ -1,0 +1,45 @@
+name: Rust test
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'rust/**'
+
+env:
+  MANIFEST_PATH: 'rust/Cargo.toml'
+
+jobs:
+  rust-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
+
+      - name: Cargo fmt
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --manifest-path ${{ env.MANIFEST_PATH }} --all -- --check
+
+      - name: Cargo clippy
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --manifest-path ${{ env.MANIFEST_PATH }} -- -D warnings
+
+      - name: Cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --manifest-path ${{ env.MANIFEST_PATH }}
+
+      - name: Cargo check
+        uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: --manifest-path ${{ env.MANIFEST_PATH }}

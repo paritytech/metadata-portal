@@ -1,8 +1,7 @@
-use std::path::PathBuf;
-use signer::{full_run};
-use clap::Parser;
 use app_config::read_app_config;
-
+use clap::Parser;
+use signer::full_run;
+use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
 #[clap(about, version, author)]

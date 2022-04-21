@@ -28,7 +28,7 @@ jobs:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
-      - name: 🔧 Install dependancies
+      - name: 🔧 Install dependencies
         run: yarn
 
       - name: ⚙ Run verifier

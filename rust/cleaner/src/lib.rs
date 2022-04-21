@@ -1,19 +1,17 @@
 use std::collections::HashSet;
 use std::fs;
-use std::path::{Path};
+use std::path::Path;
 
-use anyhow;
-use app_config::{AppConfig};
-use qr_lib::path::{QrPath};
+use app_config::AppConfig;
+use qr_lib::path::QrPath;
 use qr_lib::read::{all_qrs_in_dir, raw_read_qr_dir};
-
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
     let chains: HashSet<String> = config.chains.into_iter().map(|chain| chain.name).collect();
     let files = files_to_remove(&config.qr_dir, chains)?;
     if files.is_empty() {
         println!("✔ Nothing to delete");
-        return Ok(())
+        return Ok(());
     }
     for path in files {
         fs::remove_file(path.to_path_buf())?;
@@ -21,7 +19,6 @@ pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
     }
     Ok(())
 }
-
 
 fn files_to_remove(dir: impl AsRef<Path>, chains: HashSet<String>) -> anyhow::Result<Vec<QrPath>> {
     let newest_qrs = all_qrs_in_dir(&dir)?;
@@ -34,13 +31,13 @@ fn files_to_remove(dir: impl AsRef<Path>, chains: HashSet<String>) -> anyhow::Re
         .into_iter()
         .filter(|qr_path| !keep.contains(qr_path))
         .collect();
-     Ok(to_remove)
+    Ok(to_remove)
 }
 
 #[cfg(test)]
 mod tests {
-    use std::path::Path;
     use super::*;
+    use std::path::Path;
 
     #[test]
     fn remove_previous_version() {
@@ -57,7 +54,10 @@ mod tests {
         let chains = HashSet::from(["kusama".to_string()]);
         let to_remove = files_to_remove(path, chains).unwrap();
         assert_eq!(to_remove.len(), 1);
-        assert_eq!(to_remove[0].to_path_buf(), path.join("polkadot_metadata_10"));
+        assert_eq!(
+            to_remove[0].to_path_buf(),
+            path.join("polkadot_metadata_10")
+        );
     }
 
     #[test]
@@ -66,6 +66,9 @@ mod tests {
         let chains = HashSet::from(["kusama".to_string()]);
         let to_remove = files_to_remove(path, chains).unwrap();
         assert_eq!(to_remove.len(), 1);
-        assert_eq!(to_remove[0].to_path_buf(), path.join("unsigned_kusama_metadata_10"));
+        assert_eq!(
+            to_remove[0].to_path_buf(),
+            path.join("unsigned_kusama_metadata_10")
+        );
     }
 }

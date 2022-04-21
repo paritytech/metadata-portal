@@ -3,9 +3,8 @@ use std::io;
 use std::io::prelude::*;
 use std::path::Path;
 
-use anyhow;
 use anyhow::bail;
-use app_config::{AppConfig};
+use app_config::AppConfig;
 use qr_lib::read::{metadata_qr_in_dir, specs_qr_in_dir};
 
 mod metadata;
@@ -14,7 +13,6 @@ mod export;
 
 use crate::export::{ExportChainSpec, QrCode, ReactAssetPath};
 use crate::metadata::fetch_chain_info;
-
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
     let specs = export_specs(&config)?;
@@ -30,8 +28,7 @@ fn save_to_file(specs: &Vec<ExportChainSpec>, path: impl AsRef<Path>) -> anyhow:
     Ok(())
 }
 
-
-fn export_specs(config: &AppConfig) ->  anyhow::Result<Vec<ExportChainSpec>> {
+fn export_specs(config: &AppConfig) -> anyhow::Result<Vec<ExportChainSpec>> {
     let metadata_qrs_for_chain = metadata_qr_in_dir(&config.qr_dir)?;
     let specs_qrs_for_chain = specs_qr_in_dir(&config.qr_dir)?;
 
@@ -43,27 +40,30 @@ fn export_specs(config: &AppConfig) ->  anyhow::Result<Vec<ExportChainSpec>> {
 
         let meta_specs = fetch_chain_info(&chain.rpc_endpoint)?;
 
-        let (metadata_qr, metadata_version) = match metadata_qrs_for_chain.get(chain.name.as_str()) {
+        let (metadata_qr, metadata_version) = match metadata_qrs_for_chain.get(chain.name.as_str())
+        {
             Some((qr_path, version)) => {
-                let path = ReactAssetPath::from_fs_path(qr_path.to_path_buf(), &config.public_dir).unwrap();
+                let path = ReactAssetPath::from_fs_path(qr_path.to_path_buf(), &config.public_dir)
+                    .unwrap();
                 let signed_by = match qr_path.file_name.is_signed {
                     true => Some(config.verifier.name.clone()),
-                    false => None
+                    false => None,
                 };
-                (QrCode{path, signed_by}, *version)
-            },
-            _ => bail!("failed to find metadata qr for {}", chain.name)
+                (QrCode { path, signed_by }, *version)
+            }
+            _ => bail!("failed to find metadata qr for {}", chain.name),
         };
         let specs_qr = match specs_qrs_for_chain.get(chain.name.as_str()) {
             Some(qr_path) => {
                 let signed_by = match qr_path.file_name.is_signed {
                     true => Some(config.verifier.name.clone()),
-                    false => None
+                    false => None,
                 };
-                let path = ReactAssetPath::from_fs_path(qr_path.to_path_buf(), &config.public_dir).unwrap();
-                QrCode{path, signed_by}
-            },
-            _ => bail!("failed to find specs qr for {}", chain.name)
+                let path = ReactAssetPath::from_fs_path(qr_path.to_path_buf(), &config.public_dir)
+                    .unwrap();
+                QrCode { path, signed_by }
+            }
+            _ => bail!("failed to find specs qr for {}", chain.name),
         };
         export_specs.push(ExportChainSpec {
             name: chain.name.clone(),

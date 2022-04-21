@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🔧 Install rust dependancies
+      - name: 🔧 Install rust dependencies
         uses: ./.github/workflows/rust-install
 
       - name: Try to checkout exising PR branch

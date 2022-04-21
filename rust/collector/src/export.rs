@@ -1,22 +1,24 @@
-use std::path::{PathBuf};
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
+use std::path::PathBuf;
 
-use definitions::{metadata::MetaValues};
+use definitions::metadata::MetaValues;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct ReactAssetPath(String);
 
 impl ReactAssetPath {
     pub fn from_fs_path(path: PathBuf, public_dir: &PathBuf) -> anyhow::Result<ReactAssetPath> {
-        Ok(ReactAssetPath(format!("/{}", path.strip_prefix(public_dir)?.to_str().unwrap())))
+        Ok(ReactAssetPath(format!(
+            "/{}",
+            path.strip_prefix(public_dir)?.to_str().unwrap()
+        )))
     }
 }
-
 
 /// Struct to store MetaValues, genesis hash, and ChainSpecsToSend for network
 pub struct MetaSpecs {
     pub meta_values: MetaValues,
-    pub specs: ChainSpecs
+    pub specs: ChainSpecs,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -53,18 +55,18 @@ pub struct QrCode {
     pub signed_by: Option<String>,
 }
 
-
 #[cfg(test)]
 mod tests {
-    use std::path::Path;
     use super::*;
+    use std::path::Path;
 
     #[test]
     fn create_react_asset_path() {
         let img_path = Path::new("./../public/qr/name_kind_9123.apng").to_path_buf();
         let public_dir = Path::new("./../public").to_path_buf();
-        assert_eq!(ReactAssetPath::from_fs_path(img_path, &public_dir).unwrap(),
-                   ReactAssetPath("/qr/name_kind_9123.apng".to_string()));
+        assert_eq!(
+            ReactAssetPath::from_fs_path(img_path, &public_dir).unwrap(),
+            ReactAssetPath("/qr/name_kind_9123.apng".to_string())
+        );
     }
-
 }

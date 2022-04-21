@@ -1,4 +1,4 @@
-name: Tests
+name: Frontend test
 
 on:
   pull_request:
@@ -6,20 +6,7 @@ on:
       - master
 
 jobs:
-  rust:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 🛎 Checkout
-        uses: actions/checkout@v2
-
-      - name: 🔧 Install rust dependancies
-        uses: ./.github/workflows/rust-install
-
-      - name: ⚙ Run backend tests
-        run: make tests
-
-  frontend:
+  frontend-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,5 +26,5 @@ jobs:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
 
-      - name: 🔧 Install dependancies
+      - name: 🔧 Install dependencies
         run: yarn

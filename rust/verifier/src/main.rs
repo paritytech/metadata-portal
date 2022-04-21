@@ -1,9 +1,8 @@
-use std::path::{PathBuf};
+use std::path::PathBuf;
 
-use clap::{Parser};
 use app_config::read_app_config;
-use verifier::{validate_signed_qrs};
-
+use clap::Parser;
+use verifier::validate_signed_qrs;
 
 #[derive(Parser, Debug)]
 #[clap(about, version, author)]
@@ -13,9 +12,8 @@ struct Cli {
     config: PathBuf,
 }
 
-
 fn main() -> Result<(), String> {
-     let args = Cli::parse();
+    let args = Cli::parse();
 
     let app_config = match read_app_config(args.config) {
         Ok(x) => x,

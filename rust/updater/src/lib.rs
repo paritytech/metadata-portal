@@ -1,4 +1,3 @@
-use anyhow;
 use app_config::AppConfig;
 use qr_lib::read::{metadata_qr_in_dir, specs_qr_in_dir};
 
@@ -8,8 +7,7 @@ mod export;
 mod qr_file;
 
 use crate::metadata::fetch_chain_info;
-use crate::qr_file::{generate_spec_qr, generate_metadata_qr};
-
+use crate::qr_file::{generate_metadata_qr, generate_spec_qr};
 
 pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
     let metadata_qrs = metadata_qr_in_dir(&config.qr_dir)?;
@@ -27,14 +25,13 @@ pub fn full_run(config: AppConfig) -> anyhow::Result<()> {
             _ => {
                 generate_metadata_qr(&meta_specs, &config.qr_dir)?;
                 is_changed = true;
-            },
+            }
         };
-
     }
 
     if !is_changed {
         println!("Everything is up to date!");
-        return Ok(())
+        return Ok(());
     }
 
     println!("Done!");

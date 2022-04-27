@@ -27,3 +27,6 @@ yarn-error.log*
 
 # Auto-generated data file for frontend
 src/chains.json
+
+# Rust build
+target

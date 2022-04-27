@@ -34,11 +34,23 @@ jobs:
           fi
           echo "::set-output name=switched::$switched"
 
+      - name: ⚙ Build metadata-cli
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release
+
       - name: ⚙ Run QR updater
-        run: make updater
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- update
 
       - name: ⚙ Run cleaner
-        run: make cleaner
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- clean
 
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}

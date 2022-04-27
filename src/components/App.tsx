@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import { ChainSpec, getChains, QrInfo } from "../scheme";
 import QrCode from "./QrCode";
 import Specs from "./Specs";
@@ -17,9 +18,12 @@ import GitHub from "../assets/gh.png";
 import Extension from "./Extension";
 
 export default function App() {
+  const [localNetwork, setLocalNetwork] = useLocalStorage("chosenNetwork");
+
   const allChains = getChains();
-  const currentName = Object.keys(allChains)[0] || "polkadot";
+  const currentName = localNetwork || Object.keys(allChains)[0] || "polkadot";
   const svgClass = "inline mr-2 h-7";
+
   const [currentNetwork, setCurrentNetwork] = useState<
     NetworkDetails | undefined
   >(getChain(currentName));
@@ -34,7 +38,7 @@ export default function App() {
   const [chain, setChain] = useState<ChainSpec>(allChains[currentName]);
 
   useEffect(() => {
-    const name = currentNetwork?.name?.toLocaleLowerCase();
+    const name = currentNetwork?.name?.toLowerCase();
     if (name) {
       setChain(allChains[name]);
       setMetadataQr(allChains[name]?.metadataQr);
@@ -55,8 +59,11 @@ export default function App() {
         </div>
         <div className="lg:mt-0 mt-5">
           <NetworkSlider
-            defaultNetwork={currentNetwork?.type}
-            setNetwork={(network: NetworkDetails) => setCurrentNetwork(network)}
+            defaultNetwork={currentName as Network}
+            setNetwork={(network: NetworkDetails) => {
+              setCurrentNetwork(network);
+              setLocalNetwork(network?.name?.toLowerCase());
+            }}
             networks={Object.keys(allChains) as Network[]}
           />
         </div>
@@ -99,10 +106,7 @@ export default function App() {
           <div className="lg:flex grid justify-center pt-8">
             <QrCode path={metadataQr.path} />
             <div className="text-black p-5 w-72">
-              <Specs
-                chainSpecs={{ ...chain }}
-                color={currentNetwork?.color}
-              />
+              <Specs chainSpecs={{ ...chain }} color={currentNetwork?.color} />
               <AddToSigner {...specsQr} />
               <Extension {...chain} />
             </div>
@@ -111,10 +115,10 @@ export default function App() {
       </div>
       <div className="flex w-full p-8 justify-evenly items-center">
         <a
-            href="https://parity.io/signer/"
-            target="_blank"
-            className="text-white underline basis-40 m-1 text-center"
-            rel="noreferrer"
+          href="https://parity.io/signer/"
+          target="_blank"
+          className="text-white underline basis-40 m-1 text-center"
+          rel="noreferrer"
         >
           Parity Signer
         </a>

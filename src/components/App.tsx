@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { ChainSpec, getChains, QrInfo } from "../scheme";
 import QrCode from "./QrCode";
 import Specs from "./Specs";
 import AddToSigner from "./AddToSigner";
 import { BadgeCheckIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import {
+  useLocalStorage,
+  getChain,
+  Card,
   NetworkSlider,
   Network,
-  getChain,
   NetworkDetails,
-  Card,
 } from "mottled-library";
 import "mottled-library/css/NetworkSlider.css";
 import "mottled-library/css/Card.css";

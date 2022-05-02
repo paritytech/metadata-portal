@@ -6609,10 +6609,10 @@ mock-socket@^9.1.2:
   resolved "https://registry.yarnpkg.com/mock-socket/-/mock-socket-9.1.2.tgz#cce6cf2193aada937ba41de3288c5c1922fbd571"
   integrity sha512-XKZkCnQ9ISOlTnaPg4LYYSMj7+6i78HyadYzLA5JM4465ibLdjappZD9Csnqc3Tfzep/eEK/LCJ29BTaLHoB1A==
 
-mottled-library@^0.0.15:
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/mottled-library/-/mottled-library-0.0.15.tgz#5ad8c100abd2d8bacab1f91e1019f5adbaebed47"
-  integrity sha512-GUjq9AzAC1i2CWA/wmE+CPMMZwspbWiP1vzekdaWMPSm8QLCZWvVg1ldCB/Xw8TK6ZB5L9nHVFNVsIiecQP1ag==
+mottled-library@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/mottled-library/-/mottled-library-0.0.16.tgz#adde6408cc64f549add371da50a5a27cfd942bab"
+  integrity sha512-4pYpiNJ7qzY/+4u8IvY8fq57mfe4BxqCENpSqnpWyNnb6DaH6HjqOcnyJFVK4Y5hGmlY0T/epu9souCo+ji7Yg==
 
 ms@2.0.0:
   version "2.0.0"

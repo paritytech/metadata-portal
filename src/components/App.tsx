@@ -108,7 +108,7 @@ export default function App() {
             <div className="text-black p-5 w-72">
               <Specs chainSpecs={{ ...chain }} color={currentNetwork?.color} />
               <AddToSigner {...specsQr} />
-              <Extension {...chain} />
+              {/*<Extension {...chain} />*/}
             </div>
           </div>
         </Card>

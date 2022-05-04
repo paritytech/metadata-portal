@@ -6604,10 +6604,10 @@ mock-socket@^9.1.3:
   resolved "https://registry.npmjs.org/mock-socket/-/mock-socket-9.1.3.tgz"
   integrity sha512-uz8lx8c5wuJYJ21f5UtovqpV0+KJuVwE7cVOLNhrl2QW/CvmstOLRfjXnLSbfFHZtJtiaSGQu0oCJA8SmRcK6A==
 
-mottled-library@^0.0.17:
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/mottled-library/-/mottled-library-0.0.17.tgz#68c51532ead5ec1736c99e498a9b166a6d19739d"
-  integrity sha512-37o8gtTdhWL01CDvwlfEdGQod5rlHzh1p+tcsVTxZeMyLCIV8M1fndPaBcfnqg96SCtijl4vmzb0uMuX51oEDQ==
+mottled-library@^0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/mottled-library/-/mottled-library-0.0.18.tgz#02246cdb4948b31b803595c01692272d7bea430a"
+  integrity sha512-yoWaN+7mjvWkVFPCTwmyxwE2y74dc87w7/Ywtcnm7fZJ6j8YRuqYgIp8Rbz0E0usy6gBkG7NUuBcLFs83H4k7Q==
 
 ms@2.0.0:
   version "2.0.0"

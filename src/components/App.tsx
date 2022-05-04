@@ -57,7 +57,7 @@ export default function App() {
         <div className="text-white lg:w-1 font-bold text-2xl lg:text-left text-center">
           Metadata Update Portal
         </div>
-        <div className="lg:mt-0 mt-5">
+        <div className="lg:mt-0 mt-5 max-w-base lg:max-w-2xl">
           <NetworkSlider
             defaultNetwork={currentName as Network}
             setNetwork={(network: NetworkDetails) => {

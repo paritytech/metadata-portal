@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChainSpec, getChains, QrInfo } from "../scheme";
+import { useLocation } from "react-router-dom";
 import QrCode from "./QrCode";
 import Specs from "./Specs";
 import AddToSigner from "./AddToSigner";
@@ -21,7 +22,19 @@ export default function App() {
   const [localNetwork, setLocalNetwork] = useLocalStorage("chosenNetwork");
 
   const allChains = getChains();
-  const currentName = localNetwork || Object.keys(allChains)[0] || "polkadot";
+  // replace existing url hash in order to identify the network
+  // from the url if it exists (it prioritarizes over every other option below)
+  const location = useLocation().hash.replace("#/", "");
+
+  // check if URL exists in given Networks, if not
+  // check localStorage if it contains a - from before - chosen network, if not
+  // retrieve the 1st available network from the given ones, else (rare and wrong case)
+  // default to polkadot
+  const currentName =
+    (Object.keys(allChains).includes(location) && location) ||
+    localNetwork ||
+    Object.keys(allChains)[0] ||
+    "polkadot";
   const svgClass = "inline mr-2 h-7";
 
   const [currentNetwork, setCurrentNetwork] = useState<
@@ -43,6 +56,9 @@ export default function App() {
       setChain(allChains[name]);
       setMetadataQr(allChains[name]?.metadataQr);
       setSpecsQr(allChains[name]?.specsQr);
+      // In case the changed name is not the same as the url
+      // then change the url accordingly to the selected network
+      if (name !== location) window.location.assign("#/" + name);
     }
   }, [currentNetwork?.name]);
 

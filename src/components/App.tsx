@@ -15,7 +15,7 @@ import {
 import "mottled-library/css/NetworkSlider.css";
 import "mottled-library/css/Card.css";
 import GitHub from "../assets/gh.png";
-import Extension from "./Extension";
+// import Extension from "./Extension";
 
 export default function App() {
   const [localNetwork, setLocalNetwork] = useLocalStorage("chosenNetwork");

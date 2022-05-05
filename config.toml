@@ -7,17 +7,5 @@ name = "insipx"
 public_key = "6274199fd286efcd04b0234aec390311f312a3af78c3917f8280d16597f40d2a"
 
 [[chains]]
-name = "polkadot"
-rpc_endpoint = "wss://rpc.polkadot.io"
-
-[[chains]]
-name = "kusama"
-rpc_endpoint = "wss://kusama-rpc.polkadot.io"
-
-[[chains]]
-name = "westend"
-rpc_endpoint = "wss://westend-rpc.polkadot.io"
-
-[[chains]]
 name = "parallel"
 rpc_endpoint = "wss://parallel.api.onfinality.io/public-ws"

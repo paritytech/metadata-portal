@@ -4,7 +4,7 @@
   "homepage": "https://metadata.parity.io/",
   "private": true,
   "dependencies": {
-    "@headlessui/react": "^1.4.2",
+    "@headlessui/react": "^1.6.1",
     "@heroicons/react": "^1.0.5",
     "@polkadot/extension-dapp": "^0.43.1",
     "@testing-library/jest-dom": "^5.14.1",

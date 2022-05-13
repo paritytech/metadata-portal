@@ -35,6 +35,6 @@ indicatif = "0.16.2"
 serde_json = "1.0"
 
 [dependencies.opencv]
-version = "0.60"
+version = "0.63"
 default-features = false
 features = ["clang-runtime", "videoio", "imgproc", "highgui"]

@@ -1985,7 +1985,7 @@ dependencies = [
  "image",
  "indicatif",
  "log",
- "opencv",
+ "opencv 0.63.1",
  "parity-scale-codec",
  "pretty_env_logger",
  "qr_reader_pc",
@@ -2248,7 +2248,28 @@ dependencies = [
  "libc",
  "num-traits",
  "once_cell",
- "opencv-binding-generator",
+ "opencv-binding-generator 0.35.0",
+ "pkg-config",
+ "semver",
+ "shlex",
+ "vcpkg",
+]
+
+[[package]]
+name = "opencv"
+version = "0.63.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7d79c847d96de5d7052ac42e09180b5b022f0b2602dd79a8b8a304e6667be233"
+dependencies = [
+ "cc",
+ "clang",
+ "dunce",
+ "glob",
+ "jobserver",
+ "libc",
+ "num-traits",
+ "once_cell",
+ "opencv-binding-generator 0.41.0",
  "pkg-config",
  "semver",
  "shlex",
@@ -2260,6 +2281,21 @@ name = "opencv-binding-generator"
 version = "0.35.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "879f8e4d1e8a1b6721e7310262b1aa8ca3af993f42b02ecdcd3aa3c5a960a495"
+dependencies = [
+ "clang",
+ "clang-sys",
+ "dunce",
+ "maplit",
+ "once_cell",
+ "percent-encoding",
+ "regex",
+]
+
+[[package]]
+name = "opencv-binding-generator"
+version = "0.41.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c69003fad8fb8b35d4eaade050d54219546050df9a366484c9f46293164f5f1f"
 dependencies = [
  "clang",
  "clang-sys",
@@ -2706,7 +2742,7 @@ dependencies = [
  "hex",
  "image",
  "indicatif",
- "opencv",
+ "opencv 0.60.0",
  "qr_reader_phone",
  "quircs",
 ]

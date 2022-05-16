@@ -9,11 +9,34 @@ public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
 [[chains]]
 name = "polkadot"
 rpc_endpoint = "wss://rpc.polkadot.io"
+color = "#e6007a"
 
 [[chains]]
 name = "kusama"
 rpc_endpoint = "wss://kusama-rpc.polkadot.io"
+color = "#000000"
 
 [[chains]]
 name = "westend"
 rpc_endpoint = "wss://westend-rpc.polkadot.io"
+color = "#f27230"
+
+[[chains]]
+name = "rococo_v_2"
+rpc_endpoint = "wss://rococo-rpc.polkadot.io"
+color = "#696bff"
+
+[[chains]]
+name = "statemine"
+rpc_endpoint = "wss://statemine-rpc.polkadot.io"
+color = "#113911"
+
+[[chains]]
+name = "statemint"
+rpc_endpoint = "wss://statemint-rpc.polkadot.io"
+color = "#86e62a"
+
+[[chains]]
+name = "westmint"
+rpc_endpoint = "wss://westmint-rpc.polkadot.io"
+color = "#77bb77"

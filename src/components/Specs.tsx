@@ -18,7 +18,7 @@ export const copyToClipboard = (text: string): void => {
 };
 
 export default function Specs({ chainSpecs, color }: SpecsProps) {
-  const { rpcEndpoint, genesisHash, unit, base58prefix} = chainSpecs;
+  const { rpcEndpoint, genesisHash, unit, base58prefix } = chainSpecs;
   const [copied, setCopied] = useState<boolean>(false);
 
   useEffect(() => {
@@ -45,33 +45,39 @@ export default function Specs({ chainSpecs, color }: SpecsProps) {
   };
 
   return (
-    <ul>
-      {row(
-        "RPC endpoint",
-        <div className="font-bold" style={{ color: color }}>
-          {rpcEndpoint}
-        </div>
-      )}
-      {row("Genesis hash", elipsisHash(genesisHash))}
-      {row(
-        "Color",
-        <>
-          <div
-            style={{ backgroundColor: color }}
-            className="w-6 rounded-md border-none block"
-          ></div>
-          <div className="ml-2">{color}</div>
-        </>
-      )}
-      {row("Unit", unit)}
-      {row("Address prefix", base58prefix.toString())}
-    </ul>
+    <>
+      <ul>
+        {row(
+          "RPC endpoint",
+          <div className="font-bold" style={{ color: color }}>
+            {rpcEndpoint}
+          </div>
+        )}
+      </ul>
+      <ul className="flex">
+        {row("Genesis hash", elipsisHash(genesisHash))}
+        {row("Address prefix", base58prefix.toString())}
+      </ul>
+      <ul className="flex">
+        {row(
+          "Color",
+          <>
+            <div
+              style={{ backgroundColor: color }}
+              className="w-6 rounded-md border-none block"
+            ></div>
+            <div className="ml-2">{color}</div>
+          </>
+        )}
+        {row("Unit", unit)}
+      </ul>
+    </>
   );
 }
 
 function row(title: string, content: ReactElement | string, color = "#000000") {
   return (
-    <li className="py-1">
+    <li className="py-1 w-1/2">
       <div className="text-sm text-black">{title}</div>
       <div className="flex" style={{ color }}>
         {content}

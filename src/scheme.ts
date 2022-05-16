@@ -1,4 +1,4 @@
-import jsonData from "./chains.json";  // Dynamically generated datafile. Run `make collector` to create
+import jsonData from "./chains.json"; // Dynamically generated datafile. Run `make collector` to create
 
 export interface ChainSpec {
   name: string;
@@ -18,6 +18,7 @@ export interface ChainSpec {
 export interface QrInfo {
   path: string;
   signedBy?: string;
+  color?: string;
 }
 
 export interface Chains {

@@ -1,8 +1,6 @@
 name: Check updates
 
-on:
-  schedule:
-    - cron: '*/5 * * * *'
+on: workflow_dispatch
 
 env:
   BRANCH_PREFIX: sign-me

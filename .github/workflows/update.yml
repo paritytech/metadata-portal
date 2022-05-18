@@ -2,7 +2,7 @@ name: Check updates
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '*/5 * * * *'
 
 env:
   BRANCH_PREFIX: sign-me

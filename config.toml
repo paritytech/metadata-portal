@@ -21,3 +21,23 @@ rpc_endpoint = "wss://westend-rpc.polkadot.io"
 [[chains]]
 name = "westmint"
 rpc_endpoint = "wss://westmint-rpc.polkadot.io"
+
+[[chains]]
+name = "bifrost"
+rpc_endpoint = "wss://bifrost-parachain.api.onfinality.io/public-ws"
+
+[[chains]]
+name = "acala"
+rpc_endpoint = "wss://acala-rpc.dwellir.com"
+
+[[chains]]
+name = "statemine"
+rpc_endpoint = "wss://statemine-rpc.polkadot.io"
+
+[[chains]]
+name = "karura"
+rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
+
+[[chains]]
+name = "parallel-heiko"
+rpc_endpoint = "wss://heiko-rpc.parallel.fi"

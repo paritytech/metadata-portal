@@ -37,7 +37,3 @@ rpc_endpoint = "wss://statemine-rpc.polkadot.io"
 [[chains]]
 name = "karura"
 rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
-
-[[chains]]
-name = "parallelHeiko"
-rpc_endpoint = "wss://heiko-rpc.parallel.fi"

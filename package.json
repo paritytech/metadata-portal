@@ -1,7 +1,7 @@
 {
   "name": "metadata-portal",
   "version": "0.1.0",
-  "homepage": "https://metadata.parity.io/",
+  "homepage": "https://metadata.prybalko.com/",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.4.2",

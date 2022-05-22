@@ -1,0 +1,25 @@
+{
+  "polkadot": {
+    "name": "polkadot",
+    "rpcEndpoint": "wss://example.com",
+    "genesisHash": "0x91b171bb150ce90c3",
+    "unit": "DOT",
+    "base58prefix": 0,
+    "logo": "logo",
+    "decimals": 10,
+    "metadataVersion": 9,
+    "metadataQr": {
+      "path": "/for_tests/polkadot_metadata_9.apng",
+      "signedBy": "Test Verifier"
+    },
+    "nextMetadataVersion": 10,
+    "nextMetadataQr": {
+      "path": "/for_tests/polkadot_metadata_10.apng",
+      "signedBy": "Test Verifier"
+    },
+    "specsQr": {
+      "path": "/for_tests/polkadot_specs.png",
+      "signedBy": "Test Verifier"
+    }
+  }
+}

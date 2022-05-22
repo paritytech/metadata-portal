@@ -6,14 +6,14 @@ on:
 
 env:
   BRANCH_PREFIX: sign-me
-  NOTIFY_MATRIX: true
+  NOTIFY_MATRIX: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - name: 🛎 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
@@ -79,16 +79,6 @@ jobs:
             - [ ] `make signer` to sign files
             - [ ] `make cleaner` to remove old QRs
           draft: true
-
-      - name: Notify Matrix channel
-        uses: s3krit/matrix-message-action@v0.0.3
-        if: ${{ env.NOTIFY_MATRIX == 'true' && steps.cpr.outputs.pull-request-operation == 'created' }}
-        with:
-          room_id: ${{ secrets.MATRIX_ROOM_ID }}
-          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          server: ${{ secrets.MATRIX_SERVER }}
-          message: "# New metadata is available! 📑
-[GitHub PR#${{ steps.cpr.outputs.pull-request-number }}](${{ steps.cpr.outputs.pull-request-url }})"
 
   check-deployment:
     runs-on: ubuntu-latest

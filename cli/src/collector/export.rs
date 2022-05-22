@@ -1,72 +1,91 @@
-use serde::{Deserialize, Serialize};
-use std::path::PathBuf;
+use crate::export::{ExportChainSpec, ExportData, QrCode};
+use crate::fetch::Fetcher;
 
-use definitions::metadata::MetaValues;
+use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
+use crate::AppConfig;
+use anyhow::{Context, Result};
+use indexmap::IndexMap;
+use log::info;
 
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-pub struct ReactAssetPath(String);
+pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<ExportData> {
+    let specs_qrs = find_spec_qrs(&config.qr_dir)?;
+    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
 
-impl ReactAssetPath {
-    pub fn from_fs_path(path: PathBuf, public_dir: &PathBuf) -> anyhow::Result<ReactAssetPath> {
-        Ok(ReactAssetPath(format!(
-            "/{}",
-            path.strip_prefix(public_dir)?.to_str().unwrap()
-        )))
+    let mut export_specs = IndexMap::new();
+    for chain in &config.chains {
+        info!("Collecting {} info...", chain.name);
+
+        let meta_specs = fetcher.fetch_chain_info(&chain.rpc_endpoint)?;
+        let active_version = meta_specs.meta_values.version;
+
+        let metadata_qr = extract_metadata_qr(&metadata_qrs, &chain.name, &active_version)?;
+
+        let specs_qr = specs_qrs
+            .get(chain.name.as_str())
+            .with_context(|| format!("No specs qr found for {}", chain.name))?
+            .clone();
+        let next_version = next_metadata_version(&metadata_qrs, &chain.name, active_version)?;
+
+        let next_metadata_qr = next_version
+            .map(|v| extract_metadata_qr(&metadata_qrs, &chain.name, &v).unwrap())
+            .map(|qr| QrCode::from_qr_path(config, qr).unwrap());
+        export_specs.insert(
+            chain.name.clone(),
+            ExportChainSpec {
+                name: chain.name.clone(),
+                rpc_endpoint: chain.rpc_endpoint.clone(),
+                genesis_hash: meta_specs.specs.genesis_hash,
+                unit: meta_specs.specs.unit,
+                logo: meta_specs.specs.logo,
+                decimals: meta_specs.specs.decimals,
+                base58prefix: meta_specs.specs.base58prefix,
+                metadata_qr: QrCode::from_qr_path(config, metadata_qr)?,
+                specs_qr: QrCode::from_qr_path(config, specs_qr)?,
+                next_metadata_version: next_version,
+                next_metadata_qr,
+                metadata_version: active_version,
+            },
+        );
     }
-}
-
-/// Struct to store MetaValues, genesis hash, and ChainSpecsToSend for network
-pub struct MetaSpecs {
-    pub meta_values: MetaValues,
-    pub specs: ChainSpecs,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct ChainSpecs {
-    pub base58prefix: u16,
-    pub decimals: u8,
-    pub genesis_hash: String,
-    pub logo: String,
-    pub name: String,
-    pub unit: String,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct ExportChainSpec {
-    pub name: String,
-    pub rpc_endpoint: String,
-
-    pub genesis_hash: String,
-    pub unit: String,
-    pub base58prefix: String,
-    pub logo: String,
-    pub decimals: u8,
-
-    pub metadata_version: u32,
-    pub metadata_qr: QrCode,
-    pub specs_qr: QrCode,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct QrCode {
-    pub path: ReactAssetPath,
-    pub signed_by: Option<String>,
+    Ok(export_specs)
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::path::Path;
+    use crate::fetch::{ChainSpecs, MetaSpecs};
+    use definitions::metadata::MetaValues;
+    use std::fs;
+    use std::path::PathBuf;
+
+    struct MockFetcher;
+    impl Fetcher for MockFetcher {
+        fn fetch_chain_info(&self, _rpc_endpoint: &str) -> Result<MetaSpecs> {
+            Ok(MetaSpecs {
+                specs: ChainSpecs::default(),
+                meta_values: MetaValues {
+                    name: "".to_string(),
+                    version: 9,
+                    optional_base58prefix: None,
+                    warn_incomplete_extensions: false,
+                    meta: vec![],
+                },
+            })
+        }
+    }
 
     #[test]
-    fn create_react_asset_path() {
-        let img_path = Path::new("./../public/qr/name_kind_9123.apng").to_path_buf();
-        let public_dir = Path::new("./../public").to_path_buf();
-        assert_eq!(
-            ReactAssetPath::from_fs_path(img_path, &public_dir).unwrap(),
-            ReactAssetPath("/qr/name_kind_9123.apng".to_string())
-        );
+    fn test_collector() {
+        let config = AppConfig {
+            qr_dir: PathBuf::from("./src/collector/for_tests"),
+            public_dir: PathBuf::from("./src/collector"),
+            ..Default::default()
+        };
+
+        let specs = export_specs(&config, MockFetcher).unwrap();
+        let result = serde_json::to_string_pretty(&specs).unwrap();
+        let expected = fs::read_to_string(config.qr_dir.join("expected.json"))
+            .expect("unable to read expected file");
+        assert_eq!(result, expected);
     }
 }

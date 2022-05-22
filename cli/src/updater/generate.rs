@@ -1,20 +1,23 @@
 use crate::lib::path::{ContentType, QrFileName};
 use crate::updater::export::MetaSpecs;
+
+use definitions::metadata::MetaValues;
 use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};
 use generate_message::make_message::make_message;
 use generate_message::parser::{Crypto, Goal, Make, Msg};
+use log::info;
 use std::path::{Path, PathBuf};
 
 pub(crate) fn generate_metadata_qr(
-    meta_specs: &MetaSpecs,
+    meta_values: &MetaValues,
+    genesis_hash: [u8; 32],
     target_dir: &Path,
 ) -> anyhow::Result<PathBuf> {
-    let content =
-        ContentLoadMeta::generate(&meta_specs.meta_values.meta, &meta_specs.specs.genesis_hash);
+    let content = ContentLoadMeta::generate(&meta_values.meta, &genesis_hash);
 
     let file_name = QrFileName::new(
-        &meta_specs.meta_values.name.to_lowercase(),
-        ContentType::Metadata(meta_specs.meta_values.version),
+        &meta_values.name.to_lowercase(),
+        ContentType::Metadata(meta_values.version),
         false,
     )
     .to_string();
@@ -26,7 +29,7 @@ pub(crate) fn generate_metadata_qr(
         msg: Msg::LoadMetadata(content.to_sign()),
         name: Some(path.to_str().unwrap().to_owned()),
     };
-    println!("⚙ generating {}. It takes a while...", file_name);
+    info!("⚙️  Generating {}...", file_name);
     make_message(make).map_err(anyhow::Error::msg)?;
     Ok(path)
 }
@@ -50,7 +53,7 @@ pub(crate) fn generate_spec_qr(
         msg: Msg::AddSpecs(content.to_sign()),
         name: Some(path.to_str().unwrap().to_owned()),
     };
-    println!("⚙ generating {}...", file_name);
+    info!("⚙️  Generating {}...", file_name);
     make_message(make).map_err(anyhow::Error::msg)?;
     Ok(path)
 }

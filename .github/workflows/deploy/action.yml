@@ -9,7 +9,7 @@ runs:
       run: echo "::set-output name=dir::$(yarn cache dir)"
 
     - name: ⚡ NPM Cache
-      uses: actions/cache@v3
+      uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}

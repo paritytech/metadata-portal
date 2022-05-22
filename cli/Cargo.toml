@@ -13,9 +13,7 @@ version = "0.1.0"
 [dependencies]
 assert_cmd = "2.0"
 clap = {version = "3.0", features = ["derive", "env", "unicode", "cargo"]}
-color-eyre = "0.6"
 env_logger = "0.9"
-pretty_env_logger = "0.4.0"
 log = "0.4"
 anyhow = "1.0.42"
 toml = "0.5"
@@ -27,12 +25,18 @@ definitions = {git = "https://github.com/paritytech/parity-signer"}
 generate_message = {git = "https://github.com/paritytech/parity-signer"}
 transaction_parsing = {git = "https://github.com/paritytech/parity-signer"}
 constants = {git = "https://github.com/paritytech/parity-signer"}
-parity-scale-codec = "2.2.0"
+parity-scale-codec = {version = "3.1.2"}
 image = "0.23.14"
 quircs = "0.10.0"
 hex = "0.4.3"
 indicatif = "0.16.2"
 serde_json = "1.0"
+octocrab = "0.16"
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.11", features = ["json", "blocking"]}
+
+# Hash table which preserves insertion order
+indexmap = {version="1.8.1", features=["serde"]}
 
 [dependencies.opencv]
 version = "0.60"

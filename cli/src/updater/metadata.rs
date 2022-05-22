@@ -1,17 +1,17 @@
-use crate::lib::read::hex_to_bytes;
 use crate::lib::string::capitalize;
+use crate::lib::string::hex_to_bytes;
 use crate::updater::export::MetaSpecs;
 use anyhow::{anyhow, bail};
 use constants::{COLOR, SECONDARY_COLOR};
 use definitions::crypto::Encryption;
-use definitions::error::IncomingMetadataSourceActiveStr;
+use definitions::error_active::IncomingMetadataSourceActiveStr;
 use definitions::metadata::MetaValues;
 use definitions::network_specs::NetworkSpecsToSend;
 use generate_message::fetch_metadata::fetch_info_with_network_specs;
 use generate_message::interpret_specs::interpret_properties;
 use std::convert::TryInto;
 
-pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs> {
+pub(crate) fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs> {
     let new_info = match fetch_info_with_network_specs(address) {
         Ok(a) => a,
         Err(e) => bail!("failed to fetch chain info from {}: {}", address, e),

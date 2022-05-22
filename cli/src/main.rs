@@ -1,47 +1,60 @@
 mod cleaner;
 mod collector;
 mod config;
+mod deployment_checker;
+mod export;
+mod fetch;
 mod lib;
 mod opts;
+mod qrs;
 mod signer;
 mod updater;
 mod verifier;
 
 use clap::StructOpt;
 use env_logger::Env;
-use log::{error, info};
+use log::error;
+use std::process::exit;
 
 use crate::cleaner::clean;
 use crate::collector::collect;
-use crate::config::read_app_config;
+use crate::config::AppConfig;
+use crate::deployment_checker::check_deployment;
+use crate::opts::{Opts, SubCommand};
 use crate::signer::sign;
-use crate::updater::update;
-use crate::verifier::validate_signed_qrs;
-use opts::*;
+use crate::updater::source::UpdateSource;
+use crate::updater::{update_from_github, update_from_node};
+use crate::verifier::verify;
 
 /// Main entry point of the `metadata-cli`
-fn main() -> color_eyre::Result<()> {
-    env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
+fn main() {
+    env_logger::Builder::from_env(Env::default().default_filter_or("info"))
+        .format_target(false)
+        .init();
 
     let opts: Opts = Opts::parse();
-
-    let config = read_app_config(opts.config).expect("Failed to read config file");
+    let config = match AppConfig::load(opts.config) {
+        Ok(config) => config,
+        Err(err) => {
+            error!("{}", err);
+            exit(1);
+        }
+    };
 
     let result = match opts.subcmd {
         SubCommand::Clean => clean(config),
         SubCommand::Collect => collect(config),
         SubCommand::Sign => sign(config),
-        SubCommand::Verify => validate_signed_qrs(&config.qr_dir, &config.verifier.public_key),
-        SubCommand::Update => update(config),
+        SubCommand::Verify => verify(config),
+        SubCommand::Update(update_opts) => match update_opts.source {
+            UpdateSource::Github => update_from_github(config),
+            UpdateSource::Node => update_from_node(config),
+        },
+        SubCommand::CheckDeployment => check_deployment(config),
     };
-    match result {
-        Ok(_) => {
-            info!("Successfully completed");
-        }
-        Err(e) => {
-            error!("{}", e);
-        }
-    }
 
-    Ok(())
+    if let Err(err) = result {
+        error!("{}", err);
+        exit(1);
+    }
 }

@@ -14,7 +14,7 @@ use opencv::{
 const DEFAULT_WIDTH: u32 = 640;
 const DEFAULT_HEIGHT: u32 = 480;
 
-pub fn read_qr_file(source_file: &Path) -> anyhow::Result<String> {
+pub(crate) fn read_qr_file(source_file: &Path) -> anyhow::Result<String> {
     let mut camera = create_camera(source_file)?;
 
     let mut out = Ready::NotYet(InProgress::None);

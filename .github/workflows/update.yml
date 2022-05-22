@@ -104,3 +104,5 @@ jobs:
 
       - if: ${{ steps.check-deployment.outputs.switched == 'false' }}
         uses: ./.github/workflows/deploy
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

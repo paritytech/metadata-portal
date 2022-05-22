@@ -3,10 +3,12 @@ runs:
   steps:
     - name: 🔧 Install yarn
       run: npm install -g yarn
+      shell: bash
 
     - name: Get yarn cache path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
+      shell: bash
 
     - name: ⚡ NPM Cache
       uses: actions/cache@v2
@@ -16,6 +18,7 @@ runs:
 
     - name: 🔧 Install dependencies
       run: yarn
+      shell: bash
 
     - name: 🚀 Deploy
       run: |

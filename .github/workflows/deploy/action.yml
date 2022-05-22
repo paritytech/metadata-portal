@@ -1,3 +1,8 @@
+inputs:
+  token:
+    description: 'Github token'
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -24,5 +29,7 @@ runs:
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         yarn deploy -u "GitHub Action <action@github.com>"
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
       shell: bash
       

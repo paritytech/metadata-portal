@@ -12,8 +12,11 @@
       "path": "/qr/polkadot_metadata_9190.apng",
       "signedBy": "Parity"
     },
-    "nextMetadataVersion": null,
-    "nextMetadataQr": null,
+    "nextMetadataVersion": 9220,
+    "nextMetadataQr": {
+      "path": "/qr/polkadot_metadata_9220.apng",
+      "signedBy": "Parity"
+    },
     "specsQr": {
       "path": "/qr/polkadot_specs.png",
       "signedBy": "Parity"
@@ -32,8 +35,11 @@
       "path": "/qr/kusama_metadata_9200.apng",
       "signedBy": "Parity"
     },
-    "nextMetadataVersion": null,
-    "nextMetadataQr": null,
+    "nextMetadataVersion": 9220,
+    "nextMetadataQr": {
+      "path": "/qr/kusama_metadata_9220.apng",
+      "signedBy": "Parity"
+    },
     "specsQr": {
       "path": "/qr/kusama_specs.png",
       "signedBy": "Parity"

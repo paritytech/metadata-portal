@@ -15,11 +15,12 @@ use generate_message::parser::{Crypto, Goal, Make, Msg};
 use qr_reader_pc::{run_with_camera, CameraSettings};
 use transaction_parsing::check_signature::pass_crypto;
 
-use crate::lib::read::{all_qrs_in_dir, hex_to_bytes};
+use crate::lib::string::hex_to_bytes;
+use crate::qrs::qrs_in_dir;
 use crate::signer::prompt::{select_file, want_to_continue};
 
-pub fn sign(config: AppConfig) -> anyhow::Result<()> {
-    let mut files_to_sign: Vec<QrPath> = all_qrs_in_dir(config.qr_dir)?
+pub(crate) fn sign(config: AppConfig) -> anyhow::Result<()> {
+    let mut files_to_sign: Vec<QrPath> = qrs_in_dir(config.qr_dir)?
         .into_iter()
         .filter(|qr| !qr.file_name.is_signed)
         .collect();

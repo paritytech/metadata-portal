@@ -22,7 +22,7 @@ rpc_endpoint = "wss://westend-rpc.polkadot.io"
 name = "westmint"
 rpc_endpoint = "wss://westmint-rpc.polkadot.io"
 
-[[chains]]
+[[chains]]ns
 name = "bifrost"
 rpc_endpoint = "wss://bifrost-parachain.api.onfinality.io/public-ws"
 

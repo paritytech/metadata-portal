@@ -42,3 +42,7 @@ rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 name = "heiko"
 rpc_endpoint = "wss://heiko-rpc.parallel.fi"
 
+[[chains]]
+name = "mandala"
+rpc_endpoint = "wss://mandala.polkawallet.io"
+

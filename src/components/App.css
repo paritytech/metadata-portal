@@ -4,8 +4,20 @@
     url("../assets/fonts/Web3-Regular.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Inter Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter Bold"),
+    url("../assets/fonts/Inter-Bold.woff") format("woff");
+}
+
 .network_icon {
   font-family: "Web3-Regular";
-  margin-right: 0.625rem;
-  @apply text-center;
+  width: 3rem;
+  @apply text-center text-3xl mr-2;
+}
+
+.network_name {
+  font-family: "Inter bold";
 }

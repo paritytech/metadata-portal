@@ -120,9 +120,11 @@ export default function App() {
                     className="flex items-center text-sm py-4 my-6 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded"
                     style={{ backgroundColor: color }}
                   >
-                    <div className="flex items-center text-xl text-white">
+                    <div className="flex items-center text-xl text-white font-inter">
                       <div className="network_icon">{c}</div>
-                      <div>{c.charAt(0).toUpperCase() + c.slice(1)}</div>
+                      <div className="network_name">
+                        {c.charAt(0).toUpperCase() + c.slice(1)}
+                      </div>
                     </div>
                   </div>
                 ) : (
@@ -133,9 +135,11 @@ export default function App() {
                       setLocalNetwork(c);
                     }}
                   >
-                    <div className="flex items-center text-xl text-black">
-                      <div className="network_icon">{c}</div>
-                      <div>{c.charAt(0).toUpperCase() + c.slice(1)}</div>
+                    <div className="flex items-center text-xl font-inter">
+                      <div className="network_icon text-[#9E9E9E]">{c}</div>
+                      <div className="network_name">
+                        {c.charAt(0).toUpperCase() + c.slice(1)}
+                      </div>
                     </div>
                   </div>
                 )}

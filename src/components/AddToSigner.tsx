@@ -1,9 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { QrInfo } from "../scheme";
+import { AddToSignerInterface } from "../scheme";
 import Button from "./Button";
 
-export default function AddToSigner({ path, color }: QrInfo) {
+export default function AddToSigner({ path, color }: AddToSignerInterface) {
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {

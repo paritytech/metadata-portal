@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChainSpec, getChains, QrInfo } from "../scheme";
+import { Chains, ChainSpec, QrInfo } from "../scheme";
 import { useLocation } from "react-router-dom";
 import QrCode from "./QrCode";
 import Specs from "./Specs";
@@ -7,6 +7,7 @@ import AddToSigner from "./AddToSigner";
 import { BadgeCheckIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { capitalizeFirstLetter } from "../utils";
+import data from "../data.json";
 
 import "./App.css";
 
@@ -22,12 +23,13 @@ export default function App() {
   const [localNetwork, setLocalNetwork] = useLocalStorage("chosenNetwork");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [sidebarStyle, setSidebarStyle] = useState<string>("");
+  const svgClass = "inline mr-2 h-7";
 
-  const allChains = getChains();
+  const allChains: Chains = data;
+
   // replace existing url hash in order to identify the network
-  // from the url if it exists (it prioritarizes over every other option below)
+  // from the url if it exists (it prioritizes over every other option below)
   const location = useLocation().hash.replace("#/", "");
-
   // check if URL exists in given Networks, if not
   // check localStorage if it contains a - from before - chosen network, if not
   // retrieve the 1st available network from the given ones, else (rare and wrong case)
@@ -37,19 +39,15 @@ export default function App() {
     localNetwork ||
     Object.keys(allChains)[0] ||
     "polkadot";
-  const svgClass = "inline mr-2 h-7";
 
   const [currentNetwork, setCurrentNetwork] = useState<string>(currentName);
   const [metadataQr, setMetadataQr] = useState<QrInfo>(
     allChains[currentName].metadataQr
   );
-
+  const [chain, setChain] = useState<ChainSpec>(allChains[currentName]);
   const [specsQr, setSpecsQr] = useState<QrInfo>(
     allChains[currentName].specsQr
   );
-
-  const [chain, setChain] = useState<ChainSpec>(allChains[currentName]);
-
   const [searchResults, setSearchResults] = useState<string[]>(
     Object.keys(allChains)
   );
@@ -77,6 +75,8 @@ export default function App() {
       );
     }
   }, [isOpen]);
+
+  console.log("allChains", allChains, currentName);
 
   document.body.style.backgroundColor = "#F5F5F5";
   const { color } = allChains[currentName];

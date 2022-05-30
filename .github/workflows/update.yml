@@ -6,14 +6,14 @@ on:
 
 env:
   BRANCH_PREFIX: sign-me
-  NOTIFY_MATRIX: true
+  NOTIFY_MATRIX: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - name: 🛎 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
@@ -81,9 +81,30 @@ jobs:
             - [ ] `make cleaner` to remove obsolete QRs
           draft: true
 
-      - name: Notify Matrix channel
-        uses: s3krit/matrix-message-action@v0.0.3
-        if: ${{ env.NOTIFY_MATRIX == 'true' && steps.cpr.outputs.pull-request-operation == 'created' }}
+  check-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
+
+      - name: ⚙ Check existing deployment
+        id: check-deployment
+        run: |
+          cargo run --release -- check-deployment
+          exit_code=$?
+          if [ $exit_code -eq 12 ]
+          then
+            echo $?
+            exit 0
+          else
+            exit $exit_code
+          fi
+
+      - if: ${{ steps.check-deployment.outputs.switched == 'false' }}
+        uses: ./.github/workflows/deploy
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}

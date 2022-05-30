@@ -71,6 +71,7 @@ pub(crate) struct Chain {
     pub(crate) name: String,
     pub(crate) color: String,
     pub(crate) rpc_endpoint: String,
+    pub(crate) color: String,
     pub(crate) genesis_hash: Option<String>,
 }
 

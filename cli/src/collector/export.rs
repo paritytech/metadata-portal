@@ -36,6 +36,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 color: chain.color.clone(),
                 rpc_endpoint: chain.rpc_endpoint.clone(),
                 genesis_hash: meta_specs.specs.genesis_hash,
+                color: chain.color.clone(),
                 unit: meta_specs.specs.unit,
                 logo: meta_specs.specs.logo,
                 decimals: meta_specs.specs.decimals,

@@ -51,7 +51,8 @@ export default function Specs({ chainSpecs, color }: SpecsProps) {
           "RPC endpoint",
           <div className="font-bold" style={{ color: color }}>
             {rpcEndpoint}
-          </div>
+          </div>,
+          true
         )}
       </ul>
       <ul className="flex">
@@ -75,9 +76,15 @@ export default function Specs({ chainSpecs, color }: SpecsProps) {
   );
 }
 
-function row(title: string, content: ReactElement | string, color = "#000000") {
+function row(
+  title: string,
+  content: ReactElement | string,
+  fullWidth = false,
+  color = "#000000"
+) {
+  const liSize = fullWidth ? "py-1" : "py-1 w-1/2";
   return (
-    <li className="py-1 w-1/2">
+    <li className={liSize}>
       <div className="text-sm text-black">{title}</div>
       <div className="flex" style={{ color }}>
         {content}

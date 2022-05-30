@@ -73,7 +73,7 @@ export default function App() {
       );
     } else {
       setSidebarStyle(
-        "w-64 bg-white px-4 absolute md:left-0 md:h-[91vh] h-[92vh] md:border-r-0 border-r-2 border-neutral-200 z-30 left-[-17rem]"
+        "w-64 bg-white px-4 absolute md:left-0 md:h-[91vh] h-[92vh] md:border-r-0 border-r-2 border-neutral-200 z-30 md:z-0 left-[-17rem]"
       );
     }
   }, [isOpen]);

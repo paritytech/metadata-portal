@@ -21,6 +21,7 @@ const searchStringInArray = (str: string, strArray: string[]) => {
 export default function App() {
   const [localNetwork, setLocalNetwork] = useLocalStorage("chosenNetwork");
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [sidebarStyle, setSidebarStyle] = useState<string>("");
 
   const allChains = getChains();
   // replace existing url hash in order to identify the network
@@ -65,24 +66,36 @@ export default function App() {
     }
   }, [currentNetwork]);
 
+  useEffect(() => {
+    if (isOpen) {
+      setSidebarStyle(
+        "w-64 bg-white px-4 absolute md:left-0 md:h-[91vh] h-[92vh] md:border-r-0 border-r-2 border-neutral-200 z-30 left-0"
+      );
+    } else {
+      setSidebarStyle(
+        "w-64 bg-white px-4 absolute md:left-0 md:h-[91vh] h-[92vh] md:border-r-0 border-r-2 border-neutral-200 z-30 left-[-17rem]"
+      );
+    }
+  }, [isOpen]);
+
   document.body.style.backgroundColor = "#F5F5F5";
   const { color } = allChains[currentName];
 
   return (
     <div className="flex flex-col bg-white">
       <div
-        className="lg:flex justify-between px-10 py-2 items-center text-xl"
+        className="md:flex justify-between px-10 py-2 items-center text-xl"
         style={{ backgroundColor: color }}
       >
-        <div className="text-white lg:w-1 font-bold text-2xl text-left m-auto lg:m-0">
+        <div className="text-white md:w-1 font-bold text-2xl text-left m-auto md:m-0">
           Metadata Update Portal
         </div>
         <div
-          className="bg-white py-2 visible lg:invisible lg:hidden flex text-white items-center"
+          className="bg-white py-2 visible md:invisible md:hidden flex text-white items-center"
           style={{ backgroundColor: color }}
         >
           <button
-            className="lg:hidden flex top-0 left-0 z-20 relative w-8 h-10 text-white focus:outline-none"
+            className="md:hidden flex top-0 left-0 relative w-8 h-10 text-white focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
           >
             <div className="absolute w-5 transform -translate-x-1/2 -translate-y-1/2 top-1/2">
@@ -106,13 +119,10 @@ export default function App() {
           {capitalizeFirstLetter(chain.name)}
         </div>
       </div>
-      <div className="flex">
+      <div className="flex h-[91vh] md:h-auto">
         {/** Sidebar */}
-        <div
-          className="w-64 bg-white px-4 absolute lg:visible invisible"
-          style={{ height: "calc(100vh - 7rem)" }}
-        >
-          {/** Seearch Bar */}
+        <div className={sidebarStyle}>
+          {/** Search Bar */}
           <div className="flex justify-center pt-6 h-[7vh]">
             <div className="mb-3 xl:w-96">
               <div className="input-group relative flex flex-wrap items-stretch w-full mb-4">
@@ -167,13 +177,13 @@ export default function App() {
               </li>
             ))}
           </ul>
-          <div className="bottom-4 fixed w-60 text-md h-[15vh]">
+          <div className="bottom-4 w-60 text-md h-[15vh]">
             <div className="text-left mb-6 mr-4 pt-6 border-t	border-neutral-300">
               Metadata Portal is a self-hosted web page which shows you the
               latest metadata for a given network.
             </div>
             <a
-              className="lg:text-left text-center lg:mt-0 mt-5 lg:block inline-block lg:w-fit w-full"
+              className="text-left mt-0 inline-block md:w-fit w-full"
               href="https://github.com/paritytech/metadata-portal"
               target={"blank"}
             >
@@ -184,24 +194,32 @@ export default function App() {
             <a
               href="https://www.parity.io/terms/"
               target="_blank"
-              className="basis-40 m-1 text-center"
               rel="noreferrer"
             >
-              <div className="lg:text-left text-center hover:text-gray-500 font-bold">
+              <div className="text-left hover:text-gray-500 font-bold">
                 Terms & Services
               </div>
             </a>
           </div>
         </div>
+        {/** darker layer*/}
+        {isOpen && (
+          <div
+            className="absolute w-full h-[91vh] bg-black opacity-80 z-20 visible"
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          />
+        )}
         {/** Main content */}
-        <div className="m-auto flex flex-col lg:absolute lg:left-60 lg:pl-20 lg:m-0">
-          <div className="md:flex flex-row flex-wrap justify-center lg:pt-8">
+        <div className="m-auto flex flex-col md:absolute md:left-60 md:pl-20 md:m-0">
+          <div className="md:flex flex-row flex-wrap justify-center md:pt-8">
             <div
               className="px-2 py-2 rounded-lg border-gray-600 bg-white text-black"
-              style={{ minWidth: "35rem" }}
+              style={{ minWidth: "25rem" }}
             >
               <div className="flex justify-between mx-8 py-8 border-b-2 border-gray-200 items-center">
-                <h1 className="text-lg lg:text-2xl" style={{ color }}>
+                <h1 className="text-lg md:text-2xl" style={{ color }}>
                   Metadata #{chain.metadataVersion}
                 </h1>
                 <div className="flex border-2 border-black rounded-xl p-2">

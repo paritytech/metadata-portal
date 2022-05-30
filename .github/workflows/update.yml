@@ -1,6 +1,7 @@
 name: Check updates
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 */2 * * *'
 
@@ -112,6 +113,11 @@ jobs:
           fi
           echo "::set-output name=redeploy::false"
           exit $exit_code
+        shell: bash {0}
+
+      - name: ⚙ Run collector
+        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        run: make collector
 
       - if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
         uses: ./.github/workflows/deploy

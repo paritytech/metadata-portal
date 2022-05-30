@@ -25,6 +25,10 @@ runs:
       run: yarn
       shell: bash
 
+    - name: Run tests
+      run: yarn test
+      shell: bash
+
     - name: 🚀 Deploy
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git

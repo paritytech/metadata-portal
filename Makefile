@@ -24,3 +24,6 @@ signer:
 
 tests:
 	cargo test --release
+
+docker.%:
+	docker-compose run --rm $(*)

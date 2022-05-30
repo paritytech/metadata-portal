@@ -4,13 +4,13 @@ use std::fmt;
 use std::path::PathBuf;
 
 #[derive(Debug, PartialEq, Clone, Hash, Eq)]
-pub struct QrPath {
-    pub dir: PathBuf,
-    pub file_name: QrFileName,
+pub(crate) struct QrPath {
+    pub(crate) dir: PathBuf,
+    pub(crate) file_name: QrFileName,
 }
 
 impl QrPath {
-    pub fn to_path_buf(&self) -> PathBuf {
+    pub(crate) fn to_path_buf(&self) -> PathBuf {
         self.dir.join(&self.file_name.to_string())
     }
 }
@@ -37,7 +37,7 @@ impl fmt::Display for QrPath {
 }
 
 #[derive(Debug, PartialEq, Clone, Hash, Eq)]
-pub enum ContentType {
+pub(crate) enum ContentType {
     Metadata(u32),
     Specs,
 }
@@ -67,17 +67,17 @@ impl TryFrom<&str> for ContentType {
 }
 
 #[derive(Debug, PartialEq, Clone, Hash, Eq)]
-pub struct QrFileName {
-    pub chain: String,
-    pub is_signed: bool,
-    pub content_type: ContentType,
+pub(crate) struct QrFileName {
+    pub(crate) chain: String,
+    pub(crate) is_signed: bool,
+    pub(crate) content_type: ContentType,
     extension: Option<String>,
 }
 
 impl QrFileName {
     const UNSIGNED_PREFIX: &'static str = "unsigned_";
 
-    pub fn new(chain: &str, content_type: ContentType, is_signed: bool) -> Self {
+    pub(crate) fn new(chain: &str, content_type: ContentType, is_signed: bool) -> Self {
         let extension = match content_type {
             ContentType::Metadata(_) => "apng",
             ContentType::Specs => "png",

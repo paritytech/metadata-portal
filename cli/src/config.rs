@@ -1,37 +1,86 @@
 use serde::{Deserialize, Serialize};
+use std::path::{Path, PathBuf};
+
+use log::debug;
 use std::fs;
-use std::path::PathBuf;
 
-#[derive(Serialize, Deserialize, Debug)]
-pub struct AppConfig {
-    pub data_file: PathBuf,
-    pub public_dir: PathBuf,
-    pub qr_dir: PathBuf,
-    pub verifier: Verifier,
-    pub chains: Vec<Chain>,
+#[derive(Clone, Serialize, Deserialize, Debug)]
+pub(crate) struct AppConfig {
+    pub(crate) data_file: PathBuf,
+    pub(crate) public_dir: PathBuf,
+    pub(crate) qr_dir: PathBuf,
+    pub(crate) verifier: Verifier,
+    pub(crate) github: Option<GitHub>,
+    pub(crate) chains: Vec<Chain>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
-pub struct Verifier {
-    pub name: String,
-    pub public_key: String,
+#[cfg(test)]
+impl Default for AppConfig {
+    fn default() -> Self {
+        Self {
+            data_file: PathBuf::from("data.json"),
+            public_dir: PathBuf::from("src/public"),
+            qr_dir: PathBuf::from("qr"),
+            verifier: Verifier::default(),
+            github: None,
+            chains: vec![Chain::default()],
+        }
+    }
 }
 
-#[derive(Serialize, Deserialize, Debug)]
-pub struct Chain {
-    pub name: String,
-    pub rpc_endpoint: String,
-    pub color: String
+impl AppConfig {
+    pub(crate) fn load(path: impl AsRef<Path>) -> anyhow::Result<Self> {
+        let abs_config_path = fs::canonicalize(&path)?;
+        debug!("Loading config from: {}", abs_config_path.display());
+        let root = abs_config_path.parent().unwrap();
+
+        let config_toml = fs::read_to_string(&path)?;
+        let mut config = toml::from_str::<AppConfig>(config_toml.as_str())?;
+
+        config.public_dir = root.join(config.public_dir);
+        config.data_file = root.join(config.data_file);
+        config.qr_dir = root.join(config.qr_dir);
+        Ok(config)
+    }
 }
 
-pub fn read_app_config(config_file: PathBuf) -> anyhow::Result<AppConfig> {
-    let config_toml = fs::read_to_string(&config_file)?;
-    let mut config = toml::from_str::<AppConfig>(config_toml.as_str())?;
+#[derive(Clone, Serialize, Deserialize, Debug)]
+pub(crate) struct Verifier {
+    pub(crate) name: String,
+    pub(crate) public_key: String,
+}
 
-    let abs_config_path = fs::canonicalize(config_file)?;
-    let root = abs_config_path.parent().unwrap();
-    config.public_dir = root.join(config.public_dir);
-    config.data_file = root.join(config.data_file);
-    config.qr_dir = root.join(config.qr_dir);
-    Ok(config)
+#[cfg(test)]
+impl Default for Verifier {
+    fn default() -> Self {
+        Self {
+            name: "Test Verifier".to_string(),
+            public_key: "123".to_string(),
+        }
+    }
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+pub(crate) struct GitHub {
+    pub(crate) owner: String,
+    pub(crate) repo: String,
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+pub(crate) struct Chain {
+    pub(crate) name: String,
+    pub(crate) rpc_endpoint: String,
+    pub(crate) color: String,
+    pub(crate) genesis_hash: Option<String>,
+}
+
+#[cfg(test)]
+impl Default for Chain {
+    fn default() -> Self {
+        Self {
+            name: "polkadot".to_string(),
+            rpc_endpoint: "wss://example.com".to_string(),
+            genesis_hash: None,
+        }
+    }
 }

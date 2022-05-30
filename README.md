@@ -55,7 +55,7 @@ You can use Github Pages to host the metadata-portal for your set of chains
    1. `homepage` field in `package.json`
    2. `public/CNAME` file
 5. Notifications to Matrix:
-   1. You can disable it by setting `NOTIFY_MATRIX: false` in `.github/workflows/check_updates.yml`
+   1. You can disable it by setting `NOTIFY_MATRIX: false` in `.github/workflows/update.yml`
    2. Otherwise, add `MATRIX_SERVER`, `MATRIX_ROOM_ID`, `MATRIX_ACCESS_TOKEN` values to project Actions secrets
 
 ## Development

@@ -1,19 +1,21 @@
 use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 
+use crate::updater::source::UpdateSource;
+
 #[derive(Parser)]
-pub struct Opts {
+pub(crate) struct Opts {
     /// Path to config file
     #[clap(short, long, default_value = "config.toml")]
-    pub config: PathBuf,
+    pub(crate) config: PathBuf,
 
     #[clap(subcommand)]
-    pub subcmd: SubCommand,
+    pub(crate) subcmd: SubCommand,
 }
 
 /// You can find all available commands below.
 #[derive(Subcommand)]
-pub enum SubCommand {
+pub(crate) enum SubCommand {
     /// Remove unused QR codes
     Clean,
 
@@ -23,9 +25,18 @@ pub enum SubCommand {
     /// Sign unsigned QR codes.
     Sign,
 
-    /// Check updates on rpc nodes
-    Update,
+    /// Check updates
+    Update(UpdateOpts),
 
     /// Verify signed QR codes
     Verify,
+
+    /// Check if deployment is up to date
+    CheckDeployment,
+}
+
+#[derive(Parser)]
+pub(crate) struct UpdateOpts {
+    #[clap(short, long, default_value = "node")]
+    pub(crate) source: UpdateSource,
 }

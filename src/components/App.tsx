@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChainSpec, getChains, QrInfo } from "../scheme";
+import {Chains} from "../scheme";
 import { useLocation } from "react-router-dom";
 import QrCode from "./QrCode";
 import Specs from "./Specs";
@@ -23,11 +23,9 @@ export default function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [sidebarStyle, setSidebarStyle] = useState<string>("");
 
-  const allChains = getChains();
   // replace existing url hash in order to identify the network
-  // from the url if it exists (it prioritarizes over every other option below)
+  // from the url if it exists (it prioritizes over every other option below)
   const location = useLocation().hash.replace("#/", "");
-
   // check if URL exists in given Networks, if not
   // check localStorage if it contains a - from before - chosen network, if not
   // retrieve the 1st available network from the given ones, else (rare and wrong case)
@@ -48,7 +46,12 @@ export default function App() {
     allChains[currentName].specsQr
   );
 
-  const [chain, setChain] = useState<ChainSpec>(allChains[currentName]);
+  const specs = allChains[chain];
+  if (!specs){
+    return null
+  }
+  const extraInfo = getChain(chain);
+  document.body.style.backgroundColor = extraInfo?.secColor || "";
 
   const [searchResults, setSearchResults] = useState<string[]>(
     Object.keys(allChains)

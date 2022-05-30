@@ -20,23 +20,3 @@ color = "#000000"
 name = "westend"
 rpc_endpoint = "wss://westend-rpc.polkadot.io"
 color = "#f27230"
-
-[[chains]]
-name = "rococo_v_2"
-rpc_endpoint = "wss://rococo-rpc.polkadot.io"
-color = "#696bff"
-
-[[chains]]
-name = "statemine"
-rpc_endpoint = "wss://statemine-rpc.polkadot.io"
-color = "#113911"
-
-[[chains]]
-name = "statemint"
-rpc_endpoint = "wss://statemint-rpc.polkadot.io"
-color = "#86e62a"
-
-[[chains]]
-name = "westmint"
-rpc_endpoint = "wss://westmint-rpc.polkadot.io"
-color = "#77bb77"

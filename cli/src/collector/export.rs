@@ -36,6 +36,7 @@ pub struct ChainSpecs {
 pub struct ExportChainSpec {
     pub name: String,
     pub rpc_endpoint: String,
+    pub color: String,
 
     pub genesis_hash: String,
     pub unit: String,

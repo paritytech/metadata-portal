@@ -67,6 +67,7 @@ fn export_specs(config: &AppConfig) -> anyhow::Result<Vec<ExportChainSpec>> {
         export_specs.push(ExportChainSpec {
             name: chain.name.clone(),
             rpc_endpoint: chain.rpc_endpoint.clone(),
+            color: chain.color.clone(),
             genesis_hash: meta_specs.specs.genesis_hash,
             unit: meta_specs.specs.unit,
             logo: meta_specs.specs.logo,

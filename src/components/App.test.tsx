@@ -12,5 +12,5 @@ test("renders ok", () => {
 });
 
 test("data file exists", async () => {
-  require("../src/data.json");
+  require("../data.json");
 });

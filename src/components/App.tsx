@@ -42,11 +42,11 @@ export default function App() {
 
   const [currentNetwork, setCurrentNetwork] = useState<string>(currentName);
   const [metadataQr, setMetadataQr] = useState<QrInfo>(
-    allChains[currentName].metadataQr
+    allChains[currentName]?.metadataQr
   );
   const [chain, setChain] = useState<ChainSpec>(allChains[currentName]);
   const [specsQr, setSpecsQr] = useState<QrInfo>(
-    allChains[currentName].specsQr
+    allChains[currentName]?.specsQr
   );
   const [searchResults, setSearchResults] = useState<string[]>(
     Object.keys(allChains)
@@ -79,7 +79,7 @@ export default function App() {
   console.log("allChains", allChains, currentName);
 
   document.body.style.backgroundColor = "#F5F5F5";
-  const { color } = allChains[currentName];
+  const { color } = allChains[currentName] || { color: "#F5F5F5" };
 
   return (
     <div className="flex flex-col bg-white">

@@ -92,5 +92,5 @@ rpc_endpoint = "wss://ws.calamari.systems/"
 
 [[chains]]
 name = "mandala"
-rpc_endpoint = "wss://acala-mandala.api.onfinality.io"
+rpc_endpoint = "wss://rpc.pinknode.io/"
 

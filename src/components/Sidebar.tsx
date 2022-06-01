@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Chains } from "../scheme";
+import { capitalizeFirstLetter } from "../utils";
 
 interface Props {
   allChains: Chains;
@@ -60,9 +61,7 @@ export default function Sidebar({
               >
                 <div className="flex items-center text-xl text-white font-inter">
                   <div className="network_icon">{c}</div>
-                  <div className="network_name">
-                    {c.charAt(0).toUpperCase() + c.slice(1)}
-                  </div>
+                  <div className="network_name">{capitalizeFirstLetter(c)}</div>
                 </div>
               </div>
             ) : (
@@ -75,9 +74,7 @@ export default function Sidebar({
               >
                 <div className="flex items-center text-xl font-inter">
                   <div className="network_icon text-[#9E9E9E]">{c}</div>
-                  <div className="network_name">
-                    {c.charAt(0).toUpperCase() + c.slice(1)}
-                  </div>
+                  <div className="network_name">{capitalizeFirstLetter(c)}</div>
                 </div>
               </div>
             )}

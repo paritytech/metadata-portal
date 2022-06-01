@@ -44,7 +44,7 @@ rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 
 [[chains]]
 name = "moonbase"
-rpc_endpoint = "wss://rpc.pinknode.io/alphanet/explorer"
+rpc_endpoint = "wss://moonbeam-alpha.api.onfinality.io/public-ws"
 
 [[chains]]
 name = "shiden"

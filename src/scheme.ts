@@ -1,6 +1,6 @@
 export interface ChainSpec {
   name: string;
-  color: string;
+  color?: string;
   rpcEndpoint: string;
   genesisHash: string;
   unit: string;
@@ -16,7 +16,7 @@ export interface ChainSpec {
 
 export interface QrInfo {
   path: string;
-  signedBy: string | null;
+  signedBy?: string | null;
 }
 
 export interface AddToSignerInterface {

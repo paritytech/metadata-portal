@@ -38,59 +38,10 @@ rpc_endpoint = "wss://statemine-rpc.polkadot.io"
 name = "karura"
 rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 
-#[[chains]]
-#name = "moonriver"
-#rpc_endpoint = "wss://moonriver.api.onfinality.io/public-ws"
-
-#[[chains]]
-#name = "moonbase"
-#rpc_endpoint = "wss://moonbeam-alpha.api.onfinality.io/public-ws"
-
-#[[chains]]
-#name = "shiden"
-#rpc_endpoint = "wss://shiden.api.onfinality.io/public-ws"
-
-#[[chains]]
-#name = "kintsugi"
-#rpc_endpoint = "wss://api-kusama.interlay.io/parachain"
-
-#[[chains]]
-#name = "edgeware"
-#rpc_endpoint = "wss://mainnet.edgewa.re"
-
-#[[chains]]
-#name = "subsocialsolo"
-#rpc_endpoint = "wss://rpc.subsocial.network"
-
 [[chains]]
 name = "heiko"
 rpc_endpoint = "wss://heiko-rpc.parallel.fi"
 
-#[[chains]]
-#name = "basilisk"
-#rpc_endpoint = "wss://basilisk.api.onfinality.io/public-ws"
-
-#[[chains]]
-#name = "altair"
-#rpc_endpoint = "wss://fullnode.altair.centrifuge.io"
-
-#[[chains]]
-#name = "khala"
-#rpc_endpoint = "wss://khala-api.phala.network/ws"
-
-#[[chains]]
-#name = "kilt"
-#rpc_endpoint = "wss://spiritnet.kilt.io/"
-
-#[[chains]]
-#name = "kiltperegrine"
-#rpc_endpoint = "wss://peregrine.kilt.io/parachain-public-ws/"
-
-#[[chains]]
-#name = "calamari"
-#rpc_endpoint = "wss://ws.calamari.systems/"
-
 [[chains]]
 name = "mandala"
 rpc_endpoint = "wss://acala-mandala.api.onfinality.io/public-ws/"
-

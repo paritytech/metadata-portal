@@ -35,8 +35,11 @@
       "path": "/qr/kusama_metadata_9220.apng",
       "signedBy": "Parity"
     },
-    "nextMetadataVersion": null,
-    "nextMetadataQr": null,
+    "nextMetadataVersion": 9230,
+    "nextMetadataQr": {
+      "path": "/qr/kusama_metadata_9230.apng",
+      "signedBy": "Parity"
+    },
     "specsQr": {
       "path": "/qr/kusama_specs.png",
       "signedBy": "Parity"
@@ -50,9 +53,9 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "metadataVersion": 9220,
+    "metadataVersion": 9230,
     "metadataQr": {
-      "path": "/qr/westend_metadata_9220.apng",
+      "path": "/qr/westend_metadata_9230.apng",
       "signedBy": "Parity"
     },
     "nextMetadataVersion": null,

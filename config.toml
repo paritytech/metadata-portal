@@ -90,7 +90,7 @@ rpc_endpoint = "wss://peregrine.kilt.io/parachain-public-ws/"
 name = "calamari"
 rpc_endpoint = "wss://ws.calamari.systems/"
 
-#[[chains]]
-#name = "mandala"
-#rpc_endpoint = "wss://rpc.pinknode.io/mandala/explorer/"
+[[chains]]
+name = "mandala"
+rpc_endpoint = "wss://acala-mandala.api.onfinality.io/public-ws/"
 

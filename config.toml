@@ -48,7 +48,7 @@ rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 
 [[chains]]
 name = "shiden"
-rpc_endpoint = "wss://rpc.shiden.astar.network"
+rpc_endpoint = "wss://shiden.api.onfinality.io/public-ws"
 
 [[chains]]
 name = "kintsugi"

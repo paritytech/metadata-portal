@@ -50,17 +50,17 @@ rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 #name = "shiden"
 #rpc_endpoint = "wss://shiden.api.onfinality.io/public-ws"
 
-[[chains]]
-name = "kintsugi"
-rpc_endpoint = "wss://api-kusama.interlay.io/parachain"
+#[[chains]]
+#name = "kintsugi"
+#rpc_endpoint = "wss://api-kusama.interlay.io/parachain"
 
-[[chains]]
-name = "edgeware"
-rpc_endpoint = "wss://mainnet.edgewa.re"
+#[[chains]]
+#name = "edgeware"
+#rpc_endpoint = "wss://mainnet.edgewa.re"
 
-[[chains]]
-name = "subsocialsolo"
-rpc_endpoint = "wss://rpc.subsocial.network"
+#[[chains]]
+#name = "subsocialsolo"
+#rpc_endpoint = "wss://rpc.subsocial.network"
 
 [[chains]]
 name = "heiko"

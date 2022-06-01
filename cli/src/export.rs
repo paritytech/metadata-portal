@@ -2,7 +2,7 @@ use anyhow::{Context, Result};
 use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
 
-use std::path::{Path};
+use std::path::Path;
 use std::{fmt, fs};
 
 use crate::lib::path::QrPath;

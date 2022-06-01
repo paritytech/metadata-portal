@@ -6,7 +6,7 @@ use anyhow::{Context, Result};
 
 use std::collections::{BTreeMap, HashMap};
 use std::fs;
-use std::path::{Path};
+use std::path::Path;
 
 type MetadataMap = HashMap<ChainName, BTreeMap<SpecVersion, QrPath>>;
 

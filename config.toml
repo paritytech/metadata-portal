@@ -70,9 +70,9 @@ rpc_endpoint = "wss://heiko-rpc.parallel.fi"
 #name = "basilisk"
 #rpc_endpoint = "wss://basilisk.api.onfinality.io/public-ws"
 
-[[chains]]
-name = "altair"
-rpc_endpoint = "wss://fullnode.altair.centrifuge.io"
+#[[chains]]
+#name = "altair"
+#rpc_endpoint = "wss://fullnode.altair.centrifuge.io"
 
 [[chains]]
 name = "khala"

@@ -78,17 +78,17 @@ rpc_endpoint = "wss://heiko-rpc.parallel.fi"
 #name = "khala"
 #rpc_endpoint = "wss://khala-api.phala.network/ws"
 
-[[chains]]
-name = "kilt"
-rpc_endpoint = "wss://spiritnet.kilt.io/"
+#[[chains]]
+#name = "kilt"
+#rpc_endpoint = "wss://spiritnet.kilt.io/"
 
-[[chains]]
-name = "kiltperegrine"
-rpc_endpoint = "wss://peregrine.kilt.io/parachain-public-ws/"
+#[[chains]]
+#name = "kiltperegrine"
+#rpc_endpoint = "wss://peregrine.kilt.io/parachain-public-ws/"
 
-[[chains]]
-name = "calamari"
-rpc_endpoint = "wss://ws.calamari.systems/"
+#[[chains]]
+#name = "calamari"
+#rpc_endpoint = "wss://ws.calamari.systems/"
 
 [[chains]]
 name = "mandala"

@@ -42,9 +42,9 @@ rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 #name = "moonriver"
 #rpc_endpoint = "wss://moonriver.api.onfinality.io/public-ws"
 
-[[chains]]
-name = "moonbase"
-rpc_endpoint = "wss://moonbeam-alpha.api.onfinality.io/public-ws"
+#[[chains]]
+#name = "moonbase"
+#rpc_endpoint = "wss://moonbeam-alpha.api.onfinality.io/public-ws"
 
 [[chains]]
 name = "shiden"

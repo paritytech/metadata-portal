@@ -7,7 +7,6 @@ import AddToSigner from "./AddToSigner";
 import { BadgeCheckIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { capitalizeFirstLetter } from "../utils";
-import data from "../data.json";
 
 import "./App.css";
 import Sidebar from "./Sidebar";
@@ -18,7 +17,13 @@ export default function App() {
   const [sidebarStyle, setSidebarStyle] = useState<string>("");
   const svgClass = "inline mr-2 h-7";
 
-  const allChains: Chains = data;
+  const [allChains, setAllChains] = useState<Chains>({} as Chains);
+
+  useEffect(() => {
+    fetch("./data.json").then(async (res) => {
+      setAllChains(await res.json());
+    });
+  }, []);
 
   // replace existing url hash in order to identify the network
   // from the url if it exists (it prioritizes over every other option below)
@@ -52,7 +57,7 @@ export default function App() {
       // then change the url accordingly to the selected network
       if (name !== location) window.location.assign("#/" + name);
     }
-  }, [currentNetwork]);
+  }, [currentNetwork, allChains]);
 
   useEffect(() => {
     if (isOpen) {
@@ -69,7 +74,9 @@ export default function App() {
   document.body.style.backgroundColor = "#F5F5F5";
   const color: string = allChains[currentName]?.color || "#9C9C9C";
 
-  return (
+  return !chain ? (
+    <></>
+  ) : (
     <div className="flex flex-col bg-white">
       <div
         className="md:flex justify-between px-10 py-2 items-center text-xl"

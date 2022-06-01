@@ -74,9 +74,9 @@ rpc_endpoint = "wss://heiko-rpc.parallel.fi"
 #name = "altair"
 #rpc_endpoint = "wss://fullnode.altair.centrifuge.io"
 
-[[chains]]
-name = "khala"
-rpc_endpoint = "wss://khala-api.phala.network/ws"
+#[[chains]]
+#name = "khala"
+#rpc_endpoint = "wss://khala-api.phala.network/ws"
 
 [[chains]]
 name = "kilt"

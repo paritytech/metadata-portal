@@ -66,9 +66,9 @@ rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 name = "heiko"
 rpc_endpoint = "wss://heiko-rpc.parallel.fi"
 
-[[chains]]
-name = "basilisk"
-rpc_endpoint = "wss://basilisk.api.onfinality.io/public-ws"
+#[[chains]]
+#name = "basilisk"
+#rpc_endpoint = "wss://basilisk.api.onfinality.io/public-ws"
 
 [[chains]]
 name = "altair"

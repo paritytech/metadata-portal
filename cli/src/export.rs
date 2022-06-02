@@ -34,7 +34,7 @@ impl fmt::Display for ReactAssetPath {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ExportChainSpec {
     pub(crate) name: String,
-    pub(crate) color: Option<String>,
+    pub(crate) color: String,
     pub(crate) rpc_endpoint: String,
 
     pub(crate) genesis_hash: String,

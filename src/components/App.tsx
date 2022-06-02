@@ -72,7 +72,7 @@ export default function App() {
   }, [isOpen]);
 
   document.body.style.backgroundColor = "#F5F5F5";
-  const color: string = allChains[currentName]?.color || "#9C9C9C";
+  const { color } = allChains[currentName];
 
   return !chain ? (
     <></>

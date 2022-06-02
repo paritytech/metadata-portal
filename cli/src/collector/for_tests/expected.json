@@ -1,7 +1,7 @@
 {
   "polkadot": {
     "name": "polkadot",
-    "color": null,
+    "color": "#9C9C9C",
     "rpcEndpoint": "wss://example.com",
     "genesisHash": "0x91b171bb150ce90c3",
     "unit": "DOT",

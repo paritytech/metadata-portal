@@ -1,6 +1,6 @@
 export interface ChainSpec {
   name: string;
-  color?: string;
+  color: string;
   rpcEndpoint: string;
   genesisHash: string;
   unit: string;

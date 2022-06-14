@@ -2,8 +2,8 @@
 use anyhow::{anyhow, bail};
 use definitions::error_active::IncomingMetadataSourceActiveStr;
 use definitions::metadata::MetaValues;
-use generate_message::fetch_metadata::fetch_info_with_network_specs;
 use generate_message::interpret_specs::interpret_properties;
+use generate_message::{fetch_metadata::fetch_info_with_network_specs, parser::TokenOverride};
 use serde::{Deserialize, Serialize};
 
 /// Struct to store MetaValues, genesis hash, and ChainSpecsToSend for network
@@ -37,13 +37,23 @@ impl Default for ChainSpecs {
 }
 
 pub(crate) trait Fetcher {
-    fn fetch_chain_info(&self, address: &str) -> anyhow::Result<MetaSpecs>;
+    fn fetch_chain_info(
+        &self,
+        address: &str,
+        token_unit: &Option<String>,
+        token_decimals: &Option<u8>,
+    ) -> anyhow::Result<MetaSpecs>;
 }
 
 pub(crate) struct RpcFetcher;
 
 impl Fetcher for RpcFetcher {
-    fn fetch_chain_info(&self, address: &str) -> anyhow::Result<MetaSpecs> {
+    fn fetch_chain_info(
+        &self,
+        address: &str,
+        token_unit: &Option<String>,
+        token_decimals: &Option<u8>,
+    ) -> anyhow::Result<MetaSpecs> {
         let new_info = match fetch_info_with_network_specs(address) {
             Ok(a) => a,
             Err(e) => bail!("failed to fetch chain info from {}: {}", address, e),
@@ -56,10 +66,18 @@ impl Fetcher for RpcFetcher {
         )
         .map_err(|e| anyhow!("{:?}", e))?;
 
+        let optional_token_override =
+            token_decimals
+                .zip(token_unit.as_ref())
+                .map(|(token_decimals, token_unit)| TokenOverride {
+                    decimals: token_decimals,
+                    unit: token_unit.to_string(),
+                });
+
         let new_properties = match interpret_properties(
             &new_info.properties,
             meta_values.optional_base58prefix,
-            None,
+            optional_token_override,
         ) {
             Ok(a) => a,
             Err(e) => bail!("{:?}", e),

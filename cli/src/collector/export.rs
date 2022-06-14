@@ -15,7 +15,11 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
     for chain in &config.chains {
         info!("Collecting {} info...", chain.name);
 
-        let meta_specs = fetcher.fetch_chain_info(&chain.rpc_endpoint)?;
+        let meta_specs = fetcher.fetch_chain_info(
+            &chain.rpc_endpoint,
+            &chain.token_unit,
+            &chain.token_decimals,
+        )?;
         let active_version = meta_specs.meta_values.version;
 
         let metadata_qr = extract_metadata_qr(&metadata_qrs, &chain.name, &active_version)?;
@@ -60,7 +64,12 @@ mod tests {
 
     struct MockFetcher;
     impl Fetcher for MockFetcher {
-        fn fetch_chain_info(&self, _rpc_endpoint: &str) -> Result<MetaSpecs> {
+        fn fetch_chain_info(
+            &self,
+            _rpc_endpoint: &str,
+            token_unit: &Option<String>,
+            token_decimals: &Option<u8>,
+        ) -> Result<MetaSpecs> {
             Ok(MetaSpecs {
                 specs: ChainSpecs::default(),
                 meta_values: MetaValues {

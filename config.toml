@@ -17,3 +17,9 @@ rpc_endpoint = "wss://kusama-rpc.polkadot.io"
 [[chains]]
 name = "westend"
 rpc_endpoint = "wss://westend-rpc.polkadot.io"
+
+# [[chains]]
+# name = "karura"
+# rpc_endpoint = "wss://karura.api.onfinality.io/public-ws"
+# token_unit = "KAR"
+# token_decimals = 12

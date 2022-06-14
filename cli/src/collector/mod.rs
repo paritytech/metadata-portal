@@ -37,7 +37,7 @@ fn export_specs(config: &AppConfig) -> anyhow::Result<Vec<ExportChainSpec>> {
         // ensure the output is emitted immediately
         io::stdout().flush().unwrap();
 
-        let meta_specs = fetch_chain_info(&chain.rpc_endpoint)?;
+        let meta_specs = fetch_chain_info(&chain.rpc_endpoint, &chain.token_unit, &chain.token_decimals)?;
 
         let (metadata_qr, metadata_version) = match metadata_qrs_for_chain.get(chain.name.as_str())
         {

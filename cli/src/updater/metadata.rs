@@ -9,9 +9,14 @@ use definitions::metadata::MetaValues;
 use definitions::network_specs::NetworkSpecsToSend;
 use generate_message::fetch_metadata::fetch_info_with_network_specs;
 use generate_message::interpret_specs::interpret_properties;
+use generate_message::parser::TokenOverride;
 use std::convert::TryInto;
 
-pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs> {
+pub fn fetch_chain_info(
+    address: &str,
+    token_unit: &Option<String>,
+    token_decimals: &Option<u8>,
+) -> anyhow::Result<MetaSpecs> {
     let new_info = match fetch_info_with_network_specs(address) {
         Ok(a) => a,
         Err(e) => bail!("failed to fetch chain info from {}: {}", address, e),
@@ -24,10 +29,18 @@ pub fn fetch_chain_info(address: &str) -> anyhow::Result<MetaSpecs> {
     )
     .map_err(|e| anyhow!("{:?}", e))?;
 
+    let optional_token_override =
+        token_decimals
+            .zip(token_unit.as_ref())
+            .map(|(token_decimals, token_unit)| TokenOverride {
+                decimals: token_decimals,
+                unit: token_unit.to_string(),
+            });
+
     let new_properties = match interpret_properties(
         &new_info.properties,
         meta_values.optional_base58prefix,
-        None,
+        optional_token_override,
     ) {
         Ok(a) => a,
         Err(e) => bail!("{:?}", e),

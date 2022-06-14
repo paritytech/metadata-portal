@@ -14,7 +14,11 @@ pub fn update(config: AppConfig) -> anyhow::Result<()> {
 
     let mut is_changed = false;
     for chain in config.chains {
-        let meta_specs = fetch_chain_info(&chain.rpc_endpoint)?;
+        let meta_specs = fetch_chain_info(
+            &chain.rpc_endpoint,
+            &chain.token_unit,
+            &chain.token_decimals,
+        )?;
         if !specs_qrs.contains_key(chain.name.as_str()) {
             generate_spec_qr(&meta_specs, &config.qr_dir)?;
             is_changed = true;

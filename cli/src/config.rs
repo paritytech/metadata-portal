@@ -21,6 +21,8 @@ pub struct Verifier {
 pub struct Chain {
     pub name: String,
     pub rpc_endpoint: String,
+    pub token_unit: Option<String>,
+    pub token_decimals: Option<u8>,
 }
 
 pub fn read_app_config(config_file: PathBuf) -> anyhow::Result<AppConfig> {

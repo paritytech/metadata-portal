@@ -28,3 +28,6 @@ jobs:
 
       - name: 🔧 Install dependencies
         run: yarn
+
+      - name: Pretend we have data.json and run tests
+        run: echo "{}" > public/data.json && yarn test

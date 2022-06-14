@@ -29,9 +29,3 @@ rpc_endpoint = "wss://westend-rpc.polkadot.io"
 # Optional. Only used when updating from GitHub releases
 genesis_hash = "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e"
 
-[[chains]]
-name = "karura"
-rpc_endpoint = "wss://karura.api.onfinality.io/public-ws"
-token_unit = "KAR"
-token_decimals = 12
-genesis_hash = "0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b"

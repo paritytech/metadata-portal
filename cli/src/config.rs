@@ -71,8 +71,8 @@ pub(crate) struct Chain {
     pub(crate) name: String,
     pub(crate) rpc_endpoint: String,
     pub(crate) genesis_hash: Option<String>,
-    pub token_unit: Option<String>,
-    pub token_decimals: Option<u8>,
+    pub(crate) token_unit: Option<String>,
+    pub(crate) token_decimals: Option<u8>,
 }
 
 #[cfg(test)]
@@ -82,6 +82,8 @@ impl Default for Chain {
             name: "polkadot".to_string(),
             rpc_endpoint: "wss://example.com".to_string(),
             genesis_hash: None,
+            token_unit: None,
+            token_decimals: None,
         }
     }
 }

@@ -15,11 +15,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
     for chain in &config.chains {
         info!("Collecting {} info...", chain.name);
 
-        let meta_specs = fetcher.fetch_chain_info(
-            &chain.rpc_endpoint,
-            &chain.token_unit,
-            &chain.token_decimals,
-        )?;
+        let meta_specs = fetcher.fetch_chain_info(chain)?;
         let active_version = meta_specs.meta_values.version;
 
         let metadata_qr = extract_metadata_qr(&metadata_qrs, &chain.name, &active_version)?;
@@ -38,7 +34,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
             ExportChainSpec {
                 name: chain.name.clone(),
                 rpc_endpoint: chain.rpc_endpoint.clone(),
-                genesis_hash: meta_specs.specs.genesis_hash,
+                genesis_hash: format!("0x{}", hex::encode(&meta_specs.specs.genesis_hash)),
                 unit: meta_specs.specs.unit,
                 logo: meta_specs.specs.logo,
                 decimals: meta_specs.specs.decimals,
@@ -57,21 +53,31 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::fetch::{ChainSpecs, MetaSpecs};
+    use crate::config::Chain;
+    use crate::fetch::MetaSpecs;
+    use definitions::crypto::Encryption;
     use definitions::metadata::MetaValues;
+    use definitions::network_specs::NetworkSpecsToSend;
     use std::fs;
     use std::path::PathBuf;
 
     struct MockFetcher;
     impl Fetcher for MockFetcher {
-        fn fetch_chain_info(
-            &self,
-            _rpc_endpoint: &str,
-            token_unit: &Option<String>,
-            token_decimals: &Option<u8>,
-        ) -> Result<MetaSpecs> {
+        fn fetch_chain_info(&self, _chain: &Chain) -> Result<MetaSpecs> {
             Ok(MetaSpecs {
-                specs: ChainSpecs::default(),
+                specs: NetworkSpecsToSend {
+                    base58prefix: 0,
+                    color: "".to_string(),
+                    decimals: 10,
+                    encryption: Encryption::Ed25519,
+                    genesis_hash: [12; 32],
+                    logo: "logo".to_string(),
+                    name: "polkadot".to_string(),
+                    path_id: "".to_string(),
+                    secondary_color: "".to_string(),
+                    title: "".to_string(),
+                    unit: "DOT".to_string(),
+                },
                 meta_values: MetaValues {
                     name: "".to_string(),
                     version: 9,

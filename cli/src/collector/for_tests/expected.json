@@ -2,7 +2,7 @@
   "polkadot": {
     "name": "polkadot",
     "rpcEndpoint": "wss://example.com",
-    "genesisHash": "0x91b171bb150ce90c3",
+    "genesisHash": "0x0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c",
     "unit": "DOT",
     "base58prefix": 0,
     "logo": "logo",

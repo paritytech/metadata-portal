@@ -4,7 +4,7 @@ qr_dir = "public/qr"
 
 [verifier]
 name = "Pavel"
-public_key = "500a669e1031d45defbe5a9548a7daa7b225302193e6d733cdf0ce9187bf060f"
+public_key = "9895b297f15f0ee3c862ffe7e87b6b886c5d3ed2dc5de3b70a37811b0c447512"
 
 [[chains]]
 name = "polkadot"

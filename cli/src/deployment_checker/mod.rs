@@ -2,7 +2,7 @@ use crate::collector::export::export_specs;
 use crate::export::{ExportData, ReactAssetPath};
 use crate::fetch::RpcFetcher;
 use crate::AppConfig;
-use anyhow::{Result};
+use anyhow::Result;
 use log::{info, warn};
 use reqwest::Url;
 use serde::{Deserialize, Serialize};

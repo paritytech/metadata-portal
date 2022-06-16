@@ -1,4 +1,3 @@
-// use crate::lib::read::ChainName;
 use crate::config::GitHub;
 use crate::lib::types::ChainName;
 use crate::updater::wasm::WasmRuntime;

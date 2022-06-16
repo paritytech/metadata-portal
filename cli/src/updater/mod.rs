@@ -13,7 +13,6 @@ use log::info;
 
 use crate::updater::generate::{generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_release_runtimes;
-// use crate::updater::metadata::fetch_chain_info;
 use crate::updater::wasm::meta_values_from_wasm;
 
 pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {

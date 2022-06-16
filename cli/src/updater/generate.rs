@@ -1,6 +1,6 @@
 use crate::lib::path::{ContentType, QrFileName};
-use crate::updater::export::MetaSpecs;
 
+use crate::fetch::MetaSpecs;
 use definitions::metadata::MetaValues;
 use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};
 use generate_message::make_message::make_message;

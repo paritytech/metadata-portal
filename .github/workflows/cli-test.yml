@@ -1,17 +1,14 @@
-name: Rust test
+name: CLI
 
 on:
   pull_request:
     branches:
       - master
     paths:
-      - 'rust/**'
-
-env:
-  MANIFEST_PATH: 'rust/Cargo.toml'
+      - 'cli/**'
 
 jobs:
-  rust-test:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: 🛎 Checkout

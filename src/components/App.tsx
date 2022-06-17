@@ -1,28 +1,32 @@
 import { useEffect, useState } from "react";
 import { Chains, ChainSpec, QrInfo } from "../scheme";
 import { useLocation } from "react-router-dom";
-import QrCode from "./QrCode";
-import Specs from "./Specs";
-import AddToSigner from "./AddToSigner";
-import { BadgeCheckIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { capitalizeFirstLetter } from "../utils";
 
 import "./App.css";
 import Sidebar from "./Sidebar";
+import Main from "./Main";
 
 export default function App() {
-  const [localNetwork, setLocalNetwork] = useLocalStorage("chosenNetwork");
+  const [localStorageNetwork, setLocalStorageNetwork] =
+    useLocalStorage("chosenNetwork");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [sidebarStyle, setSidebarStyle] = useState<string>("");
-  const svgClass = "inline mr-2 h-7";
 
   const [allChains, setAllChains] = useState<Chains>({} as Chains);
 
   useEffect(() => {
-    fetch("./data.json").then(async (res) => {
-      setAllChains(await res.json());
-    });
+    fetch("./data.json")
+      .then(async (res) => {
+        setAllChains(await res.json());
+      })
+      .catch((e) => {
+        console.error(
+          "Unable to fetch data file. Run `make collector` to generate it",
+          e
+        );
+      });
   }, []);
 
   // replace existing url hash in order to identify the network
@@ -32,20 +36,20 @@ export default function App() {
   // check localStorage if it contains a - from before - chosen network, if not
   // retrieve the 1st available network from the given ones, else (rare and wrong case)
   // default to polkadot
-  const currentName =
+  const [currentNetwork, setCurrentNetwork] = useState<string>(
     (Object.keys(allChains).includes(location) && location) ||
-    localNetwork ||
-    Object.keys(allChains)[0] ||
-    "polkadot";
-
-  const [currentNetwork, setCurrentNetwork] = useState<string>(currentName);
+      localStorageNetwork ||
+      Object.keys(allChains)[0] ||
+      "polkadot"
+  );
   const [metadataQr, setMetadataQr] = useState<QrInfo>(
-    allChains[currentName]?.metadataQr
+    allChains[currentNetwork]?.metadataQr
   );
-  const [chain, setChain] = useState<ChainSpec>(allChains[currentName]);
+  const [chain, setChain] = useState<ChainSpec>(allChains[currentNetwork]);
   const [specsQr, setSpecsQr] = useState<QrInfo>(
-    allChains[currentName]?.specsQr
+    allChains[currentNetwork]?.specsQr
   );
+  const specs = allChains[currentNetwork];
 
   useEffect(() => {
     const name = currentNetwork?.toLowerCase();
@@ -72,7 +76,11 @@ export default function App() {
   }, [isOpen]);
 
   document.body.style.backgroundColor = "#F5F5F5";
-  const { color } = allChains[currentName] || { color: "#9C9C9C" };
+  const { color } = allChains[currentNetwork] || { color: "#9C9C9C" };
+
+  if (!specs) {
+    return null;
+  }
 
   return !chain ? (
     <></>
@@ -119,7 +127,7 @@ export default function App() {
           allChains={allChains}
           sidebarStyle={sidebarStyle}
           currentNetwork={currentNetwork}
-          setLocalNetwork={setLocalNetwork}
+          setLocalStorageNetwork={setLocalStorageNetwork}
           setCurrentNetwork={setCurrentNetwork}
           color={color}
         />
@@ -132,59 +140,13 @@ export default function App() {
             }}
           />
         )}
-        {/** Main content */}
-        <div className="m-auto flex flex-col md:absolute md:left-60 md:pl-20 md:m-0">
-          <div className="md:flex flex-row flex-wrap justify-center md:pt-8">
-            <div
-              className="px-2 py-2 rounded-lg border-gray-600 bg-white text-black"
-              style={{ minWidth: "25rem" }}
-            >
-              <div className="flex justify-between mx-8 py-8 border-b-2 border-gray-200 items-center">
-                <h1 className="text-lg md:text-2xl" style={{ color }}>
-                  Metadata #{chain.metadataVersion}
-                </h1>
-                <div className="flex border-2 border-black rounded-xl p-2">
-                  {metadataQr.signedBy ? (
-                    <div className="text-black font-normal">
-                      <BadgeCheckIcon className={svgClass} />
-                      Signed by {metadataQr.signedBy}
-                    </div>
-                  ) : (
-                    <div className="text-red-500">
-                      <ExclamationCircleIcon className={svgClass} />
-                      Unsigned
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="px-12 justify-center pt-8">
-                <QrCode path={metadataQr.path} />
-                <div className="text-black py-5 w-full">
-                  <Specs chainSpecs={{ ...chain }} color={color} />
-                  <AddToSigner {...specsQr} color={color} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex w-full p-8 justify-evenly items-center">
-            <a
-              href="https://parity.io/signer/"
-              target="_blank"
-              className="text-black underline basis-40 m-1 text-center"
-              rel="noreferrer"
-            >
-              Parity Signer
-            </a>
-            <a
-              href="https://www.parity.io/"
-              target="_blank"
-              className="text-black underline basis-40 m-1 text-center"
-              rel="noreferrer"
-            >
-              Developed by Parity
-            </a>
-          </div>
-        </div>
+        <Main
+          metadataQr={metadataQr}
+          specsQr={specsQr}
+          color={color}
+          chain={chain}
+          specs={specs}
+        />
       </div>
     </div>
   );

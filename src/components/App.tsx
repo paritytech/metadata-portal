@@ -17,17 +17,18 @@ export default function App() {
   const [allChains, setAllChains] = useState<Chains>({} as Chains);
 
   useEffect(() => {
-    fetch("./data.json")
-      .then(async (res) => {
-        console.log("res", res);
-        setAllChains(await res.json());
-      })
-      .catch((e) => {
-        console.error(
-          "Unable to fetch data file. Run `make collector` to generate it",
-          e
-        );
-      });
+    const fetchData = async () => {
+      const data = await fetch("data.json")
+          .then(response => response.json())
+          .catch(e => {
+            console.error("Unable to fetch data file. Run `make collector` to generate it")
+            return e;
+          });
+      return await data as Chains;
+    };
+    fetchData().then(r => {
+      setAllChains(r)
+    });
   }, []);
 
   // replace existing url hash in order to identify the network

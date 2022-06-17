@@ -20,6 +20,7 @@ use crate::cleaner::clean;
 use crate::collector::collect;
 use crate::config::AppConfig;
 use crate::deployment_checker::check_deployment;
+use crate::fetch::RpcFetcher;
 use crate::opts::{Opts, SubCommand};
 use crate::signer::sign;
 use crate::updater::source::UpdateSource;
@@ -48,7 +49,7 @@ fn main() {
         SubCommand::Verify => verify(config),
         SubCommand::Update(update_opts) => match update_opts.source {
             UpdateSource::Github => update_from_github(config),
-            UpdateSource::Node => update_from_node(config),
+            UpdateSource::Node => update_from_node(config, RpcFetcher),
         },
         SubCommand::CheckDeployment => check_deployment(config),
     };

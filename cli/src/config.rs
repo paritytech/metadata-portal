@@ -73,6 +73,8 @@ pub(crate) struct Chain {
     pub(crate) color: String,
     pub(crate) rpc_endpoint: String,
     pub(crate) genesis_hash: Option<String>,
+    pub(crate) token_unit: Option<String>,
+    pub(crate) token_decimals: Option<u8>,
 }
 
 fn color_default() -> String {
@@ -87,6 +89,8 @@ impl Default for Chain {
             color: color_default(),
             rpc_endpoint: "wss://example.com".to_string(),
             genesis_hash: None,
+            token_unit: None,
+            token_decimals: None,
         }
     }
 }

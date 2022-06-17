@@ -1,6 +1,4 @@
-// use crate::config::QR_DIR;
 use crate::lib::path::{ContentType, QrPath};
-// use crate::CONFIG;
 use crate::lib::types::{ChainName, SpecVersion};
 use anyhow::{Context, Result};
 
@@ -29,7 +27,6 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
 pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
     let mut metadata_qrs = HashMap::new();
     for qr in qrs_in_dir(dir)? {
-        // if let Ok(qr) = QrPath::try_from(&path) {
         if let ContentType::Metadata(version) = qr.file_name.content_type {
             metadata_qrs
                 .entry(qr.file_name.chain.clone())
@@ -42,7 +39,6 @@ pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
                 })
                 .or_insert_with(|| qr.clone());
         }
-        // }
     }
     Ok(metadata_qrs)
 }
@@ -51,7 +47,6 @@ pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
 pub(crate) fn find_spec_qrs(dir: impl AsRef<Path>) -> Result<HashMap<ChainName, QrPath>> {
     let mut specs_qrs = HashMap::new();
     for qr in qrs_in_dir(dir)? {
-        // if let Ok(qr) = QrPath::try_from(&path) {
         if let ContentType::Specs = qr.file_name.content_type {
             specs_qrs
                 .entry(qr.file_name.chain.clone())
@@ -62,7 +57,6 @@ pub(crate) fn find_spec_qrs(dir: impl AsRef<Path>) -> Result<HashMap<ChainName, 
                 })
                 .or_insert_with(|| qr.clone());
         }
-        // }
     }
     Ok(specs_qrs)
 }

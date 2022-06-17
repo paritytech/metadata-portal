@@ -7,7 +7,7 @@ interface Props {
   sidebarStyle: string;
   currentNetwork: string;
   setCurrentNetwork: Dispatch<SetStateAction<string>>;
-  setLocalNetwork: Dispatch<SetStateAction<string>>;
+  setLocalStorageNetwork: Dispatch<SetStateAction<string>>;
   color: string;
 }
 
@@ -24,7 +24,7 @@ export default function Sidebar({
   sidebarStyle,
   currentNetwork,
   setCurrentNetwork,
-  setLocalNetwork,
+  setLocalStorageNetwork,
   color,
 }: Props): JSX.Element {
   const [searchResults, setSearchResults] = useState<string[]>(
@@ -69,7 +69,7 @@ export default function Sidebar({
                 className="flex items-center text-sm py-4 my-6 px-4 mx-2 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out hover:cursor-pointer"
                 onClick={() => {
                   setCurrentNetwork(c);
-                  setLocalNetwork(c);
+                  setLocalStorageNetwork(c);
                 }}
               >
                 <div className="flex items-center text-xl font-inter">

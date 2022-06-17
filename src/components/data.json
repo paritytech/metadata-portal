@@ -1,0 +1,68 @@
+{
+  "polkadot": {
+    "name": "polkadot",
+    "color": "#e6007a",
+    "rpcEndpoint": "wss://rpc.polkadot.io",
+    "genesisHash": "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3",
+    "unit": "DOT",
+    "base58prefix": 0,
+    "logo": "polkadot",
+    "decimals": 10,
+    "metadataVersion": 9200,
+    "metadataQr": {
+      "path": "/qr/polkadot_metadata_9200.apng",
+      "signedBy": "Parity"
+    },
+    "nextMetadataVersion": 9220,
+    "nextMetadataQr": {
+      "path": "/qr/polkadot_metadata_9220.apng",
+      "signedBy": "Parity"
+    },
+    "specsQr": {
+      "path": "/qr/polkadot_specs.png",
+      "signedBy": "Parity"
+    }
+  },
+  "kusama": {
+    "name": "kusama",
+    "color": "#000000",
+    "rpcEndpoint": "wss://kusama-rpc.polkadot.io",
+    "genesisHash": "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe",
+    "unit": "KSM",
+    "base58prefix": 2,
+    "logo": "kusama",
+    "decimals": 12,
+    "metadataVersion": 9220,
+    "metadataQr": {
+      "path": "/qr/kusama_metadata_9220.apng",
+      "signedBy": "Parity"
+    },
+    "nextMetadataVersion": null,
+    "nextMetadataQr": null,
+    "specsQr": {
+      "path": "/qr/kusama_specs.png",
+      "signedBy": "Parity"
+    }
+  },
+  "westend": {
+    "name": "westend",
+    "color": "#f27230",
+    "rpcEndpoint": "wss://westend-rpc.polkadot.io",
+    "genesisHash": "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e",
+    "unit": "WND",
+    "base58prefix": 42,
+    "logo": "westend",
+    "decimals": 12,
+    "metadataVersion": 9230,
+    "metadataQr": {
+      "path": "/qr/westend_metadata_9230.apng",
+      "signedBy": "Parity"
+    },
+    "nextMetadataVersion": null,
+    "nextMetadataQr": null,
+    "specsQr": {
+      "path": "/qr/westend_specs.png",
+      "signedBy": "Parity"
+    }
+  }
+}

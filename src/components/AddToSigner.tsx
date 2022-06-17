@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { AddToSignerInterface } from "../scheme";
+import { DeviceMobileIcon } from "@heroicons/react/outline";
 import Button from "./Button";
 
 export default function AddToSigner({ path, color }: AddToSignerInterface) {
@@ -16,12 +17,17 @@ export default function AddToSigner({ path, color }: AddToSignerInterface) {
 
   return (
     <>
-      <div className="flex items-center mt-5">
+      <div className="flex items-center mt-5 pt-5 border-t-2 border-gray-200">
         <Button
           className="w-full"
           backgroundColor={color}
           onClick={openModal}
-          label="Add to Signer"
+          label={
+            <div className="flex justify-center items-center">
+              <DeviceMobileIcon className="w-5" />
+              <span className="pl-4">Add to Signer</span>
+            </div>
+          }
         />
       </div>
 

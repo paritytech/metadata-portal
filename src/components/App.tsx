@@ -19,6 +19,7 @@ export default function App() {
   useEffect(() => {
     fetch("./data.json")
       .then(async (res) => {
+        console.log("res", res);
         setAllChains(await res.json());
       })
       .catch((e) => {
@@ -42,9 +43,7 @@ export default function App() {
       Object.keys(allChains)[0] ||
       "polkadot"
   );
-  const [metadataQr, setMetadataQr] = useState<QrInfo>(
-    allChains[currentNetwork]?.metadataQr
-  );
+
   const [chain, setChain] = useState<ChainSpec>(allChains[currentNetwork]);
   const [specsQr, setSpecsQr] = useState<QrInfo>(
     allChains[currentNetwork]?.specsQr
@@ -55,7 +54,6 @@ export default function App() {
     const name = currentNetwork?.toLowerCase();
     if (name) {
       setChain(allChains[name]);
-      setMetadataQr(allChains[name]?.metadataQr);
       setSpecsQr(allChains[name]?.specsQr);
       // In case the changed name is not the same as the url
       // then change the url accordingly to the selected network
@@ -66,17 +64,18 @@ export default function App() {
   useEffect(() => {
     if (isOpen) {
       setSidebarStyle(
-        "w-64 bg-white px-4 absolute md:left-0 md:h-[91vh] h-[92vh] md:border-r-0 border-r-2 border-neutral-200 z-30 left-0"
+        "w-64 bg-white px-6 absolute md:left-0 md:h-[89vh] h-[89vh] md:border-r-0 border-r-2 border-neutral-200 z-30 left-0"
       );
     } else {
       setSidebarStyle(
-        "w-64 bg-white px-4 absolute md:left-0 md:h-[91vh] h-[92vh] md:border-r-0 border-r-2 border-neutral-200 z-30 md:z-0 left-[-17rem]"
+        "w-64 bg-white px-6 absolute md:left-0 md:h-[89vh] h-[89vh] md:border-r-0 border-r-2 border-neutral-200 z-30 md:z-0 left-[-17rem]"
       );
     }
   }, [isOpen]);
 
   document.body.style.backgroundColor = "#F5F5F5";
   const { color } = allChains[currentNetwork] || { color: "#9C9C9C" };
+  const qr = allChains[currentNetwork]?.metadataQr;
 
   if (!specs) {
     return null;
@@ -87,11 +86,12 @@ export default function App() {
   ) : (
     <div className="flex flex-col bg-white">
       <div
-        className="md:flex justify-between px-10 py-2 items-center text-xl"
+        className="md:flex justify-between px-10 py-2 items-center text-xl h-[11vh]"
         style={{ backgroundColor: color }}
       >
-        <div className="text-white md:w-1 font-bold text-2xl text-left m-auto md:m-0">
-          Metadata Update Portal
+        <div className="text-white font-bold text-2xl text-left m-auto flex flex-row md:flex-col md:m-0">
+          <div>Metadata</div>
+          <div className="md:pl-0 pl-2">Update Portal</div>
         </div>
         <div
           className="bg-white py-2 visible md:invisible md:hidden flex text-white items-center"
@@ -122,7 +122,7 @@ export default function App() {
           {capitalizeFirstLetter(chain.name)}
         </div>
       </div>
-      <div className="flex h-[91vh] md:h-auto">
+      <div className="flex h-[89vh] md:h-auto">
         <Sidebar
           allChains={allChains}
           sidebarStyle={sidebarStyle}
@@ -134,14 +134,14 @@ export default function App() {
         {/** darker layer*/}
         {isOpen && (
           <div
-            className="absolute w-full h-[91vh] bg-black opacity-80 z-20 visible"
+            className="absolute w-full h-[89vh] bg-black opacity-80 z-20 visible"
             onClick={() => {
               setIsOpen(!isOpen);
             }}
           />
         )}
         <Main
-          metadataQr={metadataQr}
+          metadataQr={qr}
           specsQr={specsQr}
           color={color}
           chain={chain}

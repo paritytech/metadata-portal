@@ -3,7 +3,7 @@ import React from "react";
 import QrCode from "./QrCode";
 import Specs from "./Specs";
 import AddToSigner from "./AddToSigner";
-import { BadgeCheckIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
+import { CheckIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import NextMetadata from "./NextMetadata";
 import { ChainSpec, QrInfo } from "../scheme";
 import "./App.css";
@@ -23,7 +23,7 @@ export default function Main({
   specs,
   specsQr,
 }: Props): JSX.Element {
-  const svgClass = "inline mr-2 h-7";
+  const svgClass = "inline mr-2 w-4";
   return (
     <div className="m-auto flex flex-col md:absolute md:left-60 md:pl-20 md:m-0">
       <div className="md:flex flex-row flex-wrap justify-center md:pt-8">
@@ -32,13 +32,13 @@ export default function Main({
           style={{ minWidth: "25rem" }}
         >
           <div className="flex justify-between mx-8 py-8 border-b-2 border-gray-200 items-center">
-            <h1 className="text-lg md:text-2xl" style={{ color }}>
+            <h3 className="text-lg font-bold" style={{ color }}>
               Metadata #{chain.metadataVersion}
-            </h1>
-            <div className="flex border-2 border-black rounded-xl p-2">
+            </h3>
+            <div className="flex text-sm border-2 border-[#24cc85d9] rounded-xl p-2">
               {metadataQr.signedBy ? (
-                <div className="text-black font-normal">
-                  <BadgeCheckIcon className={svgClass} />
+                <div className="text-[#24cc85d9] font-normal">
+                  <CheckIcon className={svgClass} />
                   Signed by {metadataQr.signedBy}
                 </div>
               ) : (

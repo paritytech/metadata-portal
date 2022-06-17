@@ -16,7 +16,7 @@ export interface ChainSpec {
 
 export interface QrInfo {
   path: string;
-  signedBy?: string | null;
+  signedBy: string | null;
 }
 
 export interface AddToSignerInterface {

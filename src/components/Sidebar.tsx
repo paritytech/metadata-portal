@@ -51,12 +51,12 @@ export default function Sidebar({
         </div>
       </div>
       {/** SEARCH BAR END */}
-      <ul className="relative overflow-auto h-[67vh]">
+      <ul className="relative overflow-auto h-[62vh]">
         {searchResults.map((c) => (
           <li className="relative" key={c}>
             {currentNetwork === c ? (
               <div
-                className="flex items-center text-sm py-4 my-6 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded"
+                className="flex items-center text-sm py-4 my-6 px-3 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded"
                 style={{ backgroundColor: color }}
               >
                 <div className="flex items-center text-xl text-white font-inter">
@@ -66,7 +66,7 @@ export default function Sidebar({
               </div>
             ) : (
               <div
-                className="flex items-center text-sm py-4 my-6 px-4 mx-2 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out hover:cursor-pointer"
+                className="flex items-center text-sm py-4 my-6 px-2 mx-2 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out hover:cursor-pointer"
                 onClick={() => {
                   setCurrentNetwork(c);
                   setLocalStorageNetwork(c);
@@ -81,8 +81,8 @@ export default function Sidebar({
           </li>
         ))}
       </ul>
-      <div className="bottom-4 w-60 text-md h-[15vh]">
-        <div className="text-left mb-6 mr-4 pt-6 border-t	border-neutral-300">
+      <div className="bottom-4 w-50 text-md h-[17vh]">
+        <div className="text-left mr-6 pt-6 border-t border-neutral-300">
           Metadata Portal is a self-hosted web page which shows you the latest
           metadata for a given network.
         </div>

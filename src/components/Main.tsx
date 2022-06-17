@@ -49,7 +49,7 @@ export default function Main({
               )}
             </div>
           </div>
-          <div className="px-12 justify-center pt-8">
+          <div className="px-8 justify-center pt-8">
             <QrCode {...metadataQr} />
             <div className="text-black py-5 w-full">
               <Specs chainSpecs={{ ...chain }} color={color} />

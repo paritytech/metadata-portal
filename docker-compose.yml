@@ -1,0 +1,14 @@
+services:
+  _cli:
+    &cli
+    build: .
+    volumes:
+      - .:/app
+
+  collector:
+    <<: *cli
+    command: collect
+
+  updater:
+    <<: *cli
+    command: update

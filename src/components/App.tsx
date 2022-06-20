@@ -1,29 +1,21 @@
 import { useEffect, useState } from "react";
-import {Chains} from "../scheme";
+import { Chains, ChainSpec, QrInfo } from "../scheme";
 import { useLocation } from "react-router-dom";
-import QrCode from "./QrCode";
-import Specs from "./Specs";
-import AddToSigner from "./AddToSigner";
-import { BadgeCheckIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
-import {
-  useLocalStorage,
-  getChain,
-  Card,
-  NetworkSlider,
-  Network,
-  NetworkDetails,
-} from "mottled-library";
-import "mottled-library/css/NetworkSlider.css";
-import "mottled-library/css/Card.css";
-import GitHub from "../assets/gh.png";
-import NextMetadata from "./NextMetadata";
-// import Extension from "./Extension";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { capitalizeFirstLetter } from "../utils";
+
+import "./App.css";
+import Sidebar from "./Sidebar";
+import Main from "./Main";
 
 export default function App() {
-  const [localNetwork, setLocalNetwork] = useLocalStorage("chosenNetwork");
-  const svgClass = "inline mr-2 h-7";
+  const [localStorageNetwork, setLocalStorageNetwork] =
+    useLocalStorage("chosenNetwork");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [sidebarStyle, setSidebarStyle] = useState<string>("");
 
-  const [allChains, setAllChains] = useState<Chains>({});
+  const [allChains, setAllChains] = useState<Chains>({} as Chains);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch("data.json")
@@ -34,8 +26,10 @@ export default function App() {
           });
       return await data as Chains;
     };
-    fetchData().then(r => setAllChains(r));
-  }, [])
+    fetchData().then(r => {
+      setAllChains(r)
+    });
+  }, []);
 
   // replace existing url hash in order to identify the network
   // from the url if it exists (it prioritizes over every other option below)
@@ -44,115 +38,117 @@ export default function App() {
   // check localStorage if it contains a - from before - chosen network, if not
   // retrieve the 1st available network from the given ones, else (rare and wrong case)
   // default to polkadot
-  const [chain, setChain] = useState<string>(
-      location ||
-      localNetwork && localNetwork.toLowerCase() ||
+  const [currentNetwork, setCurrentNetwork] = useState<string>(
+    (Object.keys(allChains).includes(location) && location) ||
+      localStorageNetwork ||
       Object.keys(allChains)[0] ||
       "polkadot"
   );
 
-  const specs = allChains[chain];
-  if (!specs){
-    return null
+  const [chain, setChain] = useState<ChainSpec>(allChains[currentNetwork]);
+  const [specsQr, setSpecsQr] = useState<QrInfo>(
+    allChains[currentNetwork]?.specsQr
+  );
+  const specs = allChains[currentNetwork];
+
+  useEffect(() => {
+    const name = currentNetwork?.toLowerCase();
+    if (name) {
+      setChain(allChains[name]);
+      setSpecsQr(allChains[name]?.specsQr);
+      // In case the changed name is not the same as the url
+      // then change the url accordingly to the selected network
+      if (name !== location) window.location.assign("#/" + name);
+    }
+  }, [currentNetwork, allChains]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSidebarStyle(
+        "w-64 bg-white px-6 absolute md:left-0 md:h-[89vh] h-[89vh] md:border-r-0 border-r-2 border-neutral-200 z-30 left-0"
+      );
+    } else {
+      setSidebarStyle(
+        "w-64 bg-white px-6 absolute md:left-0 md:h-[89vh] h-[89vh] md:border-r-0 border-r-2 border-neutral-200 z-30 md:z-0 left-[-17rem]"
+      );
+    }
+  }, [isOpen]);
+
+  document.body.style.backgroundColor = "#F5F5F5";
+  const { color } = allChains[currentNetwork] || { color: "#9C9C9C" };
+  const qr = allChains[currentNetwork]?.metadataQr;
+
+  if (!specs) {
+    return null;
   }
-  const extraInfo = getChain(chain);
-  document.body.style.backgroundColor = extraInfo?.secColor || "";
 
-  const onNetworkSelect = (network: NetworkDetails) => {
-    setChain(network.name.toLowerCase());
-    setLocalNetwork(network.name);
-    window.location.assign("#/" + network.name.toLowerCase())
-  };
-
-  return (
-      <div className="flex flex-col">
+  return !chain ? (
+    <></>
+  ) : (
+    <div className="flex flex-col bg-white">
+      <div
+        className="md:flex justify-between px-10 py-2 items-center text-xl h-[11vh]"
+        style={{ backgroundColor: color }}
+      >
+        <div className="text-white font-bold text-2xl text-left m-auto flex flex-row md:flex-col md:m-0">
+          <div>Metadata</div>
+          <div className="md:pl-0 pl-2">Update Portal</div>
+        </div>
         <div
-            className="lg:flex justify-around p-2 items-center"
-            style={{backgroundColor: extraInfo?.color}}
+          className="bg-white py-2 visible md:invisible md:hidden flex text-white items-center"
+          style={{ backgroundColor: color }}
         >
-          <div className="text-white lg:w-1 font-bold text-2xl lg:text-left text-center">
-            Metadata Update Portal
-          </div>
-          <div className="lg:mt-0 mt-5 max-w-base lg:max-w-2xl">
-            <NetworkSlider
-                defaultNetwork={chain as Network}
-                setNetwork={onNetworkSelect}
-                networks={Object.keys(allChains) as Network[]}
-            />
-          </div>
-          <div className="text-white font-bold">
-            <a
-                className="lg:text-left text-center lg:mt-0 mt-5 lg:block inline-block lg:w-fit w-full"
-                href="https://github.com/paritytech/metadata-portal"
-                target={"blank"}
-            >
-              <div className="flex float-left">Github</div>
-              <div className="flex float-left">
-                <img className="w-6 ml-2" src={GitHub}/>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div className="md:flex flex-row flex-wrap justify-center lg:pt-8">
-          <Card>
-            <div className="flex justify-between mx-8 py-8 border-b-2 border-gray-200 ">
-              <h1
-                  className="text-2xl lg:text-4xl"
-                  style={{color: extraInfo?.color}}
-              >
-                Metadata #{specs.metadataVersion}
-              </h1>
-              <div className="flex border-2 border-black rounded-xl p-2">
-                {specs.metadataQr.signedBy ? (
-                    <div className="text-black font-normal">
-                      <BadgeCheckIcon className={svgClass}/>
-                      Signed by {specs.metadataQr.signedBy}
-                    </div>
-                ) : (
-                    <div className="text-red-500">
-                      <ExclamationCircleIcon className={svgClass}/>
-                      Unsigned
-                    </div>
-                )}
-              </div>
+          <button
+            className="md:hidden flex top-0 left-0 relative w-8 h-10 text-white focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <div className="absolute w-5 transform -translate-x-1/2 -translate-y-1/2 top-1/2">
+              <span
+                className={`absolute h-0.5 w-5 bg-white transform transition duration-300 ease-in-out ${
+                  isOpen ? "rotate-45 delay-200" : "-translate-y-1.5"
+                }`}
+              ></span>
+              <span
+                className={`absolute h-0.5 bg-white transform transition-all duration-200 ease-in-out ${
+                  isOpen ? "w-0 opacity-50" : "w-5 delay-200 opacity-100"
+                }`}
+              ></span>
+              <span
+                className={`absolute h-0.5 w-5 bg-white transform transition duration-300 ease-in-out ${
+                  isOpen ? "-rotate-45 delay-200" : "translate-y-1.5"
+                }`}
+              ></span>
             </div>
-            <div className="lg:flex grid justify-center pt-8">
-              <QrCode {...specs.metadataQr} />
-              <div className="text-black p-5 w-72">
-                <Specs chainSpecs={{...specs}} color={extraInfo?.color}/>
-                <AddToSigner {...specs.specsQr} />
-                <NextMetadata {...specs} />
-                {/*<Extension {...chain} />*/}
-              </div>
-            </div>
-          </Card>
-        </div>
-        <div className="flex w-full p-8 justify-evenly items-center">
-          <a
-              href="https://parity.io/signer/"
-              target="_blank"
-              className="text-white underline basis-40 m-1 text-center"
-              rel="noreferrer"
-          >
-            Parity Signer
-          </a>
-          <a
-              href="https://www.parity.io/"
-              target="_blank"
-              className="text-white underline basis-40 m-1 text-center"
-              rel="noreferrer"
-          >
-            Developed by Parity
-          </a>
-          <a
-              href="https://www.parity.io/terms/"
-              target="_blank"
-              className="text-white underline basis-40 m-1 text-center"
-              rel="noreferrer"
-          >
-            Terms of Service
-          </a>
+          </button>
+          {capitalizeFirstLetter(chain.name)}
         </div>
       </div>
+      <div className="flex h-[89vh] md:h-auto">
+        <Sidebar
+          allChains={allChains}
+          sidebarStyle={sidebarStyle}
+          currentNetwork={currentNetwork}
+          setLocalStorageNetwork={setLocalStorageNetwork}
+          setCurrentNetwork={setCurrentNetwork}
+          color={color}
+        />
+        {/** darker layer*/}
+        {isOpen && (
+          <div
+            className="absolute w-full h-[89vh] bg-black opacity-80 z-20 visible"
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          />
+        )}
+        <Main
+          metadataQr={qr}
+          specsQr={specsQr}
+          color={color}
+          chain={chain}
+          specs={specs}
+        />
+      </div>
+    </div>
   );
 }

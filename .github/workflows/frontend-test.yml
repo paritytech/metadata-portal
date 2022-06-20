@@ -30,4 +30,4 @@ jobs:
         run: yarn
 
       - name: Pretend we have data.json and run tests
-        run: echo "{}" > public/data.json && yarn test
+        run: cp public/test-file.json public/data.json && yarn test

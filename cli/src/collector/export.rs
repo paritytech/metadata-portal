@@ -33,6 +33,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
             chain.name.clone(),
             ExportChainSpec {
                 name: chain.name.clone(),
+                color: chain.color.clone(),
                 rpc_endpoint: chain.rpc_endpoint.clone(),
                 genesis_hash: format!("0x{}", hex::encode(&meta_specs.specs.genesis_hash)),
                 unit: meta_specs.specs.unit,

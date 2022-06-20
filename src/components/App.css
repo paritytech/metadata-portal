@@ -1,38 +1,23 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: "Web3-Regular";
+  src: url("../assets/fonts/Web3-Regular.woff") format("woff"),
+    url("../assets/fonts/Web3-Regular.woff2") format("woff2");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: "Inter Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter Bold"),
+    url("../assets/fonts/Inter-Bold.woff") format("woff");
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.network_icon {
+  font-family: "Web3-Regular";
+  width: 3rem;
+  @apply text-center text-3xl mr-2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.network_name {
+  font-family: "Inter bold";
 }

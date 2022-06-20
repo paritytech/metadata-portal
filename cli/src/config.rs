@@ -69,10 +69,16 @@ pub(crate) struct GitHub {
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub(crate) struct Chain {
     pub(crate) name: String,
+    #[serde(default = "color_default")]
+    pub(crate) color: String,
     pub(crate) rpc_endpoint: String,
     pub(crate) genesis_hash: Option<String>,
     pub(crate) token_unit: Option<String>,
     pub(crate) token_decimals: Option<u8>,
+}
+
+fn color_default() -> String {
+    "#9C9C9C".to_string()
 }
 
 #[cfg(test)]
@@ -80,6 +86,7 @@ impl Default for Chain {
     fn default() -> Self {
         Self {
             name: "polkadot".to_string(),
+            color: color_default(),
             rpc_endpoint: "wss://example.com".to_string(),
             genesis_hash: None,
             token_unit: None,

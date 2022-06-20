@@ -1,10 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import React from "react";
-import {QrInfo} from "../scheme";
+import { AddToSignerInterface } from "../scheme";
+import { DeviceMobileIcon } from "@heroicons/react/outline";
 import Button from "./Button";
 
-export default function AddToSigner({ path }: QrInfo) {
+export default function AddToSigner({ path, color }: AddToSignerInterface) {
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -17,10 +17,17 @@ export default function AddToSigner({ path }: QrInfo) {
 
   return (
     <>
-      <div className="flex items-center mt-5">
+      <div className="flex items-center mt-5 pt-5 border-t-2 border-gray-200">
         <Button
-            onClick={openModal}
-            label="Add to Signer"
+          className="w-full"
+          backgroundColor={color}
+          onClick={openModal}
+          label={
+            <div className="flex justify-center items-center">
+              <DeviceMobileIcon className="w-5" />
+              <span className="pl-4">Add to Signer</span>
+            </div>
+          }
         />
       </div>
 
@@ -67,7 +74,11 @@ export default function AddToSigner({ path }: QrInfo) {
                   Scan this code with your signer device
                 </Dialog.Title>
                 <div className="min-h-[180px]">
-                  <img src={process.env.PUBLIC_URL + path} className="ml-auto mr-auto" alt="Qr code" />
+                  <img
+                    src={process.env.PUBLIC_URL + path}
+                    className="ml-auto mr-auto"
+                    alt="Qr code"
+                  />
                 </div>
 
                 <div>

@@ -22,6 +22,7 @@ export interface QrInfo {
 export interface AddToSignerInterface {
   path: string;
   color: string;
+  name: string;
 }
 
 export interface Chains {

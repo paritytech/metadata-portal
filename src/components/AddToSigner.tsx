@@ -3,8 +3,9 @@ import { Fragment, useState } from "react";
 import { AddToSignerInterface } from "../scheme";
 import { DeviceMobileIcon } from "@heroicons/react/outline";
 import Button from "./Button";
+import {capitalizeFirstLetter} from "../utils";
 
-export default function AddToSigner({ path, color }: AddToSignerInterface) {
+export default function AddToSigner({ path, color, name }: AddToSignerInterface) {
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -25,7 +26,7 @@ export default function AddToSigner({ path, color }: AddToSignerInterface) {
           label={
             <div className="flex justify-center items-center">
               <DeviceMobileIcon className="w-5" />
-              <span className="pl-4">Add to Signer</span>
+              <span className="pl-1">Add <b>{capitalizeFirstLetter(name)}</b> to Signer</span>
             </div>
           }
         />

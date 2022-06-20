@@ -87,7 +87,7 @@ export default function App() {
   ) : (
     <div className="flex flex-col bg-white">
       <div
-        className="md:flex justify-between px-10 py-2 items-center text-xl h-[11vh]"
+        className="md:flex justify-between px-10 py-2 items-center text-xl"
         style={{ backgroundColor: color }}
       >
         <div className="text-white font-bold text-2xl text-left m-auto flex flex-row md:flex-col md:m-0">

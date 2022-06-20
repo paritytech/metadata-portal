@@ -32,7 +32,7 @@ export default function Main({
           style={{ minWidth: "25rem" }}
         >
           <div className="flex justify-between mx-8 py-8 border-b-2 border-gray-200 items-center">
-            <h3 className="text-lg font-bold" style={{ color }}>
+            <h3 className="text-2xl font-bold" style={{ color }}>
               Metadata #{chain.metadataVersion}
             </h3>
             <div className="flex text-sm border-2 border-[#24cc85d9] rounded-xl p-2">
@@ -53,7 +53,7 @@ export default function Main({
             <QrCode {...metadataQr} />
             <div className="text-black py-5 w-full">
               <Specs chainSpecs={{ ...chain }} color={color} />
-              <AddToSigner {...specsQr} color={color} />
+              <AddToSigner {...specsQr} color={color} name={chain.name} />
               <NextMetadata {...specs} />
             </div>
           </div>

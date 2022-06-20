@@ -40,7 +40,7 @@ export default function App() {
   // default to polkadot
   const [currentNetwork, setCurrentNetwork] = useState<string>(
     (Object.keys(allChains).includes(location) && location) ||
-      localStorageNetwork ||
+      localStorageNetwork && localStorageNetwork.toLowerCase() ||
       Object.keys(allChains)[0] ||
       "polkadot"
   );

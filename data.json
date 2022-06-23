@@ -53,9 +53,9 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "metadataVersion": 9230,
+    "metadataVersion": 9250,
     "metadataQr": {
-      "path": "/qr/westend_metadata_9230.apng",
+      "path": "/qr/westend_metadata_9250.apng",
       "signedBy": "Parity"
     },
     "nextMetadataVersion": null,

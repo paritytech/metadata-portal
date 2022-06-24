@@ -104,7 +104,7 @@ jobs:
       - name: ⚙ Check existing deployment
         id: check-deployment
         run: |
-          cargo run --release -- check-deployment
+          cargo run --release -- help
           exit_code=$?
           if [ $exit_code -eq 12 ]
           then

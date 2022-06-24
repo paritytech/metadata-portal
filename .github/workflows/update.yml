@@ -116,10 +116,9 @@ jobs:
         shell: bash {0}
 
       - name: ⚙ Run collector
-        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
         run: make collector
 
-      - if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+      - name: Deploy
         uses: ./.github/workflows/deploy
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

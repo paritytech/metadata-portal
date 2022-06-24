@@ -3,8 +3,8 @@ public_dir = "public"
 qr_dir = "public/qr"
 
 [verifier]
-name = "Parity"
-public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+name = "ClusterCuss"
+public_key = "063f13e11eada82071a8fc6eb64e0d5641d799237e2b12d0be32e48a531c5c6d"
 
 # Optional. Only used when updating from GitHub releases
 [github]

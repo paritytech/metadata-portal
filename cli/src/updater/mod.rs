@@ -4,16 +4,20 @@ pub(crate) mod source;
 mod wasm;
 
 use crate::config::AppConfig;
-use crate::lib::string::hex_to_bytes;
+
 use anyhow::Context;
+use blake2_rfc::blake2b::blake2b;
+use std::str::FromStr;
 
 use crate::fetch::Fetcher;
 use crate::qrs::{find_metadata_qrs, find_spec_qrs};
+use crate::source::{save_source_info, Source};
 use log::info;
+use sp_core::H256;
 
 use crate::updater::generate::{generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_release_runtimes;
-use crate::updater::wasm::meta_values_from_wasm;
+use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
 
 pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
@@ -21,13 +25,14 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
 
     let mut is_changed = false;
     for chain in config.chains {
-        let meta_specs = fetcher.fetch_chain_info(&chain)?;
-        let version = meta_specs.meta_values.version;
-
         if !specs_qrs.contains_key(chain.name.as_str()) {
-            generate_spec_qr(&meta_specs, &config.qr_dir)?;
+            let specs = fetcher.fetch_specs(&chain)?;
+            generate_spec_qr(&chain.name, &specs, &config.qr_dir)?;
             is_changed = true;
         }
+
+        let fetched_meta = fetcher.fetch_metadata(&chain)?;
+        let version = fetched_meta.meta_values.version;
 
         // Skip if already have QR for the same version
         if let Some(map) = metadata_qrs.get(&chain.name) {
@@ -35,11 +40,16 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
                 continue;
             }
         }
-        generate_metadata_qr(
-            &meta_specs.meta_values,
-            meta_specs.specs.genesis_hash,
+        let path = generate_metadata_qr(
+            &fetched_meta.meta_values,
+            &fetched_meta.genesis_hash,
             &config.qr_dir,
         )?;
+        let source = Source::Rpc {
+            url: chain.rpc_endpoint,
+            block: fetched_meta.block_hash,
+        };
+        save_source_info(&path, &source)?;
         is_changed = true;
     }
 
@@ -55,7 +65,8 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
         info!("↪️ No GitHub repository specified, skipping update");
         return Ok(());
     }
-    let runtimes = fetch_release_runtimes(&config.github.unwrap()).await?;
+    let gh = &config.github.unwrap();
+    let runtimes = fetch_release_runtimes(gh).await?;
     info!("📦 Found {} runtimes", runtimes.len());
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
     let mut left_to_update = config.chains.len();
@@ -69,7 +80,7 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
             "cannot find genesis_hash for {} in config.toml",
             chain.name
         ))?;
-        let genesis_hash = hex_to_bytes(&genesis_hash)?.try_into().unwrap();
+        let genesis_hash = H256::from_str(&genesis_hash).unwrap();
 
         // Skip if already have QR for the same version
         if let Some(map) = metadata_qrs.get(&chain.name) {
@@ -78,8 +89,15 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
                 continue;
             }
         }
-        let meta_values = meta_values_from_wasm(wasm.to_owned()).await?;
-        generate_metadata_qr(&meta_values, genesis_hash, &config.qr_dir)?;
+        let wasm_bytes = download_wasm(wasm.to_owned()).await?;
+        let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
+        let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
+        let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir)?;
+        let source = Source::Wasm {
+            github_repo: format!("{}/{}", gh.owner, gh.repo),
+            hash: format!("0x{}", hex::encode(meta_hash)),
+        };
+        save_source_info(&path, &source)?;
     }
     if left_to_update == 0 {
         info!("🎉 Everything is up to date!");

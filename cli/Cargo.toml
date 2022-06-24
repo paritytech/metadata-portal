@@ -19,12 +19,16 @@ anyhow = "1.0.42"
 toml = "0.5"
 serde = { version = "1.0", features = ["derive"] }
 dialoguer = "0.9.0"
-qr_reader_phone = {git = "https://github.com/paritytech/parity-signer"}
-qr_reader_pc = {git = "https://github.com/paritytech/parity-signer"}
-definitions = {git = "https://github.com/paritytech/parity-signer"}
-generate_message = {git = "https://github.com/paritytech/parity-signer"}
-transaction_parsing = {git = "https://github.com/paritytech/parity-signer"}
-constants = {git = "https://github.com/paritytech/parity-signer"}
+qr_reader_phone = {path = "/Users/pavel/Projects/parity-signer/rust/qr_reader_phone"}
+#qr_reader_phone = {git = "https://github.com/paritytech/parity-signer"}
+qr_reader_pc = {path = "/Users/pavel/Projects/parity-signer/rust/qr_reader_pc"}
+#qr_reader_pc = {git = "https://github.com/paritytech/parity-signer"}
+#definitions = {git = "https://github.com/paritytech/parity-signer"}
+definitions = {path = "/Users/pavel/Projects/parity-signer/rust/definitions"}
+#generate_message = {git = "https://github.com/paritytech/parity-signer"}
+generate_message = {path = "/Users/pavel/Projects/parity-signer/rust/generate_message"}
+transaction_parsing = {path = "/Users/pavel/Projects/parity-signer/rust/transaction_parsing"}
+#transaction_parsing = {git = "https://github.com/paritytech/parity-signer"}
 parity-scale-codec = {version = "3.1.2"}
 image = "0.23.14"
 quircs = "0.10.0"
@@ -35,6 +39,10 @@ octocrab = "0.16"
 tokio = { version = "1", features = ["full"] }
 reqwest = { version = "0.11", features = ["json", "blocking"]}
 
+sp-core = {git = "https://github.com/paritytech/substrate", default-features = false, features = ["full_crypto"]}
+png = "0.17.5"
+kamadak-exif = "0.5.4"
+blake2-rfc = "0.2.18"
 # Hash table which preserves insertion order
 indexmap = {version="1.8.1", features=["serde"]}
 

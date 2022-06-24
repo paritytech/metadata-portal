@@ -8,6 +8,7 @@ mod lib;
 mod opts;
 mod qrs;
 mod signer;
+mod source;
 mod updater;
 mod verifier;
 

@@ -56,8 +56,8 @@ fn validate_metadata_qr(qr_path: &QrPath, public_key: &str) -> Result<()> {
 }
 
 fn verify_signature(verifier: &Verifier, public_key: &str) -> Result<()> {
-    let discovered_pub_key = match &verifier.0 {
-        Some(VerifierValue::Standard(m)) => hex::encode(multisigner_to_public(m)),
+    let discovered_pub_key = match &verifier.v {
+        Some(VerifierValue::Standard { m }) => hex::encode(multisigner_to_public(m)),
         _ => bail!("unable to get verifier key from qr file: {:?}", verifier),
     };
     ensure!(

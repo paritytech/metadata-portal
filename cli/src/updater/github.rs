@@ -13,7 +13,8 @@ pub(crate) async fn fetch_release_runtimes(
     let release = octocrab::instance()
         .repos(&config.owner, &config.repo)
         .releases()
-        .get_latest()
+        .get_by_tag("v0.9.23")
+        // .get_latest()
         .await?;
     info!("📅 Latest release: {}", release.tag_name);
     for asset in release.assets {

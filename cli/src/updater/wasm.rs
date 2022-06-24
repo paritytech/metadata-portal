@@ -1,4 +1,5 @@
 use anyhow::{anyhow, ensure};
+
 use definitions::metadata::MetaValues;
 use log::info;
 use octocrab::models::repos::Asset;
@@ -40,7 +41,7 @@ impl TryFrom<Asset> for WasmRuntime {
     }
 }
 
-pub(crate) async fn meta_values_from_wasm(wasm: WasmRuntime) -> anyhow::Result<MetaValues> {
+pub(crate) async fn download_wasm(wasm: WasmRuntime) -> anyhow::Result<Vec<u8>> {
     info!("⬇️  Downloading {} runtime...", &wasm.chain);
     let response = reqwest::get(wasm.download_url.clone()).await?;
     ensure!(
@@ -49,11 +50,13 @@ pub(crate) async fn meta_values_from_wasm(wasm: WasmRuntime) -> anyhow::Result<M
         wasm.download_url,
         response.status()
     );
-    let wasm_bytes = response.bytes().await?;
+    Ok(response.bytes().await?.to_vec())
+}
 
-    let filename = format!("/tmp/{}", wasm.chain);
+pub(crate) fn meta_values_from_wasm_bytes(wasm_bytes: &Vec<u8>) -> anyhow::Result<MetaValues> {
+    let filename = "/tmp/wasm";
     std::fs::write(&Path::new(&filename), wasm_bytes)?;
-    let meta = MetaValues::from_wasm_file(&filename)
+    let meta = MetaValues::from_wasm_file(filename)
         .map_err(|_e| anyhow!("error converting wasm to metadata"))?;
     Ok(meta)
 }

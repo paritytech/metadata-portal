@@ -7,6 +7,7 @@ use std::{fmt, fs};
 
 use crate::lib::path::QrPath;
 use crate::lib::types::ChainName;
+use crate::source::{read_png_source, Source};
 use crate::AppConfig;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
@@ -63,6 +64,7 @@ pub(crate) fn read_export_file(config: &AppConfig) -> Result<ExportData> {
 pub(crate) struct QrCode {
     pub(crate) path: ReactAssetPath,
     pub(crate) signed_by: Option<String>,
+    pub(crate) source: Option<Source>,
 }
 
 impl QrCode {
@@ -72,7 +74,12 @@ impl QrCode {
             true => Some(config.verifier.name.clone()),
             false => None,
         };
-        Ok(QrCode { path, signed_by })
+        let source = read_png_source(&qr_path.to_path_buf())?;
+        Ok(QrCode {
+            path,
+            signed_by,
+            source,
+        })
     }
 }
 

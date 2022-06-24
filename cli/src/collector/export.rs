@@ -15,8 +15,9 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
     for chain in &config.chains {
         info!("Collecting {} info...", chain.name);
 
-        let meta_specs = fetcher.fetch_chain_info(chain)?;
-        let active_version = meta_specs.meta_values.version;
+        let specs = fetcher.fetch_specs(chain)?;
+        let meta = fetcher.fetch_metadata(chain)?;
+        let active_version = meta.meta_values.version;
 
         let metadata_qr = extract_metadata_qr(&metadata_qrs, &chain.name, &active_version)?;
 
@@ -35,11 +36,11 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 name: chain.name.clone(),
                 color: chain.color.clone(),
                 rpc_endpoint: chain.rpc_endpoint.clone(),
-                genesis_hash: format!("0x{}", hex::encode(&meta_specs.specs.genesis_hash)),
-                unit: meta_specs.specs.unit,
-                logo: meta_specs.specs.logo,
-                decimals: meta_specs.specs.decimals,
-                base58prefix: meta_specs.specs.base58prefix,
+                genesis_hash: format!("0x{}", hex::encode(&specs.genesis_hash)),
+                unit: specs.unit,
+                logo: specs.logo,
+                decimals: specs.decimals,
+                base58prefix: specs.base58prefix,
                 metadata_qr: QrCode::from_qr_path(config, metadata_qr)?,
                 specs_qr: QrCode::from_qr_path(config, specs_qr)?,
                 next_metadata_version: next_version,
@@ -55,30 +56,38 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
 mod tests {
     use super::*;
     use crate::config::Chain;
-    use crate::fetch::MetaSpecs;
     use definitions::crypto::Encryption;
     use definitions::metadata::MetaValues;
     use definitions::network_specs::NetworkSpecsToSend;
+    use generate_message::helpers::MetaFetched;
+    use sp_core::H256;
     use std::fs;
     use std::path::PathBuf;
+    use std::str::FromStr;
 
     struct MockFetcher;
     impl Fetcher for MockFetcher {
-        fn fetch_chain_info(&self, _chain: &Chain) -> Result<MetaSpecs> {
-            Ok(MetaSpecs {
-                specs: NetworkSpecsToSend {
-                    base58prefix: 0,
-                    color: "".to_string(),
-                    decimals: 10,
-                    encryption: Encryption::Ed25519,
-                    genesis_hash: [12; 32],
-                    logo: "logo".to_string(),
-                    name: "polkadot".to_string(),
-                    path_id: "".to_string(),
-                    secondary_color: "".to_string(),
-                    title: "".to_string(),
-                    unit: "DOT".to_string(),
-                },
+        fn fetch_specs(&self, _chain: &Chain) -> Result<NetworkSpecsToSend> {
+            Ok(NetworkSpecsToSend {
+                base58prefix: 0,
+                color: "".to_string(),
+                decimals: 10,
+                encryption: Encryption::Ed25519,
+                genesis_hash: H256::from_str(
+                    "a8dfb73a4b44e6bf84affe258954c12db1fe8e8cf00b965df2af2f49c1ec11cd",
+                )
+                .expect("checked value"),
+                logo: "logo".to_string(),
+                name: "polkadot".to_string(),
+                path_id: "".to_string(),
+                secondary_color: "".to_string(),
+                title: "".to_string(),
+                unit: "DOT".to_string(),
+            })
+        }
+
+        fn fetch_metadata(&self, _chain: &Chain) -> Result<MetaFetched> {
+            Ok(MetaFetched {
                 meta_values: MetaValues {
                     name: "".to_string(),
                     version: 9,
@@ -86,6 +95,8 @@ mod tests {
                     warn_incomplete_extensions: false,
                     meta: vec![],
                 },
+                block_hash: H256::zero(),
+                genesis_hash: H256::zero(),
             })
         }
     }

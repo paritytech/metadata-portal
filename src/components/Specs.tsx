@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from "react";
 import { ChainSpec } from "../scheme";
 import "./Specs.css";
-import Copy from "../assets/copy.png";
+import Copy from "../assets/copy.svg";
 
 interface SpecsProps {
   chainSpecs: ChainSpec;

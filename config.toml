@@ -15,26 +15,28 @@ repo = "polkadot"
 name = "polkadot"
 rpc_endpoint = "wss://rpc.polkadot.io"
 color = "#e6007a"
-# Optional. Only used when updating from GitHub releases
-genesis_hash = "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3"
 
 [[chains]]
 name = "kusama"
 rpc_endpoint = "wss://kusama-rpc.polkadot.io"
 color = "#000000"
-# Optional. Only used when updating from GitHub releases
-genesis_hash = "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"
 
 [[chains]]
 name = "westend"
 rpc_endpoint = "wss://westend-rpc.polkadot.io"
 color = "#f27230"
-# Optional. Only used when updating from GitHub releases
-genesis_hash = "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e"
+
+[[chains]]
+name = "altair"
+rpc_endpoint = "wss://fullnode.altair.centrifuge.io"
+color = "#e6007a"
+
+[[chains]]
+name = "centrifuge"
+rpc_endpoint = "wss://fullnode.parachain.centrifuge.io"
+color = "#e6007a"
 
 [[chains]]
 name = "polkadex"
 rpc_endpoint = "wss://mainnet.polkadex.trade"
 color = "#7C30DD"
-# Optional. Only used when updating from GitHub releases
-genesis_hash = "0x3920bcb4960a1eef5580cd5367ff3f430eef052774f78468852f7b9cb39f8a3c"

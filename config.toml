@@ -35,8 +35,3 @@ color = "#e6007a"
 name = "centrifuge"
 rpc_endpoint = "wss://fullnode.parachain.centrifuge.io"
 color = "#e6007a"
-
-[[chains]]
-name = "polkadex"
-rpc_endpoint = "wss://mainnet.polkadex.trade"
-color = "#7C30DD"

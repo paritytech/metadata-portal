@@ -54,7 +54,7 @@ fn create_camera(source_file: &Path) -> anyhow::Result<videoio::VideoCapture> {
 fn camera_capture(camera: &mut videoio::VideoCapture) -> anyhow::Result<GrayImage> {
     let mut frame = Mat::default();
     match camera.read(&mut frame) {
-        Ok(_) if frame.size()?.width > 0 => (),
+        Ok(_) if frame.size()?.width >= 0 => (),
         Ok(_) => bail!("Zero frame size."),
         Err(e) => bail!("Can`t read camera. {}", e),
     };

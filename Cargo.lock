@@ -431,6 +431,11 @@ checksum = "245097e9a4535ee1e3e3931fcfcd55a796a44c643e8596ff6566d68f09b87bbc"
 [[package]]
 name = "constants"
 version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer?branch=EgorPopelyaev/workaround_for_mac_to_open_camera_for_capture#261d7f78ae60f8ff3a288e90103d3bf9a6a6bfdd"
+
+[[package]]
+name = "constants"
+version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#0cac7bde29e4d4e1752c1ac8c8e912619224e18e"
 dependencies = [
  "hex",
@@ -584,7 +589,7 @@ source = "git+https://github.com/paritytech/parity-signer#0cac7bde29e4d4e1752c1a
 dependencies = [
  "blake2-rfc",
  "chrono",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "defaults",
  "definitions",
  "hex",
@@ -1019,7 +1024,7 @@ name = "generate_message"
 version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#0cac7bde29e4d4e1752c1ac8c8e912619224e18e"
 dependencies = [
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "db_handling",
  "definitions",
  "hex",
@@ -1735,7 +1740,7 @@ dependencies = [
  "anyhow",
  "assert_cmd",
  "clap",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "definitions",
  "dialoguer",
  "env_logger",
@@ -1749,7 +1754,7 @@ dependencies = [
  "opencv",
  "parity-scale-codec",
  "qr_reader_pc",
- "qr_reader_phone",
+ "qr_reader_phone 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "quircs",
  "reqwest",
  "serde",
@@ -2457,15 +2462,27 @@ dependencies = [
 [[package]]
 name = "qr_reader_pc"
 version = "0.2.0"
-source = "git+https://github.com/paritytech/parity-signer#0cac7bde29e4d4e1752c1ac8c8e912619224e18e"
+source = "git+https://github.com/paritytech/parity-signer?branch=EgorPopelyaev/workaround_for_mac_to_open_camera_for_capture#261d7f78ae60f8ff3a288e90103d3bf9a6a6bfdd"
 dependencies = [
  "anyhow",
  "hex",
  "image 0.23.14",
  "indicatif",
  "opencv",
- "qr_reader_phone",
+ "qr_reader_phone 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=EgorPopelyaev/workaround_for_mac_to_open_camera_for_capture)",
  "quircs",
+]
+
+[[package]]
+name = "qr_reader_phone"
+version = "0.1.0"
+source = "git+https://github.com/paritytech/parity-signer?branch=EgorPopelyaev/workaround_for_mac_to_open_camera_for_capture#261d7f78ae60f8ff3a288e90103d3bf9a6a6bfdd"
+dependencies = [
+ "anyhow",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer?branch=EgorPopelyaev/workaround_for_mac_to_open_camera_for_capture)",
+ "hex",
+ "raptorq",
+ "serde_json",
 ]
 
 [[package]]
@@ -2474,7 +2491,7 @@ version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#0cac7bde29e4d4e1752c1ac8c8e912619224e18e"
 dependencies = [
  "anyhow",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "hex",
  "raptorq",
  "serde_json",
@@ -2486,7 +2503,7 @@ version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#0cac7bde29e4d4e1752c1ac8c8e912619224e18e"
 dependencies = [
  "bitvec",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "hex",
  "png 0.17.5",
  "qrcode_static",
@@ -2501,7 +2518,7 @@ source = "git+https://github.com/paritytech/parity-signer#0cac7bde29e4d4e1752c1a
 dependencies = [
  "anyhow",
  "bitvec",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "hex",
  "png 0.17.5",
  "qrcodegen",
@@ -4008,7 +4025,7 @@ version = "0.1.0"
 source = "git+https://github.com/paritytech/parity-signer#0cac7bde29e4d4e1752c1ac8c8e912619224e18e"
 dependencies = [
  "bitvec",
- "constants",
+ "constants 0.1.0 (git+https://github.com/paritytech/parity-signer)",
  "db_handling",
  "definitions",
  "frame-metadata",

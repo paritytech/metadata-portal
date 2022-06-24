@@ -1,7 +1,8 @@
-use serde::Serialize;
 use std::fs::File;
 use std::io::Write;
 use std::path::Path;
+
+use serde::Serialize;
 
 pub(crate) fn save_to_file<T>(specs: &T, path: impl AsRef<Path>) -> anyhow::Result<()>
 where

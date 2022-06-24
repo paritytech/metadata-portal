@@ -12,10 +12,11 @@ mod source;
 mod updater;
 mod verifier;
 
+use std::process::exit;
+
 use clap::StructOpt;
 use env_logger::Env;
 use log::error;
-use std::process::exit;
 
 use crate::cleaner::clean;
 use crate::collector::collect;

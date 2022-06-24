@@ -1,10 +1,6 @@
-use anyhow::{anyhow, bail, ensure, Result};
 use std::path::Path;
 
-use crate::lib::camera::read_qr_file;
-use crate::lib::path::{ContentType, QrFileName, QrPath};
-use crate::qrs::qrs_in_dir;
-
+use anyhow::{anyhow, bail, ensure, Result};
 use definitions::error::TransferContent;
 use definitions::error_signer::Signer;
 use definitions::helpers::multisigner_to_public;
@@ -13,6 +9,10 @@ use definitions::network_specs::{Verifier, VerifierValue};
 use definitions::qr_transfers::ContentLoadMeta;
 use log::info;
 use transaction_parsing::check_signature::pass_crypto;
+
+use crate::lib::camera::read_qr_file;
+use crate::lib::path::{ContentType, QrFileName, QrPath};
+use crate::qrs::qrs_in_dir;
 
 pub(crate) fn validate_signed_qrs(dir: impl AsRef<Path>, public_key: &str) -> Result<()> {
     let all_qrs = qrs_in_dir(&dir)?;

@@ -3,18 +3,17 @@ mod github;
 pub(crate) mod source;
 mod wasm;
 
-use crate::config::AppConfig;
+use std::str::FromStr;
 
 use anyhow::Context;
 use blake2_rfc::blake2b::blake2b;
-use std::str::FromStr;
-
-use crate::fetch::Fetcher;
-use crate::qrs::{find_metadata_qrs, find_spec_qrs};
-use crate::source::{save_source_info, Source};
 use log::info;
 use sp_core::H256;
 
+use crate::config::AppConfig;
+use crate::fetch::Fetcher;
+use crate::qrs::{find_metadata_qrs, find_spec_qrs};
+use crate::source::{save_source_info, Source};
 use crate::updater::generate::{generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_release_runtimes;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};

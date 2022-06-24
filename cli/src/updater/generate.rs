@@ -1,6 +1,4 @@
-use crate::lib::path::{ContentType, QrFileName};
-
-use crate::lib::types::ChainName;
+use std::path::{Path, PathBuf};
 
 use definitions::metadata::MetaValues;
 use definitions::network_specs::NetworkSpecsToSend;
@@ -8,9 +6,10 @@ use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};
 use generate_message::full_run;
 use generate_message::parser::{Command as SignerCommand, Crypto, Goal, Make, Msg};
 use log::info;
-
 use sp_core::H256;
-use std::path::{Path, PathBuf};
+
+use crate::lib::path::{ContentType, QrFileName};
+use crate::lib::types::ChainName;
 
 pub(crate) fn generate_metadata_qr(
     meta_values: &MetaValues,

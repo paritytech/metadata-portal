@@ -1,9 +1,10 @@
+use std::collections::HashMap;
+
+use log::info;
+
 use crate::config::GitHub;
 use crate::lib::types::ChainName;
 use crate::updater::wasm::WasmRuntime;
-
-use log::info;
-use std::collections::HashMap;
 
 // fetch latest runtimes from Parity GitHub
 pub(crate) async fn fetch_release_runtimes(

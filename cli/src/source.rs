@@ -1,11 +1,12 @@
-use anyhow::Result;
-use png::Encoder;
-use serde::{Deserialize, Serialize};
-use sp_core::H256;
 use std::fs;
 use std::fs::File;
 use std::io::BufWriter;
 use std::path::Path;
+
+use anyhow::Result;
+use png::Encoder;
+use serde::{Deserialize, Serialize};
+use sp_core::H256;
 
 const SOURCE: &str = "Source";
 
@@ -72,9 +73,9 @@ pub(crate) fn read_png_source(path: &Path) -> Result<Option<Source>> {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-
     use std::path::Path;
+
+    use super::*;
 
     #[test]
     fn save_and_read_img_source() {

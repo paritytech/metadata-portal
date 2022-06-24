@@ -1,10 +1,10 @@
-use anyhow::{anyhow, ensure};
+use std::path::Path;
 
+use anyhow::{anyhow, ensure};
 use definitions::metadata::MetaValues;
 use log::info;
 use octocrab::models::repos::Asset;
 use reqwest::Url;
-use std::path::Path;
 
 #[derive(Debug, PartialEq, Clone, Hash, Eq)]
 pub(crate) struct WasmRuntime {

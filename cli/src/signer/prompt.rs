@@ -1,6 +1,7 @@
-use crate::lib::path::{QrFileName, QrPath};
 use dialoguer::theme::ColorfulTheme;
 use dialoguer::{Confirm, Select};
+
+use crate::lib::path::{QrFileName, QrPath};
 
 pub(crate) fn select_file(files_to_sign: &[QrPath]) -> usize {
     Select::with_theme(&ColorfulTheme::default())

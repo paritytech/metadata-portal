@@ -1,9 +1,9 @@
+use std::path::Path;
+use std::{fmt, fs};
+
 use anyhow::{Context, Result};
 use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
-
-use std::path::Path;
-use std::{fmt, fs};
 
 use crate::lib::path::QrPath;
 use crate::lib::types::ChainName;
@@ -85,8 +85,9 @@ impl QrCode {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use std::path::Path;
+
+    use super::*;
 
     #[test]
     fn create_react_asset_path() {

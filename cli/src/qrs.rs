@@ -1,10 +1,11 @@
-use crate::lib::path::{ContentType, QrPath};
-use crate::lib::types::{ChainName, SpecVersion};
-use anyhow::{Context, Result};
-
 use std::collections::{BTreeMap, HashMap};
 use std::fs;
 use std::path::Path;
+
+use anyhow::{Context, Result};
+
+use crate::lib::path::{ContentType, QrPath};
+use crate::lib::types::{ChainName, SpecVersion};
 
 type MetadataMap = HashMap<ChainName, BTreeMap<SpecVersion, QrPath>>;
 
@@ -94,9 +95,9 @@ pub(crate) fn next_metadata_version(
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-
     use std::path::Path;
+
+    use super::*;
 
     #[test]
     fn return_sorted_metadata() {

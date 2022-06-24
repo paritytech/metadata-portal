@@ -1,11 +1,11 @@
-use crate::export::{ExportChainSpec, ExportData, QrCode};
-use crate::fetch::Fetcher;
-
-use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
-use crate::AppConfig;
 use anyhow::{Context, Result};
 use indexmap::IndexMap;
 use log::info;
+
+use crate::export::{ExportChainSpec, ExportData, QrCode};
+use crate::fetch::Fetcher;
+use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
+use crate::AppConfig;
 
 pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<ExportData> {
     let specs_qrs = find_spec_qrs(&config.qr_dir)?;
@@ -54,16 +54,18 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use crate::config::Chain;
+    use std::fs;
+    use std::path::PathBuf;
+    use std::str::FromStr;
+
     use definitions::crypto::Encryption;
     use definitions::metadata::MetaValues;
     use definitions::network_specs::NetworkSpecsToSend;
     use generate_message::helpers::MetaFetched;
     use sp_core::H256;
-    use std::fs;
-    use std::path::PathBuf;
-    use std::str::FromStr;
+
+    use super::*;
+    use crate::config::Chain;
 
     struct MockFetcher;
     impl Fetcher for MockFetcher {

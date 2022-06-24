@@ -1,20 +1,19 @@
 mod prompt;
 
-use anyhow::bail;
 use std::process::Command;
 
+use anyhow::bail;
 use definitions::crypto::SufficientCrypto;
 use definitions::error::TransferContent;
 use generate_message::full_run;
+use generate_message::parser::{Command as SignerCommand, Crypto, Goal, Make, Msg};
 use parity_scale_codec::Decode;
+use qr_reader_pc::{run_with_camera, CameraSettings};
+use transaction_parsing::check_signature::pass_crypto;
 
 use crate::config::AppConfig;
 use crate::lib::camera::read_qr_file;
 use crate::lib::path::{ContentType, QrPath};
-use generate_message::parser::{Command as SignerCommand, Crypto, Goal, Make, Msg};
-use qr_reader_pc::{run_with_camera, CameraSettings};
-use transaction_parsing::check_signature::pass_crypto;
-
 use crate::lib::string::hex_to_bytes;
 use crate::qrs::qrs_in_dir;
 use crate::signer::prompt::{select_file, want_to_continue};

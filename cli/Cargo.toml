@@ -25,7 +25,7 @@ definitions = {git = "https://github.com/paritytech/parity-signer"}
 generate_message = {git = "https://github.com/paritytech/parity-signer"}
 transaction_parsing = {git = "https://github.com/paritytech/parity-signer"}
 parity-scale-codec = {version = "3.1.2"}
-image = "0.23"
+image = "0.24"
 quircs = "0.10"
 hex = "0.4"
 indicatif = "0.16"
@@ -36,7 +36,6 @@ reqwest = { version = "0.11", features = ["json", "blocking"]}
 
 sp-core = {git = "https://github.com/paritytech/substrate", default-features = false, features = ["full_crypto"]}
 png = "0.17.5"
-kamadak-exif = "0.5.4"
 blake2-rfc = "0.2.18"
 # Hash table which preserves insertion order
 indexmap = {version="1", features=["serde"]}

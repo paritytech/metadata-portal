@@ -1532,20 +1532,20 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@polkadot/extension-dapp@^0.43.1":
-  version "0.43.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/extension-dapp/-/extension-dapp-0.43.3.tgz#e66a111124632b6a0218bade60f2c23dcaf985af"
-  integrity sha512-sNb9O54+AMTgOTZVku6BzyKl3ZbFEe8I0m4LnzbV04s+5yjnW6FRvCGyknEYmLdeVo0qVzXTAjVE29fZvg20Yw==
+"@polkadot/extension-dapp@^0.44.1":
+  version "0.44.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/extension-dapp/-/extension-dapp-0.44.1.tgz#bbde17799efba9bb889f97575e69814263a7ed59"
+  integrity sha512-NPMiww/JxUra8OPYfYlw45r5bjl/mh1kvuDqdmDdYCLUCM00g/oynEEL8GraKUCRkZ/0K6CepldDAmIzgv45hw==
   dependencies:
     "@babel/runtime" "^7.18.3"
-    "@polkadot/extension-inject" "^0.43.3"
+    "@polkadot/extension-inject" "^0.44.1"
     "@polkadot/util" "^9.4.1"
     "@polkadot/util-crypto" "^9.4.1"
 
-"@polkadot/extension-inject@^0.43.3":
-  version "0.43.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/extension-inject/-/extension-inject-0.43.3.tgz#6ad434317fc195d84a857465a691f698d45fafd9"
-  integrity sha512-fmm6iIODf7LHuBQnrYhRJbbOkDUu9bEAUKuc7/ws/u/m8GnogxR+KMC7ywOgWYGKDmiy1eTcrSSaGZNIrDvV2g==
+"@polkadot/extension-inject@^0.44.1":
+  version "0.44.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/extension-inject/-/extension-inject-0.44.1.tgz#1bd5239507f308390b1e28d6c971264cee4b9ca2"
+  integrity sha512-CA12DdJXtNSaYMvwZLN3iz4qCRBQrIe+KtUFO/Mh5pbbRCn0xOl4qP3JlgT2xysM1u4PLv+RC5KMktx1gnGIUQ==
   dependencies:
     "@babel/runtime" "^7.18.3"
     "@polkadot/rpc-provider" "^8.7.1"

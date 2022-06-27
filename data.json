@@ -11,13 +11,15 @@
     "metadataVersion": 9230,
     "metadataQr": {
       "path": "/qr/polkadot_metadata_9230.apng",
-      "signedBy": "Parity"
+      "signedBy": "Parity",
+      "source": null
     },
     "nextMetadataVersion": null,
     "nextMetadataQr": null,
     "specsQr": {
       "path": "/qr/polkadot_specs.png",
-      "signedBy": "Parity"
+      "signedBy": "Parity",
+      "source": null
     }
   },
   "kusama": {
@@ -32,13 +34,15 @@
     "metadataVersion": 9230,
     "metadataQr": {
       "path": "/qr/kusama_metadata_9230.apng",
-      "signedBy": "Parity"
+      "signedBy": "Parity",
+      "source": null
     },
     "nextMetadataVersion": null,
     "nextMetadataQr": null,
     "specsQr": {
       "path": "/qr/kusama_specs.png",
-      "signedBy": "Parity"
+      "signedBy": "Parity",
+      "source": null
     }
   },
   "westend": {
@@ -53,13 +57,15 @@
     "metadataVersion": 9250,
     "metadataQr": {
       "path": "/qr/westend_metadata_9250.apng",
-      "signedBy": "Parity"
+      "signedBy": "Parity",
+      "source": null
     },
     "nextMetadataVersion": null,
     "nextMetadataQr": null,
     "specsQr": {
       "path": "/qr/westend_specs.png",
-      "signedBy": "Parity"
+      "signedBy": "Parity",
+      "source": null
     }
   }
 }

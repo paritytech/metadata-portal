@@ -1,8 +1,8 @@
 mod file;
 
-use crate::cleaner::file::files_to_remove;
 use std::fs;
 
+use crate::cleaner::file::files_to_remove;
 use crate::config::AppConfig;
 
 pub(crate) fn clean(config: AppConfig) -> anyhow::Result<()> {

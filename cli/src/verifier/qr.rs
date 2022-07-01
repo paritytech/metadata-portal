@@ -1,10 +1,6 @@
-use anyhow::{anyhow, bail, ensure, Result};
 use std::path::Path;
 
-use crate::lib::camera::read_qr_file;
-use crate::lib::path::{ContentType, QrFileName, QrPath};
-use crate::qrs::qrs_in_dir;
-
+use anyhow::{anyhow, bail, ensure, Result};
 use definitions::error::TransferContent;
 use definitions::error_signer::Signer;
 use definitions::helpers::multisigner_to_public;
@@ -13,6 +9,10 @@ use definitions::network_specs::{Verifier, VerifierValue};
 use definitions::qr_transfers::ContentLoadMeta;
 use log::info;
 use transaction_parsing::check_signature::pass_crypto;
+
+use crate::lib::camera::read_qr_file;
+use crate::lib::path::{ContentType, QrFileName, QrPath};
+use crate::qrs::qrs_in_dir;
 
 pub(crate) fn validate_signed_qrs(dir: impl AsRef<Path>, public_key: &str) -> Result<()> {
     let all_qrs = qrs_in_dir(&dir)?;
@@ -56,8 +56,8 @@ fn validate_metadata_qr(qr_path: &QrPath, public_key: &str) -> Result<()> {
 }
 
 fn verify_signature(verifier: &Verifier, public_key: &str) -> Result<()> {
-    let discovered_pub_key = match &verifier.0 {
-        Some(VerifierValue::Standard(m)) => hex::encode(multisigner_to_public(m)),
+    let discovered_pub_key = match &verifier.v {
+        Some(VerifierValue::Standard { m }) => hex::encode(multisigner_to_public(m)),
         _ => bail!("unable to get verifier key from qr file: {:?}", verifier),
     };
     ensure!(

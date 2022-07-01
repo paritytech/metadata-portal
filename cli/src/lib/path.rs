@@ -1,7 +1,8 @@
-use anyhow::{bail, Context};
 use std::convert::TryFrom;
 use std::fmt;
 use std::path::PathBuf;
+
+use anyhow::{bail, Context};
 
 #[derive(Debug, PartialEq, Clone, Hash, Eq)]
 pub(crate) struct QrPath {

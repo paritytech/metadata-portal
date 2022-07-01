@@ -1,5 +1,5 @@
 [package]
-authors = ["Pavel Rybalko <pavel@parity.io"]
+authors = ["Pavel Rybalko <pavel@parity.io>"]
 description = "metadata portal cli is a utility that works on WASM Runtime of Substrate based chains"
 edition = "2021"
 homepage = "https://github.com/paritytech/metadata-portal"
@@ -15,30 +15,32 @@ assert_cmd = "2.0"
 clap = {version = "3.0", features = ["derive", "env", "unicode", "cargo"]}
 env_logger = "0.9"
 log = "0.4"
-anyhow = "1.0.42"
+anyhow = "1.0"
 toml = "0.5"
 serde = { version = "1.0", features = ["derive"] }
-dialoguer = "0.9.0"
+dialoguer = "0.10"
 qr_reader_phone = {git = "https://github.com/paritytech/parity-signer"}
 qr_reader_pc = {git = "https://github.com/paritytech/parity-signer"}
 definitions = {git = "https://github.com/paritytech/parity-signer"}
 generate_message = {git = "https://github.com/paritytech/parity-signer"}
 transaction_parsing = {git = "https://github.com/paritytech/parity-signer"}
-constants = {git = "https://github.com/paritytech/parity-signer"}
 parity-scale-codec = {version = "3.1.2"}
-image = "0.23.14"
-quircs = "0.10.0"
-hex = "0.4.3"
-indicatif = "0.16.2"
+image = "0.24"
+quircs = "0.10"
+hex = "0.4"
+indicatif = "0.16"
 serde_json = "1.0"
 octocrab = "0.16"
 tokio = { version = "1", features = ["full"] }
 reqwest = { version = "0.11", features = ["json", "blocking"]}
 
+sp-core = {git = "https://github.com/paritytech/substrate", default-features = false, features = ["full_crypto"]}
+png = "0.17.5"
+blake2-rfc = "0.2.18"
 # Hash table which preserves insertion order
-indexmap = {version="1.8.1", features=["serde"]}
+indexmap = {version="1", features=["serde"]}
 
 [dependencies.opencv]
-version = "0.60"
+version = "0.65"
 default-features = false
 features = ["clang-runtime", "videoio", "imgproc", "highgui"]

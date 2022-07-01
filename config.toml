@@ -3,8 +3,8 @@ public_dir = "public"
 qr_dir = "public/qr"
 
 [verifier]
-name = "Parity"
-public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+name = "Novasama Technologies"
+public_key = "4a2a93ad70258ae6371b340b3616d95335a289d85ea4ed0a92bace59f2041815"
 
 # Optional. Only used when updating from GitHub releases
 [github]

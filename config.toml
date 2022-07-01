@@ -6,25 +6,6 @@ qr_dir = "public/qr"
 name = "Novasama Technologies"
 public_key = "4a2a93ad70258ae6371b340b3616d95335a289d85ea4ed0a92bace59f2041815"
 
-# Optional. Only used when updating from GitHub releases
-[github]
-owner = "paritytech"
-repo = "polkadot"
-
-[[chains]]
-name = "polkadot"
-rpc_endpoint = "wss://rpc.polkadot.io"
-color = "#e6007a"
-# Optional. Only used when updating from GitHub releases
-genesis_hash = "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3"
-
-[[chains]]
-name = "kusama"
-rpc_endpoint = "wss://kusama-rpc.polkadot.io"
-color = "#000000"
-# Optional. Only used when updating from GitHub releases
-genesis_hash = "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"
-
 [[chains]]
 name = "bifrost"
 color = "#5a25f0"
@@ -50,17 +31,10 @@ rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 genesis_hash = "0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b"
 
 [[chains]]
-name = "parallel heiko"
+name = "heiko"
 color = "#42d5de"
 rpc_endpoint = "wss://heiko-rpc.parallel.fi"
 genesis_hash = "0x64a1c658a48b2e70a7fb1ad4c39eea35022568c20fc44a6e2e3d0a57aee6053b"
-
-[[chains]]
-name = "westend"
-rpc_endpoint = "wss://westend-rpc.polkadot.io"
-color = "#f27230"
-# Optional. Only used when updating from GitHub releases
-genesis_hash = "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e"
 
 [[chains]]
 name = "westmint"

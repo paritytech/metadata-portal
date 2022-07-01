@@ -26,8 +26,48 @@ color = "#000000"
 genesis_hash = "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"
 
 [[chains]]
+name = "bifrost"
+color = "#5a25f0"
+rpc_endpoint = "wss://bifrost-parachain.api.onfinality.io/public-ws"
+genesis_hash = "0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed"
+
+[[chains]]
+name = "acala"
+color = "#645AFF"
+rpc_endpoint = "wss://acala-rpc.dwellir.com"
+genesis_hash = "0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c"
+
+[[chains]]
+name = "statemine"
+color = "#113911"
+rpc_endpoint = "wss://statemine-rpc.polkadot.io"
+genesis_hash = "0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a"
+
+[[chains]]
+name = "karura"
+color = "#ff4c3b"
+rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
+genesis_hash = "0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b"
+
+[[chains]]
+name = "parallel heiko"
+color = "#42d5de"
+rpc_endpoint = "wss://heiko-rpc.parallel.fi"
+genesis_hash = "0x64a1c658a48b2e70a7fb1ad4c39eea35022568c20fc44a6e2e3d0a57aee6053b"
+
+[[chains]]
 name = "westend"
 rpc_endpoint = "wss://westend-rpc.polkadot.io"
 color = "#f27230"
 # Optional. Only used when updating from GitHub releases
 genesis_hash = "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e"
+
+[[chains]]
+name = "westmint"
+color = "#77bb77"
+rpc_endpoint = "wss://westmint-rpc.polkadot.io"
+
+[[chains]]
+name = "mandala"
+color = "#173DC9"
+rpc_endpoint = "wss://acala-mandala.api.onfinality.io/public-ws/"

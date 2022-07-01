@@ -42,7 +42,7 @@ export default function App() {
     (Object.keys(allChains).includes(location) && location) ||
       localStorageNetwork && localStorageNetwork.toLowerCase() ||
       Object.keys(allChains)[0] ||
-      "polkadot"
+      "acala"
   );
 
   const [chain, setChain] = useState<ChainSpec>(allChains[currentNetwork]);

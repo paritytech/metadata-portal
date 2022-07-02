@@ -71,6 +71,7 @@ pub(crate) struct Chain {
     pub(crate) name: String,
     #[serde(default = "color_default")]
     pub(crate) color: String,
+    pub(crate) logo: String,
     pub(crate) rpc_endpoint: String,
     pub(crate) genesis_hash: Option<String>,
     pub(crate) token_unit: Option<String>,
@@ -87,6 +88,7 @@ impl Default for Chain {
         Self {
             name: "polkadot".to_string(),
             color: color_default(),
+            logo: "Polkadot.svg".to_string(),
             rpc_endpoint: "wss://example.com".to_string(),
             genesis_hash: None,
             token_unit: None,

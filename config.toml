@@ -35,11 +35,25 @@ rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 genesis_hash = "0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b"
 
 [[chains]]
-name = "heiko"
+name = "ParallelHeiko"
 color = "#42d5de"
 logo = "ParallelHeiko.svg"
 rpc_endpoint = "wss://heiko-rpc.parallel.fi"
 genesis_hash = "0x64a1c658a48b2e70a7fb1ad4c39eea35022568c20fc44a6e2e3d0a57aee6053b"
+
+[[chains]]
+name = "Shiden"
+color = "#5923B2"
+logo = "Shiden.svg"
+rpc_endpoint = "wss://rpc.shiden.astar.network"
+genesis_hash = "0xf1cf9022c7ebb34b162d5b5e34e705a5a740b2d0ecc1009fb89023e62a488108"
+
+[[chains]]
+name = "Basilisk"
+color = "#9eec1b"
+logo = "Basilisk.svg"
+rpc_endpoint = "wss://rpc-01.basilisk.hydradx.io"
+genesis_hash = "0xa85cfb9b9fd4d622a5b28289a02347af987d8f73fa3108450e2b4a11c1ce5755"
 
 [[chains]]
 name = "westmint"

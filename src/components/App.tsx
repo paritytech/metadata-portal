@@ -37,7 +37,7 @@ export default function App() {
   // check if URL exists in given Networks, if not
   // check localStorage if it contains a - from before - chosen network, if not
   // retrieve the 1st available network from the given ones, else (rare and wrong case)
-  // default to polkadot
+  // default to adcala
   const [currentNetwork, setCurrentNetwork] = useState<string>(
     (Object.keys(allChains).includes(location) && location) ||
       localStorageNetwork && localStorageNetwork.toLowerCase() ||

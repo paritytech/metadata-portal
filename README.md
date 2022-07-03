@@ -16,6 +16,8 @@ External users (chain owners) will be able to deploy their versions of metadata 
 | Parallel Heiko | Kusama parachain   |
 | Shiden         | Kusama parachain   |
 | Basilisk       | Kusama parachain   |
+| Khala          | Kusama parachain   |
+| Altari         | Kusama parachain   |
 | Westmint       | Westend parachain  |
 | Mandala        | Solo test network  |
 

@@ -35,7 +35,7 @@ rpc_endpoint = "wss://karura-rpc-0.aca-api.network"
 genesis_hash = "0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b"
 
 [[chains]]
-name = "ParallelHeiko"
+name = "Heiko"
 color = "#42d5de"
 logo = "ParallelHeiko.svg"
 rpc_endpoint = "wss://heiko-rpc.parallel.fi"

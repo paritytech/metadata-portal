@@ -1,7 +1,7 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Chains } from "../scheme";
 import { capitalizeFirstLetter } from "../utils";
-import {ArrowSmRightIcon} from "@heroicons/react/solid";
+import { ArrowSmRightIcon } from "@heroicons/react/solid";
 
 interface Props {
   allChains: Chains;
@@ -35,7 +35,11 @@ export default function Sidebar({
   const specs = allChains[currentNetwork];
 
   return (
-    <div className={`flex-col h-auto min-h-screen w-80 bg-neutral-100 px-6 justify-between absolute ${isOpen? "flex" : "hidden"} z-30 md:relative md:flex`}>
+    <div
+      className={`flex-col h-auto min-h-screen w-80 bg-neutral-100 px-6 justify-between absolute ${
+        isOpen ? "flex" : "hidden"
+      } z-30 md:relative md:flex`}
+    >
       <div className=" ">
         <h1 className="font-bold text-xl my-6">
           Metadata & Chain Spec Update Portal
@@ -70,7 +74,9 @@ export default function Sidebar({
                 >
                   <div className="flex items-center text-xl text-white font-inter">
                     <div className="network_icon">{c}</div>
-                    <div className="network_name">{capitalizeFirstLetter(c)}</div>
+                    <div className="network_name">
+                      {capitalizeFirstLetter(c)}
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -84,7 +90,9 @@ export default function Sidebar({
                 >
                   <div className="flex items-center text-xl font-inter">
                     <div className="network_icon text-[#9E9E9E]">{c}</div>
-                    <div className="network_name">{capitalizeFirstLetter(c)}</div>
+                    <div className="network_name">
+                      {capitalizeFirstLetter(c)}
+                    </div>
                   </div>
                 </div>
               )}
@@ -103,16 +111,17 @@ export default function Sidebar({
           target={"blank"}
         >
           <div className="flex float-left font-bold">
-            More on GitHub <ArrowSmRightIcon className="inline ml-1 w-4"/>
+            More on GitHub <ArrowSmRightIcon className="inline ml-1 w-4" />
           </div>
         </a>
         <a
-            href="https://www.parity.io/terms/"
-            className="inline-block mt-1 mb-4"
-            target="_blank"
-            rel="noreferrer">
+          href="https://www.parity.io/terms/"
+          className="inline-block mt-1 mb-4"
+          target="_blank"
+          rel="noreferrer"
+        >
           <div className="text-left font-bold">
-            Terms & Services <ArrowSmRightIcon className="inline ml-1 w-4"/>
+            Terms & Services <ArrowSmRightIcon className="inline ml-1 w-4" />
           </div>
         </a>
       </div>

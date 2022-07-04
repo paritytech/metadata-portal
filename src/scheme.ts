@@ -14,7 +14,7 @@ export interface ChainSpec {
   specsQr: QrInfo;
 }
 
-export type SourceType = WasmSource| RpcSource | null
+export type SourceType = WasmSource | RpcSource | null;
 
 export interface QrInfo {
   path: string;
@@ -23,17 +23,17 @@ export interface QrInfo {
 }
 
 interface SourceBase {
-  type: string,
+  type: string;
 }
 
-export interface WasmSource extends SourceBase{
-  github_repo: string,
-  hash: string,
+export interface WasmSource extends SourceBase {
+  github_repo: string;
+  hash: string;
 }
 
 export interface RpcSource extends SourceBase {
-  url: string,
-  block: string,
+  url: string;
+  block: string;
 }
 
 export interface AddToSignerInterface {

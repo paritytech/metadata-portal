@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./SpecsTab.css";
-import {DocumentDuplicateIcon} from "@heroicons/react/outline";
+import { DocumentDuplicateIcon } from "@heroicons/react/outline";
 
 interface HashProps {
   value: string;
@@ -15,7 +15,7 @@ export const copyToClipboard = (text: string): void => {
   document.body.removeChild(dummy);
 };
 
-export default function Hash({value}: HashProps) {
+export default function Hash({ value }: HashProps) {
   const [copied, setCopied] = useState<boolean>(false);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Hash({value}: HashProps) {
             setCopied(true);
             copyToClipboard(el);
           }}
-         />
+        />
         <div className={"text-green-500 ml-3 ".concat(cName)}>Copied</div>
       </>
     );

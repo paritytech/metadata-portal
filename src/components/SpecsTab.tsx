@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { ChainSpec } from "../scheme";
 import "./SpecsTab.css";
 import Hash from "./Hash";
@@ -8,7 +8,8 @@ interface SpecsProps {
 }
 
 export default function SpecsTab({ specs }: SpecsProps) {
-  const { color, rpcEndpoint, genesisHash, unit, base58prefix, specsQr } = specs;
+  const { color, rpcEndpoint, genesisHash, unit, base58prefix, specsQr } =
+    specs;
 
   return (
     <div className="px-2">
@@ -23,7 +24,7 @@ export default function SpecsTab({ specs }: SpecsProps) {
           )}
         </ul>
         <ul className="flex">
-          {row("Genesis hash", <Hash value={genesisHash} />  )}
+          {row("Genesis hash", <Hash value={genesisHash} />)}
           {row("Address prefix", base58prefix.toString())}
         </ul>
         <ul className="flex">
@@ -44,11 +45,11 @@ export default function SpecsTab({ specs }: SpecsProps) {
       <div className="pt-3">
         {"Scan this code to add chain specs to the "}
         <a
-            href="https://parity.io/signer/"
-            target="_blank"
-            className="font-medium"
-            style={{color: `${color}` }}
-            rel="noreferrer"
+          href="https://parity.io/signer/"
+          target="_blank"
+          className="font-medium"
+          style={{ color: `${color}` }}
+          rel="noreferrer"
         >
           Parity Signer App
         </a>

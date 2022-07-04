@@ -79,7 +79,7 @@ pub(crate) struct Chain {
 }
 
 fn color_default() -> String {
-    "#9C9C9C".to_string()
+    "#000000".to_string()
 }
 
 #[cfg(test)]

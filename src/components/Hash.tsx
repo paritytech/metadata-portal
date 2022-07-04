@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "./Specs.css";
-import Copy from "../assets/copy.svg";
+import "./SpecsTab.css";
+import { DocumentDuplicateIcon } from "@heroicons/react/outline";
 
 interface HashProps {
   value: string;
@@ -15,7 +15,7 @@ export const copyToClipboard = (text: string): void => {
   document.body.removeChild(dummy);
 };
 
-export default function Hash({value}: HashProps) {
+export default function Hash({ value }: HashProps) {
   const [copied, setCopied] = useState<boolean>(false);
 
   useEffect(() => {
@@ -28,14 +28,13 @@ export default function Hash({value}: HashProps) {
     return (
       <>
         <div className="flex float-left">{sliced}</div>
-        <img
+        <DocumentDuplicateIcon
           className="w-5 h-5 ml-2 cursor-pointer"
-          src={Copy}
           onClick={() => {
             setCopied(true);
             copyToClipboard(el);
           }}
-         alt="copy" />
+        />
         <div className={"text-green-500 ml-3 ".concat(cName)}>Copied</div>
       </>
     );
@@ -43,4 +42,3 @@ export default function Hash({value}: HashProps) {
 
   return elipsisHash(value);
 }
-

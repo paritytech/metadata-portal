@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   onClick: () => void;
   label: string | JSX.Element;

@@ -14,22 +14,24 @@ export interface ChainSpec {
   specsQr: QrInfo;
 }
 
+export type SourceType = WasmSource| RpcSource | null
+
 export interface QrInfo {
   path: string;
   signedBy: string | null;
-  source: WasmSource| RpcSource | null;
+  source: SourceType;
 }
 
-interface SourceType {
+interface SourceBase {
   type: string,
 }
 
-export interface WasmSource extends SourceType{
+export interface WasmSource extends SourceBase{
   github_repo: string,
   hash: string,
 }
 
-export interface RpcSource extends SourceType {
+export interface RpcSource extends SourceBase {
   url: string,
   block: string,
 }

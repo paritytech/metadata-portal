@@ -1,8 +1,5 @@
-.hidden {
-  opacity: 0;
-}
 .fade {
-  animation: fade-in-keyframes 1s alternate;
+  animation: fade-in-keyframes 0.3s alternate;
 }
 @keyframes fade-in-keyframes {
   from {

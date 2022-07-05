@@ -70,6 +70,25 @@ rpc_endpoint = "wss://khala-api.phala.network/ws"
 genesis_hash = "0xd43540ba6d3eb4897c28a77d48cb5b729fea37603cbbfc7a86a73b72adb3be8d"
 
 [[chains]]
+name = "kilt-spiritnet"
+color = "#8c145a"
+logo = "KILT_Spiritnet.svg"
+rpc_endpoint = "wss://spiritnet.kilt.io/"
+
+[[chains]]
+name = "calamari"
+color = "#000000"
+logo = "Calamari.svg"
+rpc_endpoint = "wss://ws.calamari.systems/"
+
+[[chains]]
+name = "quartz"
+color = "#FF4D6A"
+logo = "Quartz.svg"
+rpc_endpoint = "wss://quartz.unique.network"
+
+# Test networks
+[[chains]]
 name = "westmint"
 color = "#77bb77"
 logo = "Westmint_Testnet.svg"

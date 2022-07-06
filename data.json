@@ -24,6 +24,7 @@
         "hash": "0xcc1272022f874fab8564fff672553b8e7440fa7e7ced2fca140a64eafab7ecac"
       }
     },
+    "latestMetadata": "/qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "/qr/polkadot_specs.png",
       "signedBy": "Parity",
@@ -55,6 +56,7 @@
         "hash": "0x6b48b0bdd23e94e91133f532b10f6af68751b9f734084a2353aece4ffa4b5ef7"
       }
     },
+    "latestMetadata": "/qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "/qr/kusama_specs.png",
       "signedBy": "Parity",
@@ -82,6 +84,7 @@
     },
     "nextMetadataVersion": null,
     "nextMetadataQr": null,
+    "latestMetadata": "/qr/westend_metadata_latest.apng",
     "specsQr": {
       "path": "/qr/westend_specs.png",
       "signedBy": "Parity",

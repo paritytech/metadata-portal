@@ -54,7 +54,9 @@ export default function SpecsTab({ specs }: SpecsProps) {
                 style={{ color: `${color}` }}
                 rel="noreferrer"
               >
-                {location.origin + process.env.PUBLIC_URL + latestMetadata}
+                {`${location.origin}/${
+                  process.env.PUBLIC_URL + latestMetadata
+                }`}
                 <ExternalLinkIcon className={"inline w-4 h-4 ml-1"} />
               </a>
             </>,

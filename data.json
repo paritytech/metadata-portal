@@ -10,13 +10,13 @@
     "decimals": 10,
     "metadataVersion": 9230,
     "metadataQr": {
-      "path": "/qr/polkadot_metadata_9230.apng",
+      "path": "qr/polkadot_metadata_9230.apng",
       "signedBy": "Parity",
       "source": null
     },
     "nextMetadataVersion": 9250,
     "nextMetadataQr": {
-      "path": "/qr/polkadot_metadata_9250.apng",
+      "path": "qr/polkadot_metadata_9250.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Wasm",
@@ -24,9 +24,9 @@
         "hash": "0xcc1272022f874fab8564fff672553b8e7440fa7e7ced2fca140a64eafab7ecac"
       }
     },
-    "latestMetadata": "/qr/polkadot_metadata_latest.apng",
+    "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
-      "path": "/qr/polkadot_specs.png",
+      "path": "qr/polkadot_specs.png",
       "signedBy": "Parity",
       "source": null
     }
@@ -42,13 +42,13 @@
     "decimals": 12,
     "metadataVersion": 9230,
     "metadataQr": {
-      "path": "/qr/kusama_metadata_9230.apng",
+      "path": "qr/kusama_metadata_9230.apng",
       "signedBy": "Parity",
       "source": null
     },
     "nextMetadataVersion": 9250,
     "nextMetadataQr": {
-      "path": "/qr/kusama_metadata_9250.apng",
+      "path": "qr/kusama_metadata_9250.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Wasm",
@@ -56,9 +56,9 @@
         "hash": "0x6b48b0bdd23e94e91133f532b10f6af68751b9f734084a2353aece4ffa4b5ef7"
       }
     },
-    "latestMetadata": "/qr/kusama_metadata_latest.apng",
+    "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
-      "path": "/qr/kusama_specs.png",
+      "path": "qr/kusama_specs.png",
       "signedBy": "Parity",
       "source": null
     }
@@ -74,7 +74,7 @@
     "decimals": 12,
     "metadataVersion": 9251,
     "metadataQr": {
-      "path": "/qr/westend_metadata_9251.apng",
+      "path": "qr/westend_metadata_9251.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Rpc",
@@ -84,9 +84,9 @@
     },
     "nextMetadataVersion": null,
     "nextMetadataQr": null,
-    "latestMetadata": "/qr/westend_metadata_latest.apng",
+    "latestMetadata": "qr/westend_metadata_latest.apng",
     "specsQr": {
-      "path": "/qr/westend_specs.png",
+      "path": "qr/westend_specs.png",
       "signedBy": "Parity",
       "source": null
     }

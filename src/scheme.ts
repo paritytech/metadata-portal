@@ -11,6 +11,7 @@ export interface ChainSpec {
   metadataQr: QrInfo;
   nextMetadataVersion: number | null;
   nextMetadataQr: QrInfo | null;
+  latestMetadata: string;
   specsQr: QrInfo;
 }
 

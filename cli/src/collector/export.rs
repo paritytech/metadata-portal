@@ -1,9 +1,13 @@
 use anyhow::{Context, Result};
 use indexmap::IndexMap;
 use log::info;
+use std::fs;
+use std::os::unix::fs::symlink;
+use std::path::PathBuf;
 
-use crate::export::{ExportChainSpec, ExportData, QrCode};
+use crate::export::{ExportChainSpec, ExportData, QrCode, ReactAssetPath};
 use crate::fetch::Fetcher;
+use crate::lib::path::QrPath;
 use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
 use crate::AppConfig;
 
@@ -30,6 +34,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
         let next_metadata_qr = next_version
             .map(|v| extract_metadata_qr(&metadata_qrs, &chain.name, &v).unwrap())
             .map(|qr| QrCode::from_qr_path(config, qr).unwrap());
+        let latest_meta = update_pointer_to_latest_metadata(&metadata_qr)?;
         export_specs.insert(
             chain.name.clone(),
             ExportChainSpec {
@@ -46,17 +51,30 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 next_metadata_version: next_version,
                 next_metadata_qr,
                 metadata_version: active_version,
+                latest_metadata: ReactAssetPath::from_fs_path(&latest_meta, &config.public_dir)?,
             },
         );
     }
     Ok(export_specs)
 }
 
+// Create symlink to latest metadata qr
+fn update_pointer_to_latest_metadata(metadata_qr: &QrPath) -> Result<PathBuf> {
+    let latest_metadata_qr = metadata_qr.dir.join(format!(
+        "{}_metadata_latest.apng",
+        metadata_qr.file_name.chain
+    ));
+    if latest_metadata_qr.is_symlink() {
+        fs::remove_file(&latest_metadata_qr).unwrap();
+    }
+    symlink(&metadata_qr.to_path_buf(), &latest_metadata_qr).unwrap();
+    Ok(latest_metadata_qr)
+}
+
 #[cfg(test)]
 mod tests {
-    use std::fs;
-    use std::path::PathBuf;
     use std::str::FromStr;
+    use std::{env, fs};
 
     use definitions::crypto::Encryption;
     use definitions::metadata::MetaValues;
@@ -105,9 +123,10 @@ mod tests {
 
     #[test]
     fn test_collector() {
+        let root_dir = env::current_dir().unwrap();
         let config = AppConfig {
-            qr_dir: PathBuf::from("./src/collector/for_tests"),
-            public_dir: PathBuf::from("./src/collector"),
+            qr_dir: root_dir.join("src/collector/for_tests"),
+            public_dir: root_dir.join("src/collector"),
             ..Default::default()
         };
 
@@ -116,5 +135,9 @@ mod tests {
         let expected = fs::read_to_string(config.qr_dir.join("expected.json"))
             .expect("unable to read expected file");
         assert_eq!(result, expected);
+
+        let latest_symlink = config.qr_dir.join("polkadot_metadata_latest.apng");
+        assert!(latest_symlink.exists());
+        fs::remove_file(latest_symlink).unwrap();
     }
 }

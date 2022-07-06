@@ -25,7 +25,7 @@ pub(crate) fn check_deployment(config: AppConfig) -> Result<()> {
 
     let data_file = ReactAssetPath::from_fs_path(&config.data_file, &config.public_dir)?;
     let url = Url::parse(&pkg_json.homepage)?;
-    let url = url.join(&data_file.to_string()[1..])?;
+    let url = url.join(&data_file.to_string())?;
 
     let online = reqwest::blocking::get(url)?.json::<ExportData>()?;
     let local = export_specs(&config, RpcFetcher);

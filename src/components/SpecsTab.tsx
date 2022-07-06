@@ -48,14 +48,14 @@ export default function SpecsTab({ specs }: SpecsProps) {
             "Latest metadata QR",
             <>
               <a
-                href={process.env.PUBLIC_URL + latestMetadata}
+                href={process.env.PUBLIC_URL + "/" + latestMetadata}
                 target="_blank"
                 className="font-medium"
                 style={{ color: `${color}` }}
                 rel="noreferrer"
               >
                 {`${location.origin}/${
-                  process.env.PUBLIC_URL + latestMetadata
+                  process.env.PUBLIC_URL + "/" + latestMetadata
                 }`}
                 <ExternalLinkIcon className={"inline w-4 h-4 ml-1"} />
               </a>
@@ -80,7 +80,7 @@ export default function SpecsTab({ specs }: SpecsProps) {
       </div>
 
       <div className="flex justify-center">
-        <img src={process.env.PUBLIC_URL + specsQr.path} alt="Qr code" />
+        <img src={process.env.PUBLIC_URL + "/" + specsQr.path} alt="Qr code" />
       </div>
     </div>
   );

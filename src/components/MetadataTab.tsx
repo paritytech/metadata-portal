@@ -111,7 +111,7 @@ export default function MetadataTab({ specs }: MetadataTabProps) {
 
       <div className="md:w-[468px] md:h-[468px]">
         <img
-          src={process.env.PUBLIC_URL + qrs[selectedIdx].qr.path}
+          src={process.env.PUBLIC_URL + "/" + qrs[selectedIdx].qr.path}
           alt="metadata qr code"
         />
       </div>

@@ -73,7 +73,7 @@ export default function Sidebar({
                   style={{ backgroundColor: specs.color }}
                 >
                   <div className="flex items-center text-xl text-white font-inter">
-                    <div className="network_icon">
+                    <div>
                       <img
                         src={
                           process.env.PUBLIC_URL +

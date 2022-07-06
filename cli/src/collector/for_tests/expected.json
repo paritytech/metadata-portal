@@ -10,7 +10,7 @@
     "decimals": 10,
     "metadataVersion": 9,
     "metadataQr": {
-      "path": "/for_tests/polkadot_metadata_9.apng",
+      "path": "for_tests/polkadot_metadata_9.apng",
       "signedBy": "Test Verifier",
       "source": {
         "type": "Rpc",
@@ -20,7 +20,7 @@
     },
     "nextMetadataVersion": 10,
     "nextMetadataQr": {
-      "path": "/for_tests/polkadot_metadata_10.apng",
+      "path": "for_tests/polkadot_metadata_10.apng",
       "signedBy": "Test Verifier",
       "source": {
         "type": "Wasm",
@@ -28,8 +28,9 @@
         "hash": "0xbce731f223d5fd37ecacafb5eae59b8e9df39154cdea1f3692525c260534f8d7"
       }
     },
+    "latestMetadata": "for_tests/polkadot_metadata_latest.apng",
     "specsQr": {
-      "path": "/for_tests/polkadot_specs.png",
+      "path": "for_tests/polkadot_specs.png",
       "signedBy": "Test Verifier",
       "source": null
     }

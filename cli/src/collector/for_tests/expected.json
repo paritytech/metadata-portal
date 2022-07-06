@@ -28,6 +28,7 @@
         "hash": "0xbce731f223d5fd37ecacafb5eae59b8e9df39154cdea1f3692525c260534f8d7"
       }
     },
+    "latestMetadata": "/for_tests/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "/for_tests/polkadot_specs.png",
       "signedBy": "Test Verifier",

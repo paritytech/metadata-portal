@@ -10,6 +10,7 @@ import { row } from "./SpecsTab";
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { ExternalLinkIcon } from "@heroicons/react/outline";
 
 type LabeledQr = {
   qr: QrInfo;
@@ -104,6 +105,7 @@ export default function MetadataTab({ specs }: MetadataTabProps) {
           rel="noreferrer"
         >
           Parity Signer App
+          <ExternalLinkIcon className={"inline w-4 h-4 ml-2"} />
         </a>
       </div>
 
@@ -139,6 +141,7 @@ function SourceBlock({ source }: SourceBlockProps) {
                 rel="noreferrer"
               >
                 {s.github_repo}
+                <ExternalLinkIcon className={"inline w-4 h-4 ml-1"} />
               </a>
             )}
             {row("Blake2-256 hash", <Hash value={s.hash} />)}

@@ -15,6 +15,7 @@
     },
     "nextMetadataVersion": null,
     "nextMetadataQr": null,
+    "latestMetadata": "",
     "specsQr": {
       "path": "/qr/polkadot_specs.png",
       "signedBy": "Parity"

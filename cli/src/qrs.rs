@@ -13,7 +13,11 @@ type MetadataMap = HashMap<ChainName, BTreeMap<SpecVersion, QrPath>>;
 pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
     let mut files = vec![];
     for file in fs::read_dir(dir)? {
-        match QrPath::try_from(&file?.path()) {
+        let file = file?;
+        if !file.file_type()?.is_file() {
+            continue;
+        }
+        match QrPath::try_from(&file.path()) {
             Ok(qr_path) => files.push(qr_path),
             Err(e) => {
                 eprintln!("{}", e);

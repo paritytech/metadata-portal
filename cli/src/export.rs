@@ -48,6 +48,7 @@ pub(crate) struct ExportChainSpec {
     pub(crate) metadata_qr: QrCode,
     pub(crate) next_metadata_version: Option<u32>,
     pub(crate) next_metadata_qr: Option<QrCode>,
+    pub(crate) latest_metadata: ReactAssetPath,
     pub(crate) specs_qr: QrCode,
 }
 

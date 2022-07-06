@@ -15,13 +15,13 @@ pub(crate) struct ReactAssetPath(String);
 
 impl ReactAssetPath {
     pub(crate) fn from_fs_path(path: &Path, public_dir: &Path) -> Result<ReactAssetPath> {
-        Ok(ReactAssetPath(format!(
-            "/{}",
+        Ok(ReactAssetPath(
             path.to_path_buf()
                 .strip_prefix(public_dir)?
                 .to_str()
                 .unwrap()
-        )))
+                .to_owned(),
+        ))
     }
 }
 
@@ -96,7 +96,7 @@ mod tests {
         let public_dir = Path::new("./../public").to_path_buf();
         assert_eq!(
             ReactAssetPath::from_fs_path(&img_path, &public_dir).unwrap(),
-            ReactAssetPath("/qr/name_kind_9123.apng".to_string())
+            ReactAssetPath("qr/name_kind_9123.apng".to_string())
         );
     }
 }

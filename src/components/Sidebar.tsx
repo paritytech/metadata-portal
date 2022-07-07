@@ -15,7 +15,7 @@ interface Props {
 const searchStringInArray = (str: string, strArray: string[]) => {
   const a = [];
   for (let j = 0; j < strArray.length; j++) {
-    if (strArray[j].match(str)) a.push(strArray[j]);
+    if (strArray[j].toUpperCase().match(str.toUpperCase())) a.push(strArray[j]);
   }
   return a;
 };
@@ -73,7 +73,7 @@ export default function Sidebar({
                   style={{ backgroundColor: specs.color }}
                 >
                   <div className="flex items-center text-xl text-white font-inter">
-                    <div>
+                    <div className="network_icon">
                       <img
                         src={
                           process.env.PUBLIC_URL +
@@ -97,7 +97,7 @@ export default function Sidebar({
                   }}
                 >
                   <div className="flex items-center text-xl font-inter">
-                    <div className="text-[#9E9E9E]">
+                    <div className="network_icon">
                       <img
                         src={
                           process.env.PUBLIC_URL +

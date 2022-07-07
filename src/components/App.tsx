@@ -47,7 +47,8 @@ export default function App() {
   const [currentNetwork, setCurrentNetwork] = useState<string>(
     (Object.keys(allChains).includes(location) && location) ||
       (localStorageNetwork && localStorageNetwork.toLowerCase()) ||
-      Object.keys(allChains)[0] || "bifrost"
+      Object.keys(allChains)[0] ||
+      "bifrost"
   );
 
   const specs = allChains[currentNetwork];

@@ -87,6 +87,72 @@ color = "#FF4D6A"
 logo = "Quartz.svg"
 rpc_endpoint = "wss://quartz.unique.network"
 
+[[chains]]
+name = "pioneer-runtime"
+color = "#000000"
+logo = "Bit.Country_Pioneer.svg"
+rpc_endpoint = "wss://pioneer.api.onfinality.io/public-ws"
+
+[[chains]]
+name = "astar"
+color = "#1b6dc1d9"
+logo = "Astar.svg"
+rpc_endpoint = "wss://rpc.astar.network"
+
+[[chains]]
+name = "parallel"
+color = "#ef18ac"
+logo = "Parallel.svg"
+rpc_endpoint = "wss://rpc.parallel.fi"
+
+[[chains]]
+name = "clover-mainnet"
+color = "linear-gradient(to right, #52ad75, #7cc773)"
+logo = "CLV_Parachain.svg"
+rpc_endpoint = "wss://rpc-para.clover.finance"
+
+[[chains]]
+name = "statemint"
+color = "#86e62a"
+logo = "Statemint.svg"
+rpc_endpoint = "wss://statemint-rpc.polkadot.io"
+
+[[chains]]
+name = "subsocial"
+color = "#b9018c"
+logo = "Subsocial_Solochain.svg"
+rpc_endpoint = "wss://arch.subsocial.network"
+
+[[chains]]
+name = "robonomics"
+color = "#2949d3"
+logo = "Robonomics.svg"
+rpc_endpoint = "wss://kusama.rpc.robonomics.network/"
+
+[[chains]]
+name = "encointer-parachain"
+color = "#0000cc"
+logo = "Encointer.svg"
+rpc_endpoint = "wss://api.kusama.encointer.org"
+
+[[chains]]
+name = "kintsugi-parachain"
+color = "#1a0a2d"
+logo = "Kintsugi.svg"
+rpc_endpoint = "wss://api-kusama.interlay.io/parachain"
+
+[[chains]]
+name = "picasso"
+color = "#000000"
+logo = "Picasso.svg"
+rpc_endpoint = "wss://picasso-rpc.composable.finance"
+
+[[chains]]
+name = "zeitgeist"
+color = "linear-gradient(180deg, rgba(32,90,172,1) 0%, rgba(26,72,138,1) 50%, rgba(13,36,69,1) 100%)"
+logo = "Zeitgeist.svg"
+rpc_endpoint = "wss://zeitgeist-rpc.dwellir.com"
+
 # Test networks
 [[chains]]
 name = "westmint"

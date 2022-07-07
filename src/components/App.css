@@ -13,9 +13,14 @@
 }
 
 .network_icon {
-  font-family: "Web3-Regular";
-  width: 3rem;
-  @apply text-center text-3xl mr-2;
+  display: inline-block;
+  height: 24px;
+  margin-right: 0.75rem;
+  vertical-align: middle;
+  width: 24px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-style: none;
 }
 
 .network_name {

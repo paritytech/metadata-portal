@@ -35,6 +35,13 @@ export default function App() {
     };
     fetchData().then((r) => {
       setAllChains(r);
+      const lastVisited =
+        localStorageNetwork && localStorageNetwork.toLowerCase();
+      const network =
+        (Object.keys(r).includes(location) && location) ||
+        (Object.keys(r).includes(lastVisited) && lastVisited) ||
+        Object.keys(r)[0];
+      setCurrentNetwork(network);
     });
   }, []);
 
@@ -44,11 +51,7 @@ export default function App() {
   // check if URL exists in given Networks, if not
   // check localStorage if it contains a - from before - chosen network, if not
   // retrieve the 1st available network from the given ones, else (rare and wrong case)
-  const [currentNetwork, setCurrentNetwork] = useState<string>(
-    (Object.keys(allChains).includes(location) && location) ||
-      (localStorageNetwork && localStorageNetwork.toLowerCase()) ||
-      Object.keys(allChains)[0]
-  );
+  const [currentNetwork, setCurrentNetwork] = useState<string>("");
 
   const specs = allChains[currentNetwork];
 

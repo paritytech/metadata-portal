@@ -73,15 +73,7 @@ export default function Sidebar({
                   style={{ backgroundColor: specs.color }}
                 >
                   <div className="flex items-center text-xl text-white font-inter">
-                    <div className="network_icon">
-                      <img
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/chains/" +
-                          allChains[c].logo
-                        }
-                      />
-                    </div>
+
                     <div className="network_name">
                       {capitalizeFirstLetter(c)}
                     </div>
@@ -97,15 +89,7 @@ export default function Sidebar({
                   }}
                 >
                   <div className="flex items-center text-xl font-inter">
-                    <div className="network_icon">
-                      <img
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/chains/" +
-                          allChains[c].logo
-                        }
-                      />
-                    </div>
+                    <div className="network_icon text-[#9E9E9E]">{c}</div>
                     <div className="network_name">
                       {capitalizeFirstLetter(c)}
                     </div>

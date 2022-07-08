@@ -153,6 +153,12 @@ color = "linear-gradient(180deg, rgba(32,90,172,1) 0%, rgba(26,72,138,1) 50%, rg
 logo = "Zeitgeist.svg"
 rpc_endpoint = "wss://zeitgeist-rpc.dwellir.com"
 
+[[chains]]
+name = "hydradx"
+color = "#f653a2"
+logo = "HydraDX.svg"
+rpc_endpoint = "wss://rpc-01.hydradx.io"
+
 # Test networks
 [[chains]]
 name = "westmint"

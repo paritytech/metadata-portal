@@ -18,7 +18,7 @@ use crate::updater::generate::{generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_release_runtimes;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
 
-pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
+pub(crate) fn update_from_node(config: AppConfig, sign: bool, fetcher: impl Fetcher) -> anyhow::Result<()> {
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
     let specs_qrs = find_spec_qrs(&config.qr_dir)?;
 
@@ -50,6 +50,9 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
         };
         save_source_info(&path, &source)?;
         is_changed = true;
+        if sign {
+          println!("sign!");
+        }
     }
 
     if !is_changed {
@@ -59,7 +62,7 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
 }
 
 #[tokio::main]
-pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> {
+pub(crate) async fn update_from_github(config: AppConfig, sign: bool) -> anyhow::Result<()> {
     if config.github.is_none() {
         info!("↪️ No GitHub repository specified, skipping update");
         return Ok(());
@@ -97,6 +100,9 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
             hash: format!("0x{}", hex::encode(meta_hash)),
         };
         save_source_info(&path, &source)?;
+        if sign {
+          println!("sign!");
+        }
     }
     if left_to_update == 0 {
         info!("🎉 Everything is up to date!");

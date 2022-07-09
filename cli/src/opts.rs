@@ -29,6 +29,9 @@ pub(crate) enum SubCommand {
     /// Check updates
     Update(UpdateOpts),
 
+    /// Check updates and sign if update found
+    UpdateAndSign(UpdateOpts),
+
     /// Verify signed QR codes
     Verify,
 

@@ -14,6 +14,9 @@ verifier:
 updater:
 	cargo run --release update
 
+updater_and_signer:
+	cargo run --release -- update-and-sign
+
 collector:
 	cargo run --release collect
 

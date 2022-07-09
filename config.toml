@@ -4,7 +4,7 @@ qr_dir = "public/qr"
 
 [verifier]
 name = "Novasama Technologies"
-public_key = "4a2a93ad70258ae6371b340b3616d95335a289d85ea4ed0a92bace59f2041815"
+public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
 
 [[chains]]
 name = "bifrost"

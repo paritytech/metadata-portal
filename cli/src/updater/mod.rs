@@ -5,14 +5,20 @@ mod wasm;
 
 use std::str::FromStr;
 
-use anyhow::Context;
+use anyhow::{bail, Context};
 use blake2_rfc::blake2b::blake2b;
+use definitions::crypto::SufficientCrypto;
 use log::info;
-use sp_core::H256;
+use sp_core::{H256, sr25519, Pair};
+use parity_scale_codec::Encode;
+use generate_message::parser::{Command as SignerCommand, Crypto, Goal, Make, Msg};
 
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
+use crate::lib::camera::read_qr_file;
+use crate::lib::path::QrPath;
 use crate::qrs::{find_metadata_qrs, find_spec_qrs};
+use crate::signer::sign_qr;
 use crate::source::{save_source_info, Source};
 use crate::updater::generate::{generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_release_runtimes;
@@ -51,7 +57,27 @@ pub(crate) fn update_from_node(config: AppConfig, sign: bool, fetcher: impl Fetc
         save_source_info(&path, &source)?;
         is_changed = true;
         if sign {
-          println!("sign!");
+          let unsigned_qr = QrPath::try_from(&path).unwrap();
+          println!("{:?}", unsigned_qr);
+          let raw_read = read_qr_file(&unsigned_qr.to_path_buf())?;
+          let sr25519_pair = match sr25519::Pair::from_string("", None) {
+            Ok(x) => x,
+            Err(_e) => {bail!("❌ Key error. Sign metadata and specs manually")}
+          };
+          let signature = sr25519_pair.sign(&raw_read.as_bytes());
+          let make = Make {
+            goal: Goal::Qr,
+            crypto: Crypto::Sufficient(sufficient_crypto),
+            msg: msg_type(passed_crypto.message),
+            name: Some(signed_qr.to_string()),
+          };
+          let sc = SufficientCrypto::Sr25519 {
+            public: sr25519_pair.public().to_owned(),
+            signature,
+          };
+          let signature2 = hex::encode(sc.encode());
+          sign_qr(&unsigned_qr, signature2.as_str())?;
+          println!("🎉 Signed!");
         }
     }
 

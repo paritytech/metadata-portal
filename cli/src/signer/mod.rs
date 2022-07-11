@@ -104,6 +104,17 @@ fn open_in_browser(file: &QrPath) -> anyhow::Result<()> {
     Ok(())
 }
 
-fn percent_encode(input: String) -> String {
-    input.replace(" ", "%20")
+fn percent_encode<T: AsRef<str>>(input: T) -> String {
+    input.as_ref().replace(' ', "%20")
+}
+
+#[cfg(test)]
+mod tests {
+
+    use super::*;
+
+    #[test]
+    fn test_percent_encode() {
+        assert_eq!(percent_encode("foo <bar>"), "foo%20<bar>");
+    }
 }

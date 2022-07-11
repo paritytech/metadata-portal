@@ -106,7 +106,10 @@ pub(crate) fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<Q
 }
 
 fn open_in_browser(file: &QrPath) -> anyhow::Result<()> {
-    let cmd = format!("python3 -mwebbrowser file://{}", file);
+    let cmd = format!(
+        "python3 -mwebbrowser file://{}",
+        percent_encode(file.to_string())
+    );
     let output = Command::new("sh").arg("-c").arg(cmd).output()?;
     if !output.status.success() {
         bail!(
@@ -115,4 +118,19 @@ fn open_in_browser(file: &QrPath) -> anyhow::Result<()> {
         )
     }
     Ok(())
+}
+
+fn percent_encode<T: AsRef<str>>(input: T) -> String {
+    input.as_ref().replace(' ', "%20")
+}
+
+#[cfg(test)]
+mod tests {
+
+    use super::*;
+
+    #[test]
+    fn test_percent_encode() {
+        assert_eq!(percent_encode("foo <bar>"), "foo%20<bar>");
+    }
 }

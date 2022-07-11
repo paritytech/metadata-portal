@@ -11,12 +11,30 @@ export interface ChainSpec {
   metadataQr: QrInfo;
   nextMetadataVersion: number | null;
   nextMetadataQr: QrInfo | null;
+  latestMetadata: string;
   specsQr: QrInfo;
 }
+
+export type SourceType = WasmSource | RpcSource | null;
 
 export interface QrInfo {
   path: string;
   signedBy: string | null;
+  source: SourceType;
+}
+
+interface SourceBase {
+  type: string;
+}
+
+export interface WasmSource extends SourceBase {
+  github_repo: string;
+  hash: string;
+}
+
+export interface RpcSource extends SourceBase {
+  url: string;
+  block: string;
 }
 
 export interface AddToSignerInterface {

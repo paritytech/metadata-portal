@@ -1,6 +1,6 @@
-use anyhow::anyhow;
-
 use std::str::FromStr;
+
+use anyhow::anyhow;
 
 /// The source of the metadata. It can come from the running rcp node or from Github releases.
 #[derive(Debug, Clone, PartialEq)]

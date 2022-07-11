@@ -1,14 +1,14 @@
+use std::path::Path;
+
 use anyhow::bail;
 use image::{GrayImage, ImageBuffer, Luma};
 use indicatif::ProgressBar;
-use qr_reader_phone::process_payload::{process_decoded_payload, InProgress, Ready};
-use std::path::Path;
-
 use opencv::{
     imgproc::{cvt_color, COLOR_BGR2GRAY},
     prelude::*,
     videoio,
 };
+use qr_reader_phone::process_payload::{process_decoded_payload, InProgress, Ready};
 
 // Default camera settings
 const DEFAULT_WIDTH: u32 = 640;

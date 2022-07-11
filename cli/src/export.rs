@@ -1,12 +1,13 @@
+use std::path::Path;
+use std::{fmt, fs};
+
 use anyhow::{Context, Result};
 use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
 
-use std::path::Path;
-use std::{fmt, fs};
-
 use crate::lib::path::QrPath;
 use crate::lib::types::ChainName;
+use crate::source::{read_png_source, Source};
 use crate::AppConfig;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
@@ -14,13 +15,13 @@ pub(crate) struct ReactAssetPath(String);
 
 impl ReactAssetPath {
     pub(crate) fn from_fs_path(path: &Path, public_dir: &Path) -> Result<ReactAssetPath> {
-        Ok(ReactAssetPath(format!(
-            "/{}",
+        Ok(ReactAssetPath(
             path.to_path_buf()
                 .strip_prefix(public_dir)?
                 .to_str()
                 .unwrap()
-        )))
+                .to_owned(),
+        ))
     }
 }
 
@@ -47,6 +48,7 @@ pub(crate) struct ExportChainSpec {
     pub(crate) metadata_qr: QrCode,
     pub(crate) next_metadata_version: Option<u32>,
     pub(crate) next_metadata_qr: Option<QrCode>,
+    pub(crate) latest_metadata: ReactAssetPath,
     pub(crate) specs_qr: QrCode,
 }
 
@@ -63,6 +65,7 @@ pub(crate) fn read_export_file(config: &AppConfig) -> Result<ExportData> {
 pub(crate) struct QrCode {
     pub(crate) path: ReactAssetPath,
     pub(crate) signed_by: Option<String>,
+    pub(crate) source: Option<Source>,
 }
 
 impl QrCode {
@@ -72,14 +75,20 @@ impl QrCode {
             true => Some(config.verifier.name.clone()),
             false => None,
         };
-        Ok(QrCode { path, signed_by })
+        let source = read_png_source(&qr_path.to_path_buf())?;
+        Ok(QrCode {
+            path,
+            signed_by,
+            source,
+        })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use std::path::Path;
+
+    use super::*;
 
     #[test]
     fn create_react_asset_path() {
@@ -87,7 +96,7 @@ mod tests {
         let public_dir = Path::new("./../public").to_path_buf();
         assert_eq!(
             ReactAssetPath::from_fs_path(&img_path, &public_dir).unwrap(),
-            ReactAssetPath("/qr/name_kind_9123.apng".to_string())
+            ReactAssetPath("qr/name_kind_9123.apng".to_string())
         );
     }
 }

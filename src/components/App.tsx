@@ -1,33 +1,47 @@
 import { useEffect, useState } from "react";
-import { Chains, ChainSpec, QrInfo } from "../scheme";
+import { Chains } from "../scheme";
 import { useLocation } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { Tab } from "@headlessui/react";
 import { capitalizeFirstLetter } from "../utils";
 
 import "./App.css";
 import Sidebar from "./Sidebar";
-import Main from "./Main";
+import MetadataTab from "./MetadataTab";
+import SpecsTab from "./SpecsTab";
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function App() {
   const [localStorageNetwork, setLocalStorageNetwork] =
     useLocalStorage("chosenNetwork");
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [sidebarStyle, setSidebarStyle] = useState<string>("");
 
   const [allChains, setAllChains] = useState<Chains>({} as Chains);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch("data.json")
-          .then(response => response.json())
-          .catch(e => {
-            console.error("Unable to fetch data file. Run `make collector` to generate it")
-            return e;
-          });
-      return await data as Chains;
+        .then((response) => response.json())
+        .catch((e) => {
+          console.error(
+            "Unable to fetch data file. Run `make collector` to generate it"
+          );
+          return e;
+        });
+      return (await data) as Chains;
     };
-    fetchData().then(r => {
-      setAllChains(r)
+    fetchData().then((r) => {
+      setAllChains(r);
+      const lastVisited =
+        localStorageNetwork && localStorageNetwork.toLowerCase();
+      const network =
+        (Object.keys(r).includes(location) && location) ||
+        (Object.keys(r).includes(lastVisited) && lastVisited) ||
+        Object.keys(r)[0];
+      setCurrentNetwork(network);
     });
   }, []);
 
@@ -37,118 +51,117 @@ export default function App() {
   // check if URL exists in given Networks, if not
   // check localStorage if it contains a - from before - chosen network, if not
   // retrieve the 1st available network from the given ones, else (rare and wrong case)
-  // default to polkadot
-  const [currentNetwork, setCurrentNetwork] = useState<string>(
-    (Object.keys(allChains).includes(location) && location) ||
-      localStorageNetwork && localStorageNetwork.toLowerCase() ||
-      Object.keys(allChains)[0] ||
-      "polkadot"
-  );
+  const [currentNetwork, setCurrentNetwork] = useState<string>("");
 
-  const [chain, setChain] = useState<ChainSpec>(allChains[currentNetwork]);
-  const [specsQr, setSpecsQr] = useState<QrInfo>(
-    allChains[currentNetwork]?.specsQr
-  );
   const specs = allChains[currentNetwork];
 
   useEffect(() => {
     const name = currentNetwork?.toLowerCase();
     if (name) {
-      setChain(allChains[name]);
-      setSpecsQr(allChains[name]?.specsQr);
       // In case the changed name is not the same as the url
       // then change the url accordingly to the selected network
       if (name !== location) window.location.assign("#/" + name);
     }
   }, [currentNetwork, allChains]);
 
-  useEffect(() => {
-    if (isOpen) {
-      setSidebarStyle(
-        "w-64 bg-white px-6 absolute md:left-0 md:h-[89vh] h-[89vh] md:border-r-0 border-r-2 border-neutral-200 z-30 left-0"
-      );
-    } else {
-      setSidebarStyle(
-        "w-64 bg-white px-6 absolute md:left-0 md:h-[89vh] h-[89vh] md:border-r-0 border-r-2 border-neutral-200 z-30 md:z-0 left-[-17rem]"
-      );
-    }
-  }, [isOpen]);
-
-  document.body.style.backgroundColor = "#F5F5F5";
-  const { color } = allChains[currentNetwork] || { color: "#9C9C9C" };
-  const qr = allChains[currentNetwork]?.metadataQr;
-
   if (!specs) {
     return null;
   }
 
-  return !chain ? (
-    <></>
-  ) : (
-    <div className="flex flex-col bg-white">
+  const color = specs.color;
+  return (
+    <div className="flex flex-col w-full overflow-auto">
       <div
-        className="md:flex justify-between px-10 py-2 items-center text-xl"
+        className="md:hidden md:invisible px-2 text-white font-bold text-2xl flex flex-row"
         style={{ backgroundColor: color }}
       >
-        <div className="text-white font-bold text-2xl text-left m-auto flex flex-row md:flex-col md:m-0">
-          <div>Metadata</div>
-          <div className="md:pl-0 pl-2">Update Portal</div>
-        </div>
         <div
-          className="bg-white py-2 visible md:invisible md:hidden flex text-white items-center"
+          className="bg-white py-2 visible items-center"
           style={{ backgroundColor: color }}
         >
-          <button
-            className="md:hidden flex top-0 left-0 relative w-8 h-10 text-white focus:outline-none"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <div className="absolute w-5 transform -translate-x-1/2 -translate-y-1/2 top-1/2">
-              <span
-                className={`absolute h-0.5 w-5 bg-white transform transition duration-300 ease-in-out ${
-                  isOpen ? "rotate-45 delay-200" : "-translate-y-1.5"
-                }`}
-              ></span>
-              <span
-                className={`absolute h-0.5 bg-white transform transition-all duration-200 ease-in-out ${
-                  isOpen ? "w-0 opacity-50" : "w-5 delay-200 opacity-100"
-                }`}
-              ></span>
-              <span
-                className={`absolute h-0.5 w-5 bg-white transform transition duration-300 ease-in-out ${
-                  isOpen ? "-rotate-45 delay-200" : "translate-y-1.5"
-                }`}
-              ></span>
-            </div>
-          </button>
-          {capitalizeFirstLetter(chain.name)}
+          <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
         </div>
+        <span className="self-center">{capitalizeFirstLetter(specs.name)}</span>
       </div>
-      <div className="flex h-[89vh] md:h-auto">
+      <div className="flex flex-row">
         <Sidebar
           allChains={allChains}
-          sidebarStyle={sidebarStyle}
           currentNetwork={currentNetwork}
           setLocalStorageNetwork={setLocalStorageNetwork}
           setCurrentNetwork={setCurrentNetwork}
-          color={color}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
         />
         {/** darker layer*/}
         {isOpen && (
           <div
-            className="absolute w-full h-[89vh] bg-black opacity-80 z-20 visible"
+            className="absolute w-full bg-black h-full opacity-80 z-20 visible"
             onClick={() => {
               setIsOpen(!isOpen);
             }}
           />
         )}
-        <Main
-          metadataQr={qr}
-          specsQr={specsQr}
-          color={color}
-          chain={chain}
-          specs={specs}
-        />
+        <Tab.Group>
+          <div className="flex flex-col w-full px-2 md:px-8">
+            <Tab.List className="flex flex-row w-full border-b border-neutral-300">
+              {["Metadata", "Chain Specs"].map((title) => (
+                <Tab
+                  key={title}
+                  className={({ selected }) =>
+                    classNames(
+                      "w-32 h-12 py-2.5 font-semibold leading-5 mb-[-1px] focus-visible:outline-none",
+                      selected ? `border-b-2` : "!text-black"
+                    )
+                  }
+                  style={{ borderColor: `${color}`, color: `${color}` }}
+                >
+                  {title}
+                </Tab>
+              ))}
+            </Tab.List>
+            <Tab.Panels>
+              <Tab.Panel className="flex justify-center">
+                <MetadataTab specs={{ ...specs }} key={specs.name} />
+              </Tab.Panel>
+              <Tab.Panel>
+                <SpecsTab specs={{ ...specs }} />
+              </Tab.Panel>
+            </Tab.Panels>
+          </div>
+        </Tab.Group>
       </div>
     </div>
+  );
+}
+
+interface BurgerButtonProps {
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+function BurgerButton({ isOpen, onClick }: BurgerButtonProps) {
+  return (
+    <button
+      className="flex top-0 left-0 relative w-8 h-10 text-white focus:outline-none"
+      onClick={onClick}
+    >
+      <div className="absolute w-5 transform -translate-x-1/2 -translate-y-1/2 top-1/2">
+        <span
+          className={`absolute h-0.5 w-5 bg-white transform transition duration-200 ease-in-out ${
+            isOpen ? "rotate-45 delay-100" : "-translate-y-1.5"
+          }`}
+        ></span>
+        <span
+          className={`absolute h-0.5 bg-white transform transition-all duration-100 ease-in-out ${
+            isOpen ? "w-0 opacity-50" : "w-5 delay-100 opacity-100"
+          }`}
+        ></span>
+        <span
+          className={`absolute h-0.5 w-5 bg-white transform transition duration-200 ease-in-out ${
+            isOpen ? "-rotate-45 delay-100" : "translate-y-1.5"
+          }`}
+        ></span>
+      </div>
+    </button>
   );
 }

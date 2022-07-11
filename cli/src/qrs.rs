@@ -1,10 +1,11 @@
-use crate::lib::path::{ContentType, QrPath};
-use crate::lib::types::{ChainName, SpecVersion};
-use anyhow::{Context, Result};
-
 use std::collections::{BTreeMap, HashMap};
 use std::fs;
 use std::path::Path;
+
+use anyhow::{Context, Result};
+
+use crate::lib::path::{ContentType, QrPath};
+use crate::lib::types::{ChainName, SpecVersion};
 
 type MetadataMap = HashMap<ChainName, BTreeMap<SpecVersion, QrPath>>;
 
@@ -12,7 +13,11 @@ type MetadataMap = HashMap<ChainName, BTreeMap<SpecVersion, QrPath>>;
 pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
     let mut files = vec![];
     for file in fs::read_dir(dir)? {
-        match QrPath::try_from(&file?.path()) {
+        let file = file?;
+        if !file.file_type()?.is_file() {
+            continue;
+        }
+        match QrPath::try_from(&file.path()) {
             Ok(qr_path) => files.push(qr_path),
             Err(e) => {
                 eprintln!("{}", e);
@@ -94,13 +99,13 @@ pub(crate) fn next_metadata_version(
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-
     use std::path::Path;
+
+    use super::*;
 
     #[test]
     fn return_sorted_metadata() {
-        let path = Path::new("./for_tests/sequential");
+        let path = Path::new("./src/for_tests/sequential");
         let files = find_metadata_qrs(&path).unwrap();
         let mut result = files.get("kusama").unwrap().iter();
         let (first, _) = result.next().unwrap();
@@ -111,7 +116,7 @@ mod tests {
 
     #[test]
     fn return_active_metadata() {
-        let path = Path::new("./for_tests/sequential");
+        let path = Path::new("./src/for_tests/sequential");
         let chain = &String::from("kusama");
         let map = find_metadata_qrs(&path).unwrap();
         let qr = extract_metadata_qr(&map, chain, &10);
@@ -122,7 +127,7 @@ mod tests {
 
     #[test]
     fn test_next_metadata_version() {
-        let path = Path::new("./for_tests/sequential");
+        let path = Path::new("./src/for_tests/sequential");
         let chain = &String::from("kusama");
         let map = find_metadata_qrs(&path).unwrap();
         let v = next_metadata_version(&map, chain, 9).unwrap();
@@ -135,7 +140,7 @@ mod tests {
 
     #[test]
     fn prefer_signed_metadata() {
-        let path = Path::new("./for_tests/signed_meta");
+        let path = Path::new("./src/for_tests/signed_meta");
         let files = find_metadata_qrs(path).unwrap();
         let qr = files.get("polkadot").unwrap().get(&9001).unwrap();
         assert!(qr.file_name.is_signed);
@@ -143,7 +148,7 @@ mod tests {
 
     #[test]
     fn return_latest_metadata_even_unsigned() {
-        let path = Path::new("./for_tests/unsigned");
+        let path = Path::new("./src/for_tests/unsigned");
         let files = find_metadata_qrs(path).unwrap();
 
         let mut result = files.get("polkadot").unwrap().iter();

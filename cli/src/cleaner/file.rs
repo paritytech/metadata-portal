@@ -1,10 +1,12 @@
-use crate::export::read_export_file;
-use crate::qrs::{find_metadata_qrs, find_spec_qrs};
-use crate::AppConfig;
-use anyhow::Context;
 use std::collections::HashSet;
 use std::fs;
 use std::path::PathBuf;
+
+use anyhow::Context;
+
+use crate::export::read_export_file;
+use crate::qrs::{find_metadata_qrs, find_spec_qrs};
+use crate::AppConfig;
 
 pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>> {
     let all_files: HashSet<PathBuf> = fs::read_dir(&config.qr_dir)

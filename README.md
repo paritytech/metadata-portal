@@ -7,35 +7,55 @@ Parity will host its own version of the page for all chains for which we sign th
 External users (chain owners) will be able to deploy their versions of metadata portal if they want.
 
 #  Supported Chains
- | Number | Chain name          | Type               |
-|--------|---------------------|--------------------|
-| 1      | Acala               | Polkadot parachain |
-| 2      | Bifrost             | Kusama parachain   |
-| 3      | Statemine           | Kusama parachain   |
-| 4      | Karura              | Kusama parachain   |
-| 5      | Parallel Heiko      | Kusama parachain   |
-| 6      | Shiden              | Kusama parachain   |
-| 7      | Basilisk            | Kusama parachain   |
-| 8      | Khala               | Kusama parachain   |
-| 9      | Altari              | Kusama parachain   |
-| 10     | KILT Spiritnet      | Kusama parachain   |
-| 11     | Calamari            | Kusama parachain   |
-| 12     | Quartz              | Kusama parachain   |
-| 13     | Bit.Country Pioneer | Kusama parachain   |
-| 14     | Astar               | Polkadot parachai  |
-| 15     | Parallel            | Polkadot parachain |
-| 16     | Clover              | Polkadot parachain |
-| 17     | Statemint           | Polkadot parachain |
-| 18     | Subsocial           | Solo chain         |
-| 19     | Robonomics          | Kusama parachain   |
-| 20     | Encointer           | Kusama parachain   |
-| 21     | Robonomics          | Kusama parachain   |
-| 22     | Kintsugi            | Kusama parachain   |
-| 23     | Picasso             | Kusama parachain   |
- | 24     | Zeitgeist           | Kusama parachain   |
- | 25     | HydraDX             | Polkadot parachain |
-| 26     | Westmint            | Westend parachain  |
-| 27     | Mandala             | Solo test chain    |
+
+## Polkadot parachains
+| Number | Chain name          |
+|--------|---------------------|
+| 1      | Acala               |
+| 2      | Astar               |
+| 3      | Parallel            |
+| 4      | Clover              |
+| 5      | Statemint           |
+| 6      | HydraDX             |
+| 7      | Robonomics          |
+| 8      | Encointer           |
+| 9      | Kintsugi            |
+| 10     | Picasso             |
+| 11     | Zeitgeist           |
+| 12     | KICO                |
+| 13     | Litmus              |
+| 14     | Crab                |
+| 15     | Subsocial Parachain |
+
+
+## Kusama parachains
+| Number | Chain name          |
+|--------|---------------------|
+| 1      | Bifrost             |
+| 2      | Statemine           |
+| 3      | Karura              |
+| 4      | Parallel Heiko      |
+| 5      | Shiden              |
+| 6      | Basilisk            |
+| 7      | Khala               |
+| 8      | Altari              |
+| 9      | KILT Spiritnet      |
+| 10     | Calamari            |
+| 11     | Quartz              |
+| 12     | Bit.Country Pioneer |
+
+
+## Solo chains
+| Number | Chain name |
+|--------|------------|
+| 1      | Subsocial  |
+
+
+## Test networks & parachains
+| Number | Chain name |
+|--------|------------|
+| 1      | Westmint   |
+| 2      | Mandala    |
 
 
 ## How does it work?

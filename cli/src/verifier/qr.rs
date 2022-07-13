@@ -71,7 +71,7 @@ fn verify_signature(verifier: &Verifier, public_key: &str) -> Result<()> {
 
 fn verify_filename(meta_values: &MetaValues, actual_qr_name: &QrFileName) -> Result<()> {
     let expected = QrFileName::new(
-        &meta_values.name,
+        &meta_values.name.to_lowercase(),
         ContentType::Metadata(meta_values.version),
         true,
     );

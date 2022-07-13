@@ -24,7 +24,7 @@ genesis_hash = "0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba6
 name = "statemine"
 color = "#113911"
 logo = "Statemine.svg"
-rpc_endpoint = "wss://statemine-rpc.polkadot.io"
+rpc_endpoint = "wss://statemine.api.onfinality.io/public-ws"
 genesis_hash = "0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a"
 
 [[chains]]
@@ -85,7 +85,7 @@ rpc_endpoint = "wss://ws.calamari.systems/"
 name = "quartz"
 color = "#FF4D6A"
 logo = "Quartz.svg"
-rpc_endpoint = "wss://quartz.unique.network"
+rpc_endpoint = "wss://quartz.api.onfinality.io/public-ws"
 
 [[chains]]
 name = "pioneer-runtime"
@@ -158,6 +158,30 @@ name = "hydradx"
 color = "#f653a2"
 logo = "HydraDX.svg"
 rpc_endpoint = "wss://rpc-01.hydradx.io"
+
+[[chains]]
+name = "kico"
+color = "#29B58D"
+logo = "KICO.svg"
+rpc_endpoint = "wss://rpc.kico.dico.io"
+
+[[chains]]
+name = "litmus-parachain"
+color = "#6822fb"
+logo = "Litmus.svg"
+rpc_endpoint = "wss://rpc.litmus-parachain.litentry.io"
+
+[[chains]]
+name = "crab parachain"
+color = "#7C30DD"
+logo = "Crab.svg"
+rpc_endpoint = "wss://crab-parachain-rpc.darwinia.network/"
+
+[[chains]]
+name = "subsocial-parachain"
+color = "#69058C"
+logo = "Subsocial_Parachain.svg"
+rpc_endpoint = "wss://para.subsocial.network"
 
 # Test networks
 [[chains]]

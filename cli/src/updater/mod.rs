@@ -84,7 +84,7 @@ pub(crate) async fn update_from_github(config: AppConfig, sign: bool, signing_ke
 
         // Skip if already have QR for the same version
         if let Some(map) = metadata_qrs.get(&chain.name) {
-            if map.contains_key(&wasm.version) {
+            if map.contains_key(&wasm.version) || map.keys().min().unwrap_or(&0) > &wasm.version {
                 left_to_update -= 1;
                 continue;
             }

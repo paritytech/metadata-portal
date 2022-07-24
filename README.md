@@ -9,46 +9,63 @@ External users (chain owners) will be able to deploy their versions of metadata 
 #  Supported Chains
 
 ## Polkadot parachains
-| Number | Chain name          |
-|--------|---------------------|
-| 1      | Acala               |
-| 2      | Astar               |
-| 3      | Parallel            |
-| 4      | Clover              |
-| 5      | Statemint           |
-| 6      | HydraDX             |
-| 7      | Robonomics          |
-| 8      | Encointer           |
-| 9      | Kintsugi            |
-| 10     | Picasso             |
-| 11     | Zeitgeist           |
-| 12     | KICO                |
-| 13     | Litmus              |
-| 14     | Crab                |
-| 15     | Subsocial Parachain |
+| Number | Chain name            |
+|--------|-----------------------|
+| 1      | Acala                 |
+| 2      | Astar                 |
+| 3      | Parallel              |
+| 4      | Clover                |
+| 5      | Statemint             |
+| 6      | HydraDX               |
+| 7      | Robonomics            |
+| 8      | Encointer             |
+| 9      | Kintsugi              |
+| 10     | Picasso               |
+| 11     | Zeitgeist             |
+| 12     | KICO                  |
+| 13     | Litmus                |
+| 14     | Crab                  |
+| 15     | Subsocial Parachain   |
+| 16     | Centrifuge            |
+| 17     | Efinity               |
+| 18     | Interlay              |
+| 19     | Nodle                 |
+| 20     | OriginTrail Parachain |
+| 21     | Litentry              |
+| 22     | UNIQUE                |
+
 
 
 ## Kusama parachains
-| Number | Chain name          |
-|--------|---------------------|
-| 1      | Bifrost             |
-| 2      | Statemine           |
-| 3      | Karura              |
-| 4      | Parallel Heiko      |
-| 5      | Shiden              |
-| 6      | Basilisk            |
-| 7      | Khala               |
-| 8      | Altari              |
-| 9      | KILT Spiritnet      |
-| 10     | Calamari            |
-| 11     | Quartz              |
-| 12     | Bit.Country Pioneer |
+| Number | Chain name           |
+|--------|----------------------|
+| 1      | Bifrost              |
+| 2      | Statemine            |
+| 3      | Karura               |
+| 4      | Parallel Heiko       |
+| 5      | Shiden               |
+| 6      | Basilisk             |
+| 7      | Khala                |
+| 8      | Altari               |
+| 9      | KILT Spiritnet       |
+| 10     | Calamari             |
+| 11     | Quartz               |
+| 12     | Bit.Country Pioneer  |
+| 13     | Integritee Parachain |
+| 14     | Turing               |
+| 15     | Mangata X            |
+| 16     | Pichiu               |
+| 17     | Kabocha              |
+| 18     | Taganika             |
+| 19     | Bajun                |
 
 
 ## Solo chains
 | Number | Chain name |
 |--------|------------|
 | 1      | Subsocial  |
+| 2      | Aleph Zero |
+| 3      | Polkadex   |
 
 
 ## Test networks & parachains

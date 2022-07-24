@@ -97,7 +97,7 @@ rpc_endpoint = "wss://pioneer.api.onfinality.io/public-ws"
 name = "astar"
 color = "#1b6dc1d9"
 logo = "Astar.svg"
-rpc_endpoint = "wss://rpc.astar.network"
+rpc_endpoint = "wss://astar.api.onfinality.io/public-ws"
 
 [[chains]]
 name = "parallel"
@@ -183,6 +183,138 @@ color = "#69058C"
 logo = "Subsocial_Parachain.svg"
 rpc_endpoint = "wss://para.subsocial.network"
 
+#todo crust shadow. SS58 code is different
+#[[chains]]
+#name = "Crust Shadow"
+#color = "#ff8812"
+#logo = "Crust_Shadow.svg"
+#rpc_endpoint = "wss://rpc2-shadow.crust.network/"
+
+[[chains]]
+name = "integritee-parachain"
+color = "#658ea9"
+logo = "Integritee.svg"
+rpc_endpoint = "wss://integritee-kusama.api.onfinality.io/public-ws"
+
+[[chains]]
+name = "centrifuge"
+color = "#fcc367"
+logo = "Centrifuge.svg"
+rpc_endpoint = "wss://fullnode.parachain.centrifuge.io"
+
+[[chains]]
+name = "efinity"
+color = "#496ddb"
+logo = "Efinity.svg"
+rpc_endpoint = "wss://rpc.efinity.io"
+
+[[chains]]
+name = "interlay-parachain"
+color = "#3E96FF"
+logo = "Interlay.svg"
+rpc_endpoint = "wss://interlay.api.onfinality.io/public-ws"
+
+[[chains]]
+name = "nodle-para"
+color = "#1ab394"
+logo = "Nodle.svg"
+rpc_endpoint = "wss://nodle-parachain.api.onfinality.io/public-ws"
+
+[[chains]]
+name = "turing"
+color = "#A8278C"
+logo = "Turing.svg"
+rpc_endpoint = "wss://turing.api.onfinality.io/public-ws"
+
+[[chains]]
+name = "aleph-node"
+color = "#00CCAB"
+logo = "AlephZero.svg"
+rpc_endpoint = "wss://ws.azero.dev"
+
+#todo Composable finance. SS58 code is different.
+#[[chains]]
+#name = "composable-finance"
+#color = "#C90E8A"
+#logo = "Composable.svg"
+#rpc_endpoint = "wss://composable-rpc.dwellir.com"
+
+#TODO polkadex parachain. Names are different.
+#[[chains]]
+#name = "polkadex-solochain"
+#color = "#7C30DD"
+#logo = "Polkadex.svg"
+#rpc_endpoint = "wss://polkadex.api.onfinality.io/public-ws"
+
+[[chains]]
+name = "origintrail-parachain"
+color = "#FB5DEB"
+logo = "OriginTral.svg"
+rpc_endpoint = "wss://parachain-rpc.origin-trail.network"
+
+#TODO can't define the name bifrost_polkadot for metadata and specs. It clashes with bifrost
+#[[chains]]
+#name = "bifrost_polkadot"
+#color = "#5a25f0"
+#logo = "Bifrost_Polkadot.svg"
+#rpc_endpoint = "wss://hk.p.bifrost-rpc.liebi.com/ws"
+
+[[chains]]
+name = "litentry-parachain"
+color = "linear-gradient(45deg, #5cc27c 0%, #6de98f 100%)"
+logo = "Litentry.svg"
+rpc_endpoint = "wss://rpc.litentry-parachain.litentry.io"
+
+[[chains]]
+name = "unique"
+color = "#40BCFF"
+logo = "Unique.svg"
+rpc_endpoint = "wss://eu-ws.unique.network/"
+
+[[chains]]
+name = "dora ksm parachain"
+color = "#FF761C"
+logo = "DoraFactory.svg"
+rpc_endpoint = "wss://kusama.dorafactory.org"
+
+[[chains]]
+name = "mangata-parachain"
+color = "#030408"
+logo = "MangataX.svg"
+rpc_endpoint = "wss://mangata-x.api.onfinality.io/public-ws"
+
+[[chains]]
+name = "pichiu"
+color = "#ed007e"
+logo = "Pichiu.svg"
+rpc_endpoint = "wss://kusama.kylin-node.co.uk"
+
+# TODO the node is not available
+#[[chains]]
+#name = "kabocha"
+#color = "#f53485"
+#logo = "Kabocha.svg"
+#rpc_endpoint = "wss://kabocha.jelliedowl.com"
+
+[[chains]]
+name = "datahighway-parachain"
+color = "linear-gradient(-90deg, #9400D3 0%, #5A5CA9 50%, #00BFFF 100%)"
+logo = "Tanganika_DataHighway.svg"
+rpc_endpoint = "wss://tanganika.datahighway.com"
+
+[[chains]]
+name = "bajun"
+color = "#161212"
+logo = "Bajun.svg"
+rpc_endpoint = "wss://rpc-parachain.bajun.network"
+
+# TODO the node is not available
+#[[chains]]
+#name = "imbue"
+#color = "#baff36"
+#logo = "Imbue.svg"
+#rpc_endpoint = "wss://imbue-kusama.imbue.network"
+
 # Test networks
 [[chains]]
 name = "westmint"
@@ -195,3 +327,4 @@ name = "mandala"
 color = "#173DC9"
 logo = "Acala_Mandala_Testnet.svg"
 rpc_endpoint = "wss://acala-mandala.api.onfinality.io/public-ws/"
+

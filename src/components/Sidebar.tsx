@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { Chains } from "../scheme";
-import { capitalizeFirstLetter } from "../utils";
+import { capitalizeFirstLetter, getBackgroundStyle } from "../utils";
 import { ArrowSmRightIcon } from "@heroicons/react/solid";
 
 interface Props {
@@ -70,7 +70,7 @@ export default function Sidebar({
               {currentNetwork === c ? (
                 <div
                   className="flex items-center text-sm p-2 mb-3 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded"
-                  style={{ backgroundColor: specs.color }}
+                  style={getBackgroundStyle(specs.color)}
                 >
                   <div className="flex items-center text-xl text-white font-inter">
                     <div className="network_icon">

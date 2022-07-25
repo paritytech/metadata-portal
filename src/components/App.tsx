@@ -3,7 +3,7 @@ import { Chains } from "../scheme";
 import { useLocation } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Tab } from "@headlessui/react";
-import { capitalizeFirstLetter } from "../utils";
+import { capitalizeFirstLetter, getBackgroundStyle } from "../utils";
 
 import "./App.css";
 import Sidebar from "./Sidebar";
@@ -73,11 +73,11 @@ export default function App() {
     <div className="flex flex-col w-full overflow-auto">
       <div
         className="md:hidden md:invisible px-2 text-white font-bold text-2xl flex flex-row"
-        style={{ backgroundColor: color }}
+        style={getBackgroundStyle(color)}
       >
         <div
           className="bg-white py-2 visible items-center"
-          style={{ backgroundColor: color }}
+          style={getBackgroundStyle(color)}
         >
           <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
         </div>

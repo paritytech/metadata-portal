@@ -249,7 +249,7 @@ rpc_endpoint = "wss://ws.azero.dev"
 [[chains]]
 name = "origintrail-parachain"
 color = "#FB5DEB"
-logo = "OriginTral.svg"
+logo = "OriginTrail.svg"
 rpc_endpoint = "wss://parachain-rpc.origin-trail.network"
 
 #TODO can't define the name bifrost_polkadot for metadata and specs. It clashes with bifrost

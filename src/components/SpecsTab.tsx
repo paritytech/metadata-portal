@@ -3,6 +3,7 @@ import { ChainSpec } from "../scheme";
 import "./SpecsTab.css";
 import Hash from "./Hash";
 import { ExternalLinkIcon } from "@heroicons/react/outline";
+import { getBackgroundStyle } from "../utils";
 
 interface SpecsProps {
   specs: ChainSpec;
@@ -32,7 +33,7 @@ export default function SpecsTab({ specs }: SpecsProps) {
             "Color",
             <>
               <div
-                style={{ backgroundColor: color }}
+                style={getBackgroundStyle(color)}
                 className="w-6 rounded-md border-none block"
               ></div>
               <div className="ml-2">{color}</div>

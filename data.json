@@ -8,20 +8,24 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "metadataVersion": 9230,
+    "metadataVersion": 9250,
     "metadataQr": {
-      "path": "qr/polkadot_metadata_9230.apng",
-      "signedBy": "Parity",
-      "source": null
-    },
-    "nextMetadataVersion": 9250,
-    "nextMetadataQr": {
       "path": "qr/polkadot_metadata_9250.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Wasm",
         "github_repo": "paritytech/polkadot",
         "hash": "0xcc1272022f874fab8564fff672553b8e7440fa7e7ced2fca140a64eafab7ecac"
+      }
+    },
+    "nextMetadataVersion": 9260,
+    "nextMetadataQr": {
+      "path": "qr/polkadot_metadata_9260.apng",
+      "signedBy": "Parity",
+      "source": {
+        "type": "Wasm",
+        "github_repo": "paritytech/polkadot",
+        "hash": "0x3dc7dbf5bb7bf4a456d8162d473813e25f0dde9fbc0b8610cf15b768c8f0e42f"
       }
     },
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
@@ -40,18 +44,8 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "metadataVersion": 9250,
+    "metadataVersion": 9260,
     "metadataQr": {
-      "path": "qr/kusama_metadata_9250.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0x6b48b0bdd23e94e91133f532b10f6af68751b9f734084a2353aece4ffa4b5ef7"
-      }
-    },
-    "nextMetadataVersion": 9260,
-    "nextMetadataQr": {
       "path": "qr/kusama_metadata_9260.apng",
       "signedBy": "Parity",
       "source": {
@@ -60,6 +54,8 @@
         "hash": "0x4e784769dd00d54aa07e50adcd8843a57f57642d368239057d0d145aa2ef6864"
       }
     },
+    "nextMetadataVersion": null,
+    "nextMetadataQr": null,
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",
@@ -76,14 +72,14 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "metadataVersion": 9260,
+    "metadataVersion": 9261,
     "metadataQr": {
-      "path": "qr/westend_metadata_9260.apng",
+      "path": "qr/westend_metadata_9261.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Rpc",
         "url": "wss://westend-rpc.polkadot.io",
-        "block": "0xa91f619d6674fba68947132799001a6ac682d671913b0482ae0eaf3a3b50f7e9"
+        "block": "0xd6251805fd07eb8ffb87b0ce0dcbe6aaa0b652cc20c0c7d3dd1a08c3a49e9c37"
       }
     },
     "nextMetadataVersion": null,

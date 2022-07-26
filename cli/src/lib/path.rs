@@ -56,12 +56,12 @@ impl TryFrom<&str> for ContentType {
     type Error = anyhow::Error;
 
     fn try_from(content_type: &str) -> Result<Self, Self::Error> {
-        if let "specs" = content_type {
+        if content_type.ends_with("specs") {
             return Ok(Self::Specs);
         }
-        let mut split = content_type.split('_');
+        let mut split = content_type.rsplit('_');
         match (split.next(), split.next()) {
-            (Some("metadata"), Some(version)) => Ok(Self::Metadata(version.parse()?)),
+            (Some(version), Some("metadata")) => Ok(Self::Metadata(version.parse()?)),
             _ => bail!("unable to parse content type {}", content_type),
         }
     }
@@ -105,10 +105,10 @@ impl TryFrom<&PathBuf> for QrFileName {
             None => (filename, true),
         };
 
-        let mut split = stripped.splitn(2, '_');
-        let chain = split.next().context("error parsing chain name")?;
-        let content_type = split.next().context("error parsing context type")?;
-        let content_type = ContentType::try_from(content_type)?;
+        let content_type = ContentType::try_from(stripped).context("error parsing context type")?;
+        let chain = stripped
+            .strip_suffix(&format!("_{}", content_type))
+            .context("error parsing chain name")?;
 
         Ok(Self {
             chain: String::from(chain),
@@ -149,6 +149,18 @@ mod tests {
             QrFileName::new("name", ContentType::Metadata(9123), true)
         );
         assert_eq!(parsed.to_path_buf(), path)
+    }
+
+    #[test]
+    fn parse_unsigned_underscored_qr_path() {
+        let path = PathBuf::from("./foo/unsigned_name_with_underscore_metadata_91.apng");
+        let result = QrPath::try_from(&path);
+        assert!(result.is_ok());
+        let parsed = result.unwrap();
+        assert_eq!(
+            parsed.file_name,
+            QrFileName::new("name_with_underscore", ContentType::Metadata(91), false)
+        );
     }
 
     #[test]

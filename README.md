@@ -33,6 +33,7 @@ External users (chain owners) will be able to deploy their versions of metadata 
 | 20     | OriginTrail Parachain |
 | 21     | Litentry              |
 | 22     | UNIQUE                |
+| 23     | Bifrost-Polkadot      |
 
 
 

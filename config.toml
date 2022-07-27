@@ -252,12 +252,11 @@ color = "#FB5DEB"
 logo = "OriginTrail.svg"
 rpc_endpoint = "wss://parachain-rpc.origin-trail.network"
 
-#TODO can't define the name bifrost_polkadot for metadata and specs. It clashes with bifrost
-#[[chains]]
-#name = "bifrost_polkadot"
-#color = "#5a25f0"
-#logo = "Bifrost_Polkadot.svg"
-#rpc_endpoint = "wss://hk.p.bifrost-rpc.liebi.com/ws"
+[[chains]]
+name = "bifrost_polkadot"
+color = "#5a25f0"
+logo = "Bifrost_Polkadot.svg"
+rpc_endpoint = "wss://hk.p.bifrost-rpc.liebi.com/ws"
 
 [[chains]]
 name = "litentry-parachain"
@@ -289,12 +288,11 @@ color = "#ed007e"
 logo = "Pichiu.svg"
 rpc_endpoint = "wss://kusama.kylin-node.co.uk"
 
-# TODO the node is not available
-#[[chains]]
-#name = "kabocha"
-#color = "#f53485"
-#logo = "Kabocha.svg"
-#rpc_endpoint = "wss://kabocha.jelliedowl.com"
+[[chains]]
+name = "kabocha-parachain"
+color = "#f53485"
+logo = "Kabocha.svg"
+rpc_endpoint = "wss://kabocha.jelliedowl.com"
 
 [[chains]]
 name = "datahighway-parachain"

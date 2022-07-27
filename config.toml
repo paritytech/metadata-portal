@@ -307,11 +307,11 @@ logo = "Bajun.svg"
 rpc_endpoint = "wss://rpc-parachain.bajun.network"
 
 #todo Imbue. SS58 code is different.
-[[chains]]
-name = "imbue"
-color = "#baff36"
-logo = "Imbue.svg"
-rpc_endpoint = "wss://imbue-kusama.imbue.network"
+#[[chains]]
+#name = "imbue"
+#color = "#baff36"
+#logo = "Imbue.svg"
+#rpc_endpoint = "wss://imbue-kusama.imbue.network"
 
 # Test networks
 [[chains]]

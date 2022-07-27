@@ -306,12 +306,12 @@ color = "#161212"
 logo = "Bajun.svg"
 rpc_endpoint = "wss://rpc-parachain.bajun.network"
 
-# TODO the node is not available
-#[[chains]]
-#name = "imbue"
-#color = "#baff36"
-#logo = "Imbue.svg"
-#rpc_endpoint = "wss://imbue-kusama.imbue.network"
+#todo Imbue. SS58 code is different.
+[[chains]]
+name = "imbue"
+color = "#baff36"
+logo = "Imbue.svg"
+rpc_endpoint = "wss://imbue-kusama.imbue.network"
 
 # Test networks
 [[chains]]

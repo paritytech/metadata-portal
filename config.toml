@@ -183,12 +183,11 @@ color = "#69058C"
 logo = "Subsocial_Parachain.svg"
 rpc_endpoint = "wss://para.subsocial.network"
 
-#todo crust shadow. SS58 code is different
-#[[chains]]
-#name = "Crust Shadow"
-#color = "#ff8812"
-#logo = "Crust_Shadow.svg"
-#rpc_endpoint = "wss://rpc2-shadow.crust.network/"
+[[chains]]
+name = "crust-collator"
+color = "#ff8812"
+logo = "Crust_Shadow.svg"
+rpc_endpoint = "wss://rpc2-shadow.crust.network/"
 
 [[chains]]
 name = "integritee-parachain"

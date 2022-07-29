@@ -60,10 +60,6 @@ fn main() {
                 RpcFetcher,
             ),
         },
-        // SubCommand::UpdateAndSign(update_opts) => match update_opts.source {
-        //     UpdateSource::Github => update_from_github(config, true),
-        //     UpdateSource::Node => update_from_node(config, true, RpcFetcher),
-        // },
         SubCommand::CheckDeployment => check_deployment(config),
     };
 

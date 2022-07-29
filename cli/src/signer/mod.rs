@@ -1,4 +1,4 @@
-pub mod prompt;
+mod prompt;
 
 use std::process::Command;
 
@@ -56,20 +56,8 @@ fn run_for_file(qr_path: &QrPath) -> anyhow::Result<()> {
 }
 
 pub(crate) fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
-    println!("signature is {}", signature);
-    //auto signing signature
-    //0116d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34fe2d949a2f9a282e73c484e0b9b690c25fa13e82ce1aa89b3f792ba8925f57e77340bc58abf15f6852de8de52e148c861c7a841beb8994dbba5ac2d181e1dd385
-
-    //maual signing signature
-    //0116d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f0c7e29790a21be2bd687e3af88e74ac031ad311e3ed8bc58c52e811db81d4e0c6abd134ef98aeb4b1785e851e16733073530d963ff0e3ca4a18d16c01d1e2e8f
     let signature = hex_to_bytes(signature)?;
     let sufficient_crypto = <SufficientCrypto>::decode(&mut &signature[..])?;
-    println!("{:?}", sufficient_crypto);
-    //auto signing
-    //Sr25519 { public: 16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f (5CaeNrds...), signature: 666f15329bad95b4b4a474265618ce275bcc8337ff07f8d7f6b5335a52e3ac377b51fb7836aafabbec39f9fa3f4b9dd1323fc269e5fea4b6259f53f436be5e88 }
-    //manual signing
-    //Sr25519 { public: 16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f (5CaeNrds...), signature: beda51f98c018d3249f799998dba075e45a636d6e41fee84b9ae197a30c6e6731e85637797a28b7ed25973dd531bf9503c64848302f9b6a2fb49f490bd9da68e }
-    println!("1");
     let mut signed_qr = unsigned_qr.clone();
     signed_qr.file_name.is_signed = true;
 
@@ -78,7 +66,6 @@ pub(crate) fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<Q
         ContentType::Metadata(_) => TransferContent::LoadMeta,
         ContentType::Specs => TransferContent::AddSpecs,
     };
-    println!("2");
     let passed_crypto = pass_crypto(&raw_read, transfer_content)
         .map_err(|e| anyhow::Error::msg(format!("{:?}", e)))?;
 
@@ -86,22 +73,18 @@ pub(crate) fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<Q
         ContentType::Metadata(_) => Msg::LoadMetadata,
         ContentType::Specs => Msg::AddSpecs,
     };
-    println!("3");
     let make = Make {
         goal: Goal::Qr,
         crypto: Crypto::Sufficient(sufficient_crypto),
         msg: msg_type(passed_crypto.message),
         name: Some(signed_qr.to_string()),
     };
-    println!("4");
     println!("⚙ generating {}...", signed_qr);
     full_run(SignerCommand::Make(make)).map_err(anyhow::Error::msg)?;
     // Preserve png source information
-    println!("5");
     if let Some(png_source) = read_png_source(&unsigned_qr.to_path_buf())? {
         save_source_info(&signed_qr.to_path_buf(), &png_source)?;
     };
-    println!("6");
     Ok(signed_qr)
 }
 

@@ -1,4 +1,4 @@
-use anyhow::Result;
+use anyhow::{bail, Result};
 use definitions::crypto::Encryption;
 use definitions::network_specs::NetworkSpecsToSend;
 use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
@@ -21,16 +21,32 @@ impl Fetcher for RpcFetcher {
                 unit: token_unit.to_string(),
             },
         );
-        specs_agnostic(
+        let specs = specs_agnostic(
             &chain.rpc_endpoint,
             Encryption::Sr25519,
             optional_token_override,
             None,
         )
-        .map_err(anyhow::Error::msg)
+        .map_err(anyhow::Error::msg)?;
+        if specs.name != chain.name {
+            bail!(
+                "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",
+                chain.name,
+                specs.name
+            )
+        }
+        Ok(specs)
     }
 
     fn fetch_metadata(&self, chain: &Chain) -> Result<MetaFetched> {
-        meta_fetch(&chain.rpc_endpoint).map_err(anyhow::Error::msg)
+        let meta = meta_fetch(&chain.rpc_endpoint).map_err(anyhow::Error::msg)?;
+        if meta.meta_values.name != chain.name {
+            bail!(
+                "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",
+                chain.name,
+                meta.meta_values.name
+            )
+        }
+        Ok(meta)
     }
 }

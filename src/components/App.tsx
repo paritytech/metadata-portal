@@ -81,7 +81,7 @@ export default function App() {
         >
           <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
         </div>
-        <span className="self-center">{capitalizeFirstLetter(specs.name)}</span>
+        <span className="self-center">{capitalizeFirstLetter(specs.title)}</span>
       </div>
       <div className="flex flex-row">
         <Sidebar
@@ -121,7 +121,7 @@ export default function App() {
             </Tab.List>
             <Tab.Panels>
               <Tab.Panel className="flex justify-center">
-                <MetadataTab specs={{ ...specs }} key={specs.name} />
+                <MetadataTab specs={{ ...specs }} key={specs.title} />
               </Tab.Panel>
               <Tab.Panel>
                 <SpecsTab specs={{ ...specs }} />

@@ -75,7 +75,7 @@ export default function Sidebar({
                   <div className="flex items-center text-xl text-white font-inter">
                     <div className="network_icon">{c}</div>
                     <div className="network_name">
-                      {capitalizeFirstLetter(c)}
+                      {capitalizeFirstLetter(allChains[c].title)}
                     </div>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export default function Sidebar({
                   <div className="flex items-center text-xl font-inter">
                     <div className="network_icon text-[#9E9E9E]">{c}</div>
                     <div className="network_name">
-                      {capitalizeFirstLetter(c)}
+                      {capitalizeFirstLetter(allChains[c].title)}
                     </div>
                   </div>
                 </div>

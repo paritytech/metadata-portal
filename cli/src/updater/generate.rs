@@ -9,7 +9,6 @@ use log::info;
 use sp_core::H256;
 
 use crate::lib::path::{ContentType, QrFileName};
-use crate::lib::types::ChainName;
 
 pub(crate) fn generate_metadata_qr(
     meta_values: &MetaValues,
@@ -38,11 +37,11 @@ pub(crate) fn generate_metadata_qr(
 }
 
 pub(crate) fn generate_spec_qr(
-    name: &ChainName,
     specs: &NetworkSpecsToSend,
     target_dir: &Path,
 ) -> anyhow::Result<PathBuf> {
-    let file_name = QrFileName::new(&name.to_lowercase(), ContentType::Specs, false).to_string();
+    let file_name =
+        QrFileName::new(&specs.name.to_lowercase(), ContentType::Specs, false).to_string();
     let path = target_dir.join(&file_name);
     let content = ContentAddSpecs::generate(specs);
 

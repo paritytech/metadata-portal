@@ -69,6 +69,7 @@ pub(crate) struct GitHub {
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub(crate) struct Chain {
     pub(crate) name: String,
+    pub(crate) title: Option<String>,
     #[serde(default = "color_default")]
     pub(crate) color: String,
     pub(crate) rpc_endpoint: String,
@@ -86,6 +87,7 @@ impl Default for Chain {
     fn default() -> Self {
         Self {
             name: "polkadot".to_string(),
+            title: None,
             color: color_default(),
             rpc_endpoint: "wss://example.com".to_string(),
             genesis_hash: None,

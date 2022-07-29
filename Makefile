@@ -13,10 +13,6 @@ verifier:
 
 updater:
 	cargo run --release update
-	cargo run --release update --${sign} --signing-key ${signing-key}
-	else
-		cargo run --release update
-	endif
 
 signed_updater:
 	cargo run --release update --sign --signing-key ${signing-key}

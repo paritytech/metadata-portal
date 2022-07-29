@@ -83,7 +83,7 @@ export default function Sidebar({
                       />
                     </div>
                     <div className="network_name">
-                      {capitalizeFirstLetter(c)}
+                      {capitalizeFirstLetter(allChains[c].title)}
                     </div>
                   </div>
                 </div>
@@ -107,7 +107,7 @@ export default function Sidebar({
                       />
                     </div>
                     <div className="network_name">
-                      {capitalizeFirstLetter(c)}
+                      {capitalizeFirstLetter(allChains[c].title)}
                     </div>
                   </div>
                 </div>

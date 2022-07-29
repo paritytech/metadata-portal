@@ -1,5 +1,5 @@
 export interface ChainSpec {
-  name: string;
+  title: string;
   color: string;
   rpcEndpoint: string;
   genesisHash: string;

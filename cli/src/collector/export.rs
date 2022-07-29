@@ -39,7 +39,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
         export_specs.insert(
             chain.name.clone(),
             ExportChainSpec {
-                name: chain.name.clone(),
+                title: chain.title.as_ref().unwrap_or(&chain.name).clone(),
                 color: chain.color.clone(),
                 rpc_endpoint: chain.rpc_endpoint.clone(),
                 genesis_hash: format!("0x{}", hex::encode(&specs.genesis_hash)),

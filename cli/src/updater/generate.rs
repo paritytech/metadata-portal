@@ -31,19 +31,11 @@ pub(crate) fn generate_metadata_qr(
     let path = target_dir.join(&file_name);
     let make;
     if sign {
-        let sr25519_pair = match sr25519::Pair::from_string(signing_key.as_str(), None) {
-            Ok(x) => x,
-            Err(_e) => {
-                bail!("❌ Key error. Generate metadata with `make updater` and sign manually")
-            }
-        };
-        let signature = sr25519_pair.sign(content.to_sign().as_slice());
         make = Make {
             goal: Goal::Qr,
-            crypto: Crypto::Sufficient(SufficientCrypto::Sr25519 {
-                public: sr25519_pair.public(),
-                signature,
-            }),
+            crypto: Crypto::Sufficient(
+                generate_crypto(signing_key, content.to_sign().to_vec()).unwrap(),
+            ),
             msg: Msg::LoadMetadata(content.to_sign()),
             name: Some(path.to_str().unwrap().to_owned()),
         };
@@ -64,18 +56,47 @@ pub(crate) fn generate_spec_qr(
     name: &ChainName,
     specs: &NetworkSpecsToSend,
     target_dir: &Path,
+    sign: bool,
+    signing_key: String,
 ) -> anyhow::Result<PathBuf> {
-    let file_name = QrFileName::new(&name.to_lowercase(), ContentType::Specs, false).to_string();
+    let file_name = QrFileName::new(&name.to_lowercase(), ContentType::Specs, sign).to_string();
     let path = target_dir.join(&file_name);
     let content = ContentAddSpecs::generate(specs);
 
-    let make = Make {
-        goal: Goal::Qr,
-        crypto: Crypto::None,
-        msg: Msg::AddSpecs(content.to_sign()),
-        name: Some(path.to_str().unwrap().to_owned()),
-    };
+    let make;
+    if sign {
+        make = Make {
+            goal: Goal::Qr,
+            crypto: Crypto::Sufficient(
+                generate_crypto(signing_key, content.to_sign().to_vec()).unwrap(),
+            ),
+            msg: Msg::AddSpecs(content.to_sign()),
+            name: Some(path.to_str().unwrap().to_owned()),
+        };
+    } else {
+        make = Make {
+            goal: Goal::Qr,
+            crypto: Crypto::None,
+            msg: Msg::AddSpecs(content.to_sign()),
+            name: Some(path.to_str().unwrap().to_owned()),
+        };
+    }
+
     info!("⚙️  Generating {}...", file_name);
     full_run(SignerCommand::Make(make)).map_err(anyhow::Error::msg)?;
     Ok(path)
+}
+
+fn generate_crypto(signing_key: String, content: Vec<u8>) -> anyhow::Result<SufficientCrypto> {
+    let sr25519_pair = match sr25519::Pair::from_string(signing_key.as_str(), None) {
+        Ok(x) => x,
+        Err(_e) => {
+            bail!("❌ Key error. Generate metadata with `make updater` and sign manually")
+        }
+    };
+    let signature = sr25519_pair.sign(content.as_slice());
+    Ok(SufficientCrypto::Sr25519 {
+        public: sr25519_pair.public(),
+        signature,
+    })
 }

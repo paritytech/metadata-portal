@@ -1,3 +1,5 @@
+extern crate core;
+
 mod cleaner;
 mod collector;
 mod config;

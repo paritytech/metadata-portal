@@ -30,7 +30,13 @@ pub(crate) fn update_from_node(
     for chain in config.chains {
         if !specs_qrs.contains_key(chain.name.as_str()) {
             let specs = fetcher.fetch_specs(&chain)?;
-            generate_spec_qr(&chain.name, &specs, &config.qr_dir)?;
+            generate_spec_qr(
+                &chain.name,
+                &specs,
+                &config.qr_dir,
+                sign,
+                signing_key.to_owned(),
+            )?;
             is_changed = true;
         }
 

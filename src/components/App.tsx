@@ -81,7 +81,9 @@ export default function App() {
         >
           <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
         </div>
-        <span className="self-center">{capitalizeFirstLetter(specs.title)}</span>
+        <span className="self-center">
+          {capitalizeFirstLetter(specs.title)}
+        </span>
       </div>
       <div className="flex flex-row">
         <Sidebar

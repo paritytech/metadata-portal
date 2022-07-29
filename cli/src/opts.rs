@@ -29,8 +29,8 @@ pub(crate) enum SubCommand {
     /// Check updates
     Update(UpdateOpts),
 
-    /// Check updates and sign if update found
-    UpdateAndSign(UpdateOpts),
+    // /// Check updates and sign if update found
+    // UpdateAndSign(UpdateOpts),
 
     /// Verify signed QR codes
     Verify,
@@ -40,7 +40,16 @@ pub(crate) enum SubCommand {
 }
 
 #[derive(Parser)]
+// #[clap(source = "Update source (Node or Github). Node by default.",
+//   sign = "Sign or not the metadata. False by default (metadata won't be signed)",
+//   signing_key = "Private key for signing metadata. Empty by default. Required if signed argument is true.")]
 pub(crate) struct UpdateOpts {
-    #[clap(short, long, default_value = "node")]
+    #[clap(short = 's', long, default_value = "node")]
     pub(crate) source: UpdateSource,
+
+    #[clap(long)]
+    pub(crate) sign: bool,
+
+    #[clap(long, default_value = "")]
+    pub(crate) signing_key: String,
 }

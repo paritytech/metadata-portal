@@ -6,7 +6,9 @@ use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};
 use generate_message::full_run;
 use generate_message::parser::{Command as SignerCommand, Crypto, Goal, Make, Msg};
 use log::info;
-use sp_core::H256;
+use sp_core::{H256, sr25519, Pair};
+use anyhow::bail;
+use definitions::crypto::SufficientCrypto;
 
 use crate::lib::path::{ContentType, QrFileName};
 use crate::lib::types::ChainName;
@@ -15,23 +17,39 @@ pub(crate) fn generate_metadata_qr(
     meta_values: &MetaValues,
     genesis_hash: &H256,
     target_dir: &Path,
+    sign: bool,
+    signing_key: String,
 ) -> anyhow::Result<PathBuf> {
     let content = ContentLoadMeta::generate(&meta_values.meta, genesis_hash);
 
     let file_name = QrFileName::new(
         &meta_values.name.to_lowercase(),
         ContentType::Metadata(meta_values.version),
-        false,
+        sign,
     )
     .to_string();
     let path = target_dir.join(&file_name);
-
-    let make = Make {
+    let make;
+    if sign {
+      let sr25519_pair = match sr25519::Pair::from_string(signing_key.as_str(), None) {
+        Ok(x) => x,
+        Err(_e) => {bail!("❌ Key error. Generate metadata with `make updater` and sign manually")}
+      };
+      let signature = sr25519_pair.sign(content.to_sign().as_slice());
+      make = Make {
         goal: Goal::Qr,
-        crypto: Crypto::None,
+        crypto: Crypto::Sufficient(SufficientCrypto::Sr25519 {public: sr25519_pair.public(), signature }),
         msg: Msg::LoadMetadata(content.to_sign()),
         name: Some(path.to_str().unwrap().to_owned()),
-    };
+      };
+    } else {
+      make = Make {
+          goal: Goal::Qr,
+          crypto: Crypto::None,
+          msg: Msg::LoadMetadata(content.to_sign()),
+          name: Some(path.to_str().unwrap().to_owned()),
+      };
+    }
     info!("⚙️  Generating {}...", file_name);
     full_run(SignerCommand::Make(make)).map_err(anyhow::Error::msg)?;
     Ok(path)

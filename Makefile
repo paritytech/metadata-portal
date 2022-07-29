@@ -13,9 +13,13 @@ verifier:
 
 updater:
 	cargo run --release update
+	cargo run --release update --${sign} --signing-key ${signing-key}
+	else
+		cargo run --release update
+	endif
 
-updater_and_signer:
-	cargo run --release -- update-and-sign
+signed_updater:
+	cargo run --release update --sign --signing-key ${signing-key}
 
 collector:
 	cargo run --release collect

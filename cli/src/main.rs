@@ -50,13 +50,13 @@ fn main() {
         SubCommand::Sign => sign(config),
         SubCommand::Verify => verify(config),
         SubCommand::Update(update_opts) => match update_opts.source {
-            UpdateSource::Github => update_from_github(config, false),
-            UpdateSource::Node => update_from_node(config, false, RpcFetcher),
+            UpdateSource::Github => update_from_github(config, update_opts.sign, update_opts.signing_key),
+            UpdateSource::Node => update_from_node(config, update_opts.sign, update_opts.signing_key, RpcFetcher),
         },
-        SubCommand::UpdateAndSign(update_opts) => match update_opts.source {
-            UpdateSource::Github => update_from_github(config, true),
-            UpdateSource::Node => update_from_node(config, true, RpcFetcher),
-        },
+        // SubCommand::UpdateAndSign(update_opts) => match update_opts.source {
+        //     UpdateSource::Github => update_from_github(config, true),
+        //     UpdateSource::Node => update_from_node(config, true, RpcFetcher),
+        // },
         SubCommand::CheckDeployment => check_deployment(config),
     };
 

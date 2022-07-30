@@ -117,8 +117,8 @@ jobs:
         run: make collector
 
       - name: ⚙ Run cleaner
-          if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
-          run: make cleaner
+        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        run: make cleaner
 
       - if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
         uses: ./.github/workflows/deploy

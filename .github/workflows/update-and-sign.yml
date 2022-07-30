@@ -44,13 +44,13 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: run
-          args: --release -- update --source node --signing-key=${{secrets.SIGNING_KEY}}
+          args: --release -- update --source node --sign --signing-key ${{secrets.SIGNING_KEY}}
 
       - name: ⚙ Update QRs from GitHub releases
         uses: actions-rs/cargo@v1
         with:
           command: run
-          args: --release -- update --source github --signing-key=${{secrets.SIGNING_KEY}}
+          args: --release -- update --source github --sign --signing-key ${{secrets.SIGNING_KEY}}
 
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}

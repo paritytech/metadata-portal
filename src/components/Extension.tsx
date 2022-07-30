@@ -28,7 +28,7 @@ export default function Extension(chainSpec: ChainSpec) {
   }
 
   const meta: MetadataDef = {
-    chain: capitalizeFirstLetter(chainSpec.name),
+    chain: capitalizeFirstLetter(chainSpec.title),
     genesisHash: chainSpec.genesisHash,
     icon: chainSpec.logo,
     specVersion: chainSpec.metadataVersion,

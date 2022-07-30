@@ -82,11 +82,11 @@ It all starts with the Github repository. Any user can clone it and run their Me
 
 Metadata Portal supports two metadata sources in parallel. Both are equally important for different types of users.
 
-### 1. Parsing it from chain and generating QR codes itself
+### 1. Parsing it from chain and generating QR codes itself with manual signing
 
 This flow is important for all users who want to always have the latest metadata in their signing devices to parse and sign their transactions right away.
 
-- Cron job
+- Cron job `make updater`
   - runs every N hours and checks every known network for the latest metadata version
   - If any network has a new version of metadata that has not yet been published on the Metadata Portal
     - generates unsigned metadata QR code
@@ -108,6 +108,23 @@ This flow is for security-oriented users and Parity itself. It allows chain owne
 - He opens a PR and signs commits by his YubiKey to prove its validity
 - Owner of the repository accepts the PR
 - Github action is triggered to regenerate and re-deploy the Github Page
+
+### 3. Parsing it from chain and generating QR code itself with auto signing
+
+This flow is **not recommended** because `private key` should be stored in CI configuration
+and passed as command line argument.
+
+This flow is important for all users who want to always have the latest metadata
+in their signing devices to parse and sign their transactions right away.
+
+- Cron job `make updsigner --signing-key=<private key>`
+  - runs every N hours and checks every known network for the latest metadata version
+  - If any network has a new version of metadata that has not yet been published on the Metadata Portal
+    - generates signed metadata QR code
+    - commits new changes to the repo
+    - sends notification to a Matrix channel
+- Github action is triggered to regenerate and re-deploy the Github Page
+
 
 ## Deployment
 ### Requirements

@@ -29,24 +29,23 @@ pub(crate) fn generate_metadata_qr(
     )
     .to_string();
     let path = target_dir.join(&file_name);
-    let make;
-    if sign {
-        make = Make {
+    let make = if sign {
+        Make {
             goal: Goal::Qr,
             crypto: Crypto::Sufficient(
                 generate_crypto(signing_key, content.to_sign().to_vec()).unwrap(),
             ),
             msg: Msg::LoadMetadata(content.to_sign()),
             name: Some(path.to_str().unwrap().to_owned()),
-        };
+        }
     } else {
-        make = Make {
+        Make {
             goal: Goal::Qr,
             crypto: Crypto::None,
             msg: Msg::LoadMetadata(content.to_sign()),
             name: Some(path.to_str().unwrap().to_owned()),
-        };
-    }
+        }
+    };
     info!("⚙️  Generating {}...", file_name);
     full_run(SignerCommand::Make(make)).map_err(anyhow::Error::msg)?;
     Ok(path)

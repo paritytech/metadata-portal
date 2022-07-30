@@ -55,7 +55,7 @@ fn run_for_file(qr_path: &QrPath) -> anyhow::Result<()> {
     Ok(())
 }
 
-pub(crate) fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
+fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
     let signature = hex_to_bytes(signature)?;
     let sufficient_crypto = <SufficientCrypto>::decode(&mut &signature[..])?;
     let mut signed_qr = unsigned_qr.clone();

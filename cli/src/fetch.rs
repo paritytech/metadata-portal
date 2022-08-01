@@ -28,7 +28,7 @@ impl Fetcher for RpcFetcher {
             None,
         )
         .map_err(anyhow::Error::msg)?;
-        if specs.name != chain.name {
+        if specs.name.to_lowercase() != chain.name {
             bail!(
                 "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",
                 chain.name,
@@ -40,7 +40,7 @@ impl Fetcher for RpcFetcher {
 
     fn fetch_metadata(&self, chain: &Chain) -> Result<MetaFetched> {
         let meta = meta_fetch(&chain.rpc_endpoint).map_err(anyhow::Error::msg)?;
-        if meta.meta_values.name != chain.name {
+        if meta.meta_values.name.to_lowercase() != chain.name {
             bail!(
                 "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",
                 chain.name,

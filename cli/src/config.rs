@@ -2,7 +2,15 @@ use std::fs;
 use std::path::{Path, PathBuf};
 
 use log::debug;
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
+
+fn case_insensitive<'de, D>(deserializer: D) -> Result<String, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let s: &str = Deserialize::deserialize(deserializer)?;
+    Ok(s.to_lowercase())
+}
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub(crate) struct AppConfig {
@@ -68,6 +76,7 @@ pub(crate) struct GitHub {
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub(crate) struct Chain {
+    #[serde(deserialize_with = "case_insensitive")]
     pub(crate) name: String,
     pub(crate) title: Option<String>,
     #[serde(default = "color_default")]

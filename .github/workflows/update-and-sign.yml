@@ -53,12 +53,12 @@ jobs:
           args: --release -- update --source github --sign --signing-key ${{secrets.SIGNING_KEY}}
 
       - name: ⚙ Run collector
-          if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
-          run: make collector
+        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        run: make collector
 
       - name: ⚙ Run cleaner
-          if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
-          run: make cleaner
+        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        run: make cleaner
 
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}

@@ -18,15 +18,25 @@ use crate::updater::generate::{generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_release_runtimes;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
 
-pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
+pub(crate) fn update_from_node(
+    config: AppConfig,
+    sign: bool,
+    signing_key: String,
+    fetcher: impl Fetcher,
+) -> anyhow::Result<()> {
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
     let specs_qrs = find_spec_qrs(&config.qr_dir)?;
-
     let mut is_changed = false;
     for chain in config.chains {
         if !specs_qrs.contains_key(chain.name.as_str()) {
             let specs = fetcher.fetch_specs(&chain)?;
-            generate_spec_qr(&chain.name, &specs, &config.qr_dir)?;
+            generate_spec_qr(
+                &chain.name,
+                &specs,
+                &config.qr_dir,
+                sign,
+                signing_key.to_owned(),
+            )?;
             is_changed = true;
         }
 
@@ -43,6 +53,8 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
             &fetched_meta.meta_values,
             &fetched_meta.genesis_hash,
             &config.qr_dir,
+            sign,
+            signing_key.to_owned(),
         )?;
         let source = Source::Rpc {
             url: chain.rpc_endpoint,
@@ -59,7 +71,11 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
 }
 
 #[tokio::main]
-pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> {
+pub(crate) async fn update_from_github(
+    config: AppConfig,
+    sign: bool,
+    signing_key: String,
+) -> anyhow::Result<()> {
     if config.github.is_none() {
         info!("↪️ No GitHub repository specified, skipping update");
         return Ok(());
@@ -91,7 +107,13 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
         let wasm_bytes = download_wasm(wasm.to_owned()).await?;
         let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
         let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
-        let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir)?;
+        let path = generate_metadata_qr(
+            &meta_values,
+            &genesis_hash,
+            &config.qr_dir,
+            sign,
+            signing_key.to_owned(),
+        )?;
         let source = Source::Wasm {
             github_repo: format!("{}/{}", gh.owner, gh.repo),
             hash: format!("0x{}", hex::encode(meta_hash)),

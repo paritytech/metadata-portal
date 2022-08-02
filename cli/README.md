@@ -7,3 +7,4 @@ It can:
 - fetch the metadata from a running node
 - help to sign meta\specs QR codes
 - remove unused QR codes from metadata-portal repo
+- update and sign metadata with provided key (**not recommended**)

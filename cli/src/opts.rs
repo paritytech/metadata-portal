@@ -38,6 +38,12 @@ pub(crate) enum SubCommand {
 
 #[derive(Parser)]
 pub(crate) struct UpdateOpts {
-    #[clap(short, long, default_value = "node")]
+    #[clap(short = 's', long, default_value = "node")]
     pub(crate) source: UpdateSource,
+
+    #[clap(long)]
+    pub(crate) sign: bool,
+
+    #[clap(long, default_value = "")]
+    pub(crate) signing_key: String,
 }

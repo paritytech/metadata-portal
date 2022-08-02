@@ -1,3 +1,5 @@
+extern crate core;
+
 mod cleaner;
 mod collector;
 mod config;
@@ -50,8 +52,15 @@ fn main() {
         SubCommand::Sign => sign(config),
         SubCommand::Verify => verify(config),
         SubCommand::Update(update_opts) => match update_opts.source {
-            UpdateSource::Github => update_from_github(config),
-            UpdateSource::Node => update_from_node(config, RpcFetcher),
+            UpdateSource::Github => {
+                update_from_github(config, update_opts.sign, update_opts.signing_key)
+            }
+            UpdateSource::Node => update_from_node(
+                config,
+                update_opts.sign,
+                update_opts.signing_key,
+                RpcFetcher,
+            ),
         },
         SubCommand::CheckDeployment => check_deployment(config),
     };

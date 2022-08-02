@@ -1,0 +1,126 @@
+name: Check updates&sign
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */2 * * *'
+
+env:
+  BRANCH_PREFIX: updated-codes
+  NOTIFY_MATRIX: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
+
+      - name: Try to checkout exising PR branch
+        id: checkout-pr
+        run: |
+          SIGN_ME_BRANCH=$(git branch -r --list "origin/$BRANCH_PREFIX-*" --sort=-refname | head -n 1)
+          if [ -z "$SIGN_ME_BRANCH" ]
+          then
+            switched="false"
+          else
+            git checkout --track $SIGN_ME_BRANCH
+            switched="true"
+          fi
+          echo "::set-output name=switched::$switched"
+
+      - name: ⚙ Build metadata-cli
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release
+
+      - name: ⚙ Update QRs from RPC nodes
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- update --source node --sign --signing-key ${{secrets.SIGNING_KEY}}
+
+      - name: ⚙ Update QRs from GitHub releases
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- update --source github --sign --signing-key ${{secrets.SIGNING_KEY}}
+
+      - name: 📌 Commit changes if PR exists
+        if: ${{ steps.checkout-pr.outputs.switched == 'true' }}
+        uses: ./.github/workflows/commit-changes
+        with:
+          message: 'metadata update&sign'
+
+      - name: New PR branch
+        if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
+        id: new-branch
+        run: |
+          NAME="$BRANCH_PREFIX-$(date '+%Y-%m-%d')"
+          echo "::set-output name=name::$NAME"
+
+      - name: Create Pull Request if not exist
+        if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
+        id: cpr
+        uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330
+        with:
+          commit-message: add updated QR codes
+          branch: ${{ steps.new-branch.outputs.name }}
+          delete-branch: true
+          base: master
+          title: '[Automated] Review new metadata QRs'
+          body: |
+            Updated metadata QR codes
+          draft: false
+
+      - name: Notify Matrix channel
+        uses: s3krit/matrix-message-action@v0.0.3
+        if: ${{ env.NOTIFY_MATRIX == 'true' && steps.cpr.outputs.pull-request-operation == 'created' }}
+        with:
+          room_id: ${{ secrets.MATRIX_ROOM_ID }}
+          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          server: ${{ secrets.MATRIX_SERVER }}
+          message: "# New metadata is available and signed! 📑
+[GitHub PR#${{ steps.cpr.outputs.pull-request-number }}](${{ steps.cpr.outputs.pull-request-url }})"
+
+  check-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
+
+      - name: ⚙ Check existing deployment
+        id: check-deployment
+        run: |
+          cargo run --release -- check-deployment
+          exit_code=$?
+          if [ $exit_code -eq 12 ]
+          then
+            echo "::set-output name=redeploy::true"
+            exit 0
+          fi
+          echo "::set-output name=redeploy::false"
+          exit $exit_code
+        shell: bash {0}
+
+      - name: ⚙ Run collector
+        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        run: make collector
+
+      - name: ⚙ Run cleaner
+        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        run: make cleaner
+
+      - if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        uses: ./.github/workflows/deploy
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -17,6 +17,7 @@ const searchStringInArray = (str: string, strArray: string[]) => {
   for (let j = 0; j < strArray.length; j++) {
     if (strArray[j].toUpperCase().match(str.toUpperCase())) a.push(strArray[j]);
   }
+  a.sort();
   return a;
 };
 
@@ -29,14 +30,14 @@ export default function Sidebar({
   setIsOpen,
 }: Props): JSX.Element {
   const [searchResults, setSearchResults] = useState<string[]>(
-    Object.keys(allChains)
+    Object.keys(allChains).sort()
   );
 
   const specs = allChains[currentNetwork];
 
   return (
     <div
-      className={`flex-col h-auto min-h-screen w-80 bg-neutral-100 px-6 justify-between absolute ${
+      className={`flex-col h-auto min-h-screen w-80 min-w-[20rem] bg-neutral-100 px-6 justify-between absolute ${
         isOpen ? "flex" : "hidden"
       } z-30 md:relative md:flex`}
     >

@@ -132,7 +132,7 @@ export default function Sidebar({
           </div>
         </a>
         <a
-          href="https://www.parity.io/terms/"
+          href="https://novawallet.io/terms"
           className="inline-block mt-1 mb-4"
           target="_blank"
           rel="noreferrer"

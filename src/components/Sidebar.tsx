@@ -114,7 +114,7 @@ export default function Sidebar({
         </div>
         <a
           className="text-left mt-3 inline-block md:w-fit w-full"
-          href="https://github.com/paritytech/metadata-portal"
+          href="https://github.com/nova-wallet/metadata-portal"
           target={"blank"}
         >
           <div className="flex float-left font-bold">
@@ -122,7 +122,7 @@ export default function Sidebar({
           </div>
         </a>
         <a
-          href="https://www.parity.io/terms/"
+          href="https://novawallet.io/terms"
           className="inline-block mt-1 mb-4"
           target="_blank"
           rel="noreferrer"

@@ -34,6 +34,8 @@ export default function Sidebar({
   );
 
   const specs = allChains[currentNetwork];
+  const logo_base_url =
+    "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/";
 
   return (
     <div
@@ -75,13 +77,7 @@ export default function Sidebar({
                 >
                   <div className="flex items-center text-xl text-white font-inter">
                     <div className="network_icon">
-                      <img
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/chains/" +
-                          allChains[c].logo
-                        }
-                      />
+                      <img src={`${logo_base_url}${allChains[c].logo}`} />
                     </div>
                     <div className="network_name">
                       {capitalizeFirstLetter(allChains[c].title)}
@@ -99,13 +95,7 @@ export default function Sidebar({
                 >
                   <div className="flex items-center text-xl font-inter">
                     <div className="network_icon">
-                      <img
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/chains/" +
-                          allChains[c].logo
-                        }
-                      />
+                      <img src={`${logo_base_url}${allChains[c].logo}`} />
                     </div>
                     <div className="network_name">
                       {capitalizeFirstLetter(allChains[c].title)}

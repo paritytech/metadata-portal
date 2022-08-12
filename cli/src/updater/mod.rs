@@ -45,7 +45,6 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
             &config.qr_dir,
         )?;
         let source = Source::Rpc {
-            url: chain.rpc_endpoint,
             block: fetched_meta.block_hash,
         };
         save_source_info(&path, &source)?;

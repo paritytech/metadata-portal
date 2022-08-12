@@ -33,7 +33,6 @@ export interface WasmSource extends SourceBase {
 }
 
 export interface RpcSource extends SourceBase {
-  url: string;
   block: string;
 }
 

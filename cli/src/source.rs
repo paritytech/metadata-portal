@@ -14,7 +14,7 @@ const SOURCE: &str = "Source";
 #[serde(tag = "type")]
 pub(crate) enum Source {
     Wasm { github_repo: String, hash: String },
-    Rpc { url: String, block: H256 },
+    Rpc { block: H256 },
 }
 
 // Add `Source` info to png file as a zTXt chunk
@@ -84,7 +84,6 @@ mod tests {
         fs::copy(original_png, test_png).unwrap();
 
         let source = Source::Rpc {
-            url: "wss://example.com".to_string(),
             block: H256::default(),
         };
         save_source_info(test_png, &source).unwrap();

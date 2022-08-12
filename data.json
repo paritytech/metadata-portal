@@ -86,7 +86,6 @@
       "signedBy": "Parity",
       "source": {
         "type": "Rpc",
-        "url": "wss://westend-rpc.polkadot.io",
         "block": "0xb7240efdce885f183384921330e6b3725763f267db622de3a95f8a0c8fc19bd2"
       }
     },

@@ -11,7 +11,7 @@ name = "bifrost"
 title = "Bifrost"
 color = "#5a25f0"
 logo = "Bifrost_Kusama.svg"
-rpc_endpoint = "wss://bifrost-parachain.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://bifrost-parachain.api.onfinality.io/public-ws", "wss://bifrost-rpc.liebi.com/ws", "wss://bifrost-rpc.dwellir.com"]
 genesis_hash = "0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed"
 
 [[chains]]
@@ -19,7 +19,7 @@ name = "acala"
 title = "Acala"
 color = "#645AFF"
 logo = "Acala.svg"
-rpc_endpoint = "wss://acala-rpc.dwellir.com"
+rpc_endpoints = ["wss://acala-rpc.dwellir.com", "wss://acala-rpc-1.aca-api.network", "wss://acala-rpc-2.aca-api.network/ws", "wss://acala-rpc-3.aca-api.network/ws", "wss://acala.polkawallet.io", "wss://acala-polkadot.api.onfinality.io/public-ws"]
 genesis_hash = "0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c"
 
 [[chains]]
@@ -27,7 +27,7 @@ name = "statemine"
 title = "Statemine"
 color = "#113911"
 logo = "Statemine.svg"
-rpc_endpoint = "wss://statemine.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://statemine.api.onfinality.io/public-ws", "wss://statemine-rpc.polkadot.io", "wss://statemine-rpc.dwellir.com"]
 genesis_hash = "0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a"
 
 [[chains]]
@@ -43,7 +43,7 @@ name = "heiko"
 title = "Parallel Heiko"
 color = "#42d5de"
 logo = "ParallelHeiko.svg"
-rpc_endpoint = "wss://heiko-rpc.parallel.fi"
+rpc_endpoints = ["wss://heiko-rpc.parallel.fi", "wss://parallel-heiko.api.onfinality.io/public-ws"]
 genesis_hash = "0x64a1c658a48b2e70a7fb1ad4c39eea35022568c20fc44a6e2e3d0a57aee6053b"
 
 [[chains]]
@@ -51,7 +51,7 @@ name = "shiden"
 title = "Shiden"
 color = "#5923B2"
 logo = "Shiden.svg"
-rpc_endpoint = "wss://rpc.shiden.astar.network"
+rpc_endpoints = ["wss://rpc.shiden.astar.network", "wss://shiden.api.onfinality.io/public-ws", "wss://rpc.pinknode.io/shiden/explorer"]
 genesis_hash = "0xf1cf9022c7ebb34b162d5b5e34e705a5a740b2d0ecc1009fb89023e62a488108"
 
 [[chains]]
@@ -59,7 +59,7 @@ name = "basilisk"
 title = "Basilisk"
 color = "#9eec1b"
 logo = "Basilisk.svg"
-rpc_endpoint = "wss://rpc-01.basilisk.hydradx.io"
+rpc_endpoints = ["wss://rpc-01.basilisk.hydradx.io", "wss://basilisk.api.onfinality.io/public-ws", "wss://basilisk-rpc.dwellir.com"]
 genesis_hash = "0xa85cfb9b9fd4d622a5b28289a02347af987d8f73fa3108450e2b4a11c1ce5755"
 
 [[chains]]
@@ -67,7 +67,7 @@ name = "altair"
 title = "Altair"
 color = "#ffb700"
 logo = "Altair.svg"
-rpc_endpoint = "wss://fullnode.altair.centrifuge.io"
+rpc_endpoints = ["wss://fullnode.altair.centrifuge.io", "wss://altair.api.onfinality.io/public-ws"]
 genesis_hash = "0xaa3876c1dc8a1afcc2e9a685a49ff7704cfd36ad8c90bf2702b9d1b00cc40011"
 
 [[chains]]
@@ -75,7 +75,7 @@ name = "khala"
 title = "Khala"
 color = "#03f3f3"
 logo = "Khala.svg"
-rpc_endpoint = "wss://khala-api.phala.network/ws"
+rpc_endpoints = ["wss://khala-api.phala.network/ws", "wss://khala.api.onfinality.io/public-ws"]
 genesis_hash = "0xd43540ba6d3eb4897c28a77d48cb5b729fea37603cbbfc7a86a73b72adb3be8d"
 
 [[chains]]
@@ -83,56 +83,56 @@ name = "kilt-spiritnet"
 title = "KILT Spiritnet"
 color = "#8c145a"
 logo = "KILT_Spiritnet.svg"
-rpc_endpoint = "wss://spiritnet.kilt.io/"
+rpc_endpoints = ["wss://spiritnet.kilt.io/", "wss://spiritnet.api.onfinality.io/public-ws"]
 
 [[chains]]
 name = "calamari"
 title = "Calamari"
 color = "#000000"
 logo = "Calamari.svg"
-rpc_endpoint = "wss://ws.calamari.systems/"
+rpc_endpoints = ["wss://ws.calamari.systems/", "wss://calamari.api.onfinality.io/public-ws", "wss://calamari-rpc.dwellir.com"]
 
 [[chains]]
 name = "quartz"
 title = "QUARTZ"
 color = "#FF4D6A"
 logo = "Quartz.svg"
-rpc_endpoint = "wss://quartz.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://quartz.api.onfinality.io/public-ws", "wss://quartz.unique.network", "wss://eu-ws-quartz.unique.network", "wss://us-ws-quartz.unique.network"]
 
 [[chains]]
 name = "pioneer-runtime"
 title = "Bit.Country Pioneer"
 color = "#000000"
 logo = "Bit.Country_Pioneer.svg"
-rpc_endpoint = "wss://pioneer.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://pioneer.api.onfinality.io/public-ws", "wss://pioneer-1-rpc.bit.country"]
 
 [[chains]]
 name = "astar"
 title = "Astar"
 color = "#1b6dc1d9"
 logo = "Astar.svg"
-rpc_endpoint = "wss://astar.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://astar.api.onfinality.io/public-ws", "wss://rpc.astar.network"]
 
 [[chains]]
 name = "parallel"
 title = "Parallel"
 color = "#ef18ac"
 logo = "Parallel.svg"
-rpc_endpoint = "wss://rpc.parallel.fi"
+rpc_endpoints = ["wss://rpc.parallel.fi", "wss://parallel.api.onfinality.io/public-ws"]
 
 [[chains]]
 name = "clover-mainnet"
 title = "CLV Parachain"
 color = "linear-gradient(to right, #52ad75, #7cc773)"
 logo = "CLV_Parachain.svg"
-rpc_endpoint = "wss://rpc-para.clover.finance"
+rpc_endpoints = ["wss://rpc-para.clover.finance", "wss://clover.api.onfinality.io/public-ws"]
 
 [[chains]]
 name = "statemint"
 title = "Statemint"
 color = "#86e62a"
 logo = "Statemint.svg"
-rpc_endpoint = "wss://statemint-rpc.polkadot.io"
+rpc_endpoints = ["wss://statemint-rpc.polkadot.io", "wss://statemint.api.onfinality.io/public-ws", "wss://statemint-rpc.dwellir.com"]
 
 [[chains]]
 name = "subsocial"
@@ -153,7 +153,7 @@ name = "encointer-parachain"
 title = "Encointer"
 color = "#0000cc"
 logo = "Encointer.svg"
-rpc_endpoint = "wss://api.kusama.encointer.org"
+rpc_endpoints = ["wss://api.kusama.encointer.org", "wss://encointer.api.onfinality.io/public-ws"]
 
 [[chains]]
 name = "kintsugi-parachain"
@@ -174,7 +174,7 @@ name = "zeitgeist"
 title = "Zeitgeist"
 color = "linear-gradient(180deg, rgba(32,90,172,1) 0%, rgba(26,72,138,1) 50%, rgba(13,36,69,1) 100%)"
 logo = "Zeitgeist.svg"
-rpc_endpoint = "wss://zeitgeist-rpc.dwellir.com"
+rpc_endpoints = ["wss://zeitgeist-rpc.dwellir.com", "wss://rpc-0.zeitgeist.pm", "wss://zeitgeist.api.onfinality.io/public-ws"]
 
 [[chains]]
 name = "hydradx"
@@ -188,7 +188,7 @@ name = "KICO"
 title = "KICO"
 color = "#29B58D"
 logo = "KICO.svg"
-rpc_endpoint = "wss://rpc.kico.dico.io"
+rpc_endpoints = ["wss://rpc.kico.dico.io", "wss://rpc.api.kico.dico.io"]
 
 [[chains]]
 name = "litmus-parachain"
@@ -216,14 +216,14 @@ name = "crust-collator"
 title = "Crust Shadow"
 color = "#ff8812"
 logo = "Crust_Shadow.svg"
-rpc_endpoint = "wss://rpc2-shadow.crust.network/"
+rpc_endpoints = ["wss://rpc2-shadow.crust.network/", "wss://rpc-shadow.crust.network/"]
 
 [[chains]]
 name = "integritee-parachain"
 title = "Integritee Parachain"
 color = "#658ea9"
 logo = "Integritee.svg"
-rpc_endpoint = "wss://integritee-kusama.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://integritee-kusama.api.onfinality.io/public-ws", "wss://kusama.api.integritee.network"]
 
 [[chains]]
 name = "centrifuge"
@@ -244,21 +244,21 @@ name = "interlay-parachain"
 title = "Interlay"
 color = "#3E96FF"
 logo = "Interlay.svg"
-rpc_endpoint = "wss://interlay.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://interlay.api.onfinality.io/public-ws", "wss://api.interlay.io/parachain"]
 
 [[chains]]
 name = "nodle-para"
 title = "Nodle Parachain"
 color = "#1ab394"
 logo = "Nodle.svg"
-rpc_endpoint = "wss://nodle-parachain.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://nodle-parachain.api.onfinality.io/public-ws", "wss://eden-rpc.dwellir.com"]
 
 [[chains]]
 name = "turing"
 title = "Turing"
 color = "#A8278C"
 logo = "Turing.svg"
-rpc_endpoint = "wss://rpc.turing.oak.tech"
+rpc_endpoints = ["wss://rpc.turing.oak.tech", "wss://turing-rpc.dwellir.com"]
 
 [[chains]]
 name = "aleph-node"
@@ -273,7 +273,7 @@ rpc_endpoint = "wss://ws.azero.dev"
 #title = "Composable Finance"
 #color = "#C90E8A"
 #logo = "Composable.svg"
-#rpc_endpoint = "wss://composable-rpc.dwellir.com"
+#rpc_endpoints = ["wss://composable-rpc.dwellir.com", "wss://rpc.composable.finance"]
 
 #TODO polkadex parachain. Names are different.
 [[chains]]
@@ -281,7 +281,7 @@ name = "node"
 title = "Polkadex Solochain"
 color = "#7C30DD"
 logo = "Polkadex.svg"
-rpc_endpoint = "wss://polkadex.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://polkadex.api.onfinality.io/public-ws", "wss://mainnet.polkadex.trade"]
 
 [[chains]]
 name = "origintrail-parachain"
@@ -309,7 +309,7 @@ name = "unique"
 title = "UNIQUE"
 color = "#40BCFF"
 logo = "Unique.svg"
-rpc_endpoint = "wss://eu-ws.unique.network/"
+rpc_endpoints = ["wss://eu-ws.unique.network/", "wss://us-ws.unique.network/", "wss://asia-ws.unique.network/"]
 
 [[chains]]
 name = "DORA KSM Parachain"
@@ -323,7 +323,7 @@ name = "mangata-parachain"
 title = "Mangata X"
 color = "#030408"
 logo = "MangataX.svg"
-rpc_endpoint = "wss://mangata-x.api.onfinality.io/public-ws"
+rpc_endpoints = ["wss://mangata-x.api.onfinality.io/public-ws", "wss://prod-kusama-collator-01.mangatafinance.cloud"]
 
 [[chains]]
 name = "pichiu"

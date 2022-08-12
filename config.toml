@@ -258,7 +258,7 @@ name = "turing"
 title = "Turing"
 color = "#A8278C"
 logo = "Turing.svg"
-rpc_endpoint = "wss://turing.api.onfinality.io/public-ws"
+rpc_endpoint = "wss://rpc.turing.oak.tech"
 
 [[chains]]
 name = "aleph-node"

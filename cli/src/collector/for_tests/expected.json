@@ -14,7 +14,6 @@
       "signedBy": "Test Verifier",
       "source": {
         "type": "Rpc",
-        "url": "wss://rpc.polkadot.io",
         "block": "0x0000000000000000000000000000000000000000000000000000000000000000"
       }
     },

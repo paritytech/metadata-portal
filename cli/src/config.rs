@@ -1,7 +1,8 @@
-use std::fs;
 use std::path::{Path, PathBuf};
+use std::{fmt, fs};
 
 use log::debug;
+use serde::de::{self, value, SeqAccess, Visitor};
 use serde::{Deserialize, Deserializer, Serialize};
 
 fn case_insensitive<'de, D>(deserializer: D) -> Result<String, D::Error>
@@ -10,6 +11,37 @@ where
 {
     let s: &str = Deserialize::deserialize(deserializer)?;
     Ok(s.to_lowercase())
+}
+
+fn string_or_vec<'de, D>(deserializer: D) -> Result<Vec<String>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    struct StringOrVec;
+
+    impl<'de> Visitor<'de> for StringOrVec {
+        type Value = Vec<String>;
+
+        fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+            formatter.write_str("string or list of strings")
+        }
+
+        fn visit_str<E>(self, s: &str) -> Result<Self::Value, E>
+        where
+            E: de::Error,
+        {
+            Ok(vec![s.to_owned()])
+        }
+
+        fn visit_seq<S>(self, seq: S) -> Result<Self::Value, S::Error>
+        where
+            S: SeqAccess<'de>,
+        {
+            Deserialize::deserialize(value::SeqAccessDeserializer::new(seq))
+        }
+    }
+
+    deserializer.deserialize_any(StringOrVec)
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
@@ -82,7 +114,8 @@ pub(crate) struct Chain {
     #[serde(default = "color_default")]
     pub(crate) color: String,
     pub(crate) logo: String,
-    pub(crate) rpc_endpoint: String,
+    #[serde(alias = "rpc_endpoint", deserialize_with = "string_or_vec")]
+    pub(crate) rpc_endpoints: Vec<String>,
     pub(crate) genesis_hash: Option<String>,
     pub(crate) token_unit: Option<String>,
     pub(crate) token_decimals: Option<u8>,
@@ -100,7 +133,7 @@ impl Default for Chain {
             title: None,
             color: color_default(),
             logo: "Polkadot.svg".to_string(),
-            rpc_endpoint: "wss://example.com".to_string(),
+            rpc_endpoints: vec!["wss://example.com".to_string()],
             genesis_hash: None,
             token_unit: None,
             token_decimals: None,

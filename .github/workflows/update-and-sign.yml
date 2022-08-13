@@ -7,9 +7,7 @@ on:
   status:
     if_error_or_failure:
       runs-on: ubuntu-latest
-        if: >-
-          github.event.state == 'error' ||
-          github.event.state == 'failure'
+        if: ${{ github.event.state == 'error' || github.event.state == 'failure' }}
         steps:
           - uses: s3krit/matrix-message-action@v0.0.3
           - with:

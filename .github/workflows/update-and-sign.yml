@@ -7,15 +7,15 @@ on:
   status:
     if_error_or_failure:
       runs-on: ubuntu-latest
-        if: ${{ github.event.state == 'error' || github.event.state == 'failure' }}
-        steps:
-          - uses: s3krit/matrix-message-action@v0.0.3
-          - with:
-              room_id: ${{ secrets.MATRIX_ROOM_ID }}
-              access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-              server: ${{ secrets.MATRIX_SERVER }}
-              message: "Error updating metadata! ❌
-                ${{ github.event.description }}"
+      if: ${{ github.event.state == 'error' || github.event.state == 'failure' }}
+      steps:
+        - uses: s3krit/matrix-message-action@v0.0.3
+        - with:
+            room_id: ${{ secrets.MATRIX_ROOM_ID }}
+            access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+            server: ${{ secrets.MATRIX_SERVER }}
+            message: "Error updating metadata! ❌
+              ${{ github.event.description }}"
 
 env:
   BRANCH_PREFIX: updated-codes

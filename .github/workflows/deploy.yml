@@ -35,7 +35,7 @@ jobs:
 
       - name: Send warning to Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3
-        if: failure() && steps.collect.outcome == 'failure'
+        if: failure() && steps.collect.outcome == 'failure' && env.NOTIFY_MATRIX == 'true'
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
@@ -44,7 +44,7 @@ jobs:
 
       - name: Send error to Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3
-        if: failure() && (steps.deploy.outcome == 'failure' || steps.verify.outcome == 'failure')
+        if: failure() && (steps.deploy.outcome == 'failure' || steps.verify.outcome == 'failure') && env.NOTIFY_MATRIX == 'true'
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}

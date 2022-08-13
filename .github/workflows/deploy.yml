@@ -23,29 +23,20 @@ jobs:
         id: verify
         run: make verifier
 
-      - name: Send error to Matrix channel
-        uses: s3krit/matrix-message-action@v0.0.3
-        if: failure() && steps.verify.outcome == 'failure'
-        with:
-          room_id: ${{ secrets.MATRIX_ROOM_ID }}
-          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          server: ${{ secrets.MATRIX_SERVER }}
-          message: "Error updating metadata! ❌
-                          ${{ steps.verify.outcome }}"
-
       - name: ⚙ Run collector
         id: collect
         run: make collector
 
       - name: Send error to Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3
-        if: failure() && steps.collect.outcome == 'failure'
+        if: failure() && (steps.collect.outcome == 'failure' || steps.verify.outcome == 'failure')
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
           server: ${{ secrets.MATRIX_SERVER }}
           message: "Error updating metadata! ❌
-                              ${{ steps.collect.outcome }}"
+                              ${{ steps.verify.outputs.stdout }}
+                              ${{ steps.collect.outputs.stdout }}"
 
       - uses: ./.github/workflows/deploy
         with:

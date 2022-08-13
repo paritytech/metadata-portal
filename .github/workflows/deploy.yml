@@ -27,6 +27,12 @@ jobs:
         id: collect
         run: make collector
 
+      - uses: ./.github/workflows/deploy
+        id: deploy
+        if: success() || failure() && (steps.collect.outcome == 'failure')
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Send warning to Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3
         if: failure() && steps.collect.outcome == 'failure'
@@ -35,12 +41,6 @@ jobs:
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
           server: ${{ secrets.MATRIX_SERVER }}
           message: "⚠️ Warning metadata deployed but should be updated one more time! ⚠️"
-
-      - uses: ./.github/workflows/deploy
-        id: deploy
-        if: success() || failure() && (steps.collect.outcome == 'failure')
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send error to Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3

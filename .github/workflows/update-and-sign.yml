@@ -95,6 +95,15 @@ jobs:
           message: "# New metadata is available and signed! 📑
 [GitHub PR#${{ steps.cpr.outputs.pull-request-number }}](${{ steps.cpr.outputs.pull-request-url }})"
 
+      - name: Send error to Matrix channel
+        uses: s3krit/matrix-message-action@v0.0.3
+        if: failure()
+        with:
+          room_id: ${{ secrets.MATRIX_ROOM_ID }}
+          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          server: ${{ secrets.MATRIX_SERVER }}
+          message: "❌️ Error updating metadata! ❌"
+
   check-deployment:
     runs-on: ubuntu-latest
     steps:
@@ -127,11 +136,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-  - name: Send error to Matrix channel
-    uses: s3krit/matrix-message-action@v0.0.3
-    if: failure()
-    with:
-      room_id: ${{ secrets.MATRIX_ROOM_ID }}
-      access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-      server: ${{ secrets.MATRIX_SERVER }}
-      message: "❌️ Error updating metadata! ❌"
+      - name: Send error to Matrix channel
+        uses: s3krit/matrix-message-action@v0.0.3
+        if: failure()
+        with:
+          room_id: ${{ secrets.MATRIX_ROOM_ID }}
+          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          server: ${{ secrets.MATRIX_SERVER }}
+          message: "❌️ Error checking deployment! ❌"

@@ -31,7 +31,7 @@ jobs:
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
           server: ${{ secrets.MATRIX_SERVER }}
           message: "Error updating metadata! ❌
-                          ${{ github.verify.outcome }}"
+                          ${{ steps.verify.outcome }}"
 
       - name: ⚙ Run collector
         id: collect
@@ -45,7 +45,7 @@ jobs:
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
           server: ${{ secrets.MATRIX_SERVER }}
           message: "Error updating metadata! ❌
-                              ${{ github.collect.verify }}"
+                              ${{ steps.collect.outcome }}"
 
       - uses: ./.github/workflows/deploy
         with:

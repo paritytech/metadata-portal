@@ -38,7 +38,7 @@ jobs:
 
       - uses: ./.github/workflows/deploy
         id: deploy
-        if: failure() && (steps.collect.outcome == 'failure' || steps.verify.outcome == 'failure')
+        if: success() || failure() && (steps.collect.outcome == 'failure')
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 

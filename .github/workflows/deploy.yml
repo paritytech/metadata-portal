@@ -5,21 +5,47 @@ on:
     branches:
       - master
 
+env:
+  NOTIFY_MATRIX: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: 🛎 Checkout
+        id: checkout
         uses: actions/checkout@v3
 
       - uses: ./.github/workflows/rust-install
 
       - name: ⚙ Run verifier
+        id: verify
         run: make verifier
 
+      - name: Send error to Matrix channel
+        uses: s3krit/matrix-message-action@v0.0.3
+        if: failure() && steps.verify.outcome != 'success'
+        with:
+          room_id: ${{ secrets.MATRIX_ROOM_ID }}
+          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          server: ${{ secrets.MATRIX_SERVER }}
+          message: "Error updating metadata! ❌
+                          ${{ github.verify.outcome }}"
+
       - name: ⚙ Run collector
+        id: collect
         run: make collector
+
+      - name: Send error to Matrix channel
+        uses: s3krit/matrix-message-action@v0.0.3
+        if: failure() && steps.collect.outcome != 'success'
+        with:
+          room_id: ${{ secrets.MATRIX_ROOM_ID }}
+          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          server: ${{ secrets.MATRIX_SERVER }}
+          message: "Error updating metadata! ❌
+                              ${{ github.collect.verify }}"
 
       - uses: ./.github/workflows/deploy
         with:

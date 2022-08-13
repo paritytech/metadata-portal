@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 */2 * * *'
-  status:
 
 env:
   BRANCH_PREFIX: updated-codes
@@ -127,16 +126,3 @@ jobs:
         uses: ./.github/workflows/deploy
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
-  if_error_or_failure:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send error to Matrix channel
-        uses: s3krit/matrix-message-action@v0.0.3
-        if: ${{ env.NOTIFY_MATRIX == 'true' && (github.event.state == 'error' || github.event.state == 'failure') }}
-        with:
-            room_id: ${{ secrets.MATRIX_ROOM_ID }}
-            access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-            server: ${{ secrets.MATRIX_SERVER }}
-            message: "Error updating metadata! ❌
-                  ${{ github.event.description }}"

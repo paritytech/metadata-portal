@@ -4,7 +4,7 @@ use std::path::PathBuf;
 
 use anyhow::{Context, Result};
 use indexmap::IndexMap;
-use log::info;
+use log::{info, warn};
 
 use crate::export::{ExportChainSpec, ExportData, QrCode, ReactAssetPath};
 use crate::fetch::Fetcher;
@@ -23,8 +23,14 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
         let specs = fetcher.fetch_specs(chain)?;
         let meta = fetcher.fetch_metadata(chain)?;
         let active_version = meta.meta_values.version;
-
-        let metadata_qr = extract_metadata_qr(&metadata_qrs, &chain.name, &active_version)?;
+        let metadata_qr_result = extract_metadata_qr(&metadata_qrs, &chain.name, &active_version);
+        let metadata_qr;
+        if metadata_qr_result.is_err() {
+            warn!("No latest metadata found for {}", chain.name);
+            continue;
+        } else {
+            metadata_qr = metadata_qr_result.unwrap();
+        }
 
         let specs_qr = specs_qrs
             .get(chain.name.as_str())

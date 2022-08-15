@@ -20,8 +20,14 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
     for chain in &config.chains {
         info!("Collecting {} info...", chain.name);
 
-        let specs = fetcher.fetch_specs(chain)?;
-        let meta = fetcher.fetch_metadata(chain)?;
+        let specs_result = fetcher.fetch_specs(chain);
+        let meta_result = fetcher.fetch_metadata(chain);
+        if specs_result.is_err() || meta_result.is_err() {
+            warn!("Error getting data for {}", chain.name);
+            continue;
+        }
+        let specs = specs_result.unwrap();
+        let meta = meta_result.unwrap();
         let active_version = meta.meta_values.version;
         let metadata_qr_result = extract_metadata_qr(&metadata_qrs, &chain.name, &active_version);
         let metadata_qr;

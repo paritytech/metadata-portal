@@ -173,4 +173,4 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "⚠️ Redeployment required! ⚠ ${{ env.GITHUB_WORKFLOW_URL }}️"
+          message: "⚠️ Redeployment required! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}️"

@@ -50,7 +50,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "⚠️ Warning metadata deployed but should be updated one more time! ⚠ ${{ env.GITHUB_WORKFLOW_URL }}️"
+          message: "⚠️ Warning metadata deployed but should be updated one more time! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}️"
 
       - name: Send error to Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3

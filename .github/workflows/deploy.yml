@@ -6,7 +6,8 @@ on:
       - master
 
 env:
-  NOTIFY_MATRIX: true
+  NOTIFY_MATRIX: false
+  NOTIFY_TELEGRAM: true
 
 jobs:
   deploy:
@@ -40,7 +41,15 @@ jobs:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
           server: ${{ secrets.MATRIX_SERVER }}
-          message: "⚠️ Warning metadata deployed but should be updated one more time! ⚠️"
+          message: "⚠️ Warning metadata deployed but should be updated one more time! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
+
+      - name: Send warning to Telegram channel
+        uses: appleboy/telegram-action@master
+        if:  failure() && steps.collect.outcome == 'failure' && env.NOTIFY_TELEGRAM == 'true'
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "⚠️ Warning metadata deployed but should be updated one more time! ⚠ ${{ env.GITHUB_WORKFLOW_URL }}️"
 
       - name: Send error to Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3
@@ -49,4 +58,12 @@ jobs:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
           server: ${{ secrets.MATRIX_SERVER }}
-          message: "❌️ Error deploying metadata! ❌"
+          message: "❌️ Error deploying metadata! ❌ ${{ env.GITHUB_WORKFLOW_URL }}"
+
+      - name: Send error to Telegram channel
+        uses: appleboy/telegram-action@master
+        if:  failure() && (steps.deploy.outcome == 'failure' || steps.verify.outcome == 'failure') && env.NOTIFY_TELEGRAM == 'true'
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "❌️ Error deploying metadata! ❌ ${{ env.GITHUB_WORKFLOW_URL }}"

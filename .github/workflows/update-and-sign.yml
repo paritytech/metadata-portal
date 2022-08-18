@@ -9,6 +9,7 @@ env:
   BRANCH_PREFIX: updated-codes
   NOTIFY_MATRIX: false
   NOTIFY_TELEGRAM: true
+  GITHUB_WORKFLOW_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
 jobs:
   update:

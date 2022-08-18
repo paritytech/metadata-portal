@@ -7,7 +7,9 @@ on:
 
 env:
   BRANCH_PREFIX: updated-codes
-  NOTIFY_MATRIX: true
+  NOTIFY_MATRIX: false
+  NOTIFY_TELEGRAM: true
+  GITHUB_WORKFLOW_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
 jobs:
   update:
@@ -95,6 +97,16 @@ jobs:
           message: "# New metadata is available and signed! 📑
 [GitHub PR#${{ steps.cpr.outputs.pull-request-number }}](${{ steps.cpr.outputs.pull-request-url }})"
 
+      - name: Notify Telegram channel
+        uses: appleboy/telegram-action@master
+        if: ${{ env.NOTIFY_TELEGRAM == 'true' && steps.cpr.outputs.pull-request-operation == 'created' }}
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            New metadata is available and signed! 📑
+            ${{ steps.cpr.outputs.pull-request-url }}
+
       - name: Send error to Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3
         if: ${{ failure() && env.NOTIFY_MATRIX == 'true' }}
@@ -102,7 +114,17 @@ jobs:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
           server: ${{ secrets.MATRIX_SERVER }}
-          message: "❌️ Error updating metadata! ❌"
+          message: "❌️ Error updating metadata! ❌ ${{ env.GITHUB_WORKFLOW_URL }}"
+
+      - name: Send error to Telegram channel
+        uses: appleboy/telegram-action@master
+        if: ${{ failure() && env.NOTIFY_TELEGRAM == 'true' }}
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ❌️ Error updating metadata! ❌
+            ${{ env.GITHUB_WORKFLOW_URL }}
 
   check-deployment:
     runs-on: ubuntu-latest
@@ -143,4 +165,12 @@ jobs:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
           server: ${{ secrets.MATRIX_SERVER }}
-          message: "⚠️ Redeployment required! ⚠️"
+          message: "⚠️ Redeployment required! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
+
+      - name: Send error to Telegram channel
+        uses: appleboy/telegram-action@master
+        if: ${{ steps.check-deployment.outputs.redeploy == 'true' && env.NOTIFY_TELEGRAM == 'true'}}
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "⚠️ Redeployment required! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}️"

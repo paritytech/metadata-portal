@@ -117,12 +117,13 @@ and passed as command line argument.
 This flow is important for all users who want to always have the latest metadata
 in their signing devices to parse and sign their transactions right away.
 
-- Cron job `make updsigner --signing-key=<private key>`
+- Cron job `make updsigner --signing-key=<private key> --source=<source>`
   - runs every N hours and checks every known network for the latest metadata version
   - If any network has a new version of metadata that has not yet been published on the Metadata Portal
     - generates signed metadata QR code
     - commits new changes to the repo
-    - sends notification to a Matrix channel
+    - sends notification to a Matrix or Telegram channel
+  - Source may be `github` or `node`
 - Github action is triggered to regenerate and re-deploy the Github Page
 
 

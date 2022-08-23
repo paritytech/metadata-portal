@@ -30,14 +30,11 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
         let meta = meta_result.unwrap();
         let active_version = meta.meta_values.version;
         let metadata_qr_result = extract_metadata_qr(&metadata_qrs, &chain.name, &active_version);
-        let metadata_qr;
         if metadata_qr_result.is_err() {
             warn!("No latest metadata found for {}", chain.name);
             continue;
-        } else {
-            metadata_qr = metadata_qr_result.unwrap();
         }
-
+        let metadata_qr = metadata_qr_result.unwrap();
         let specs_qr = specs_qrs
             .get(chain.name.as_str())
             .with_context(|| format!("No specs qr found for {}", chain.name))?

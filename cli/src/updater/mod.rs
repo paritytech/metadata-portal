@@ -3,11 +3,12 @@ mod github;
 pub(crate) mod source;
 mod wasm;
 
+use std::process::exit;
 use std::str::FromStr;
 
 use anyhow::Context;
 use blake2_rfc::blake2b::blake2b;
-use log::info;
+use log::{info, warn};
 use sp_core::H256;
 
 use crate::config::AppConfig;
@@ -27,14 +28,31 @@ pub(crate) fn update_from_node(
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
     let specs_qrs = find_spec_qrs(&config.qr_dir)?;
     let mut is_changed = false;
+    let mut error_fetching_data = false;
     for chain in config.chains {
         if !specs_qrs.contains_key(chain.name.as_str()) {
-            let specs = fetcher.fetch_specs(&chain)?;
-            generate_spec_qr(&specs, &config.qr_dir, sign, signing_key.to_owned())?;
+            let specs_res = fetcher.fetch_specs(&chain);
+            if specs_res.is_err() {
+                error_fetching_data = true;
+                warn!("Can't get specs for {}", chain.name);
+                continue;
+            }
+            generate_spec_qr(
+                &specs_res.unwrap(),
+                &config.qr_dir,
+                sign,
+                signing_key.to_owned(),
+            )?;
             is_changed = true;
         }
 
-        let fetched_meta = fetcher.fetch_metadata(&chain)?;
+        let fetched_meta_res = fetcher.fetch_metadata(&chain);
+        if fetched_meta_res.is_err() {
+            error_fetching_data = true;
+            warn!("Can't get metadata for {}", chain.name);
+            continue;
+        }
+        let fetched_meta = fetched_meta_res.unwrap();
         let version = fetched_meta.meta_values.version;
 
         // Skip if already have QR for the same version
@@ -57,9 +75,15 @@ pub(crate) fn update_from_node(
         is_changed = true;
     }
 
+    if error_fetching_data {
+        warn!("⚠️ Some chain data wasn't read. Please check the log!");
+        exit(12);
+    }
+
     if !is_changed {
         info!("🎉 Everything is up to date!");
     }
+
     Ok(())
 }
 

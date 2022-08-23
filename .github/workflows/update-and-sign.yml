@@ -43,21 +43,40 @@ jobs:
           args: --release
 
       - name: ⚙ Update QRs from RPC nodes
-        uses: actions-rs/cargo@v1
-        with:
-          command: run
-          args: --release -- update --source node --sign --signing-key ${{secrets.SIGNING_KEY}}
+        id: update-nodes
+        run: |
+          cargo run --release update --sign --signing-key ${{secrets.SIGNING_KEY}} --source node
+          exit_code=$?
+          if [ $exit_code -eq 12 ]
+          then
+            echo "::set-output name=chainsSkipped::true"
+            exit 0
+          fi
+          echo "::set-output name=chainsSkipped::false"
+          exit $exit_code
+        shell: bash {0}
 
       - name: ⚙ Update QRs from GitHub releases
-        uses: actions-rs/cargo@v1
-        with:
-          command: run
-          args: --release -- update --source github --sign --signing-key ${{secrets.SIGNING_KEY}}
+        run: |
+          cargo run --release update --sign --signing-key ${{secrets.SIGNING_KEY}} --source github
 
       - name: ⚙ Run collector
-        run: make collector
+        id: collect
+        run: |
+          cargo run --release collect
+          exit_code=$?
+          if [ $exit_code -eq 12 ]
+          then
+            echo "::set-output name=chainsSkipped::true"
+            exit 0
+          fi
+          echo "::set-output name=chainsSkipped::false"
+          exit $exit_code
+        shell: bash {0}
 
       - name: ⚙ Run cleaner
+        if: ${{ steps.collect.outputs.chainsSkipped == 'false' }}
+        id: cleaner
         run: make cleaner
 
       - name: 📌 Commit changes if PR exists
@@ -126,6 +145,40 @@ jobs:
             ❌️ Error updating metadata! ❌
             ${{ env.GITHUB_WORKFLOW_URL }}
 
+      - name: Send update warning to Matrix channel
+        uses: s3krit/matrix-message-action@v0.0.3
+        if: ${{ steps.update-nodes.outputs.chainsSkipped == 'true' && env.NOTIFY_MATRIX == 'true'}}
+        with:
+          room_id: ${{ secrets.MATRIX_ROOM_ID }}
+          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          server: ${{ secrets.MATRIX_SERVER }}
+          message: "⚠️ Some networks were not available! Please, check the log! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
+
+      - name: Send update warning to Telegram channel
+        uses: appleboy/telegram-action@master
+        if: ${{ steps.update-nodes.outputs.chainsSkipped == 'true' && env.NOTIFY_TELEGRAM == 'true'}}
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "⚠️ Some networks were not available! Please, check the log! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
+
+      - name: Send collect warning to Matrix channel
+        uses: s3krit/matrix-message-action@v0.0.3
+        if: ${{ steps.collect.outputs.chainsSkipped == 'true' && env.NOTIFY_MATRIX == 'true'}}
+        with:
+          room_id: ${{ secrets.MATRIX_ROOM_ID }}
+          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          server: ${{ secrets.MATRIX_SERVER }}
+          message: "⚠️ Some networks were not available! Please, check the log! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
+
+      - name: Send collect warning to Telegram channel
+        uses: appleboy/telegram-action@master
+        if: ${{ steps.collect.outputs.chainsSkipped == 'true' && env.NOTIFY_TELEGRAM == 'true'}}
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "⚠️ Some networks were not available! Please, check the log! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
+
   check-deployment:
     runs-on: ubuntu-latest
     steps:
@@ -158,7 +211,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Send error to Matrix channel
+      - name: Send deploy warning to Matrix channel
         uses: s3krit/matrix-message-action@v0.0.3
         if: ${{ steps.check-deployment.outputs.redeploy == 'true' && env.NOTIFY_MATRIX == 'true'}}
         with:
@@ -167,10 +220,12 @@ jobs:
           server: ${{ secrets.MATRIX_SERVER }}
           message: "⚠️ Redeployment required! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
 
-      - name: Send error to Telegram channel
+      - name: Send deploy warning to Telegram channel
         uses: appleboy/telegram-action@master
         if: ${{ steps.check-deployment.outputs.redeploy == 'true' && env.NOTIFY_TELEGRAM == 'true'}}
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: "⚠️ Redeployment required! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}️"
+
+

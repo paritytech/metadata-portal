@@ -67,15 +67,12 @@ jobs:
           exit_code=$?
           if [ $exit_code -eq 12 ]
           then
-            echo "::set-output name=chainsSkipped::true"
             exit 0
           fi
-          echo "::set-output name=chainsSkipped::false"
           exit $exit_code
         shell: bash {0}
 
       - name: ⚙ Run cleaner
-        if: ${{ steps.collect.outputs.chainsSkipped == 'false' }}
         id: cleaner
         run: make cleaner
 
@@ -162,23 +159,6 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: "⚠️ Some networks were not available! Please, check the log! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
 
-      - name: Send collect warning to Matrix channel
-        uses: s3krit/matrix-message-action@v0.0.3
-        if: ${{ steps.collect.outputs.chainsSkipped == 'true' && env.NOTIFY_MATRIX == 'true'}}
-        with:
-          room_id: ${{ secrets.MATRIX_ROOM_ID }}
-          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          server: ${{ secrets.MATRIX_SERVER }}
-          message: "⚠️ Some networks were not available! Please, check the log! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
-
-      - name: Send collect warning to Telegram channel
-        uses: appleboy/telegram-action@master
-        if: ${{ steps.collect.outputs.chainsSkipped == 'true' && env.NOTIFY_TELEGRAM == 'true'}}
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "⚠️ Some networks were not available! Please, check the log! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
-
   check-deployment:
     runs-on: ubuntu-latest
     steps:
@@ -210,10 +190,8 @@ jobs:
           exit_code=$?
           if [ $exit_code -eq 12 ]
           then
-            echo "::set-output name=chainsSkipped::true"
             exit 0
           fi
-          echo "::set-output name=chainsSkipped::false"
           exit $exit_code
         shell: bash {0}
 
@@ -221,39 +199,4 @@ jobs:
         uses: ./.github/workflows/deploy
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Send deploy warning to Matrix channel
-        uses: s3krit/matrix-message-action@v0.0.3
-        if: ${{ steps.check-deployment.outputs.redeploy == 'true' && env.NOTIFY_MATRIX == 'true'}}
-        with:
-          room_id: ${{ secrets.MATRIX_ROOM_ID }}
-          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          server: ${{ secrets.MATRIX_SERVER }}
-          message: "⚠️ Redeployment required! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
-
-      - name: Send deploy warning to Telegram channel
-        uses: appleboy/telegram-action@master
-        if: ${{ steps.check-deployment.outputs.redeploy == 'true' && env.NOTIFY_TELEGRAM == 'true'}}
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "⚠️ Redeployment required! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
-
-      - name: Send collect warning to Matrix channel
-        uses: s3krit/matrix-message-action@v0.0.3
-        if: ${{ steps.collect.outputs.chainsSkipped == 'true' && env.NOTIFY_MATRIX == 'true'}}
-        with:
-          room_id: ${{ secrets.MATRIX_ROOM_ID }}
-          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          server: ${{ secrets.MATRIX_SERVER }}
-          message: "⚠️ Some networks were not available! Redeployment required! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
-
-      - name: Send collect warning to Telegram channel
-        uses: appleboy/telegram-action@master
-        if: ${{ steps.collect.outputs.chainsSkipped == 'true' && env.NOTIFY_TELEGRAM == 'true'}}
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "⚠️ Some networks were not available! Redeployment required! ⚠️ ${{ env.GITHUB_WORKFLOW_URL }}"
-
 

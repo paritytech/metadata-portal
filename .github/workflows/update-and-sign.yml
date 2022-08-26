@@ -61,18 +61,18 @@ jobs:
           cargo run --release update --sign --signing-key ${{secrets.SIGNING_KEY}} --source github
 
       - name: ⚙ Run collector
-      id: collect
-      run: |
-        cargo run --release collect
-        exit_code=$?
-        if [ $exit_code -eq 12 ]
-        then
-          echo "::set-output name=chainsSkipped::true"
-          exit 0
-        fi
-        echo "::set-output name=chainsSkipped::false"
-        exit $exit_code
-      shell: bash {0}
+        id: collect
+        run: |
+          cargo run --release collect
+          exit_code=$?
+          if [ $exit_code -eq 12 ]
+          then
+            echo "::set-output name=chainsSkipped::true"
+            exit 0
+          fi
+          echo "::set-output name=chainsSkipped::false"
+          exit $exit_code
+        shell: bash {0}
 
       - name: ⚙ Run cleaner
         if: ${{ steps.collect.outputs.chainsSkipped == 'false' }}

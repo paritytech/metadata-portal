@@ -275,7 +275,6 @@ rpc_endpoint = "wss://ws.azero.dev"
 #logo = "Composable.svg"
 #rpc_endpoints = ["wss://composable-rpc.dwellir.com", "wss://rpc.composable.finance"]
 
-#TODO polkadex parachain. Names are different.
 [[chains]]
 name = "node"
 title = "Polkadex Solochain"
@@ -353,13 +352,12 @@ color = "#161212"
 logo = "Bajun.svg"
 rpc_endpoint = "wss://rpc-parachain.bajun.network"
 
-#todo Imbue. SS58 code is different.
-#[[chains]]
-#name = "imbue"
-#title = "Imbue"
-#color = "#baff36"
-#logo = "Imbue.svg"
-#rpc_endpoint = "wss://imbue-kusama.imbue.network"
+[[chains]]
+name = "imbue"
+title = "Imbue"
+color = "#baff36"
+logo = "Imbue.svg"
+rpc_endpoint = "wss://imbue-kusama.imbue.network"
 
 # Test networks
 [[chains]]

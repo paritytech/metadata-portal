@@ -59,6 +59,7 @@ External users (chain owners) will be able to deploy their versions of metadata 
 | 17     | Kabocha              |
 | 18     | Taganika             |
 | 19     | Bajun                |
+| 20     | Imbue                |
 
 
 ## Solo chains

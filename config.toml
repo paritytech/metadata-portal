@@ -135,13 +135,6 @@ logo = "Statemint.svg"
 rpc_endpoints = ["wss://statemint-rpc.polkadot.io", "wss://statemint.api.onfinality.io/public-ws", "wss://statemint-rpc.dwellir.com"]
 
 [[chains]]
-name = "subsocial"
-title = "Subsocial Solochain"
-color = "#b9018c"
-logo = "Subsocial_Solochain.svg"
-rpc_endpoint = "wss://arch.subsocial.network"
-
-[[chains]]
 name = "robonomics"
 title = "Robonomics"
 color = "#2949d3"

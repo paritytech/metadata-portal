@@ -44,24 +44,24 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "metadataVersion": 9260,
+    "metadataVersion": 9271,
     "metadataQr": {
-      "path": "qr/kusama_metadata_9260.apng",
+      "path": "qr/kusama_metadata_9271.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Wasm",
         "github_repo": "paritytech/polkadot",
-        "hash": "0x4e784769dd00d54aa07e50adcd8843a57f57642d368239057d0d145aa2ef6864"
+        "hash": "0xfebbd4ee836126748786491e4770743c9bad08472b3ed15fe6d6c74c250540b4"
       }
     },
-    "nextMetadataVersion": 9270,
+    "nextMetadataVersion": 9280,
     "nextMetadataQr": {
-      "path": "qr/kusama_metadata_9270.apng",
+      "path": "qr/kusama_metadata_9280.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Wasm",
         "github_repo": "paritytech/polkadot",
-        "hash": "0x41c442742459ee500119f272cd024bdda4025e68e7f112f9e4a8385e7665b2e4"
+        "hash": "0x276a4fe4d7d4e4bebd7ce7408f25d57bd6835365c07039dc87bc31abe3edbaf6"
       }
     },
     "latestMetadata": "qr/kusama_metadata_latest.apng",

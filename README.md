@@ -34,6 +34,8 @@ External users (chain owners) will be able to deploy their versions of metadata 
 | 21     | Litentry              |
 | 22     | UNIQUE                |
 | 23     | Bifrost-Polkadot      |
+| 24     | GM                    |
+| 25     | Amplitude             |
 
 
 

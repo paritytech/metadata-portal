@@ -34,7 +34,11 @@ pub(crate) fn update_from_node(
             let specs_res = fetcher.fetch_specs(&chain);
             if specs_res.is_err() {
                 error_fetching_data = true;
-                warn!("Can't get specs for {}", chain.name);
+                warn!(
+                    "Can't get specs for {}. Error is {}",
+                    chain.name,
+                    specs_res.err().unwrap()
+                );
                 continue;
             }
             generate_spec_qr(
@@ -49,7 +53,11 @@ pub(crate) fn update_from_node(
         let fetched_meta_res = fetcher.fetch_metadata(&chain);
         if fetched_meta_res.is_err() {
             error_fetching_data = true;
-            warn!("Can't get metadata for {}", chain.name);
+            warn!(
+                "Can't get metadata for {}. Error is {}",
+                chain.name,
+                fetched_meta_res.err().unwrap()
+            );
             continue;
         }
         let fetched_meta = fetched_meta_res.unwrap();

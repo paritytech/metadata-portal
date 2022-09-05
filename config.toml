@@ -352,6 +352,20 @@ color = "#baff36"
 logo = "Imbue.svg"
 rpc_endpoint = "wss://imbue-kusama.imbue.network"
 
+[[chains]]
+name = "template-parachain"
+title = "GM"
+color = "#f47b36"
+logo = "GM.svg"
+rpc_endpoint = "wss://kusama.gmordie.com"
+
+[[chains]]
+name = "amplitude"
+title = "Amplitude"
+color = "#5defa7"
+logo = "Amplitude.svg"
+rpc_endpoint = "wss://pencol-kus-01.pendulumchain.tech"
+
 # Test networks
 [[chains]]
 name = "westmint"
@@ -366,4 +380,3 @@ title = "Mandala"
 color = "#173DC9"
 logo = "Acala_Mandala_Testnet.svg"
 rpc_endpoint = "wss://acala-mandala.api.onfinality.io/public-ws/"
-

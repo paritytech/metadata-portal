@@ -12,13 +12,15 @@ interface Props {
   isOpen: boolean;
 }
 
-const searchStringInArray = (str: string, strArray: string[]) => {
-  const a = [];
-  for (let j = 0; j < strArray.length; j++) {
-    if (strArray[j].toUpperCase().match(str.toUpperCase())) a.push(strArray[j]);
-  }
-  a.sort();
-  return a;
+const searchStringInArray = (str: string, allChains: Chains) => {
+  const result: string[] = [];
+
+  Object.keys(allChains).forEach((key) => {
+    if (allChains[key].title.toUpperCase().match(str.toUpperCase()))
+      result.push(key);
+  });
+  result.sort((a, b) => allChains[a].title.localeCompare(allChains[b].title));
+  return result;
 };
 
 export default function Sidebar({
@@ -30,7 +32,9 @@ export default function Sidebar({
   setIsOpen,
 }: Props): JSX.Element {
   const [searchResults, setSearchResults] = useState<string[]>(
-    Object.keys(allChains).sort()
+    Object.keys(allChains).sort((a, b) =>
+      allChains[a].title.localeCompare(allChains[b].title)
+    )
   );
 
   const specs = allChains[currentNetwork];
@@ -59,7 +63,7 @@ export default function Sidebar({
                 placeholder="Search"
                 onChange={(a) => {
                   setSearchResults(
-                    searchStringInArray(a.target.value, Object.keys(allChains))
+                    searchStringInArray(a.target.value, allChains)
                   );
                 }}
               />

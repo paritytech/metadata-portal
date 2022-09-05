@@ -1,7 +1,7 @@
-use anyhow::{bail, Result};
+use anyhow::{anyhow, bail, Result};
 use definitions::crypto::Encryption;
-use definitions::error_active::ErrorActive;
 use definitions::network_specs::NetworkSpecsToSend;
+
 use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
 use generate_message::parser::Token;
 use log::warn;
@@ -14,16 +14,15 @@ pub(crate) trait Fetcher {
 }
 
 // try to call all urls unless successful
-fn call_urls<F, T>(urls: &Vec<String>, f: F) -> Result<T, ErrorActive>
+fn call_urls<F, T>(urls: &[String], f: F) -> Result<T, generate_message::Error>
 where
-    F: Fn(&str) -> Result<T, ErrorActive>,
+    F: Fn(&str) -> Result<T, generate_message::Error>,
 {
     let n = urls.len();
     for url in urls.iter().take(n - 1) {
         match f(url) {
             Ok(res) => return Ok(res),
-            Err(ErrorActive::Fetch(e)) => warn!("Failed to fetch {}: {:?}", url, e),
-            Err(e) => return Err(e),
+            Err(e) => warn!("Failed to fetch {}: {:?}", url, e),
         }
     }
     f(&urls[n - 1])
@@ -42,7 +41,7 @@ impl Fetcher for RpcFetcher {
             );
             specs_agnostic(url, Encryption::Sr25519, optional_token_override, None)
         })
-        .map_err(anyhow::Error::msg)?;
+        .map_err(|e| anyhow!("{:?}", e))?;
         if specs.name.to_lowercase() != chain.name {
             bail!(
                 "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",
@@ -54,7 +53,7 @@ impl Fetcher for RpcFetcher {
     }
 
     fn fetch_metadata(&self, chain: &Chain) -> Result<MetaFetched> {
-        let meta = call_urls(&chain.rpc_endpoints, meta_fetch).map_err(anyhow::Error::msg)?;
+        let meta = call_urls(&chain.rpc_endpoints, meta_fetch).map_err(|e| anyhow!("{:?}", e))?;
         if meta.meta_values.name.to_lowercase() != chain.name {
             bail!(
                 "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",

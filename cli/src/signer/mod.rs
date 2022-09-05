@@ -1,20 +1,24 @@
 mod prompt;
 
+use std::fs::File;
+use std::io::Write;
+use std::ops::Deref;
 use std::process::Command;
 
-use anyhow::bail;
-use definitions::crypto::SufficientCrypto;
+use anyhow::{anyhow, bail};
+use definitions::crypto::Encryption;
 use definitions::error::TransferContent;
 use generate_message::full_run;
-use generate_message::parser::{Command as SignerCommand, Crypto, Goal, Make, Msg};
-use parity_scale_codec::Decode;
+use generate_message::parser::{
+    Command as SignerCommand, Goal, Make, Msg, Signature, Sufficient, Verifier,
+};
+
 use qr_reader_pc::{run_with_camera, CameraSettings};
 use transaction_parsing::check_signature::pass_crypto;
 
 use crate::config::AppConfig;
 use crate::lib::camera::read_qr_file;
 use crate::lib::path::{ContentType, QrPath};
-use crate::lib::string::hex_to_bytes;
 use crate::qrs::qrs_in_dir;
 use crate::signer::prompt::{select_file, want_to_continue};
 use crate::source::{read_png_source, save_source_info};
@@ -50,15 +54,12 @@ fn run_for_file(qr_path: &QrPath) -> anyhow::Result<()> {
         Err(e) => bail!("QR reading error. {}", e),
     };
 
-    sign_qr(qr_path, &signature)?;
+    sign_qr(qr_path, signature)?;
     println!("🎉 Signed!");
     Ok(())
 }
 
-fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
-    let signature = hex_to_bytes(signature)?;
-    let sufficient_crypto = <SufficientCrypto>::decode(&mut &signature[..])?;
-
+fn sign_qr(unsigned_qr: &QrPath, signature: String) -> anyhow::Result<QrPath> {
     let mut signed_qr = unsigned_qr.clone();
     signed_qr.file_name.is_signed = true;
 
@@ -67,21 +68,41 @@ fn sign_qr(unsigned_qr: &QrPath, signature: &str) -> anyhow::Result<QrPath> {
         ContentType::Metadata(_) => TransferContent::LoadMeta,
         ContentType::Specs => TransferContent::AddSpecs,
     };
-    let passed_crypto = pass_crypto(&raw_read, transfer_content)
-        .map_err(|e| anyhow::Error::msg(format!("{:?}", e)))?;
+    let passed_crypto = pass_crypto(&raw_read, transfer_content).map_err(|e| anyhow!("{:?}", e))?;
 
     let msg_type = match unsigned_qr.file_name.content_type {
         ContentType::Metadata(_) => Msg::LoadMetadata,
         ContentType::Specs => Msg::AddSpecs,
     };
+    let tmp_dir = tempfile::tempdir()?;
+    let content_file = tmp_dir.path().join("content");
+    let mut f = File::create(&content_file)?;
+    f.write_all(passed_crypto.message.deref())?;
+
     let make = Make {
         goal: Goal::Qr,
-        crypto: Crypto::Sufficient(sufficient_crypto),
-        msg: msg_type(passed_crypto.message),
-        name: Some(signed_qr.to_string()),
+        verifier: Verifier {
+            verifier_alice: None,
+            verifier_hex: None,
+            verifier_file: None,
+        },
+        signature: Signature {
+            signature_hex: None,
+            signature_file: None,
+        },
+        sufficient: Sufficient {
+            sufficient_hex: Some(signature),
+            sufficient_file: None,
+        },
+        msg: msg_type,
+        name: Some(signed_qr.to_path_buf()),
+        files_dir: signed_qr.dir.clone(),
+        payload: content_file,
+        export_dir: signed_qr.dir.clone(),
+        crypto: Some(Encryption::Sr25519),
     };
     println!("⚙ generating {}...", signed_qr);
-    full_run(SignerCommand::Make(make)).map_err(anyhow::Error::msg)?;
+    full_run(SignerCommand::Make(make)).map_err(|e| anyhow!("{:?}", e))?;
     // Preserve png source information
     if let Some(png_source) = read_png_source(&unsigned_qr.to_path_buf())? {
         save_source_info(&signed_qr.to_path_buf(), &png_source)?;

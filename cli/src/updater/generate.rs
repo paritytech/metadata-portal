@@ -1,10 +1,16 @@
+use anyhow::anyhow;
+use std::fs::File;
+use std::io::Write;
 use std::path::{Path, PathBuf};
 
 use definitions::metadata::MetaValues;
 use definitions::network_specs::NetworkSpecsToSend;
 use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};
 use generate_message::full_run;
-use generate_message::parser::{Command as SignerCommand, Crypto, Goal, Make, Msg};
+use generate_message::parser::{
+    Command as SignerCommand, Goal, Make, Msg, Signature, Sufficient, Verifier,
+};
+
 use log::info;
 use sp_core::H256;
 
@@ -25,14 +31,8 @@ pub(crate) fn generate_metadata_qr(
     .to_string();
     let path = target_dir.join(&file_name);
 
-    let make = Make {
-        goal: Goal::Qr,
-        crypto: Crypto::None,
-        msg: Msg::LoadMetadata(content.to_sign()),
-        name: Some(path.to_str().unwrap().to_owned()),
-    };
     info!("⚙️  Generating {}...", file_name);
-    full_run(SignerCommand::Make(make)).map_err(anyhow::Error::msg)?;
+    generate_unsigned_qr(&content.to_sign(), &path, Msg::LoadMetadata)?;
     Ok(path)
 }
 
@@ -44,14 +44,43 @@ pub(crate) fn generate_spec_qr(
         QrFileName::new(&specs.name.to_lowercase(), ContentType::Specs, false).to_string();
     let path = target_dir.join(&file_name);
     let content = ContentAddSpecs::generate(specs);
+    info!("⚙️  Generating {}...", file_name);
+    generate_unsigned_qr(&content.to_sign(), &path, Msg::AddSpecs)?;
+    Ok(path)
+}
+
+fn generate_unsigned_qr<P>(content: &[u8], target_path: P, msg_type: Msg) -> anyhow::Result<()>
+where
+    P: AsRef<Path>,
+{
+    let tmp_dir = tempfile::tempdir()?;
+    let tmp_f_path = tmp_dir.path().join("content");
+    let mut content_file = File::create(&tmp_f_path)?;
+    content_file.write_all(content)?;
+
+    let files_dir = target_path.as_ref().parent().unwrap().to_path_buf();
 
     let make = Make {
         goal: Goal::Qr,
-        crypto: Crypto::None,
-        msg: Msg::AddSpecs(content.to_sign()),
-        name: Some(path.to_str().unwrap().to_owned()),
+        verifier: Verifier {
+            verifier_alice: None,
+            verifier_hex: None,
+            verifier_file: None,
+        },
+        signature: Signature {
+            signature_hex: None,
+            signature_file: None,
+        },
+        sufficient: Sufficient {
+            sufficient_hex: None,
+            sufficient_file: None,
+        },
+        msg: msg_type,
+        name: Some(target_path.as_ref().to_owned()),
+        files_dir: files_dir.clone(),
+        payload: tmp_f_path,
+        export_dir: files_dir,
+        crypto: None,
     };
-    info!("⚙️  Generating {}...", file_name);
-    full_run(SignerCommand::Make(make)).map_err(anyhow::Error::msg)?;
-    Ok(path)
+    full_run(SignerCommand::Make(make)).map_err(|e| anyhow!("{:?}", e))
 }

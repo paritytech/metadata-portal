@@ -53,7 +53,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 rpc_endpoint: chain.rpc_endpoints[0].clone(), // keep only the first one
                 genesis_hash: format!("0x{}", hex::encode(&specs.genesis_hash)),
                 unit: specs.unit,
-                logo: chain.logo.clone(),
+                icon: chain.icon.clone(),
                 decimals: specs.decimals,
                 base58prefix: specs.base58prefix,
                 metadata_qr: QrCode::from_qr_path(config, metadata_qr)?,

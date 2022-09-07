@@ -113,7 +113,7 @@ pub(crate) struct Chain {
     pub(crate) title: Option<String>,
     #[serde(default = "color_default")]
     pub(crate) color: String,
-    pub(crate) logo: String,
+    pub(crate) icon: String,
     #[serde(alias = "rpc_endpoint", deserialize_with = "string_or_vec")]
     pub(crate) rpc_endpoints: Vec<String>,
     pub(crate) genesis_hash: Option<String>,
@@ -132,7 +132,7 @@ impl Default for Chain {
             name: "polkadot".to_string(),
             title: None,
             color: color_default(),
-            logo: "Polkadot.svg".to_string(),
+            icon: "Polkadot.svg".to_string(),
             rpc_endpoints: vec!["wss://example.com".to_string()],
             genesis_hash: None,
             token_unit: None,

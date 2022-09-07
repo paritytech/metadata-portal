@@ -6,7 +6,7 @@ export interface ChainSpec {
   unit: string;
   base58prefix: number;
   decimals: number;
-  logo: string;
+  icon: string;
   metadataVersion: number;
   metadataQr: QrInfo;
   nextMetadataVersion: number | null;

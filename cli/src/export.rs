@@ -41,7 +41,7 @@ pub(crate) struct ExportChainSpec {
     pub(crate) genesis_hash: String,
     pub(crate) unit: String,
     pub(crate) base58prefix: u16,
-    pub(crate) logo: String,
+    pub(crate) icon: String,
     pub(crate) decimals: u8,
 
     pub(crate) metadata_version: u32,

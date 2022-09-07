@@ -30,7 +30,7 @@ export default function Extension(chainSpec: ChainSpec) {
   const meta: MetadataDef = {
     chain: capitalizeFirstLetter(chainSpec.title),
     genesisHash: chainSpec.genesisHash,
-    icon: chainSpec.logo,
+    icon: chainSpec.icon,
     specVersion: chainSpec.metadataVersion,
     ss58Format: chainSpec.base58prefix,
     tokenDecimals: chainSpec.decimals,

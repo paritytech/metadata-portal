@@ -36,7 +36,7 @@ External users (chain owners) will be able to deploy their versions of metadata 
 | 23     | Bifrost-Polkadot      |
 | 24     | GM                    |
 | 25     | Amplitude             |
-
+| 26     | Moonbeam              |
 
 
 ## Kusama parachains
@@ -62,6 +62,7 @@ External users (chain owners) will be able to deploy their versions of metadata 
 | 18     | Taganika             |
 | 19     | Bajun                |
 | 20     | Imbue                |
+| 21     | Moonriver            |
 
 
 ## Solo chains

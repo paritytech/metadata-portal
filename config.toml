@@ -366,6 +366,20 @@ color = "#5defa7"
 icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Amplitude.svg"
 rpc_endpoint = "wss://pencol-kus-01.pendulumchain.tech"
 
+[[chains]]
+name = "moonbeam"
+title = "Moonbeam"
+color = "#53cbc9"
+icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Moonbeam.svg"
+rpc_endpoints = ["wss://moonbeam-rpc.dwellir.com", "wss://moonbeam.api.onfinality.io/public-ws", "wss://moonbeam.public.blastapi.io", "wss://wss.api.moonbeam.network"]
+
+[[chains]]
+name = "moonriver"
+title = "Moonriver"
+color = "#0E132E"
+icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Moonriver.svg"
+rpc_endpoints = ["wss://moonriver-rpc.dwellir.com", "wss://wss.moonriver.moonbeam.network", "wss://moonriver.api.onfinality.io/public-ws", "wss://moonriver.public.blastapi.io", "wss://rpc.pinknode.io/moonriver/explorer"]
+
 # Test networks
 [[chains]]
 name = "westmint"

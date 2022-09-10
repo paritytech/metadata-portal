@@ -174,7 +174,7 @@ name = "hydradx"
 title = "HydraDX"
 color = "#f653a2"
 icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/HydraDX.svg"
-rpc_endpoint = "wss://rpc-01.hydradx.io"
+rpc_endpoints = ["wss://rpc.hydradx.cloud", "wss://hydradx-rpc.dwellir.com"]
 
 [[chains]]
 name = "KICO"

@@ -388,9 +388,9 @@ color = "#77bb77"
 icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Westmint_Testnet.svg"
 rpc_endpoint = "wss://westmint-rpc.polkadot.io"
 
-[[chains]]
-name = "mandala"
-title = "Mandala"
-color = "#173DC9"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala_Mandala_Testnet.svg"
-rpc_endpoint = "wss://acala-mandala.api.onfinality.io/public-ws/"
+#[[chains]]
+#name = "mandala"
+#title = "Mandala"
+#color = "#173DC9"
+#icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala_Mandala_Testnet.svg"
+#rpc_endpoint = "wss://acala-mandala.api.onfinality.io/public-ws/"

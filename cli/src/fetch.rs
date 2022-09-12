@@ -1,7 +1,6 @@
 use anyhow::{anyhow, bail, Result};
 use definitions::crypto::Encryption;
 use definitions::network_specs::NetworkSpecsToSend;
-
 use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
 use generate_message::parser::Token;
 use log::warn;

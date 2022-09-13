@@ -44,18 +44,8 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "metadataVersion": 9271,
+    "metadataVersion": 9280,
     "metadataQr": {
-      "path": "qr/kusama_metadata_9271.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0xfebbd4ee836126748786491e4770743c9bad08472b3ed15fe6d6c74c250540b4"
-      }
-    },
-    "nextMetadataVersion": 9280,
-    "nextMetadataQr": {
       "path": "qr/kusama_metadata_9280.apng",
       "signedBy": "Parity",
       "source": {
@@ -64,6 +54,8 @@
         "hash": "0x276a4fe4d7d4e4bebd7ce7408f25d57bd6835365c07039dc87bc31abe3edbaf6"
       }
     },
+    "nextMetadataVersion": null,
+    "nextMetadataQr": null,
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",

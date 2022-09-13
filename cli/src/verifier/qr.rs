@@ -2,7 +2,6 @@ use std::path::Path;
 
 use anyhow::{anyhow, bail, ensure, Result};
 use definitions::error::TransferContent;
-use definitions::error_signer::Signer;
 use definitions::helpers::multisigner_to_public;
 use definitions::metadata::MetaValues;
 use definitions::network_specs::{Verifier, VerifierValue};
@@ -47,7 +46,7 @@ fn validate_metadata_qr(qr_path: &QrPath, public_key: &str) -> Result<()> {
     verify_signature(&signed.verifier, public_key)?;
 
     let (meta, _) = ContentLoadMeta::from_slice(&signed.message)
-        .meta_genhash::<Signer>()
+        .meta_genhash()
         .map_err(|e| anyhow!("{:?}", e))?;
     let meta_values = MetaValues::from_slice_metadata(&meta).map_err(|e| anyhow!("{:?}", e))?;
 

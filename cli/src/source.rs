@@ -7,6 +7,7 @@ use anyhow::Result;
 use png::Encoder;
 use serde::{Deserialize, Serialize};
 use sp_core::H256;
+use tempfile::tempdir;
 
 const SOURCE: &str = "Source";
 
@@ -24,8 +25,9 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
     // If the text chunk is before the image data frames, `reader.info()` already contains the text.
     let in_info = reader.info();
 
-    let out_path = Path::new(r"/tmp/qr.apng");
-    let file = File::create(out_path).unwrap();
+    let tmp_dir = tempdir().unwrap();
+    let out_path = tmp_dir.path().join("qr.apng");
+    let file = File::create(&out_path).unwrap();
     let w = &mut BufWriter::new(file);
     let mut encoder = Encoder::new(w, in_info.width, in_info.height);
     encoder.set_color(in_info.color_type);

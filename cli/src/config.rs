@@ -50,7 +50,6 @@ pub(crate) struct AppConfig {
     pub(crate) public_dir: PathBuf,
     pub(crate) qr_dir: PathBuf,
     pub(crate) verifier: Verifier,
-    pub(crate) github: Option<GitHub>,
     pub(crate) chains: Vec<Chain>,
 }
 
@@ -62,7 +61,6 @@ impl Default for AppConfig {
             public_dir: PathBuf::from("src/public"),
             qr_dir: PathBuf::from("qr"),
             verifier: Verifier::default(),
-            github: None,
             chains: vec![Chain::default()],
         }
     }
@@ -101,9 +99,10 @@ impl Default for Verifier {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
-pub(crate) struct GitHub {
+pub(crate) struct GithubRepo {
     pub(crate) owner: String,
     pub(crate) repo: String,
+    pub(crate) genesis_hash: String,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
@@ -116,9 +115,9 @@ pub(crate) struct Chain {
     pub(crate) icon: String,
     #[serde(alias = "rpc_endpoint", deserialize_with = "string_or_vec")]
     pub(crate) rpc_endpoints: Vec<String>,
-    pub(crate) genesis_hash: Option<String>,
     pub(crate) token_unit: Option<String>,
     pub(crate) token_decimals: Option<u8>,
+    pub(crate) github_release: Option<GithubRepo>,
 }
 
 fn color_default() -> String {
@@ -134,9 +133,9 @@ impl Default for Chain {
             color: color_default(),
             icon: "Polkadot.svg".to_string(),
             rpc_endpoints: vec!["wss://example.com".to_string()],
-            genesis_hash: None,
             token_unit: None,
             token_decimals: None,
+            github_release: None,
         }
     }
 }

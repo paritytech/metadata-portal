@@ -6,7 +6,6 @@ mod wasm;
 use std::process::exit;
 use std::str::FromStr;
 
-use anyhow::Context;
 use blake2_rfc::blake2b::blake2b;
 use log::{info, warn};
 use sp_core::H256;
@@ -16,7 +15,7 @@ use crate::fetch::Fetcher;
 use crate::qrs::{find_metadata_qrs, find_spec_qrs};
 use crate::source::{save_source_info, Source};
 use crate::updater::generate::{generate_metadata_qr, generate_spec_qr};
-use crate::updater::github::fetch_release_runtimes;
+use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
 
 pub(crate) fn update_from_node(
@@ -101,31 +100,28 @@ pub(crate) async fn update_from_github(
     sign: bool,
     signing_key: String,
 ) -> anyhow::Result<()> {
-    if config.github.is_none() {
-        info!("↪️ No GitHub repository specified, skipping update");
-        return Ok(());
-    }
-    let gh = &config.github.unwrap();
-    let runtimes = fetch_release_runtimes(gh).await?;
-    info!("📦 Found {} runtimes", runtimes.len());
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
-    let mut left_to_update = config.chains.len();
     for chain in config.chains {
-        if !runtimes.contains_key(&chain.name) {
-            info!("🤨 No releases for {} found", chain.name);
+        info!("🔍 Checking for updates for {}", chain.name);
+        if chain.github_release.is_none() {
+            info!("↪️ No GitHub releases configured, skipping",);
             continue;
         }
-        let wasm = runtimes.get(&chain.name).unwrap();
-        let genesis_hash = chain.genesis_hash.context(format!(
-            "cannot find genesis_hash for {} in config.toml",
-            chain.name
-        ))?;
-        let genesis_hash = H256::from_str(&genesis_hash).unwrap();
+
+        let github_repo = chain.github_release.unwrap();
+        let wasm = fetch_latest_runtime(&github_repo, &chain.name).await?;
+        if wasm.is_none() {
+            warn!("🤨 No releases found");
+            continue;
+        }
+        let wasm = wasm.unwrap();
+        info!("📅 Found version {}", wasm.version);
+        let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
 
         // Skip if already have QR for the same version
         if let Some(map) = metadata_qrs.get(&chain.name) {
             if map.contains_key(&wasm.version) || map.keys().min().unwrap_or(&0) > &wasm.version {
-                left_to_update -= 1;
+                info!("🎉 {} is up to date!", chain.name);
                 continue;
             }
         }
@@ -140,13 +136,10 @@ pub(crate) async fn update_from_github(
             signing_key.to_owned(),
         )?;
         let source = Source::Wasm {
-            github_repo: format!("{}/{}", gh.owner, gh.repo),
+            github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
             hash: format!("0x{}", hex::encode(meta_hash)),
         };
         save_source_info(&path, &source)?;
-    }
-    if left_to_update == 0 {
-        info!("🎉 Everything is up to date!");
     }
     Ok(())
 }

@@ -12,7 +12,6 @@ use generate_message::full_run;
 use generate_message::parser::{
     Command as SignerCommand, Goal, Make, Msg, Signature, Sufficient, Verifier,
 };
-
 use qr_reader_pc::{run_with_camera, CameraSettings};
 use transaction_parsing::check_signature::pass_crypto;
 

@@ -1,8 +1,8 @@
-use anyhow::anyhow;
 use std::fs::File;
 use std::io::Write;
 use std::path::{Path, PathBuf};
 
+use anyhow::anyhow;
 use definitions::metadata::MetaValues;
 use definitions::network_specs::NetworkSpecsToSend;
 use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};
@@ -10,7 +10,6 @@ use generate_message::full_run;
 use generate_message::parser::{
     Command as SignerCommand, Goal, Make, Msg, Signature, Sufficient, Verifier,
 };
-
 use log::info;
 use sp_core::H256;
 

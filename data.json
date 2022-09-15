@@ -54,8 +54,16 @@
         "hash": "0x276a4fe4d7d4e4bebd7ce7408f25d57bd6835365c07039dc87bc31abe3edbaf6"
       }
     },
-    "nextMetadataVersion": null,
-    "nextMetadataQr": null,
+    "nextMetadataVersion": 9290,
+    "nextMetadataQr": {
+      "path": "qr/kusama_metadata_9290.apng",
+      "signedBy": "Parity",
+      "source": {
+        "type": "Wasm",
+        "github_repo": "paritytech/polkadot",
+        "hash": "0xaba979bccf2692160db10b85b32c84d89b9b527dda3c9b684686f84b529de106"
+      }
+    },
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",
@@ -72,13 +80,13 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "metadataVersion": 9280,
+    "metadataVersion": 9290,
     "metadataQr": {
-      "path": "qr/westend_metadata_9280.apng",
+      "path": "qr/westend_metadata_9290.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Rpc",
-        "block": "0x260aec15ffd7e26e9a9377341db824f5218d09222ef06dd8fb55e797db3b71b5"
+        "block": "0x37daa319fafb61610bd273fc01159564cadcb0712ba62a64afd3bc5df671e851"
       }
     },
     "nextMetadataVersion": null,

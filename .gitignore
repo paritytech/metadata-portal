@@ -27,6 +27,7 @@ yarn-error.log*
 
 # Auto-generated data file for frontend
 public/data.json
+public/data_dev.json
 
 # Rust build
 target

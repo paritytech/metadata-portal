@@ -1,5 +1,6 @@
 extern crate core;
 
+mod chains_config;
 mod cleaner;
 mod collector;
 mod config;
@@ -20,6 +21,7 @@ use clap::StructOpt;
 use env_logger::Env;
 use log::error;
 
+use crate::chains_config::update_chains_config;
 use crate::cleaner::clean;
 use crate::collector::collect;
 use crate::config::AppConfig;
@@ -38,7 +40,7 @@ fn main() {
         .init();
 
     let opts: Opts = Opts::parse();
-    let config = match AppConfig::load(opts.config) {
+    let config = match AppConfig::load(&opts.config) {
         Ok(config) => config,
         Err(err) => {
             error!("{}", err);
@@ -63,6 +65,7 @@ fn main() {
             ),
         },
         SubCommand::CheckDeployment => check_deployment(config),
+        SubCommand::UpdateChainConfig(chains_opts) => update_chains_config(chains_opts),
     };
 
     if let Err(err) = result {

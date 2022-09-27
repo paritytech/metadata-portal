@@ -1,0 +1,324 @@
+public_dir = "public"
+qr_dir = "public/qr"
+
+[verifier]
+name = "Novasama Technologies"
+public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
+
+[chains]
+  [chains.Acala]
+  name = "acala"
+  color = "#645AFF"
+
+  [chains.Statemine]
+  name = "statemine"
+  color = "#113911"
+
+  [chains.Karura]
+  name = "karura"
+  color = "#ff4c3b"
+
+  [chains."Parallel Heiko"]
+  name = "heiko"
+  title = "Parallel Heiko"
+  color = "#42d5de"
+
+  [chains.Shiden]
+  name = "shiden"
+  color = "#5923B2"
+
+  [chains.Basilisk]
+  name = "basilisk"
+  title = "Basilisk"
+  color = "#9eec1b"
+
+  [chains.Altair]
+  name = "altair"
+  title = "Altair"
+  color = "#ffb700"
+
+  [chains.Khala]
+  name = "khala"
+  title = "Khala"
+  color = "#03f3f3"
+
+  [chains."KILT Spiritnet"]
+  name = "kilt-spiritnet"
+  title = "KILT Spiritnet"
+  color = "#8c145a"
+
+  [chains.Calamari]
+  name = "calamari"
+  title = "Calamari"
+  color = "#000000"
+
+  [chains.QUARTZ]
+  name = "quartz"
+  title = "QUARTZ"
+  color = "#FF4D6A"
+
+  [chains."Bit.Country Pioneer"]
+  name = "pioneer-runtime"
+  title = "Bit.Country Pioneer"
+  color = "#000000"
+
+  [chains.Astar]
+  name = "astar"
+  title = "Astar"
+  color = "#1b6dc1d9"
+
+  [chains.Parallel]
+  name = "parallel"
+  title = "Parallel"
+  color = "#ef18ac"
+
+  [chains."CLV Parachain"]
+  name = "clover-mainnet"
+  color = "linear-gradient(to right, #52ad75, #7cc773)"
+
+  [chains.Statemint]
+  name = "statemint"
+  title = "Statemint"
+  color = "#86e62a"
+
+  [chains.Robonomics]
+  name = "robonomics"
+  title = "Robonomics"
+  color = "#2949d3"
+
+  [chains.Encointer]
+  name = "encointer-parachain"
+  title = "Encointer"
+  color = "#0000cc"
+
+  [chains.Kintsugi]
+  name = "kintsugi-parachain"
+  title = "Kintsugi"
+  color = "#1a0a2d"
+
+  [chains.Picasso]
+  name = "picasso"
+  title = "Picasso"
+  color = "#000000"
+
+  [chains.Zeitgeist]
+  name = "zeitgeist"
+  title = "Zeitgeist"
+  color = "linear-gradient(180deg, rgba(32,90,172,1) 0%, rgba(26,72,138,1) 50%, rgba(13,36,69,1) 100%)"
+
+  [chains.HydraDX]
+  name = "hydradx"
+  title = "HydraDX"
+  color = "#f653a2"
+
+  [chains.KICO]
+  name = "KICO"
+  title = "KICO"
+  color = "#29B58D"
+
+  [chains."Litmus"]
+  name = "litmus-parachain"
+  color = "#6822fb"
+
+  [chains.Crab]
+  name = "Crab Parachain"
+  color = "#7C30DD"
+
+  [chains."Subsocial"]
+  name = "subsocial-parachain"
+  color = "#69058C"
+
+  [chains."Crust Shadow"]
+  name = "crust-collator"
+  title = "Crust Shadow"
+  color = "#ff8812"
+
+  [chains."Integritee Parachain"]
+  name = "integritee-parachain"
+  title = "Integritee Parachain"
+  color = "#658ea9"
+
+  [chains."Centrifuge Parachain"]
+  name = "centrifuge"
+  title = "Centrifuge Parachain"
+  color = "#fcc367"
+
+  [chains.Efinity]
+  name = "efinity"
+  title = "Efinity"
+  color = "#496ddb"
+
+  [chains.Interlay]
+  name = "interlay-parachain"
+  title = "Interlay"
+  color = "#3E96FF"
+
+  [chains."Nodle Parachain"]
+  name = "nodle-para"
+  title = "Nodle Parachain"
+  color = "#1ab394"
+
+  [chains.Turing]
+  name = "turing"
+  title = "Turing"
+  color = "#A8278C"
+
+  [chains."Aleph Zero"]
+  name = "aleph-node"
+  title = "Aleph Zero"
+  color = "#00CCAB"
+
+  [chains."Composable Finance"]
+  name = "composable-finance"
+  title = "Composable Finance"
+  color = "#C90E8A"
+
+  [chains."Polkadex Solochain"]
+  name = "node"
+  title = "Polkadex Solochain"
+  color = "#7C30DD"
+
+  [chains."OriginTrail Parachain"]
+  name = "origintrail-parachain"
+  title = "OriginTrail Parachain"
+  color = "#FB5DEB"
+
+  [chains."Bifrost Polkadot"]
+  name = "bifrost_polkadot"
+  color = "#5a25f0"
+
+  [chains."Bifrost Kusama"]
+  name = "bifrost"
+  color = "#5a25f0"
+
+  [chains.Litentry]
+  name = "litentry-parachain"
+  title = "Litentry"
+  color = "linear-gradient(45deg, #5cc27c 0%, #6de98f 100%)"
+
+  [chains.UNIQUE]
+  name = "unique"
+  title = "UNIQUE"
+  color = "#40BCFF"
+
+  [chains."Dora Factory"]
+  name = "DORA KSM Parachain"
+  title = "Dora Factory"
+  color = "#FF761C"
+
+  [chains."Mangata X"]
+  name = "mangata-parachain"
+  title = "Mangata X"
+  color = "#030408"
+
+  [chains.Pichiu]
+  name = "pichiu"
+  title = "Pichiu"
+  color = "#ed007e"
+
+  [chains.Kabocha]
+  name = "kabocha-parachain"
+  title = "Kabocha"
+  color = "#f53485"
+
+  [chains.Tanganika]
+  name = "datahighway-parachain"
+  title = "Tanganika"
+  color = "linear-gradient(-90deg, #9400D3 0%, #5A5CA9 50%, #00BFFF 100%)"
+
+  [chains.Bajun]
+  name = "bajun"
+  title = "Bajun"
+  color = "#161212"
+
+  [chains.Imbue]
+  name = "imbue"
+  title = "Imbue"
+  color = "#baff36"
+
+  [chains.GM]
+  name = "template-parachain"
+  title = "GM"
+  color = "#f47b36"
+
+  [chains.Amplitude]
+  name = "amplitude"
+  title = "Amplitude"
+  color = "#5defa7"
+
+  [chains.Moonbeam]
+  name = "moonbeam"
+  title = "Moonbeam"
+  color = "#53cbc9"
+
+  [chains.Moonriver]
+  name = "moonriver"
+  title = "Moonriver"
+  color = "#0E132E"
+
+  [chains.Edgeware]
+  name = "edgeware"
+  color = "#111111"
+
+  [chains.Phala]
+  name = "phala"
+  color = "#c6fa4c"
+
+  [chains.Tinkernet]
+  name = "tinkernet_node"
+  color = "#161616"
+
+  [chains.Ternoa]
+  name = "mainnet"
+  color = "#d622ff"
+
+  # Test networks
+  [chains.Westmint]
+  name = "westmint"
+  title = "Westmint"
+  color = "#77bb77"
+
+  [chains."Acala Mandala"]
+  name = "mandala"
+  title = "Mandala"
+  color = "#173DC9"
+
+  [chains."KILT Peregrine"]
+  name = "mashnet-node"
+  color = "linear-gradient(45deg, ${chainKiltDev} 0%, ${chainKilt} 100%"
+
+  [chains."Singular testnet"]
+  name = "Development"
+  color = "#9EE844"
+
+  [chains."Aleph Zero Testnet"]
+  name = " aleph-node"
+  color = "#231764"
+
+  [chains."Polymesh Testnet"]
+  name = "polymesh_testnet"
+  color = "#1348e4"
+
+  [chains."Arctic Relay Testnet"]
+  name = "Arctic Relay Testnet"
+  color = "#1348e4"
+
+  [chains."Rococo Testnet"]
+  name = "Rococo"
+  color = "#6f36dc"
+
+  [chains."Ternoa Alphanet"]
+  name = "alphanet"
+  color = "#d622ff"
+
+  [chains."Turing Staging"]
+  name = "turing"
+  color = "#27948E"
+
+  [chains."Governance2 Testnet"]
+  name = "governance2"
+  color = "#B3250A"
+
+  [chains."Moonbase Alpha"]
+  name = "moonbase"
+  color = "#F45B5B"

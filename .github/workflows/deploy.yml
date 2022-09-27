@@ -28,7 +28,7 @@ jobs:
       - name: ⚙ Run collector
         id: collect
         run: |
-          cargo run --release collect
+          cargo run --release -- -c=config.toml collect
           exit_code=$?
           if [ $exit_code -eq 12 ]
           then

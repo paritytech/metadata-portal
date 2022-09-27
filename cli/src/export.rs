@@ -50,6 +50,7 @@ pub(crate) struct ExportChainSpec {
     pub(crate) next_metadata_qr: Option<QrCode>,
     pub(crate) latest_metadata: ReactAssetPath,
     pub(crate) specs_qr: QrCode,
+    pub(crate) testnet: bool,
 }
 
 pub(crate) type ExportData = IndexMap<ChainName, ExportChainSpec>;

@@ -20,10 +20,13 @@ export default function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const [allChains, setAllChains] = useState<Chains>({} as Chains);
-
+  let dataFileName = "data.json";
+  if (useLocation().pathname.split("/").indexOf("dev") > 0) {
+    dataFileName = "data_dev.json";
+  }
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch("data.json")
+      const data = await fetch(dataFileName)
         .then((response) => response.json())
         .catch((e) => {
           console.error(

@@ -34,6 +34,9 @@ pub(crate) enum SubCommand {
 
     /// Check if deployment is up to date
     CheckDeployment,
+
+    /// Check if the config.toml should be updated
+    UpdateChainConfig(ChainsOpts),
 }
 
 #[derive(Parser)]
@@ -46,4 +49,13 @@ pub(crate) struct UpdateOpts {
 
     #[clap(long, default_value = "")]
     pub(crate) signing_key: String,
+}
+
+#[derive(Parser)]
+pub(crate) struct ChainsOpts {
+    #[clap(long, default_value = "prod")]
+    pub(crate) env: String,
+
+    #[clap(long, default_value = "v5")]
+    pub(crate) version: String,
 }

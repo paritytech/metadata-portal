@@ -1,396 +1,542 @@
-data_file = "public/data.json"
-public_dir = "public"
-qr_dir = "public/qr"
+data_file = 'public/data.json'
+public_dir = 'public'
+qr_dir = 'public/qr'
 
 [verifier]
-name = "Novasama Technologies"
-public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
+name = 'Novasama Technologies'
+public_key = '16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f'
 
 [[chains]]
-name = "bifrost"
-title = "Bifrost"
-color = "#5a25f0"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Bifrost_Kusama.svg"
-rpc_endpoints = ["wss://bifrost-parachain.api.onfinality.io/public-ws", "wss://bifrost-rpc.liebi.com/ws", "wss://bifrost-rpc.dwellir.com"]
-genesis_hash = "0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed"
+name = 'statemine'
+title = 'Statemine'
+color = '#113911'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Statemine.svg'
+rpc_endpoints = [
+    'wss://statemine.api.onfinality.io/public-ws',
+    'wss://statemine-rpc.dwellir.com',
+    'wss://statemine-rpc.polkadot.io',
+]
+testnet = false
 
 [[chains]]
-name = "acala"
-title = "Acala"
-color = "#645AFF"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala.svg"
-rpc_endpoints = ["wss://acala-rpc.dwellir.com", "wss://acala-rpc-1.aca-api.network", "wss://acala-rpc-2.aca-api.network/ws", "wss://acala-rpc-3.aca-api.network/ws", "wss://acala.polkawallet.io", "wss://acala-polkadot.api.onfinality.io/public-ws"]
-genesis_hash = "0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c"
+name = 'karura'
+title = 'Karura'
+color = '#ff4c3b'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Karura.svg'
+rpc_endpoints = ['wss://karura.api.onfinality.io/public-ws']
+testnet = false
 
 [[chains]]
-name = "statemine"
-title = "Statemine"
-color = "#113911"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Statemine.svg"
-rpc_endpoints = ["wss://statemine.api.onfinality.io/public-ws", "wss://statemine-rpc.polkadot.io", "wss://statemine-rpc.dwellir.com"]
-genesis_hash = "0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a"
+name = 'shiden'
+title = 'Shiden'
+color = '#5923B2'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Shiden.svg'
+rpc_endpoints = [
+    'wss://rpc.shiden.astar.network',
+    'wss://shiden.api.onfinality.io/public-ws',
+    'wss://rpc.pinknode.io/shiden/explorer',
+]
+testnet = false
 
 [[chains]]
-name = "karura"
-title = "Karura"
-color = "#ff4c3b"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Karura.svg"
-rpc_endpoint = "wss://karura.api.onfinality.io/public-ws"
-genesis_hash = "0xbaf5aabe40646d11f0ee8abbdc64f4a4b7674925cba08e4a05ff9ebed6e2126b"
+name = 'bifrost'
+title = 'Bifrost Kusama'
+color = '#5a25f0'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Bifrost_Kusama.svg'
+rpc_endpoints = [
+    'wss://bifrost-rpc.liebi.com/ws',
+    'wss://bifrost-parachain.api.onfinality.io/public-ws',
+    'wss://bifrost-rpc.dwellir.com',
+]
+testnet = false
 
 [[chains]]
-name = "heiko"
-title = "Parallel Heiko"
-color = "#42d5de"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/ParallelHeiko.svg"
-rpc_endpoints = ["wss://heiko-rpc.parallel.fi", "wss://parallel-heiko.api.onfinality.io/public-ws"]
-genesis_hash = "0x64a1c658a48b2e70a7fb1ad4c39eea35022568c20fc44a6e2e3d0a57aee6053b"
+name = 'basilisk'
+title = 'Basilisk'
+color = '#9eec1b'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Basilisk.svg'
+rpc_endpoints = [
+    'wss://rpc.basilisk.cloud',
+    'wss://basilisk-rpc.dwellir.com',
+]
+testnet = false
 
 [[chains]]
-name = "shiden"
-title = "Shiden"
-color = "#5923B2"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Shiden.svg"
-rpc_endpoints = ["wss://rpc.shiden.astar.network", "wss://shiden.api.onfinality.io/public-ws", "wss://rpc.pinknode.io/shiden/explorer"]
-genesis_hash = "0xf1cf9022c7ebb34b162d5b5e34e705a5a740b2d0ecc1009fb89023e62a488108"
+name = 'altair'
+title = 'Altair'
+color = '#ffb700'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Altair.svg'
+rpc_endpoints = [
+    'wss://fullnode.altair.centrifuge.io',
+    'wss://altair.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "basilisk"
-title = "Basilisk"
-color = "#9eec1b"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Basilisk.svg"
-rpc_endpoints = ["wss://rpc-01.basilisk.hydradx.io", "wss://basilisk.api.onfinality.io/public-ws", "wss://basilisk-rpc.dwellir.com"]
-genesis_hash = "0xa85cfb9b9fd4d622a5b28289a02347af987d8f73fa3108450e2b4a11c1ce5755"
+name = 'heiko'
+title = 'Parallel Heiko'
+color = '#42d5de'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/ParallelHeiko.svg'
+rpc_endpoints = [
+    'wss://heiko-rpc.parallel.fi',
+    'wss://parallel-heiko.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "altair"
-title = "Altair"
-color = "#ffb700"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Altair.svg"
-rpc_endpoints = ["wss://fullnode.altair.centrifuge.io", "wss://altair.api.onfinality.io/public-ws"]
-genesis_hash = "0xaa3876c1dc8a1afcc2e9a685a49ff7704cfd36ad8c90bf2702b9d1b00cc40011"
+name = 'edgeware'
+title = 'Edgeware'
+color = '#111111'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Edgeware.svg'
+rpc_endpoints = [
+    'wss://mainnet.edgewa.re',
+    'wss://edgeware.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "khala"
-title = "Khala"
-color = "#03f3f3"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Khala.svg"
-rpc_endpoints = ["wss://khala-api.phala.network/ws", "wss://khala.api.onfinality.io/public-ws"]
-genesis_hash = "0xd43540ba6d3eb4897c28a77d48cb5b729fea37603cbbfc7a86a73b72adb3be8d"
+name = 'khala'
+title = 'Khala'
+color = '#03f3f3'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Khala.svg'
+rpc_endpoints = [
+    'wss://khala-api.phala.network/ws',
+    'wss://khala.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "kilt-spiritnet"
-title = "KILT Spiritnet"
-color = "#8c145a"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/KILT_Spiritnet.svg"
-rpc_endpoints = ["wss://spiritnet.kilt.io/", "wss://spiritnet.api.onfinality.io/public-ws"]
+name = 'kilt-spiritnet'
+title = 'KILT Spiritnet'
+color = '#8c145a'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/KILT_Spiritnet.svg'
+rpc_endpoints = [
+    'wss://spiritnet.kilt.io/',
+    'wss://spiritnet.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "calamari"
-title = "Calamari"
-color = "#000000"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Calamari.svg"
-rpc_endpoints = ["wss://ws.calamari.systems/", "wss://calamari.api.onfinality.io/public-ws", "wss://calamari-rpc.dwellir.com"]
+name = 'calamari'
+title = 'Calamari'
+color = '#000000'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Calamari.svg'
+rpc_endpoints = ['wss://ws.calamari.systems/']
+testnet = false
 
 [[chains]]
-name = "quartz"
-title = "QUARTZ"
-color = "#FF4D6A"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Quartz.svg"
-rpc_endpoints = ["wss://quartz.api.onfinality.io/public-ws", "wss://quartz.unique.network", "wss://eu-ws-quartz.unique.network", "wss://us-ws-quartz.unique.network"]
+name = 'quartz'
+title = 'QUARTZ'
+color = '#FF4D6A'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Quartz.svg'
+rpc_endpoints = [
+    'wss://quartz.api.onfinality.io/public-ws',
+    'wss://quartz.unique.network',
+    'wss://eu-ws-quartz.unique.network',
+    'wss://us-ws-quartz.unique.network',
+]
+testnet = false
 
 [[chains]]
-name = "pioneer-runtime"
-title = "Bit.Country Pioneer"
-color = "#000000"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Bit.Country_Pioneer.svg"
-rpc_endpoints = ["wss://pioneer.api.onfinality.io/public-ws", "wss://pioneer-1-rpc.bit.country"]
+name = 'pioneer-runtime'
+title = 'Bit.Country Pioneer'
+color = '#000000'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Bit.Country_Pioneer.svg'
+rpc_endpoints = ['wss://pioneer.api.onfinality.io/public-ws']
+testnet = false
 
 [[chains]]
-name = "astar"
-title = "Astar"
-color = "#1b6dc1d9"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Astar.svg"
-rpc_endpoints = ["wss://astar.api.onfinality.io/public-ws", "wss://rpc.astar.network"]
+name = 'acala'
+title = 'Acala'
+color = '#645AFF'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala.svg'
+rpc_endpoints = [
+    'wss://acala-rpc.dwellir.com',
+    'wss://acala-rpc-1.aca-api.network',
+    'wss://acala-rpc-2.aca-api.network/ws',
+    'wss://acala-rpc-3.aca-api.network/ws',
+    'wss://acala.polkawallet.io',
+    'wss://acala-polkadot.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "parallel"
-title = "Parallel"
-color = "#ef18ac"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Parallel.svg"
-rpc_endpoints = ["wss://rpc.parallel.fi", "wss://parallel.api.onfinality.io/public-ws"]
+name = 'astar'
+title = 'Astar'
+color = '#1b6dc1d9'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Astar.svg'
+rpc_endpoints = [
+    'wss://rpc.astar.network',
+    'wss://astar.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "clover-mainnet"
-title = "CLV Parachain"
-color = "linear-gradient(to right, #52ad75, #7cc773)"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/CLV_Parachain.svg"
-rpc_endpoints = ["wss://rpc-para.clover.finance", "wss://clover.api.onfinality.io/public-ws"]
+name = 'parallel'
+title = 'Parallel'
+color = '#ef18ac'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Parallel.svg'
+rpc_endpoints = [
+    'wss://rpc.parallel.fi',
+    'wss://parallel.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "statemint"
-title = "Statemint"
-color = "#86e62a"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Statemint.svg"
-rpc_endpoints = ["wss://statemint-rpc.polkadot.io", "wss://statemint.api.onfinality.io/public-ws", "wss://statemint-rpc.dwellir.com"]
+name = 'clover-mainnet'
+title = 'CLV Parachain'
+color = 'linear-gradient(to right, #52ad75, #7cc773)'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/CLV_Parachain.svg'
+rpc_endpoints = [
+    'wss://rpc-para.clover.finance',
+    'wss://clover.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "robonomics"
-title = "Robonomics"
-color = "#2949d3"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Robonomics.svg"
-rpc_endpoint = "wss://kusama.rpc.robonomics.network/"
+name = 'statemint'
+title = 'Statemint'
+color = '#86e62a'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Statemint.svg'
+rpc_endpoints = [
+    'wss://statemint-rpc.polkadot.io',
+    'wss://statemint.api.onfinality.io/public-ws',
+    'wss://statemint-rpc.dwellir.com',
+]
+testnet = false
 
 [[chains]]
-name = "encointer-parachain"
-title = "Encointer"
-color = "#0000cc"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Encointer.svg"
-rpc_endpoints = ["wss://api.kusama.encointer.org", "wss://encointer.api.onfinality.io/public-ws"]
+name = 'robonomics'
+title = 'Robonomics'
+color = '#2949d3'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Robonomics.svg'
+rpc_endpoints = ['wss://kusama.rpc.robonomics.network/']
+testnet = false
 
 [[chains]]
-name = "kintsugi-parachain"
-title = "Kintsugi"
-color = "#1a0a2d"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Kintsugi.svg"
-rpc_endpoint = "wss://api-kusama.interlay.io/parachain"
+name = 'encointer-parachain'
+title = 'Encointer'
+color = '#0000cc'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Encointer.svg'
+rpc_endpoints = [
+    'wss://encointer.api.onfinality.io/public-ws',
+    'wss://api.kusama.encointer.org',
+]
+testnet = false
 
 [[chains]]
-name = "picasso"
-title = "Picasso"
-color = "#000000"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Picasso.svg"
-rpc_endpoint = "wss://picasso-rpc.composable.finance"
+name = 'kintsugi-parachain'
+title = 'Kintsugi'
+color = '#1a0a2d'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Kintsugi.svg'
+rpc_endpoints = ['wss://api-kusama.interlay.io/parachain']
+testnet = false
 
 [[chains]]
-name = "zeitgeist"
-title = "Zeitgeist"
-color = "linear-gradient(180deg, rgba(32,90,172,1) 0%, rgba(26,72,138,1) 50%, rgba(13,36,69,1) 100%)"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Zeitgeist.svg"
-rpc_endpoints = ["wss://zeitgeist-rpc.dwellir.com", "wss://rpc-0.zeitgeist.pm", "wss://zeitgeist.api.onfinality.io/public-ws"]
+name = 'picasso'
+title = 'Picasso'
+color = '#000000'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Picasso.svg'
+rpc_endpoints = ['wss://picasso-rpc.composable.finance']
+testnet = false
 
 [[chains]]
-name = "hydradx"
-title = "HydraDX"
-color = "#f653a2"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/HydraDX.svg"
-rpc_endpoints = ["wss://rpc.hydradx.cloud", "wss://hydradx-rpc.dwellir.com"]
+name = 'zeitgeist'
+title = 'Zeitgeist'
+color = 'linear-gradient(180deg, rgba(32,90,172,1) 0%, rgba(26,72,138,1) 50%, rgba(13,36,69,1) 100%)'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Zeitgeist.svg'
+rpc_endpoints = [
+    'wss://zeitgeist-rpc.dwellir.com',
+    'wss://rpc-0.zeitgeist.pm',
+    'wss://zeitgeist.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "KICO"
-title = "KICO"
-color = "#29B58D"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/KICO.svg"
-rpc_endpoints = ["wss://rpc.kico.dico.io", "wss://rpc.api.kico.dico.io"]
+name = 'KICO'
+title = 'KICO'
+color = '#29B58D'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/KICO.svg'
+rpc_endpoints = [
+    'wss://rpc.kico.dico.io',
+    'wss://rpc.api.kico.dico.io',
+]
+testnet = false
 
 [[chains]]
-name = "litmus-parachain"
-title = "Litmus"
-color = "#6822fb"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Litmus.svg"
-rpc_endpoint = "wss://rpc.litmus-parachain.litentry.io"
+name = 'litmus-parachain'
+title = 'Litmus'
+color = '#6822fb'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Litmus.svg'
+rpc_endpoints = ['wss://rpc.litmus-parachain.litentry.io']
+testnet = false
 
 [[chains]]
-name = "Crab Parachain"
-title = "Crab"
-color = "#7C30DD"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Crab.svg"
-rpc_endpoint = "wss://crab-parachain-rpc.darwinia.network/"
+name = 'Crab Parachain'
+title = 'Crab'
+color = '#7C30DD'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Crab.svg'
+rpc_endpoints = ['wss://crab-parachain-rpc.darwinia.network/']
+testnet = false
 
 [[chains]]
-name = "subsocial-parachain"
-title = "Subsocial Parachain"
-color = "#69058C"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Subsocial_Parachain.svg"
-rpc_endpoint = "wss://para.subsocial.network"
+name = 'subsocial-parachain'
+title = 'Subsocial'
+color = '#69058C'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Subsocial_Parachain.svg'
+rpc_endpoints = ['wss://para.subsocial.network']
+testnet = false
 
 [[chains]]
-name = "crust-collator"
-title = "Crust Shadow"
-color = "#ff8812"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Crust_Shadow.svg"
-rpc_endpoints = ["wss://rpc2-shadow.crust.network/", "wss://rpc-shadow.crust.network/"]
+name = 'crust-collator'
+title = 'Crust Shadow'
+color = '#ff8812'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Crust_Shadow.svg'
+rpc_endpoints = [
+    'wss://rpc2-shadow.crust.network/',
+    'wss://rpc-shadow.crust.network/',
+]
+testnet = false
 
 [[chains]]
-name = "integritee-parachain"
-title = "Integritee Parachain"
-color = "#658ea9"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Integritee.svg"
-rpc_endpoints = ["wss://integritee-kusama.api.onfinality.io/public-ws", "wss://kusama.api.integritee.network"]
+name = 'integritee-parachain'
+title = 'Integritee Parachain'
+color = '#658ea9'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Integritee.svg'
+rpc_endpoints = [
+    'wss://integritee-kusama.api.onfinality.io/public-ws',
+    'wss://kusama.api.integritee.network',
+]
+testnet = false
 
 [[chains]]
-name = "centrifuge"
-title = "Centrifuge Parachain"
-color = "#fcc367"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Centrifuge.svg"
-rpc_endpoint = "wss://fullnode.parachain.centrifuge.io"
+name = 'centrifuge'
+title = 'Centrifuge Parachain'
+color = '#fcc367'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Centrifuge.svg'
+rpc_endpoints = ['wss://fullnode.parachain.centrifuge.io']
+testnet = false
 
 [[chains]]
-name = "efinity"
-title = "Efinity"
-color = "#496ddb"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Efinity.svg"
-rpc_endpoint = "wss://rpc.efinity.io"
+name = 'efinity'
+title = 'Efinity'
+color = '#496ddb'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Efinity.svg'
+rpc_endpoints = ['wss://rpc.efinity.io']
+testnet = false
 
 [[chains]]
-name = "interlay-parachain"
-title = "Interlay"
-color = "#3E96FF"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Interlay.svg"
-rpc_endpoints = ["wss://interlay.api.onfinality.io/public-ws", "wss://api.interlay.io/parachain"]
+name = 'hydradx'
+title = 'HydraDX'
+color = '#f653a2'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/HydraDX.svg'
+rpc_endpoints = [
+    'wss://rpc.hydradx.cloud',
+    'wss://hydradx-rpc.dwellir.com',
+]
+testnet = false
 
 [[chains]]
-name = "nodle-para"
-title = "Nodle Parachain"
-color = "#1ab394"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Nodle.svg"
-rpc_endpoints = ["wss://nodle-parachain.api.onfinality.io/public-ws", "wss://eden-rpc.dwellir.com"]
+name = 'interlay-parachain'
+title = 'Interlay'
+color = '#3E96FF'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Interlay.svg'
+rpc_endpoints = [
+    'wss://api.interlay.io/parachain',
+    'wss://interlay.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "turing"
-title = "Turing"
-color = "#A8278C"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Turing.svg"
-rpc_endpoints = ["wss://rpc.turing.oak.tech", "wss://turing-rpc.dwellir.com"]
+name = 'nodle-para'
+title = 'Nodle Parachain'
+color = '#1ab394'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Nodle.svg'
+rpc_endpoints = [
+    'wss://nodle-parachain.api.onfinality.io/public-ws',
+    'wss://eden-rpc.dwellir.com',
+]
+testnet = false
 
 [[chains]]
-name = "aleph-node"
-title = "Aleph Zero"
-color = "#00CCAB"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/AlephZero.svg"
-rpc_endpoint = "wss://ws.azero.dev"
-
-#todo Composable finance. SS58 code is different.
-#[[chains]]
-#name = "composable-finance"
-#title = "Composable Finance"
-#color = "#C90E8A"
-#icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Composable.svg"
-#rpc_endpoints = ["wss://composable-rpc.dwellir.com", "wss://rpc.composable.finance"]
+name = 'phala'
+title = 'Phala'
+color = '#c6fa4c'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Phala.svg'
+rpc_endpoints = ['wss://api.phala.network/ws']
+testnet = false
 
 [[chains]]
-name = "node"
-title = "Polkadex Solochain"
-color = "#7C30DD"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Polkadex.svg"
-rpc_endpoints = ["wss://polkadex.api.onfinality.io/public-ws", "wss://mainnet.polkadex.trade"]
+name = 'turing'
+title = 'Turing'
+color = '#A8278C'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Turing.svg'
+rpc_endpoints = [
+    'wss://rpc.turing.oak.tech',
+    'wss://turing-rpc.dwellir.com',
+]
+testnet = false
 
 [[chains]]
-name = "origintrail-parachain"
-title = "OriginTrail Parachain"
-color = "#FB5DEB"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/OriginTrail.svg"
-rpc_endpoint = "wss://parachain-rpc.origin-trail.network"
+name = 'aleph-node'
+title = 'Aleph Zero'
+color = '#00CCAB'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/AlephZero.svg'
+rpc_endpoints = ['wss://ws.azero.dev']
+testnet = false
 
 [[chains]]
-name = "bifrost_polkadot"
-title = "Bifrost Polkadot"
-color = "#5a25f0"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Bifrost_Polkadot.svg"
-rpc_endpoint = "wss://hk.p.bifrost-rpc.liebi.com/ws"
+name = 'composable-finance'
+title = 'Composable Finance'
+color = '#C90E8A'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Composable.png'
+rpc_endpoints = [
+    'wss://rpc.composable.finance',
+    'wss://composable-rpc.dwellir.com',
+]
+testnet = false
 
 [[chains]]
-name = "litentry-parachain"
-title = "Litentry"
-color = "linear-gradient(45deg, #5cc27c 0%, #6de98f 100%)"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Litentry.svg"
-rpc_endpoint = "wss://rpc.litentry-parachain.litentry.io"
+name = 'node'
+title = 'Polkadex Solochain'
+color = '#7C30DD'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Polkadex.svg'
+rpc_endpoints = [
+    'wss://polkadex.api.onfinality.io/public-ws',
+    'wss://mainnet.polkadex.trade',
+]
+testnet = false
 
 [[chains]]
-name = "unique"
-title = "UNIQUE"
-color = "#40BCFF"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Unique.svg"
-rpc_endpoints = ["wss://eu-ws.unique.network/", "wss://us-ws.unique.network/", "wss://asia-ws.unique.network/"]
+name = 'origintrail-parachain'
+title = 'OriginTrail Parachain'
+color = '#FB5DEB'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/OriginTrail.svg'
+rpc_endpoints = ['wss://parachain-rpc.origin-trail.network']
+testnet = false
 
 [[chains]]
-name = "DORA KSM Parachain"
-title = "Dora Factory"
-color = "#FF761C"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/DoraFactory.svg"
-rpc_endpoint = "wss://kusama.dorafactory.org"
+name = 'bifrost_polkadot'
+title = 'Bifrost Polkadot'
+color = '#5a25f0'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Bifrost_Polkadot.svg'
+rpc_endpoints = ['wss://hk.p.bifrost-rpc.liebi.com/ws']
+testnet = false
 
 [[chains]]
-name = "mangata-parachain"
-title = "Mangata X"
-color = "#030408"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/MangataX.svg"
-rpc_endpoints = ["wss://mangata-x.api.onfinality.io/public-ws", "wss://prod-kusama-collator-01.mangatafinance.cloud"]
+name = 'litentry-parachain'
+title = 'Litentry'
+color = 'linear-gradient(45deg, #5cc27c 0%, #6de98f 100%)'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Litentry.svg'
+rpc_endpoints = ['wss://rpc.litentry-parachain.litentry.io']
+testnet = false
 
 [[chains]]
-name = "pichiu"
-title = "Pichiu"
-color = "#ed007e"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Pichiu.svg"
-rpc_endpoint = "wss://kusama.kylin-node.co.uk"
+name = 'unique'
+title = 'UNIQUE'
+color = '#40BCFF'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Unique.svg'
+rpc_endpoints = [
+    'wss://eu-ws.unique.network/',
+    'wss://us-ws.unique.network/',
+    'wss://asia-ws.unique.network/',
+]
+testnet = false
 
 [[chains]]
-name = "kabocha-parachain"
-title = "Kabocha"
-color = "#f53485"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Kabocha.svg"
-rpc_endpoint = "wss://kabocha.jelliedowl.com"
+name = 'DORA KSM Parachain'
+title = 'Dora Factory'
+color = '#FF761C'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/DoraFactory.svg'
+rpc_endpoints = ['wss://kusama.dorafactory.org']
+testnet = false
 
 [[chains]]
-name = "datahighway-parachain"
-title = "Tanganika"
-color = "linear-gradient(-90deg, #9400D3 0%, #5A5CA9 50%, #00BFFF 100%)"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Tanganika_DataHighway.svg"
-rpc_endpoint = "wss://tanganika.datahighway.com"
+name = 'mangata-parachain'
+title = 'Mangata X'
+color = '#030408'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/MangataX.svg'
+rpc_endpoints = [
+    'wss://prod-kusama-collator-01.mangatafinance.cloud',
+    'wss://mangata-x.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "bajun"
-title = "Bajun"
-color = "#161212"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Bajun.svg"
-rpc_endpoint = "wss://rpc-parachain.bajun.network"
+name = 'pichiu'
+title = 'Pichiu'
+color = '#ed007e'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Pichiu.svg'
+rpc_endpoints = [
+    'wss://kusama.kylin-node.co.uk',
+    'wss://pichiu.api.onfinality.io/public-ws',
+]
+testnet = false
 
 [[chains]]
-name = "imbue"
-title = "Imbue"
-color = "#baff36"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Imbue.svg"
-rpc_endpoint = "wss://imbue-kusama.imbue.network"
+name = 'kabocha-parachain'
+title = 'Kabocha'
+color = '#f53485'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Kabocha.svg'
+rpc_endpoints = ['wss://kabocha.jelliedowl.com']
+testnet = false
 
 [[chains]]
-name = "template-parachain"
-title = "GM"
-color = "#f47b36"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/GM.svg"
-rpc_endpoint = "wss://kusama.gmordie.com"
+name = 'datahighway-parachain'
+title = 'Tanganika'
+color = 'linear-gradient(-90deg, #9400D3 0%, #5A5CA9 50%, #00BFFF 100%)'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Tanganika_DataHighway.svg'
+rpc_endpoints = ['wss://tanganika.datahighway.com']
+testnet = false
 
 [[chains]]
-name = "amplitude"
-title = "Amplitude"
-color = "#5defa7"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Amplitude.svg"
-rpc_endpoint = "wss://pencol-kus-01.pendulumchain.tech"
+name = 'bajun'
+title = 'Bajun'
+color = '#161212'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Bajun.svg'
+rpc_endpoints = ['wss://rpc-parachain.bajun.network']
+testnet = false
 
 [[chains]]
-name = "moonbeam"
-title = "Moonbeam"
-color = "#53cbc9"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Moonbeam.svg"
-rpc_endpoints = ["wss://moonbeam-rpc.dwellir.com", "wss://moonbeam.api.onfinality.io/public-ws", "wss://moonbeam.public.blastapi.io", "wss://wss.api.moonbeam.network"]
+name = 'imbue'
+title = 'Imbue'
+color = '#baff36'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Imbue.svg'
+rpc_endpoints = ['wss://imbue-kusama.imbue.network']
+testnet = false
 
 [[chains]]
-name = "moonriver"
-title = "Moonriver"
-color = "#0E132E"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Moonriver.svg"
-rpc_endpoints = ["wss://moonriver-rpc.dwellir.com", "wss://wss.moonriver.moonbeam.network", "wss://moonriver.api.onfinality.io/public-ws", "wss://moonriver.public.blastapi.io", "wss://rpc.pinknode.io/moonriver/explorer"]
+name = 'tinkernet_node'
+title = 'Tinkernet'
+color = '#161616'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Tinkernet.svg'
+rpc_endpoints = ['wss://tinker.invarch.network']
+testnet = false
 
-# Test networks
 [[chains]]
-name = "westmint"
-title = "Westmint"
-color = "#77bb77"
-icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Westmint_Testnet.svg"
-rpc_endpoint = "wss://westmint-rpc.polkadot.io"
+name = 'template-parachain'
+title = 'GM'
+color = '#f47b36'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/GM.svg'
+rpc_endpoints = [
+    'wss://ws.gm.bldnodes.org',
+    'wss://ws-node-gm.terrabiodao.org',
+    'wss://kusama.gmordie.com',
+]
+testnet = false
 
-#[[chains]]
-#name = "mandala"
-#title = "Mandala"
-#color = "#173DC9"
-#icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala_Mandala_Testnet.svg"
-#rpc_endpoint = "wss://acala-mandala.api.onfinality.io/public-ws/"
+[[chains]]
+name = 'amplitude'
+title = 'Amplitude'
+color = '#5defa7'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Amplitude.svg'
+rpc_endpoints = ['wss://pencol-kus-01.pendulumchain.tech']
+testnet = false
+
+[[chains]]
+name = 'mainnet'
+title = 'Ternoa'
+color = '#d622ff'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Ternoa.svg'
+rpc_endpoints = ['wss://mainnet.ternoa.network']
+testnet = false

@@ -86,6 +86,10 @@ It all starts with the Github repository. Any user can clone it and run their Me
 
 Metadata Portal supports two metadata sources in parallel. Both are equally important for different types of users.
 
+## User interface
+By default, only production networks are displayed in the user interface.
+If you'd like to get all list of networks including test networks add `/dev` to the url. For example `https://nova-wallet.github.io/metadata-portal/#/dev`
+
 ### 1. Parsing it from chain and generating QR codes itself with manual signing
 
 This flow is important for all users who want to always have the latest metadata in their signing devices to parse and sign their transactions right away.
@@ -137,6 +141,21 @@ in their signing devices to parse and sign their transactions right away.
 
 ### Steps
 
+#### With integration with [Nova Wallet utils configuration](https://github.com/nova-wallet/nova-utils/blob/master/chains/)
+You can use Github Pages to host the metadata-portal for your set of chains
+1. Fork this repo
+2. Edit signer's name and public key in the `config-template.toml`. The key can be exported from [parity-signer](https://github.com/paritytech/parity-signer)
+3. Run `cargo run --release -- update-chain-config` for updating the `config.toml` file
+4. Run `cargo run --release -- update-chain-config --env dev` for updating the `config_dev.toml` file from `chains_dev.json`
+5. Configure GitHub Pages to build from `gh-pages` branch (`Settings` -> `Pages` -> `Source`)
+6. Edit domain name in:
+   1. `homepage` field in `package.json`
+   2. `public/CNAME` file
+7. Notifications to Matrix:
+   1. You can disable it by setting `NOTIFY_MATRIX: false` in `.github/workflows/update.yml`
+   2. Otherwise, add `MATRIX_SERVER`, `MATRIX_ROOM_ID`, `MATRIX_ACCESS_TOKEN` values to project Actions secrets
+
+#### Update configuration by yourself
 You can use Github Pages to host the metadata-portal for your set of chains
 1. Fork this repo
 2. Edit `config.toml`
@@ -149,6 +168,15 @@ You can use Github Pages to host the metadata-portal for your set of chains
 5. Notifications to Matrix:
    1. You can disable it by setting `NOTIFY_MATRIX: false` in `.github/workflows/update.yml`
    2. Otherwise, add `MATRIX_SERVER`, `MATRIX_ROOM_ID`, `MATRIX_ACCESS_TOKEN` values to project Actions secrets
+
+#### CI
+1. Run `Update chains_config file` action in order to update `config.toml` and `config_dev.toml` files
+2. `Check updates&sign` runs automatically by cron and generates QRs for production chains
+3. `Deploy` runs automatically after the PR merge
+
+If you'd like to update test networks from `chains_dev` file then run
+1. Run `Update chains_config file` action with `dev` environment parameter
+2. Run `cargo run --release -- -c=config_dev.toml update --sign --signing-key ${{secrets.SIGNING_KEY}} --source node` in order to generate metadata for all networks including test networks
 
 ## Development
 ### Dependencies

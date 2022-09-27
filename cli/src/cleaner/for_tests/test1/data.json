@@ -19,6 +19,7 @@
     "specsQr": {
       "path": "/qr/polkadot_specs.png",
       "signedBy": "Parity"
-    }
+    },
+    "testnet": false
   }
 }

@@ -1,6 +1,7 @@
 use std::path::{Path, PathBuf};
 use std::{fmt, fs};
 
+use anyhow::bail;
 use log::debug;
 use serde::de::{self, value, SeqAccess, Visitor};
 use serde::{Deserialize, Deserializer, Serialize};
@@ -52,6 +53,18 @@ pub(crate) struct AppConfig {
     pub(crate) verifier: Verifier,
     pub(crate) chains: Vec<Chain>,
 }
+#[derive(Serialize, Deserialize, Debug)]
+pub(crate) struct ChainJSON {
+    pub(crate) name: String,
+    pub(crate) nodes: Vec<ChainNode>,
+    pub(crate) icon: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub(crate) struct ChainNode {
+    pub(crate) name: String,
+    pub(crate) url: String,
+}
 
 #[cfg(test)]
 impl Default for AppConfig {
@@ -79,6 +92,16 @@ impl AppConfig {
         config.data_file = root.join(config.data_file);
         config.qr_dir = root.join(config.qr_dir);
         Ok(config)
+    }
+
+    pub(crate) fn save(&self, path: impl AsRef<Path>) -> anyhow::Result<()> {
+        let write_result = fs::write(&path, toml::to_string_pretty(self).unwrap().as_bytes());
+        match write_result {
+            Ok(_) => println!("File {} was updated!", path.as_ref().to_str().unwrap()),
+            Err(e) => bail!("Error saving config.toml! {}", e),
+        }
+
+        Ok(())
     }
 }
 
@@ -118,6 +141,7 @@ pub(crate) struct Chain {
     pub(crate) token_unit: Option<String>,
     pub(crate) token_decimals: Option<u8>,
     pub(crate) github_release: Option<GithubRepo>,
+    pub(crate) testnet: Option<bool>,
 }
 
 fn color_default() -> String {
@@ -136,6 +160,7 @@ impl Default for Chain {
             token_unit: None,
             token_decimals: None,
             github_release: None,
+            testnet: Some(false),
         }
     }
 }

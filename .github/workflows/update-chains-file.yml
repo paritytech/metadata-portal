@@ -1,0 +1,40 @@
+name: Update chains_config file
+
+on:
+  workflow_dispatch:
+    version:
+      description: 'Which version of chains_config.json will be used?'
+      required: true
+      type: string
+      default: "v5"
+    environment:
+      description: 'Which environment are you going to update (dev or prod)?'
+      required: true
+      type: choice
+      default: "prod"
+      options:
+        - dev
+        - prod
+
+jobs:
+  update-chains-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+
+      - uses: ./.github/workflows/rust-install
+
+      - name: 📝 Update chains_config file
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- update-chain-config --env ${{ github.event.inputs.environment }} --version ${{ github.event.inputs.version }}
+
+      - name: ➡️ Make pull request
+        uses: ./.github/workflows/make-pull-request
+        with:
+          commit-path: config*.toml
+          commit-message: Update config file with chains_config
+          branch-name: update-chains_config-$(date '+%Y-%m-%d')
+          github-token: ${{ secrets.GITHUB_TOKEN }}

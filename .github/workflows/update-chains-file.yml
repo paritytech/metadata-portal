@@ -2,19 +2,20 @@ name: Update chains_config file
 
 on:
   workflow_dispatch:
-    version:
-      description: 'Which version of chains_config.json will be used?'
-      required: true
-      type: string
-      default: "v5"
-    environment:
-      description: 'Which environment are you going to update (dev or prod)?'
-      required: true
-      type: choice
-      default: "prod"
-      options:
-        - dev
-        - prod
+    inputs:
+      version:
+        description: 'Which version of chains_config.json will be used?'
+        required: true
+        type: string
+        default: "v5"
+      environment:
+        description: 'Which environment are you going to update (dev or prod)?'
+        required: true
+        type: choice
+        default: "prod"
+        options:
+          - dev
+          - prod
 
 jobs:
   update-chains-file:

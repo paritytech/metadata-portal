@@ -104,6 +104,7 @@ jobs:
           title: '[Automated] Review new metadata QRs'
           body: |
             Updated metadata QR codes
+          reviewers: "stepanLav,pgolovkin,tuul-wq,Asmadek"
           draft: false
 
       - name: Notify Matrix channel
@@ -202,4 +203,3 @@ jobs:
         uses: ./.github/workflows/deploy
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-

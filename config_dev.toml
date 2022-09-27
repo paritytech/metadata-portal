@@ -527,14 +527,6 @@ rpc_endpoints = [
 testnet = false
 
 [[chains]]
-name = ' aleph-node'
-title = 'Aleph Zero Testnet'
-color = '#231764'
-icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/AlephZero_Testnet.svg'
-rpc_endpoints = ['wss://ws.test.azero.dev']
-testnet = true
-
-[[chains]]
 name = 'polymesh_testnet'
 title = 'Polymesh Testnet'
 color = '#1348e4'
@@ -652,3 +644,27 @@ color = '#B3250A'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Governance2_Testnet.svg'
 rpc_endpoints = ['wss://governance2-testnet.litentry.io']
 testnet = true
+
+[[chains]]
+name = 'kylin'
+title = 'Kylin'
+color = '#ed007e'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Kylin.svg'
+rpc_endpoints = ['wss://polkadot.kylin-node.co.uk']
+testnet = false
+
+[[chains]]
+name = 'Darwinia Parachain'
+title = 'Darwinia'
+color = '#FF0083'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Darwinia.svg'
+rpc_endpoints = ['wss://parachain-rpc.darwinia.network']
+testnet = false
+
+[[chains]]
+name = 'totem-parachain'
+title = 'Kapex'
+color = 'linear-gradient(158deg, rgba(226,157,0,1) 0%, rgba(234,55,203,1) 100%)'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Totem.svg'
+rpc_endpoints = ['wss://k-ui.kapex.network']
+testnet = false

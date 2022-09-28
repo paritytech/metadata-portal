@@ -20,8 +20,7 @@ where
     F: Fn(&str) -> Result<T, generate_message::Error>,
 {
     for url in urls.iter() {
-        for i in 1..4 {
-            println!("i is {}", i);
+        for i in 1..7 {
             match f(url) {
                 Ok(res) => return Ok(res),
                 Err(e) => warn!("Failed to fetch {}: {:?}", url, e),

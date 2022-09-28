@@ -48,6 +48,30 @@ pub(crate) fn files_to_remove(
             keep_files.insert(qr.to_path_buf());
         }
     }
+
+    let metadata_qrs_dev = find_metadata_qrs(&config_dev.qr_dir)?;
+    let specs_qrs_dev = find_spec_qrs(&config_dev.qr_dir)?;
+    let chain_specs_dev = read_export_file(config_dev)?;
+
+    for chain in &config_dev.chains {
+      let actual_ver = chain_specs_dev
+        .get(&chain.name)
+        .context(format!("No data found for {}", chain.name))?
+        .metadata_version;
+      let metadata_to_keep = metadata_qrs_dev
+        .get(&chain.name)
+        .map(|map| {
+          map.iter()
+            .filter(|(&v, _)| v >= actual_ver)
+            .map(|(_, qr)| qr.to_path_buf())
+            .collect::<HashSet<_>>()
+        })
+        .context("Could not get metadata to keep")?;
+      keep_files.extend(metadata_to_keep);
+      if let Some(qr) = specs_qrs_dev.get(&chain.name) {
+        keep_files.insert(qr.to_path_buf());
+      }
+    }
     Ok(all_files.difference(&keep_files).cloned().collect())
 }
 

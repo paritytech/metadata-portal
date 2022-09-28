@@ -18,7 +18,6 @@ where
     F: Fn(&str) -> Result<T, generate_message::Error>,
 {
     for url in urls.iter() {
-        println!("url {}", url);
         match f(url) {
             Ok(res) => return Ok(res),
             Err(e) => warn!("Failed to fetch {}: {:?}", url, e),
@@ -31,8 +30,6 @@ pub(crate) struct RpcFetcher;
 
 impl Fetcher for RpcFetcher {
     fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecsToSend> {
-        println!("fetching specs for {}", chain.name);
-        println!("urls are {:?}", chain.rpc_endpoints);
         let specs = call_urls(&chain.rpc_endpoints, |url| {
             let optional_token_override = chain.token_decimals.zip(chain.token_unit.as_ref()).map(
                 |(token_decimals, token_unit)| Token {

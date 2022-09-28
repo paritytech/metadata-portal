@@ -1,6 +1,6 @@
 data_file = 'public/data_dev.json'
 public_dir = 'public'
-qr_dir = 'public/qr'
+qr_dir = 'public/qr_dev'
 
 [verifier]
 name = 'Novasama Technologies'
@@ -181,17 +181,17 @@ rpc_endpoints = [
 ]
 testnet = false
 
-[[chains]]
-name = 'mandala'
-title = 'Acala Mandala'
-color = '#173DC9'
-icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala_Mandala_Testnet.svg'
-rpc_endpoints = [
-    'wss://acala-mandala.api.onfinality.io/public-ws',
-    'wss://mandala.polkawallet.io',
-    'wss://rpc.pinknode.io/mandala/explorer',
-]
-testnet = true
+#[[chains]]
+#name = 'mandala'
+#title = 'Acala Mandala'
+#color = '#173DC9'
+#icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala_Mandala_Testnet.svg'
+#rpc_endpoints = [
+#    'wss://acala-mandala.api.onfinality.io/public-ws',
+#    'wss://mandala.polkawallet.io',
+#    'wss://rpc.pinknode.io/mandala/explorer',
+#]
+#testnet = true
 
 [[chains]]
 name = 'astar'

@@ -13,7 +13,6 @@ use crate::AppConfig;
 pub(crate) struct ConfigTemplate {
     pub(crate) data_file: Option<PathBuf>,
     pub(crate) public_dir: PathBuf,
-    pub(crate) qr_dir: PathBuf,
     pub(crate) verifier: Verifier,
     pub(crate) chains: HashMap<String, ChainTemplate>,
 }
@@ -66,6 +65,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                 "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/chains/{}/{}",
                 chains_opts.version, "chains_dev.json"
             ),
+            "public/qr_dev",
         ),
         "prod" => (
             "config.toml",
@@ -74,6 +74,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                 "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/chains/{}/{}",
                 chains_opts.version, "chains.json"
             ),
+            "public/qr",
         ),
         _ => bail!("Unknown env. Should be dev or prod"),
     };
@@ -111,7 +112,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
     let new_config = AppConfig {
         data_file: PathBuf::from(chain_params.1),
         public_dir: config_template.public_dir,
-        qr_dir: config_template.qr_dir,
+        qr_dir: PathBuf::from(chain_params.3),
         verifier: config_template.verifier,
         chains,
     };

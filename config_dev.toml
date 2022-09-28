@@ -38,18 +38,6 @@ rpc_endpoints = ['wss://karura.api.onfinality.io/public-ws']
 testnet = false
 
 [[chains]]
-name = 'moonbase'
-title = 'Moonbase Alpha'
-color = '#F45B5B'
-icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Moonbase_Alpha_Testnet.svg'
-rpc_endpoints = [
-    'wss://rpc.pinknode.io/alphanet/explorer',
-    'wss://moonbeam-alpha.api.onfinality.io/public-ws',
-    'wss://wss.testnet.moonbeam.network',
-]
-testnet = true
-
-[[chains]]
 name = 'shiden'
 title = 'Shiden'
 color = '#5923B2'

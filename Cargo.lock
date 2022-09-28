@@ -73,9 +73,9 @@ dependencies = [
 
 [[package]]
 name = "anyhow"
-version = "1.0.64"
+version = "1.0.65"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b9a8f622bcf6ff3df478e9deba3e03e4e04b300f8e6a139e192c05fa3490afc7"
+checksum = "98161a4e3e2184da77bb14f02184cdd111e83bbbcc9979dfee3c44b9a85f5602"
 
 [[package]]
 name = "approx"
@@ -456,7 +456,7 @@ checksum = "245097e9a4535ee1e3e3931fcfcd55a796a44c643e8596ff6566d68f09b87bbc"
 [[package]]
 name = "constants"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "hex",
 ]
@@ -605,7 +605,7 @@ dependencies = [
 [[package]]
 name = "db_handling"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "anyhow",
  "constants",
@@ -629,7 +629,7 @@ dependencies = [
 [[package]]
 name = "defaults"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "definitions",
  "lazy_static",
@@ -642,7 +642,7 @@ dependencies = [
 [[package]]
 name = "definitions"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "frame-metadata",
  "hex",
@@ -1072,7 +1072,7 @@ dependencies = [
 [[package]]
 name = "generate_message"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "clap",
  "constants",
@@ -1388,9 +1388,9 @@ dependencies = [
 
 [[package]]
 name = "image"
-version = "0.24.3"
+version = "0.24.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7e30ca2ecf7666107ff827a8e481de6a132a9b687ed3bb20bb1c144a36c00964"
+checksum = "bd8e4fb07cf672b1642304e731ef8a6a4c7891d67bb4fd4f5ce58cd6ed86803c"
 dependencies = [
  "bytemuck",
  "byteorder",
@@ -1447,9 +1447,9 @@ dependencies = [
 
 [[package]]
 name = "indicatif"
-version = "0.17.0"
+version = "0.17.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fcc42b206e70d86ec03285b123e65a5458c92027d1fb2ae3555878b8113b3ddf"
+checksum = "bfddc9561e8baf264e0e45e197fd7696320026eb10a8180340debc27b18f535b"
 dependencies = [
  "console",
  "number_prefix",
@@ -2199,9 +2199,9 @@ dependencies = [
 
 [[package]]
 name = "parity-scale-codec"
-version = "3.1.5"
+version = "3.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9182e4a71cae089267ab03e67c99368db7cd877baf50f931e5d6d4b71e195ac0"
+checksum = "366e44391a8af4cfd6002ef6ba072bae071a96aafca98d7d448a34c5dca38b6a"
 dependencies = [
  "arrayvec 0.7.2",
  "bitvec",
@@ -2307,7 +2307,7 @@ dependencies = [
 [[package]]
 name = "parser"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "bitvec",
  "definitions",
@@ -2484,7 +2484,7 @@ dependencies = [
 [[package]]
 name = "printing_balance"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 
 [[package]]
 name = "proc-macro-crate"
@@ -2533,7 +2533,7 @@ dependencies = [
 [[package]]
 name = "qr_reader_pc"
 version = "0.2.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "anyhow",
  "hex",
@@ -2547,7 +2547,7 @@ dependencies = [
 [[package]]
 name = "qr_reader_phone"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "anyhow",
  "constants",
@@ -2560,7 +2560,7 @@ dependencies = [
 [[package]]
 name = "qrcode_rtx"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "bitvec",
  "constants",
@@ -2574,7 +2574,7 @@ dependencies = [
 [[package]]
 name = "qrcode_static"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "anyhow",
  "bitvec",
@@ -2943,9 +2943,9 @@ dependencies = [
 
 [[package]]
 name = "scale-info"
-version = "2.1.2"
+version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c46be926081c9f4dd5dd9b6f1d3e3229f2360bc6502dd8836f84a93b7c75e99a"
+checksum = "333af15b02563b8182cd863f925bd31ef8fa86a0e095d30c091956057d436153"
 dependencies = [
  "bitvec",
  "cfg-if",
@@ -2957,9 +2957,9 @@ dependencies = [
 
 [[package]]
 name = "scale-info-derive"
-version = "2.1.2"
+version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "50e334bb10a245e28e5fd755cabcafd96cfcd167c99ae63a46924ca8d8703a3c"
+checksum = "53f56acbd0743d29ffa08f911ab5397def774ad01bab3786804cf6ee057fb5e1"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -3801,18 +3801,18 @@ dependencies = [
 
 [[package]]
 name = "thiserror"
-version = "1.0.34"
+version = "1.0.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8c1b05ca9d106ba7d2e31a9dab4a64e7be2cce415321966ea3132c49a656e252"
+checksum = "10deb33631e3c9018b9baf9dcbbc4f737320d2b576bac10f6aefa048fa407e3e"
 dependencies = [
  "thiserror-impl",
 ]
 
 [[package]]
 name = "thiserror-impl"
-version = "1.0.34"
+version = "1.0.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e8f2591983642de85c921015f3f070c665a197ed69e417af436115e3a1407487"
+checksum = "982d17546b47146b28f7c22e3d08465f6b8903d0ea13c1660d9d84a6e7adcdbb"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4102,7 +4102,7 @@ dependencies = [
 [[package]]
 name = "transaction_parsing"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=197e9e0#197e9e06239b80cb52042b53963c29fabba35ae9"
+source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
 dependencies = [
  "constants",
  "db_handling",

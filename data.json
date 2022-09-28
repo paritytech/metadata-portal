@@ -8,14 +8,13 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "metadataVersion": 9280,
+    "metadataVersion": 9281,
     "metadataQr": {
-      "path": "qr/polkadot_metadata_9280.apng",
+      "path": "qr/polkadot_metadata_9281.apng",
       "signedBy": "Parity",
       "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0x85fcc68f45cb09bd5fd468c1568556c91d1f1867920d5c59262b61dbdb4961f1"
+        "type": "Rpc",
+        "block": "0xc478ca620e2a30a4f8a44cfb93d968f0faa316288f0ae7e507e54f466121235b"
       }
     },
     "nextMetadataVersion": 9290,
@@ -44,26 +43,17 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "metadataVersion": 9280,
+    "metadataVersion": 9291,
     "metadataQr": {
-      "path": "qr/kusama_metadata_9280.apng",
+      "path": "qr/kusama_metadata_9291.apng",
       "signedBy": "Parity",
       "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0x276a4fe4d7d4e4bebd7ce7408f25d57bd6835365c07039dc87bc31abe3edbaf6"
+        "type": "Rpc",
+        "block": "0x425c161afbb1b9a6ad2d3dafc6663ce5fbc21835df1021bb040a450bf1e314f7"
       }
     },
-    "nextMetadataVersion": 9290,
-    "nextMetadataQr": {
-      "path": "qr/kusama_metadata_9290.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0xaba979bccf2692160db10b85b32c84d89b9b527dda3c9b684686f84b529de106"
-      }
-    },
+    "nextMetadataVersion": null,
+    "nextMetadataQr": null,
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",

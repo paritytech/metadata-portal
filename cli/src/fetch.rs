@@ -1,3 +1,5 @@
+use std::{thread, time};
+
 use anyhow::{anyhow, bail, Result};
 use definitions::crypto::Encryption;
 use definitions::network_specs::NetworkSpecsToSend;
@@ -18,9 +20,14 @@ where
     F: Fn(&str) -> Result<T, generate_message::Error>,
 {
     for url in urls.iter() {
-        match f(url) {
-            Ok(res) => return Ok(res),
-            Err(e) => warn!("Failed to fetch {}: {:?}", url, e),
+        for i in 1..4 {
+            println!("i is {}", i);
+            match f(url) {
+                Ok(res) => return Ok(res),
+                Err(e) => warn!("Failed to fetch {}: {:?}", url, e),
+            }
+            let interval_seconds = time::Duration::from_secs(5 * i);
+            thread::sleep(interval_seconds);
         }
     }
     bail!("Error calling chain node");

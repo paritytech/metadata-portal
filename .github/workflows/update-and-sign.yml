@@ -77,7 +77,7 @@ jobs:
       - name: ⚙ Run cleaner
         if: ${{ steps.collect.outputs.chainsSkipped == 'false' }}
         id: cleaner
-        run: cargo run --release -- -c=config_dev.toml clean
+        run: cargo run --release -- -c=config.toml clean
 
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}

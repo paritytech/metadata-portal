@@ -14,23 +14,31 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function App() {
+interface Props {
+  mode: ChainsMode;
+}
+
+export enum ChainsMode {
+  Dev,
+  Prod,
+}
+
+export default function App({ mode }: Props) {
   const [localStorageNetwork, setLocalStorageNetwork] =
     useLocalStorage("chosenNetwork");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const [allChains, setAllChains] = useState<Chains>({} as Chains);
-  let dataFileName = "data.json";
-  if (useLocation().pathname.split("/").indexOf("dev") > 0) {
-    dataFileName = "data_dev.json";
-  }
+  const dataFileName =
+    mode === ChainsMode.Dev ? "../data_dev.json" : "data.json";
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch(dataFileName)
         .then((response) => response.json())
         .catch((e) => {
           console.error(
-            "Unable to fetch data file. Run `make collector` to generate it"
+            `Unable to fetch data file ${dataFileName}. Run 'make collector' to generate it`
           );
           return e;
         });

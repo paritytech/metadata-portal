@@ -35,4 +35,4 @@ jobs:
           prettier --check "src/**/*.(tsx|ts)"
 
       - name: Pretend we have data.json and run tests
-        run: cp public/test-file.json public/data.json && yarn test
+        run: cp public/test-file.json public/data.json && cp public/test-file.json public/data_dev.json && yarn test

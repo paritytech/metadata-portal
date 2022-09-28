@@ -8,18 +8,11 @@ use crate::export::read_export_file;
 use crate::qrs::{find_metadata_qrs, find_spec_qrs};
 use crate::AppConfig;
 
-pub(crate) fn files_to_remove(config: &AppConfig, config_dev: &AppConfig) -> anyhow::Result<Vec<PathBuf>> {
-    let mut all_files: HashSet<PathBuf> = fs::read_dir(&config.qr_dir)
+pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>> {
+    let all_files: HashSet<PathBuf> = fs::read_dir(&config.qr_dir)
         .context(format!("{}", config.qr_dir.display()))?
         .map(|f| f.unwrap().path())
         .collect();
-
-    let dev_files: HashSet<PathBuf> = fs::read_dir(&config_dev.qr_dir)
-        .context(format!("{}", config.qr_dir.display()))?
-        .map(|f| f.unwrap().path())
-        .collect();
-
-    all_files.extend(dev_files);
 
     let mut keep_files: HashSet<PathBuf> = HashSet::new();
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
@@ -58,7 +51,7 @@ mod tests {
         config.qr_dir = PathBuf::from("./src/cleaner/for_tests/test1/qrs");
         config.data_file = config.qr_dir.join("../data.json");
 
-        let to_remove = files_to_remove(&config, &config).unwrap();
+        let to_remove = files_to_remove(&config).unwrap();
         assert_eq!(to_remove.len(), 0);
     }
 
@@ -68,7 +61,7 @@ mod tests {
         config.qr_dir = PathBuf::from("./src/cleaner/for_tests/test2/qrs");
         config.data_file = config.qr_dir.join("../data.json");
 
-        let to_remove = files_to_remove(&config, &config).unwrap();
+        let to_remove = files_to_remove(&config).unwrap();
         assert_eq!(to_remove.len(), 1);
         assert_eq!(to_remove[0], config.qr_dir.join("polkadot_metadata_9.apng"));
     }
@@ -79,7 +72,7 @@ mod tests {
         config.qr_dir = PathBuf::from("./src/cleaner/for_tests/test3/qrs");
         config.data_file = config.qr_dir.join("../data.json");
 
-        let to_remove = files_to_remove(&config, &config).unwrap();
+        let to_remove = files_to_remove(&config).unwrap();
         assert_eq!(to_remove.len(), 1);
         assert_eq!(
             to_remove[0],
@@ -93,7 +86,7 @@ mod tests {
         config.qr_dir = PathBuf::from("./src/cleaner/for_tests/test4/qrs");
         config.data_file = config.qr_dir.join("../data.json");
 
-        let to_remove = files_to_remove(&config, &config).unwrap();
+        let to_remove = files_to_remove(&config).unwrap();
         assert_eq!(to_remove.len(), 1);
         assert_eq!(to_remove[0], config.qr_dir.join("kusama_metadata_9.apng"));
     }

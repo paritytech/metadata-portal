@@ -10,10 +10,6 @@ pub(crate) struct Opts {
     #[clap(short, long, default_value = "config.toml")]
     pub(crate) config: PathBuf,
 
-    /// Path to dev config file
-    #[clap(long, default_value = "config_dev.toml")]
-    pub(crate) config_dev: PathBuf,
-
     #[clap(subcommand)]
     pub(crate) subcmd: SubCommand,
 }

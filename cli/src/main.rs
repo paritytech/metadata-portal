@@ -48,16 +48,8 @@ fn main() {
         }
     };
 
-    let config_dev = match AppConfig::load(&opts.config_dev) {
-      Ok(config) => config,
-      Err(err) => {
-        error!("{}", err);
-        exit(1);
-      }
-    };
-
     let result = match opts.subcmd {
-        SubCommand::Clean => clean(config, config_dev),
+        SubCommand::Clean => clean(config),
         SubCommand::Collect => collect(config),
         SubCommand::Sign => sign(config),
         SubCommand::Verify => verify(config),

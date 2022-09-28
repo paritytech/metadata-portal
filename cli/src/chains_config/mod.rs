@@ -38,13 +38,14 @@ pub(crate) struct ChainNode {
     pub(crate) url: String,
 }
 
-const EXCLUDE_CHAINS: [&str; 11] = [
+const EXCLUDE_CHAINS: [&str; 12] = [
     "Polkadot",
     "Kusama",
     "Westend",
     "Moonbeam",
     "Moonriver",
     "Moonbase Relay Testnet",
+    "Moonbase Alpha",
     "Arctic Relay Testnet",
     "Aleph Zero Testnet", //TODO name matches with mainnet and will override it
     "Edgeware", //TODO (MetadataError(NoVersionInConstants))

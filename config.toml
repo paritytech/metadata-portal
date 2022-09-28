@@ -84,17 +84,6 @@ rpc_endpoints = [
 testnet = false
 
 [[chains]]
-name = 'edgeware'
-title = 'Edgeware'
-color = '#111111'
-icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Edgeware.svg'
-rpc_endpoints = [
-    'wss://mainnet.edgewa.re',
-    'wss://edgeware.api.onfinality.io/public-ws',
-]
-testnet = false
-
-[[chains]]
 name = 'khala'
 title = 'Khala'
 color = '#03f3f3'
@@ -253,17 +242,6 @@ rpc_endpoints = [
 testnet = false
 
 [[chains]]
-name = 'KICO'
-title = 'KICO'
-color = '#29B58D'
-icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/KICO.svg'
-rpc_endpoints = [
-    'wss://rpc.kico.dico.io',
-    'wss://rpc.api.kico.dico.io',
-]
-testnet = false
-
-[[chains]]
 name = 'litmus-parachain'
 title = 'Litmus'
 color = '#6822fb'
@@ -383,17 +361,6 @@ title = 'Aleph Zero'
 color = '#00CCAB'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/AlephZero.svg'
 rpc_endpoints = ['wss://ws.azero.dev']
-testnet = false
-
-[[chains]]
-name = 'composable-finance'
-title = 'Composable Finance'
-color = '#C90E8A'
-icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Composable.png'
-rpc_endpoints = [
-    'wss://rpc.composable.finance',
-    'wss://composable-rpc.dwellir.com',
-]
 testnet = false
 
 [[chains]]

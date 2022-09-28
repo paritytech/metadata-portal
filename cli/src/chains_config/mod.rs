@@ -38,7 +38,7 @@ pub(crate) struct ChainNode {
     pub(crate) url: String,
 }
 
-const EXCLUDE_CHAINS: [&str; 8] = [
+const EXCLUDE_CHAINS: [&str; 11] = [
     "Polkadot",
     "Kusama",
     "Westend",
@@ -46,7 +46,10 @@ const EXCLUDE_CHAINS: [&str; 8] = [
     "Moonriver",
     "Moonbase Relay Testnet",
     "Arctic Relay Testnet",
-    "Aleph Zero Testnet" //TODO name matches with mainnet and will override it
+    "Aleph Zero Testnet", //TODO name matches with mainnet and will override it
+    "Edgeware", //TODO (MetadataError(NoVersionInConstants))
+    "KICO", //TODO Specs(Base58PrefixMismatch { specs: 51, meta: 42 })
+    "Composable Finance" //TODO  Specs(Base58PrefixMismatch { specs: 50, meta: 49 })
 ];
 
 pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {

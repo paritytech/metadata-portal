@@ -32,10 +32,14 @@ jobs:
           command: run
           args: --release -- update-chain-config --env ${{ github.event.inputs.environment }} --version ${{ github.event.inputs.version }}
 
+      - name: 🗓️Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
       - name: ➡️ Make pull request
         uses: ./.github/workflows/make-pull-request
         with:
           commit-path: config*.toml
           commit-message: Update config file with chains_config
-          branch-name: "update-chains_config-$(date '+%Y-%m-%d')"
+          branch-name: update-chains_config-${{ steps.date.outputs.date }}
           github-token: ${{ secrets.GITHUB_TOKEN }}

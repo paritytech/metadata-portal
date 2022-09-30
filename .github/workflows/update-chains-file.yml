@@ -37,5 +37,5 @@ jobs:
         with:
           commit-path: config*.toml
           commit-message: Update config file with chains_config
-          branch-name: update-chains_config-$(date '+%Y-%m-%d')
+          branch-name: "update-chains_config-$(date '+%Y-%m-%d')"
           github-token: ${{ secrets.GITHUB_TOKEN }}

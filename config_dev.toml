@@ -34,7 +34,13 @@ name = 'karura'
 title = 'Karura'
 color = '#ff4c3b'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Karura.svg'
-rpc_endpoints = ['wss://karura.api.onfinality.io/public-ws']
+rpc_endpoints = [
+    'wss://karura-rpc.dwellir.com',
+    'wss://karura-rpc-0.aca-api.network',
+    'wss://karura-rpc-1.aca-api.network',
+    'wss://karura-rpc-2.aca-api.network/ws',
+    'wss://karura-rpc-3.aca-api.network/ws',
+]
 testnet = false
 
 [[chains]]
@@ -177,21 +183,20 @@ rpc_endpoints = [
     'wss://acala-rpc-2.aca-api.network/ws',
     'wss://acala-rpc-3.aca-api.network/ws',
     'wss://acala.polkawallet.io',
-    'wss://acala-polkadot.api.onfinality.io/public-ws',
 ]
 testnet = false
 
-#[[chains]]
-#name = 'mandala'
-#title = 'Acala Mandala'
-#color = '#173DC9'
-#icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala_Mandala_Testnet.svg'
-#rpc_endpoints = [
-#    'wss://acala-mandala.api.onfinality.io/public-ws',
-#    'wss://mandala.polkawallet.io',
-#    'wss://rpc.pinknode.io/mandala/explorer',
-#]
-#testnet = true
+[[chains]]
+name = 'mandala'
+title = 'Acala Mandala'
+color = '#173DC9'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala_Mandala_Testnet.svg'
+rpc_endpoints = [
+    'wss://acala-mandala.api.onfinality.io/public-ws',
+    'wss://mandala.polkawallet.io',
+    'wss://rpc.pinknode.io/mandala/explorer',
+]
+testnet = true
 
 [[chains]]
 name = 'astar'

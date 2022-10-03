@@ -456,7 +456,7 @@ checksum = "245097e9a4535ee1e3e3931fcfcd55a796a44c643e8596ff6566d68f09b87bbc"
 [[package]]
 name = "constants"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "hex",
 ]
@@ -605,7 +605,7 @@ dependencies = [
 [[package]]
 name = "db_handling"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "anyhow",
  "constants",
@@ -629,7 +629,7 @@ dependencies = [
 [[package]]
 name = "defaults"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "definitions",
  "lazy_static",
@@ -642,7 +642,7 @@ dependencies = [
 [[package]]
 name = "definitions"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "frame-metadata",
  "hex",
@@ -1072,7 +1072,7 @@ dependencies = [
 [[package]]
 name = "generate_message"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "clap",
  "constants",
@@ -2307,7 +2307,7 @@ dependencies = [
 [[package]]
 name = "parser"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "bitvec",
  "definitions",
@@ -2484,7 +2484,7 @@ dependencies = [
 [[package]]
 name = "printing_balance"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 
 [[package]]
 name = "proc-macro-crate"
@@ -2533,7 +2533,7 @@ dependencies = [
 [[package]]
 name = "qr_reader_pc"
 version = "0.2.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "anyhow",
  "hex",
@@ -2547,7 +2547,7 @@ dependencies = [
 [[package]]
 name = "qr_reader_phone"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "anyhow",
  "constants",
@@ -2560,7 +2560,7 @@ dependencies = [
 [[package]]
 name = "qrcode_rtx"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "bitvec",
  "constants",
@@ -2574,7 +2574,7 @@ dependencies = [
 [[package]]
 name = "qrcode_static"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "anyhow",
  "bitvec",
@@ -4102,7 +4102,7 @@ dependencies = [
 [[package]]
 name = "transaction_parsing"
 version = "0.1.0"
-source = "git+https://github.com/pgolovkin/parity-signer?rev=29049f8#29049f8ff2057c8e684ee32f6e5dd036028d13a4"
+source = "git+https://github.com/paritytech/parity-signer?rev=3bf9fc4#3bf9fc4f1d54004fcc9a8c5ce4d4cdead11bcecf"
 dependencies = [
  "constants",
  "db_handling",

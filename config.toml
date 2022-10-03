@@ -23,7 +23,13 @@ name = 'karura'
 title = 'Karura'
 color = '#ff4c3b'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Karura.svg'
-rpc_endpoints = ['wss://karura.api.onfinality.io/public-ws']
+rpc_endpoints = [
+    'wss://karura-rpc.dwellir.com',
+    'wss://karura-rpc-0.aca-api.network',
+    'wss://karura-rpc-1.aca-api.network',
+    'wss://karura-rpc-2.aca-api.network/ws',
+    'wss://karura-rpc-3.aca-api.network/ws',
+]
 testnet = false
 
 [[chains]]
@@ -141,11 +147,11 @@ color = '#645AFF'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala.svg'
 rpc_endpoints = [
     'wss://acala-rpc.dwellir.com',
+    'wss://acala-rpc-0.aca-api.network',
     'wss://acala-rpc-1.aca-api.network',
     'wss://acala-rpc-2.aca-api.network/ws',
     'wss://acala-rpc-3.aca-api.network/ws',
     'wss://acala.polkawallet.io',
-    'wss://acala-polkadot.api.onfinality.io/public-ws',
 ]
 testnet = false
 
@@ -506,4 +512,28 @@ title = 'Ternoa'
 color = '#d622ff'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Ternoa.svg'
 rpc_endpoints = ['wss://mainnet.ternoa.network']
+testnet = false
+
+[[chains]]
+name = 'kylin'
+title = 'Kylin'
+color = '#ed007e'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Kylin.svg'
+rpc_endpoints = ['wss://polkadot.kylin-node.co.uk']
+testnet = false
+
+[[chains]]
+name = 'Darwinia Parachain'
+title = 'Darwinia'
+color = '#FF0083'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Darwinia.svg'
+rpc_endpoints = ['wss://parachain-rpc.darwinia.network']
+testnet = false
+
+[[chains]]
+name = 'totem-parachain'
+title = 'Kapex'
+color = 'linear-gradient(158deg, rgba(226,157,0,1) 0%, rgba(234,55,203,1) 100%)'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Totem.svg'
+rpc_endpoints = ['wss://k-ui.kapex.network']
 testnet = false

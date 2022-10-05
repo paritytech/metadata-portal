@@ -334,3 +334,11 @@ public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
   [chains."Moonbase Alpha"]
   name = "moonbase"
   color = "#F45B5B"
+
+  [chains."Polymesh Mainnet"]
+  name = "polymesh_mainnet"
+  color = "#1348e4"
+
+  [chains."Beresheet"]
+  name = "Beresheet_v46"
+  color = "#111111"

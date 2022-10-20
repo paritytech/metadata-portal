@@ -1,13 +1,14 @@
-name: Check updates
+name: Check Updates
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 */2 * * *'
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '0 0 * * *'
 
 env:
   BRANCH_PREFIX: sign-me
-  NOTIFY_MATRIX: true
+  NOTIFY_MATRIX: false
+  RUST_LOG: debug
 
 jobs:
   update:
@@ -32,7 +33,7 @@ jobs:
             git checkout --track $SIGN_ME_BRANCH
             switched="true"
           fi
-          echo "::set-output name=switched::$switched"
+          echo "name=switched::$switched" >> $GITHUB_OUTPUT
 
       - name: ⚙ Build metadata-cli
         uses: actions-rs/cargo@v1
@@ -63,7 +64,7 @@ jobs:
         id: new-branch
         run: |
           NAME="$BRANCH_PREFIX-$(date '+%Y-%m-%d')"
-          echo "::set-output name=name::$NAME"
+          echo "name=name::$NAME" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request if not exist
         if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
@@ -73,7 +74,7 @@ jobs:
           commit-message: add unsigned QR codes
           branch: ${{ steps.new-branch.outputs.name }}
           delete-branch: true
-          base: master
+          base: main
           title: '[Automated] Sign new metadata QRs'
           body: |
             Checkout this branch locally and run:
@@ -108,10 +109,10 @@ jobs:
           exit_code=$?
           if [ $exit_code -eq 12 ]
           then
-            echo "::set-output name=redeploy::true"
+            echo "name=redeploy::true" >> $GITHUB_OUTPUT
             exit 0
           fi
-          echo "::set-output name=redeploy::false"
+          echo "name=redeploy::false" >> $GITHUB_OUTPUT
           exit $exit_code
         shell: bash {0}
 

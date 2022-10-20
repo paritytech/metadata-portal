@@ -2,10 +2,26 @@
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
-	export DYLD_FALLBACK_LIBRARY_PATH=$(shell xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib
+	export DYLD_FALLBACK_LIBRARY_PATH=$(shell xcode-select --print-path)/usr/lib
 endif
 
-all: tests verifier updater collector cleaner signer
+# "all" target builds the project
+# "clean" target cleans installed build to prepare for a fresh build
+# "remove" target removes data files including QR bar codes
+
+#all: tests verifier updater collector cleaner signer
+
+all:
+	cargo build --release  
+
+clean:
+	rm -rf target
+
+clippy:
+	cargo clippy -- -D warnings
+
+remove:
+	rm -f public/data.json public/qr/*.{png,apng}
 
 verifier:
 	cargo run --release verify
@@ -21,6 +37,9 @@ cleaner:
 
 signer:
 	cargo run --release sign
+
+autosigner:
+	cargo run --release auto-sign
 
 tests:
 	cargo test --release

@@ -1,3 +1,4 @@
+use std::fmt;
 use std::fs;
 use std::fs::File;
 use std::io::BufWriter;
@@ -18,8 +19,21 @@ pub(crate) enum Source {
     Rpc { block: H256 },
 }
 
+impl fmt::Display for Source {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            Source::Wasm { .. } => write!(f, "Wasm"),
+            Source::Rpc { .. } => write!(f, "Rpc"),
+        }
+    }
+}
+
 // Add `Source` info to png file as a zTXt chunk
 pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
+    let path_str = path.as_os_str().to_str().unwrap();
+
+    log::debug!("save_source_info({}, {})", path_str, source);
+
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let mut reader = decoder.read_info().unwrap();
     // If the text chunk is before the image data frames, `reader.info()` already contains the text.
@@ -60,6 +74,10 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
 
 // Read source metadata from zTXt chunks
 pub(crate) fn read_png_source(path: &Path) -> Result<Option<Source>> {
+    let path_str = path.as_os_str().to_str().unwrap();
+
+    log::debug!("read_png_source({})", path_str);
+
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let reader = decoder.read_info().unwrap();
     // If the text chunk is before the image data frames, `reader.info()` already contains the text.

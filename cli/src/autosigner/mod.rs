@@ -1,33 +1,55 @@
 mod generate;
-pub(crate) mod github;
-pub(crate) mod source;
-pub(crate) mod wasm;
+// mod github;
+// mod wasm;
 
+use std::env;
 use std::str::FromStr;
 
 use blake2_rfc::blake2b::blake2b;
+use generate::{generate_signed_metadata_qr, generate_signed_spec_qr};
 use log::{info, warn};
 use sp_core::H256;
+use sp_core::{sr25519, Pair};
 
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
 use crate::qrs::{find_metadata_qrs, find_spec_qrs};
 use crate::source::{save_source_info, Source};
-use crate::updater::generate::{generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
 
-pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
-    log::debug!("update_from_node()");
+pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
+    log::debug!("autosign_from_node()");
+
+    // let devsecret = "caution juice atom organ advance problem want pledge someone senior holiday very";
+
+    let secret_key = "SIGNING_SEED_PHRASE";
+    let secret_seed_phrase = match env::var(secret_key) {
+        Ok(value) => value,
+        Err(e) => {
+            log::error!("Could not interpret environment variable: {secret_key}: {e}");
+            panic!();
+        }
+    };
+
+    let sr25519_pair = match sr25519::Pair::from_string(&secret_seed_phrase, None) {
+        Ok(pair) => pair,
+        Err(e) => {
+            log::error!("Error: Bad secret seed phrase {e:?}");
+            panic!();
+        }
+    };
 
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
     let specs_qrs = find_spec_qrs(&config.qr_dir)?;
 
     let mut is_changed = false;
     for chain in config.chains {
+        log::debug!("chain={}", chain.name.as_str());
+
         if !specs_qrs.contains_key(chain.name.as_str()) {
-            let specs = fetcher.fetch_specs(&chain)?;
-            generate_spec_qr(&specs, &config.qr_dir)?;
+            let network_specs = fetcher.fetch_specs(&chain)?;
+            generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir)?;
             is_changed = true;
         }
 
@@ -40,11 +62,15 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
                 continue;
             }
         }
-        let path = generate_metadata_qr(
+
+        let path = generate_signed_metadata_qr(
+            &sr25519_pair,
             &fetched_meta.meta_values,
             &fetched_meta.genesis_hash,
             &config.qr_dir,
         )?;
+
+        info!("💾 Saving source metadata.");
         let source = Source::Rpc {
             block: fetched_meta.block_hash,
         };
@@ -59,8 +85,27 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
 }
 
 #[tokio::main]
-pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> {
-    log::debug!("update_from_github()");
+pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()> {
+    log::debug!("autosign_from_github()");
+
+    // let devsecret = "caution juice atom organ advance problem want pledge someone senior holiday very";
+
+    let secret_key = "SIGNING_SEED_PHRASE";
+    let secret_seed_phrase = match env::var(secret_key) {
+        Ok(value) => value,
+        Err(e) => {
+            log::error!("Could not interpret environment variable: {secret_key}: {e}");
+            panic!();
+        }
+    };
+
+    let sr25519_pair = match sr25519::Pair::from_string(&secret_seed_phrase, None) {
+        Ok(pair) => pair,
+        Err(e) => {
+            log::error!("Error: Bad secret seed phrase {e:?}");
+            panic!();
+        }
+    };
 
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
     for chain in config.chains {
@@ -73,14 +118,14 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
         let github_repo = chain.github_release.unwrap();
         let wasm = fetch_latest_runtime(&github_repo, &chain.name).await?;
         if wasm.is_none() {
-            warn!("🤨 No releases found");
+            warn!("🤨 No releases found for {}", chain.name);
             continue;
         }
         let wasm = wasm.unwrap();
         info!("📅 Found version {}", wasm.version);
         let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
 
-        // Skip if already have QR for the same version
+        // Skip if already has QR for the same version
         if let Some(map) = metadata_qrs.get(&chain.name) {
             if map.contains_key(&wasm.version) || map.keys().min().unwrap_or(&0) > &wasm.version {
                 info!("🎉 {} is up to date!", chain.name);
@@ -90,12 +135,19 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
         let wasm_bytes = download_wasm(wasm.to_owned()).await?;
         let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
         let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
-        let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir)?;
+        let path = generate_signed_metadata_qr(
+            &sr25519_pair,
+            &meta_values,
+            &genesis_hash,
+            &config.qr_dir,
+        )?;
+        info!("Saving source metadata.");
         let source = Source::Wasm {
             github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
             hash: format!("0x{}", hex::encode(meta_hash)),
         };
         save_source_info(&path, &source)?;
     }
+
     Ok(())
 }

@@ -17,14 +17,16 @@ impl TryFrom<Asset> for WasmRuntime {
     type Error = anyhow::Error;
 
     fn try_from(asset: Asset) -> Result<Self, Self::Error> {
+        log::debug!("try_from({})", asset.name);
         if !asset.name.ends_with(".wasm") {
             return Err(anyhow!("{} has no .wasm extension", asset.name));
         }
-        let runtime_info = asset
-            .name
-            .split('.')
-            .next()
-            .ok_or_else(|| anyhow!("no runtime info found"))?;
+        let runtime_info = asset.name.split('.').next().ok_or_else(|| {
+            log::debug!("NO RUNTIME INFO FOUND");
+            anyhow!("no runtime info found")
+        })?;
+
+        log::info!("FOUND RUNTIME INFO!");
         let mut split = runtime_info.split("_runtime-v");
         let chain = split.next().ok_or_else(|| anyhow!("no chain name found"))?;
         let version: u32 = split
@@ -55,7 +57,7 @@ pub(crate) async fn download_wasm(wasm: WasmRuntime) -> anyhow::Result<Vec<u8>> 
 
 pub(crate) fn meta_values_from_wasm_bytes(wasm_bytes: &Vec<u8>) -> anyhow::Result<MetaValues> {
     let filename = "/tmp/wasm";
-    std::fs::write(&Path::new(&filename), wasm_bytes)?;
+    std::fs::write(Path::new(&filename), wasm_bytes)?;
     let meta = MetaValues::from_wasm_file(filename)
         .map_err(|_e| anyhow!("error converting wasm to metadata"))?;
     Ok(meta)

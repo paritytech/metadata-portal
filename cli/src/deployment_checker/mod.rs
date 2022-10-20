@@ -20,13 +20,15 @@ struct PkgJson {
 // Check whether the deployment is up to date.
 // Exit code 12 if re-deploy is required
 pub(crate) fn check_deployment(config: AppConfig) -> Result<()> {
+    log::debug!("check_deployment()");
+
     let pkg_json = fs::read_to_string(Path::new("package.json"))?;
     let pkg_json: PkgJson = serde_json::from_str(&pkg_json)?;
 
     let data_file = ReactAssetPath::from_fs_path(&config.data_file, &config.public_dir)?;
     let url = Url::parse(&pkg_json.homepage)?;
     let url = url.join(&data_file.to_string())?;
-
+    log::debug!("url: {}", url);
     let online = reqwest::blocking::get(url)?.json::<ExportData>()?;
     let local = export_specs(&config, RpcFetcher);
 

@@ -6,6 +6,8 @@ use crate::cleaner::file::files_to_remove;
 use crate::config::AppConfig;
 
 pub(crate) fn clean(config: AppConfig) -> anyhow::Result<()> {
+    log::debug!("clean()");
+
     let files = files_to_remove(&config)?;
     if files.is_empty() {
         println!("✔ Nothing to delete");

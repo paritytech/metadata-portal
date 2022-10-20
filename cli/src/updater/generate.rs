@@ -20,6 +20,8 @@ pub(crate) fn generate_metadata_qr(
     genesis_hash: &H256,
     target_dir: &Path,
 ) -> anyhow::Result<PathBuf> {
+    log::debug!("generate_metadata_qr()");
+
     let content = ContentLoadMeta::generate(&meta_values.meta, genesis_hash);
 
     let file_name = QrFileName::new(
@@ -39,6 +41,8 @@ pub(crate) fn generate_spec_qr(
     specs: &NetworkSpecsToSend,
     target_dir: &Path,
 ) -> anyhow::Result<PathBuf> {
+    log::debug!("generate_spec_qr()");
+
     let file_name =
         QrFileName::new(&specs.name.to_lowercase(), ContentType::Specs, false).to_string();
     let path = target_dir.join(&file_name);
@@ -52,6 +56,8 @@ fn generate_unsigned_qr<P>(content: &[u8], target_path: P, msg_type: Msg) -> any
 where
     P: AsRef<Path>,
 {
+    log::debug!("generate_unsigned_qr()");
+
     let tmp_dir = tempfile::tempdir()?;
     let tmp_f_path = tmp_dir.path().join("content");
     let mut content_file = File::create(&tmp_f_path)?;

@@ -13,6 +13,8 @@ use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_met
 use crate::AppConfig;
 
 pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<ExportData> {
+    log::debug!("export_specs()");
+
     let specs_qrs = find_spec_qrs(&config.qr_dir)?;
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
 
@@ -39,10 +41,11 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
         export_specs.insert(
             chain.name.clone(),
             ExportChainSpec {
+                vanity_name: chain.vanity_name.clone(),
                 title: chain.title.as_ref().unwrap_or(&chain.name).clone(),
                 color: chain.color.clone(),
                 rpc_endpoint: chain.rpc_endpoints[0].clone(), // keep only the first one
-                genesis_hash: format!("0x{}", hex::encode(&specs.genesis_hash)),
+                genesis_hash: format!("0x{}", hex::encode(specs.genesis_hash)),
                 unit: specs.unit,
                 logo: specs.logo,
                 decimals: specs.decimals,
@@ -61,6 +64,8 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
 
 // Create symlink to latest metadata qr
 fn update_pointer_to_latest_metadata(metadata_qr: &QrPath) -> Result<PathBuf> {
+    log::debug!("update_pointer_to_latest_metadata({})", metadata_qr);
+
     let latest_metadata_qr = metadata_qr.dir.join(format!(
         "{}_metadata_latest.apng",
         metadata_qr.file_name.chain
@@ -89,6 +94,8 @@ mod tests {
     struct MockFetcher;
     impl Fetcher for MockFetcher {
         fn fetch_specs(&self, _chain: &Chain) -> Result<NetworkSpecsToSend> {
+            log::debug!("fetch_specs()");
+
             Ok(NetworkSpecsToSend {
                 base58prefix: 0,
                 color: "".to_string(),
@@ -108,6 +115,8 @@ mod tests {
         }
 
         fn fetch_metadata(&self, _chain: &Chain) -> Result<MetaFetched> {
+            log::debug!("fetch_metadata()");
+
             Ok(MetaFetched {
                 meta_values: MetaValues {
                     name: "".to_string(),

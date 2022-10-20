@@ -1,3 +1,6 @@
+#![allow(special_module_name)]
+
+mod autosigner;
 mod cleaner;
 mod collector;
 mod config;
@@ -18,6 +21,7 @@ use clap::StructOpt;
 use env_logger::Env;
 use log::error;
 
+use crate::autosigner::{autosign_from_github, autosign_from_node};
 use crate::cleaner::clean;
 use crate::collector::collect;
 use crate::config::AppConfig;
@@ -32,7 +36,7 @@ use crate::verifier::verify;
 /// Main entry point of the `metadata-cli`
 fn main() {
     env_logger::Builder::from_env(Env::default().default_filter_or("info"))
-        .format_target(false)
+        .format_target(true)
         .init();
 
     let opts: Opts = Opts::parse();
@@ -48,6 +52,10 @@ fn main() {
         SubCommand::Clean => clean(config),
         SubCommand::Collect => collect(config),
         SubCommand::Sign => sign(config),
+        SubCommand::AutoSign(autosign_opts) => match autosign_opts.source {
+            UpdateSource::Github => autosign_from_github(config),
+            UpdateSource::Node => autosign_from_node(config, RpcFetcher),
+        },
         SubCommand::Verify => verify(config),
         SubCommand::Update(update_opts) => match update_opts.source {
             UpdateSource::Github => update_from_github(config),

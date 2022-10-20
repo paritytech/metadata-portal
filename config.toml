@@ -3,35 +3,26 @@ public_dir = "public"
 qr_dir = "public/qr"
 
 [verifier]
-name = "Parity"
-public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+name = "Frequency"
+public_key = "1KvbLQgGkCsj8JpT1ekXstHvtDQLs75vkBTXhTawyWLGdjF"
 
 [[chains]]
-name = "polkadot"
-rpc_endpoint = "wss://rpc.polkadot.io"
+name = "Frequency"
+rpc_endpoint = " wss://rpc.frequency.xyz"
 color = "#e6007a"
 
 [chains.github_release]
-owner = "paritytech"
-repo = "polkadot"
-genesis_hash = "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3"
+owner = "LibertyDSNP"
+repo = "frequency"
+genesis_hash = "??"
 
 [[chains]]
-name = "kusama"
-rpc_endpoint = "wss://kusama-rpc.polkadot.io"
+name = "Frequency Rococo"
+rpc_endpoint = " wss://rococo-rpc.frequency.xyz"
 color = "#000000"
 
 [chains.github_release]
-owner = "paritytech"
-repo = "polkadot"
-genesis_hash = "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"
+owner = "LibertyDSNP"
+repo = "frequency"
+genesis_hash = "0x055dccdb090bf02dce7661ea4a15406b8de6e1c92209ed928feba5ba1ee85387"
 
-[[chains]]
-name = "westend"
-rpc_endpoint = "wss://westend-rpc.polkadot.io"
-color = "#f27230"
-
-[chains.github_release]
-owner = "paritytech"
-repo = "polkadot"
-genesis_hash = "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e"

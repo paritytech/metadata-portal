@@ -3,7 +3,7 @@ name: Verify
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'public/qr/**'
       - 'config.toml'

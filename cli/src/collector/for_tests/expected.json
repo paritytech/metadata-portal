@@ -1,5 +1,6 @@
 {
   "polkadot": {
+    "vanityName": "polkadot",
     "title": "polkadot",
     "color": "#000000",
     "rpcEndpoint": "wss://example.com",

@@ -1,17 +1,17 @@
 # Workaround for handling skipped but required checks
 # https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/troubleshooting-required-status-checks#handling-skipped-but-required-checks
-name: Verify
+name: Verify Skip
 
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths-ignore:
       - 'public/qr/**'
       - 'config.toml'
 
 jobs:
-  verify:
+  verify-skip:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No verification required" '

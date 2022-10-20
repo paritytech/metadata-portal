@@ -1,0 +1,140 @@
+name: Auto Sign
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+env:
+  BRANCH_PREFIX: auto-signed
+  NOTIFY_MATRIX: false
+  RUST_LOG: debug
+
+jobs:
+  auto-sign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🔧 Install Rust dependencies
+        uses: ./.github/workflows/rust-install
+
+      - name: Check out PR branch if it already exists
+        id: checkout-pr-branch
+        run: |
+          AUTO_SIGNED_BRANCH=$(git branch -r --list "origin/$BRANCH_PREFIX-*" --sort=-refname | head -n 1)
+          if [ -z "$AUTO_SIGNED_BRANCH" ]
+          then
+            hasbranch='false'
+          else
+            git checkout --track $AUTO_SIGNED_BRANCH
+            hasbranch='true'
+          fi
+          echo "hasbranch=$hasbranch" >> $GITHUB_OUTPUT
+      
+      - name: ⚙ Build metadata-cli
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release
+
+      - name: ⚙ Autosign QRs from RPC nodes
+        uses: actions-rs/cargo@v1
+        env:
+          SIGNING_SEED_PHRASE: ${{secrets.SIGNING_SEED_PHRASE}}
+        with:
+          command: run
+          args: --release -- auto-sign --source node
+
+      - name: ⚙ Autosign QRs from GitHub releases
+        uses: actions-rs/cargo@v1
+        env:
+          SIGNING_SEED_PHRASE: ${{secrets.SIGNING_SEED_PHRASE}}
+        with:
+          command: run
+          args: --release -- auto-sign --source github
+
+      - name: ⚙ Run Collector
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- collect
+
+      - name: ⚙ Run Cleaner
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- clean
+
+      - name: 📌 Commit changes if PR branch exists
+        if: ${{ steps.checkout-pr-branch.outputs.hasbranch == 'true' }}
+        uses: ./.github/workflows/commit-changes
+        with:
+          message: 'metadata update'
+
+      - name: Create name for new PR branch if it doesn't already exist
+        if: ${{ steps.checkout-pr-branch.outputs.hasbranch == 'false' }}
+        id: new-branch
+        run: |
+          branchname="$BRANCH_PREFIX-$(date '+%Y-%m-%d')"
+          echo "branchname=$branchname" >> $GITHUB_OUTPUT
+
+      - name: Create PR branch if it doesn't already exist
+        if: ${{ steps.checkout-pr-branch.outputs.hasbranch == 'false' }}
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: add signed QR image files
+          branch: ${{ steps.new-branch.outputs.branchname }}
+          delete-branch: true
+          base: main
+          title: '[Automated] Updated signed metadata QR image files'
+          body: |
+            If the Metadata Portal needs updated data, inspect the data.json file to determine whether it is correct and then merge this PR.
+          draft: true
+
+      - name: Notify Matrix channel
+        uses: s3krit/matrix-message-action@v0.0.3
+        if: ${{ env.NOTIFY_MATRIX == 'true' && steps.cpr.outputs.pull-request-operation == 'created' }}
+        with:
+          room_id: ${{ secrets.MATRIX_ROOM_ID }}
+          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          server: ${{ secrets.MATRIX_SERVER }}
+          message: "# New metadata is available! 📑 [GitHub PR#${{ steps.cpr.outputs.pull-request-number }}](${{ steps.cpr.outputs.pull-request-url }})"
+
+  check-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
+
+      - name: ⚙ Check existing deployment
+        id: check-deployment
+        run: |
+          cargo run --release -- check-deployment
+          exit_code=$?
+          if [ $exit_code -eq 12 ]
+          then
+            redeploy='true'
+            echo "redeploy=$redeploy" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+            redeploy='false'
+            echo "redeploy=$redeploy" >> $GITHUB_OUTPUT
+          exit $exit_code
+        shell: bash {0}
+
+      - name: ⚙ Run collector
+        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        run: make collector
+
+      - if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        uses: ./.github/workflows/deploy
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,5 @@
 export interface ChainSpec {
+  vanityName: string;
   title: string;
   color: string;
   rpcEndpoint: string;

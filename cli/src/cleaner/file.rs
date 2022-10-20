@@ -9,6 +9,8 @@ use crate::qrs::{find_metadata_qrs, find_spec_qrs};
 use crate::AppConfig;
 
 pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>> {
+    log::debug!("files_to_remove()");
+
     let all_files: HashSet<PathBuf> = fs::read_dir(&config.qr_dir)
         .context(format!("{}", config.qr_dir.display()))?
         .map(|f| f.unwrap().path())

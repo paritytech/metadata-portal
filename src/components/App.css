@@ -14,7 +14,7 @@
 
 .network_icon {
   font-family: "Web3-Regular";
-  width: 3rem;
+  width: 2rem;
   @apply text-center text-3xl mr-2;
 }
 

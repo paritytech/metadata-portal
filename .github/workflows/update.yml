@@ -73,7 +73,7 @@ jobs:
           commit-message: add unsigned QR codes
           branch: ${{ steps.new-branch.outputs.name }}
           delete-branch: true
-          base: master
+          base: main
           title: '[Automated] Sign new metadata QRs'
           body: |
             Checkout this branch locally and run:

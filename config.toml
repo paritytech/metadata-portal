@@ -250,7 +250,6 @@ color = 'linear-gradient(180deg, rgba(32,90,172,1) 0%, rgba(26,72,138,1) 50%, rg
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Zeitgeist.svg'
 rpc_endpoints = [
     'wss://zeitgeist-rpc.dwellir.com',
-    'wss://rpc-0.zeitgeist.pm',
     'wss://zeitgeist.api.onfinality.io/public-ws',
 ]
 testnet = false
@@ -507,7 +506,10 @@ name = 'tinkernet_node'
 title = 'Tinkernet'
 color = '#161616'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Tinkernet.svg'
-rpc_endpoints = ['wss://tinker.invarch.network']
+rpc_endpoints = [
+    'wss://tinker.invarch.network',
+    'wss://invarch-tinkernet.api.onfinality.io/public-ws',
+]
 testnet = false
 
 [[chains]]
@@ -527,7 +529,7 @@ name = 'amplitude'
 title = 'Amplitude'
 color = '#5defa7'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Amplitude.svg'
-rpc_endpoints = ['wss://pencol-kus-01.pendulumchain.tech']
+rpc_endpoints = ['wss://rpc.pendulumchain.tech']
 testnet = false
 
 [[chains]]
@@ -563,4 +565,20 @@ title = 'Kapex'
 color = 'linear-gradient(158deg, rgba(226,157,0,1) 0%, rgba(234,55,203,1) 100%)'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Totem.svg'
 rpc_endpoints = ['wss://k-ui.kapex.network']
+testnet = false
+
+[[chains]]
+name = 'polymesh'
+title = 'Polymesh'
+color = '#1348e4'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Polymesh.svg'
+rpc_endpoints = ['wss://mainnet-rpc.polymesh.network']
+testnet = false
+
+[[chains]]
+name = 'snow'
+title = 'Snow'
+color = '#2026AE'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/SNOW.svg'
+rpc_endpoints = ['wss://snow-rpc.icenetwork.io']
 testnet = false

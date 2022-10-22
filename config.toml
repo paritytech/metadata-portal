@@ -568,7 +568,7 @@ rpc_endpoints = ['wss://k-ui.kapex.network']
 testnet = false
 
 [[chains]]
-name = 'polymesh'
+name = 'polymesh_mainnet'
 title = 'Polymesh'
 color = '#1348e4'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Polymesh.svg'

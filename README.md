@@ -22,22 +22,23 @@ External users (chain owners) will be able to deploy their versions of metadata 
 | 9      | Kintsugi              |
 | 10     | Picasso               |
 | 11     | Zeitgeist             |
-| 12     | KICO                  |
-| 13     | Litmus                |
-| 14     | Crab                  |
-| 15     | Subsocial Parachain   |
-| 16     | Centrifuge            |
-| 17     | Efinity               |
-| 18     | Interlay              |
-| 19     | Nodle                 |
-| 20     | OriginTrail Parachain |
-| 21     | Litentry              |
-| 22     | UNIQUE                |
-| 23     | Bifrost-Polkadot      |
-| 24     | GM                    |
-| 25     | Amplitude             |
-| 26     | Moonbeam              |
-
+| 12     | Litmus                |
+| 13     | Crab                  |
+| 14     | Subsocial Parachain   |
+| 15     | Centrifuge            |
+| 16     | Efinity               |
+| 17     | Interlay              |
+| 18     | Nodle                 |
+| 19     | OriginTrail Parachain |
+| 20     | Litentry              |
+| 21     | UNIQUE                |
+| 22     | Bifrost-Polkadot      |
+| 23     | GM                    |
+| 24     | Amplitude             |
+| 25     | Phala                 |
+| 26     | Kylin                 |
+| 27     | Darwinia              |
+| 28     | Kapex                 |
 
 ## Kusama parachains
 | Number | Chain name           |
@@ -59,18 +60,22 @@ External users (chain owners) will be able to deploy their versions of metadata 
 | 15     | Mangata X            |
 | 16     | Pichiu               |
 | 17     | Kabocha              |
-| 18     | Taganika             |
-| 19     | Bajun                |
-| 20     | Imbue                |
-| 21     | Moonriver            |
-
+| 18     | Bajun                |
+| 19     | Imbue                |
+| 20     | Altair               |
+| 21     | Crust Shadow         |
+| 22     | Dora Factory         |
+| 23     | Tanganika            |
+| 24     | Tinkernet            |
+| 25     | Snow                 |
 
 ## Solo chains
 | Number | Chain name |
 |--------|------------|
-| 1      | Subsocial  |
-| 2      | Aleph Zero |
-| 3      | Polkadex   |
+| 1      | Aleph Zero |
+| 2      | Polkadex   |
+| 3      | Ternoa     |
+| 4      | Polymesh   |
 
 
 ## Test networks & parachains

@@ -10,19 +10,19 @@ public_key = "1KvbLQgGkCsj8JpT1ekXstHvtDQLs75vkBTXhTawyWLGdjF"
 # name = "Frequency"
 # rpc_endpoint = "wss://rpc.frequency.xyz"
 # color = "#e6007a"
-
 # [chains.github_release]
 # owner = "LibertyDSNP"
 # repo = "frequency"
 # genesis_hash = "??"
 
 [[chains]]
-name = "Frequency Rococo"
+name = "frequency-rococo"
 rpc_endpoint = "wss://collator1.frequency.xyz"
 color = "#000000"
+testnet = true
 
 [chains.github_release]
 owner = "LibertyDSNP"
 repo = "frequency"
 genesis_hash = "0x055dccdb090bf02dce7661ea4a15406b8de6e1c92209ed928feba5ba1ee85387"
-
+testnet = true

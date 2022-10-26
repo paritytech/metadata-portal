@@ -43,17 +43,8 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "metadataVersion": 9291,
+    "metadataVersion": 9300,
     "metadataQr": {
-      "path": "qr/kusama_metadata_9291.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Rpc",
-        "block": "0x425c161afbb1b9a6ad2d3dafc6663ce5fbc21835df1021bb040a450bf1e314f7"
-      }
-    },
-    "nextMetadataVersion": 9300,
-    "nextMetadataQr": {
       "path": "qr/kusama_metadata_9300.apng",
       "signedBy": "Parity",
       "source": {
@@ -62,6 +53,8 @@
         "hash": "0xecf26101d8930738f4a769dbe904e6743a0e0d4e7319046b963e3dbc47037d74"
       }
     },
+    "nextMetadataVersion": null,
+    "nextMetadataQr": null,
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",

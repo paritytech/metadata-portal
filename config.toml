@@ -7,13 +7,17 @@ name = "Frequency"
 public_key = "1KvbLQgGkCsj8JpT1ekXstHvtDQLs75vkBTXhTawyWLGdjF"
 
 # [[chains]]
-# name = "Frequency"
-# rpc_endpoint = "wss://rpc.frequency.xyz"
-# color = "#e6007a"
+# name = "frequency"
+# rpc_endpoint = "wss://collator1.frequency.xyz"
+# color = "#4B64FF"
+# icon = "https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public/FRQCY-Circle-Black.svg"
+# testnet = false
+#
 # [chains.github_release]
 # owner = "LibertyDSNP"
 # repo = "frequency"
-# genesis_hash = "??"
+# genesis_hash = "0x055dccdb090bf02dce7661ea4a15406b8de6e1c92209ed928feba5ba1ee85387"
+
 
 [[chains]]
 name = "frequency-rococo"
@@ -26,4 +30,3 @@ testnet = true
 owner = "LibertyDSNP"
 repo = "frequency"
 genesis_hash = "0x055dccdb090bf02dce7661ea4a15406b8de6e1c92209ed928feba5ba1ee85387"
-testnet = true

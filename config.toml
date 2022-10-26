@@ -19,6 +19,7 @@ public_key = "1KvbLQgGkCsj8JpT1ekXstHvtDQLs75vkBTXhTawyWLGdjF"
 name = "frequency-rococo"
 rpc_endpoint = "wss://collator1.frequency.xyz"
 color = "#000000"
+icon = "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Acala.svg"
 testnet = true
 
 [chains.github_release]

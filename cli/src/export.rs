@@ -36,6 +36,7 @@ impl fmt::Display for ReactAssetPath {
 pub(crate) struct ExportChainSpec {
     pub(crate) title: String,
     pub(crate) color: String,
+    pub(crate) icon: String,
     pub(crate) rpc_endpoint: String,
 
     pub(crate) genesis_hash: String,

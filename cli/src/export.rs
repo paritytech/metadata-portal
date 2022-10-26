@@ -70,6 +70,8 @@ pub(crate) struct QrCode {
 
 impl QrCode {
     pub(crate) fn from_qr_path(config: &AppConfig, qr_path: QrPath) -> Result<QrCode> {
+        log::debug!("from_qr_path()");
+        
         let path = ReactAssetPath::from_fs_path(&qr_path.to_path_buf(), &config.public_dir)?;
         let signed_by = match qr_path.file_name.is_signed {
             true => Some(config.verifier.name.clone()),

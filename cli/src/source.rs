@@ -20,6 +20,8 @@ pub(crate) enum Source {
 
 // Add `Source` info to png file as a zTXt chunk
 pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
+    log::debug!("save_source_info()");
+
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let mut reader = decoder.read_info().unwrap();
     // If the text chunk is before the image data frames, `reader.info()` already contains the text.
@@ -60,6 +62,8 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
 
 // Read source metadata from zTXt chunks
 pub(crate) fn read_png_source(path: &Path) -> Result<Option<Source>> {
+    log::debug!("read_png_source()");
+
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let reader = decoder.read_info().unwrap();
     // If the text chunk is before the image data frames, `reader.info()` already contains the text.

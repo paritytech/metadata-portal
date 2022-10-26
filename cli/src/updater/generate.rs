@@ -16,7 +16,6 @@ use sp_core::H256;
 use crate::lib::path::{ContentType, QrFileName};
 
 pub(crate) fn generate_metadata_qr(
-    
     meta_values: &MetaValues,
     genesis_hash: &H256,
     target_dir: &Path,

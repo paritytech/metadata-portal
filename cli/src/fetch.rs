@@ -20,7 +20,9 @@ where
     log::debug!("call_urls()");
 
     let n = urls.len();
+
     for url in urls.iter().take(n - 1) {
+        log::debug!("URL={}", url);
         match f(url) {
             Ok(res) => return Ok(res),
             Err(e) => warn!("Failed to fetch {}: {:?}", url, e),

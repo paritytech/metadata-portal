@@ -63,7 +63,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
 
 // Create symlink to latest metadata qr
 fn update_pointer_to_latest_metadata(metadata_qr: &QrPath) -> Result<PathBuf> {
-    log::debug!("update_pointer_to_latest_metadata()");
+    log::debug!("update_pointer_to_latest_metadata({})", metadata_qr);
 
     let latest_metadata_qr = metadata_qr.dir.join(format!(
         "{}_metadata_latest.apng",

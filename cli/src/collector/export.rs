@@ -93,6 +93,8 @@ mod tests {
     struct MockFetcher;
     impl Fetcher for MockFetcher {
         fn fetch_specs(&self, _chain: &Chain) -> Result<NetworkSpecsToSend> {
+            log::debug!("fetch_specs()");
+
             Ok(NetworkSpecsToSend {
                 base58prefix: 0,
                 color: "".to_string(),
@@ -112,6 +114,8 @@ mod tests {
         }
 
         fn fetch_metadata(&self, _chain: &Chain) -> Result<MetaFetched> {
+            log::debug!("fetch_metadata()");
+
             Ok(MetaFetched {
                 meta_values: MetaValues {
                     name: "".to_string(),

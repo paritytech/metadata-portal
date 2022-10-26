@@ -11,6 +11,8 @@ type MetadataMap = HashMap<ChainName, BTreeMap<SpecVersion, QrPath>>;
 
 /// QR dir content
 pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
+    log::debug!("qrs_in_dir()");
+
     let mut files = vec![];
     for file in fs::read_dir(dir)? {
         let file = file?;
@@ -30,6 +32,8 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
 
 /// Maps chain to corresponding metadata QR files
 pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
+    log::debug!("find_metadata_qrs()");
+
     let mut metadata_qrs = HashMap::new();
     for qr in qrs_in_dir(dir)? {
         if let ContentType::Metadata(version) = qr.file_name.content_type {
@@ -50,6 +54,8 @@ pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
 
 // Find all specs QR files in the given directory
 pub(crate) fn find_spec_qrs(dir: impl AsRef<Path>) -> Result<HashMap<ChainName, QrPath>> {
+    log::debug!("find_spec_qrs()");
+
     let mut specs_qrs = HashMap::new();
     for qr in qrs_in_dir(dir)? {
         if let ContentType::Specs = qr.file_name.content_type {
@@ -72,6 +78,8 @@ pub(crate) fn extract_metadata_qr(
     chain: &ChainName,
     version: &SpecVersion,
 ) -> Result<QrPath> {
+    log::debug!("extract_metadata_qr()");
+
     let qr = metadata_qrs
         .get(chain)
         .and_then(|map| map.get(version))
@@ -87,6 +95,8 @@ pub(crate) fn next_metadata_version(
     chain: &ChainName,
     active_version: SpecVersion,
 ) -> Result<Option<SpecVersion>> {
+    log::debug!("next_metadata_version()");
+
     let available_versions = metadata_qrs
         .get(chain)
         .map(|map| map.keys().copied().collect::<Vec<_>>())

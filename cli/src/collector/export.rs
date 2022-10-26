@@ -13,6 +13,8 @@ use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_met
 use crate::AppConfig;
 
 pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<ExportData> {
+    log::debug!("export_specs()");
+
     let specs_qrs = find_spec_qrs(&config.qr_dir)?;
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
 
@@ -61,6 +63,8 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
 
 // Create symlink to latest metadata qr
 fn update_pointer_to_latest_metadata(metadata_qr: &QrPath) -> Result<PathBuf> {
+    log::debug!("update_pointer_to_latest_metadata()");
+
     let latest_metadata_qr = metadata_qr.dir.join(format!(
         "{}_metadata_latest.apng",
         metadata_qr.file_name.chain

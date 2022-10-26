@@ -20,6 +20,8 @@ struct PkgJson {
 // Check whether the deployment is up to date.
 // Exit code 12 if re-deploy is required
 pub(crate) fn check_deployment(config: AppConfig) -> Result<()> {
+    log::debug!("check_deployment()");
+
     let pkg_json = fs::read_to_string(Path::new("package.json"))?;
     let pkg_json: PkgJson = serde_json::from_str(&pkg_json)?;
 

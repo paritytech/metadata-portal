@@ -6,6 +6,8 @@ pub(crate) async fn fetch_latest_runtime(
     config: &GithubRepo,
     chain: &str,
 ) -> anyhow::Result<Option<WasmRuntime>> {
+    log::debug!("fetch_latest_runtime()");
+
     let release = octocrab::instance()
         .repos(&config.owner, &config.repo)
         .releases()

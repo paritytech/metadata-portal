@@ -23,6 +23,8 @@ use crate::signer::prompt::{select_file, want_to_continue};
 use crate::source::{read_png_source, save_source_info};
 
 pub(crate) fn sign(config: AppConfig) -> anyhow::Result<()> {
+    log::debug!("sign()");
+
     let mut files_to_sign: Vec<QrPath> = qrs_in_dir(config.qr_dir)?
         .into_iter()
         .filter(|qr| !qr.file_name.is_signed)
@@ -41,6 +43,8 @@ pub(crate) fn sign(config: AppConfig) -> anyhow::Result<()> {
 }
 
 fn run_for_file(qr_path: &QrPath) -> anyhow::Result<()> {
+    log::debug!("run_for_file()");
+
     open_in_browser(qr_path)?;
 
     if !want_to_continue() {
@@ -59,6 +63,8 @@ fn run_for_file(qr_path: &QrPath) -> anyhow::Result<()> {
 }
 
 fn sign_qr(unsigned_qr: &QrPath, signature: String) -> anyhow::Result<QrPath> {
+    log::debug!("sign_qr()");
+
     let mut signed_qr = unsigned_qr.clone();
     signed_qr.file_name.is_signed = true;
 
@@ -110,6 +116,8 @@ fn sign_qr(unsigned_qr: &QrPath, signature: String) -> anyhow::Result<QrPath> {
 }
 
 fn open_in_browser(file: &QrPath) -> anyhow::Result<()> {
+    log::debug!("open_in_browser()");
+
     let cmd = format!(
         "python3 -mwebbrowser file://{}",
         percent_encode(file.to_string())

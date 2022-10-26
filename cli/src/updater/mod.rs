@@ -18,6 +18,8 @@ use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
 
 pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
+    log::debug!("update_from_node()");
+
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
     let specs_qrs = find_spec_qrs(&config.qr_dir)?;
 
@@ -58,6 +60,8 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
 
 #[tokio::main]
 pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> {
+    log::debug!("update_from_github()");
+
     let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
     for chain in config.chains {
         info!("🔍 Checking for updates for {}", chain.name);

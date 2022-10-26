@@ -1,7 +1,7 @@
 # CLI Command Definitions
 
 ## Updater
-1. Iterate through each chain in `config.toml`
+1. Iterates through each chain in `config.toml`
     a. Fetches chain specs and metadata for each chain
     b. Generates a QR code for each chain spec
     c. If the metadata version is not equal to the current version
@@ -30,8 +30,25 @@
     d. Deposits the signed chain spec or metadata as a QR image file in `public/qr`
 
 ## Verifier
-
+1. Obtains a list of all QR image files in `public/qr`
+2. Iterates through the list of all QR image files
+    a. Return an error and exit if the QR image file is unsigned
+3. Iterates through the list of all QR image files (second round)
+    a. Determines if the QR image file is of content type metadata
+        i. Determines if the signature of the metadata QR image file was produced by the private key holder of the public_key provided in `config.toml`
+        ii. Returns an error and exits if the signature doesn't match
 ## Cleaner
+1. Obtains a list of of all QR image files in `public/qr`
+2. Obtains a list of each metadata QR image file
+3. Obtains a list of each chainspec QR image file
+4. Fetches the chain specs
+5. Instantiates a HashSet to store files to keep
+6. Iterates through each chain in`config.toml`
+    a. Determines the current metadata version from the chain specs
+    b. Determines which metadata QR files are versioned equal to or greater than the current meta data version; these files are kept in the HashSet
+    c. Stores Chainspec QR files are kept in the HashSet
+7. Determines the difference of all files and kept files, these are the files to be removed
+8. Iterate through each file to be removed and delete it
 
 ## Check Deployment
 1. Check if deployment is up to date

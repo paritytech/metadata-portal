@@ -55,6 +55,10 @@ pub(crate) struct ExportChainSpec {
 pub(crate) type ExportData = IndexMap<ChainName, ExportChainSpec>;
 
 pub(crate) fn read_export_file(config: &AppConfig) -> Result<ExportData> {
+    let path_str = config.data_file.as_os_str().to_str().unwrap();
+
+    log::debug!("read_export_file({})", path_str);
+
     let chain_specs =
         fs::read_to_string(&config.data_file).context(format!("{}", config.data_file.display()))?;
     Ok(serde_json::from_str(&chain_specs)?)
@@ -70,8 +74,8 @@ pub(crate) struct QrCode {
 
 impl QrCode {
     pub(crate) fn from_qr_path(config: &AppConfig, qr_path: QrPath) -> Result<QrCode> {
-        log::debug!("from_qr_path()");
-        
+        log::debug!("from_qr_path({})", qr_path);
+
         let path = ReactAssetPath::from_fs_path(&qr_path.to_path_buf(), &config.public_dir)?;
         let signed_by = match qr_path.file_name.is_signed {
             true => Some(config.verifier.name.clone()),

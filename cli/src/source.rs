@@ -20,7 +20,10 @@ pub(crate) enum Source {
 
 // Add `Source` info to png file as a zTXt chunk
 pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
-    log::debug!("save_source_info()");
+
+    let path_str = path.as_os_str().to_str().unwrap();
+
+    log::debug!("save_source_info({})", path_str);
 
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let mut reader = decoder.read_info().unwrap();
@@ -62,7 +65,10 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
 
 // Read source metadata from zTXt chunks
 pub(crate) fn read_png_source(path: &Path) -> Result<Option<Source>> {
-    log::debug!("read_png_source()");
+
+    let path_str = path.as_os_str().to_str().unwrap();
+
+    log::debug!("read_png_source({})", path_str);
 
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let reader = decoder.read_info().unwrap();

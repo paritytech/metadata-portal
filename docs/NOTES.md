@@ -1,7 +1,8 @@
 # CLI Command Definitions
 
 ## Updater
-1. Iterates through each chain in `config.toml`
+1. Updates using "node" by default but can also update from "github"
+2. Iterates through each chain in `config.toml`
     a. Fetches chain specs and metadata for each chain
     b. Generates a QR code for each chain spec
     c. If the metadata version is not equal to the current version

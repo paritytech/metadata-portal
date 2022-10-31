@@ -3,7 +3,6 @@ use definitions::crypto::Encryption;
 use definitions::network_specs::NetworkSpecsToSend;
 use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
 use generate_message::parser::Token;
-use log::warn;
 
 use crate::config::Chain;
 
@@ -25,7 +24,7 @@ where
         log::debug!("URL={}", url);
         match f(url) {
             Ok(res) => return Ok(res),
-            Err(e) => warn!("Failed to fetch {}: {:?}", url, e),
+            Err(e) => log::warn!("Failed to fetch {}: {:?}", url, e),
         }
     }
     f(&urls[n - 1])

@@ -24,9 +24,9 @@
 1. Obtains a list of unsigned QR image files in `public/qr`
 2. Iterates through the list of unsigned QR image files
     a. Prompts user to select an unsigned QR image file to sign
-    b. Displays preview of the selected file to scan with parity signer app
-        i. Mac preview is unable to display the `.apng` QR image file for the metadata - this can be opened with Google Chrome
-    c. Opens the Camera to scan the signed chain spec or metadata produced by parity signer
+    b. Displays preview of the selected file to scan with Parity Signer mobile app
+        i. On macOS, the Preview app is able to display the `.png` QR image file but is unable to display the `.apng` QR video file for the metadata - this can be opened with Google Chrome
+    c. Opens the Camera to scan the signed chain spec or metadata produced by Parity Signer mobile app
     d. Deposits the signed chain spec or metadata as a QR image file in `public/qr`
 
 ## Verifier
@@ -43,7 +43,7 @@
 3. Obtains a list of each chainspec QR image file
 4. Fetches the chain specs
 5. Instantiates a HashSet to store files to keep
-6. Iterates through each chain in`config.toml`
+6. Iterates through each chain in `config.toml`
     a. Determines the current metadata version from the chain specs
     b. Determines which metadata QR files are versioned equal to or greater than the current meta data version; these files are kept in the HashSet
     c. Stores Chainspec QR files are kept in the HashSet

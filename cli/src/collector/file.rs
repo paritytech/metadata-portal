@@ -7,7 +7,7 @@ use serde::Serialize;
 pub(crate) fn save_to_file<T>(specs: &T, path: impl AsRef<Path>) -> anyhow::Result<()>
 where
     T: ?Sized + Serialize,
-{   
+{
     let path_str = path.as_ref().as_os_str().to_str().unwrap();
     log::debug!("save_to_file({})", path_str);
 

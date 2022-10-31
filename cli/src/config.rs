@@ -112,7 +112,6 @@ pub(crate) struct Chain {
     pub(crate) title: Option<String>,
     #[serde(default = "color_default")]
     pub(crate) color: String,
-    pub(crate) icon: String,
     #[serde(alias = "rpc_endpoint", deserialize_with = "string_or_vec")]
     pub(crate) rpc_endpoints: Vec<String>,
     pub(crate) token_unit: Option<String>,
@@ -131,7 +130,6 @@ impl Default for Chain {
             name: "polkadot".to_string(),
             title: None,
             color: color_default(),
-            icon: "".to_string(),
             rpc_endpoints: vec!["wss://example.com".to_string()],
             token_unit: None,
             token_decimals: None,

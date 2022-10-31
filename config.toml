@@ -10,7 +10,6 @@ public_key = "1KvbLQgGkCsj8JpT1ekXstHvtDQLs75vkBTXhTawyWLGdjF"
 # name = "frequency"
 # rpc_endpoint = "wss://collator1.frequency.xyz"
 # color = "#4B64FF"
-# icon = "https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public/FRQCY-Circle-Black.svg"
 # testnet = false
 #
 # [chains.github_release]
@@ -23,7 +22,6 @@ public_key = "1KvbLQgGkCsj8JpT1ekXstHvtDQLs75vkBTXhTawyWLGdjF"
 name = "frequency-rococo"
 rpc_endpoint = "wss://collator1.frequency.xyz"
 color = "#4B64FF"
-icon = "https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public/FRQCY-Circle-Black.svg"
 testnet = true
 
 [chains.github_release]

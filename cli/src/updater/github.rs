@@ -15,6 +15,7 @@ pub(crate) async fn fetch_latest_runtime(
         .await?;
     for asset in release.assets {
         if let Ok(wasm) = WasmRuntime::try_from(asset) {
+            log::debug!("wasm.chain={} chain={}", wasm.chain, chain);
             if wasm.chain == chain {
                 return Ok(Some(wasm));
             }

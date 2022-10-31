@@ -73,7 +73,7 @@ export default function Sidebar({
                   style={{ backgroundColor: specs.color }}
                 >
                   <div className="flex items-center text-xl text-white font-inter">
-                    <div className="network_icon">{c}</div>
+                    <div className="network_icon">{ c == "frequency-rococo" || c == "frequency" ? <img src="https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public/FRQCY-Circle-Black.svg" /> : c}</div>
                     <div className="network_name">
                       {capitalizeFirstLetter(allChains[c].title)}
                     </div>
@@ -89,7 +89,7 @@ export default function Sidebar({
                   }}
                 >
                   <div className="flex items-center text-xl font-inter">
-                    <div className="network_icon text-[#9E9E9E]">{c}</div>
+                  <div className="network_icon text-[#9E9E9E]">{ c == "frequency-rococo" || c == "frequency" ? <img src="https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public/FRQCY-Circle-Black.svg" /> : c}</div>
                     <div className="network_name">
                       {capitalizeFirstLetter(allChains[c].title)}
                     </div>

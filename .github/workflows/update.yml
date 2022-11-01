@@ -1,13 +1,13 @@
 name: Check updates
 
 on:
-#   workflow_dispatch:
-#   schedule:
-#     - cron: '0 */2 * * *'
+  push:
+    path:
+      - '.github/workflows/update.yml'
 
 env:
   BRANCH_PREFIX: sign-me
-  NOTIFY_MATRIX: true
+  NOTIFY_MATRIX: false
 
 jobs:
   update:

@@ -4,7 +4,7 @@ qr_dir = "public/qr"
 
 [verifier]
 name = "Frequency"
-public_key = "1KvbLQgGkCsj8JpT1ekXstHvtDQLs75vkBTXhTawyWLGdjF"
+public_key = "5CJaWdHctM8A1PBNAGnDpc5YCRaGi2SvtmsLDT4FsuABnSWj"
 
 # [[chains]]
 # name = "frequency"

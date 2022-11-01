@@ -1,4 +1,4 @@
-name: Check updates&sign
+name: 'Check updates&sign'
 
 on:
   workflow_dispatch:

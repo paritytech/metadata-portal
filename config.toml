@@ -20,7 +20,7 @@ public_key = "1KvbLQgGkCsj8JpT1ekXstHvtDQLs75vkBTXhTawyWLGdjF"
 
 [[chains]]
 name = "frequency-rococo"
-rpc_endpoint = "wss://collator1.frequency.xyz"
+rpc_endpoint = "wss://frequency-seal.liberti.social:9944"
 color = "#4B64FF"
 testnet = true
 

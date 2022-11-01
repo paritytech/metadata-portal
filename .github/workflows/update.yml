@@ -2,8 +2,8 @@ name: Check updates
 
 on:
   push:
-    paths:
-      - ".github/workflows/update.yml"
+  paths:
+    - ".github/workflows/update.yml"
 
 env:
   BRANCH_PREFIX: sign-me

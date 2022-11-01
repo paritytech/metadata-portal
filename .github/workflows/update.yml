@@ -1,12 +1,12 @@
 name: Check updates
 
 on:
-  pull_request:
-    branches:
+  pull_request: 
+    branches: 
       - main
-    paths:
-      - '**.yml'
-      - 'config.toml'
+    paths: 
+      - "**.yml"
+      - config.toml
 
 env:
   BRANCH_PREFIX: sign-me

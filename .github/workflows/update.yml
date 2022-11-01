@@ -2,7 +2,7 @@ name: Check updates
 
 on:
   push:
-    path:
+    paths:
       - '.github/workflows/update.yml'
 
 env:

@@ -4,7 +4,7 @@ qr_dir = "public/qr"
 
 [verifier]
 name = "Frequency"
-public_key = "5CJaWdHctM8A1PBNAGnDpc5YCRaGi2SvtmsLDT4FsuABnSWj"
+public_key = "fa27ce4dc8947fecad01cb977342a3386d4ebe73680c5dd35b8c781f84826d48"
 
 # [[chains]]
 # name = "frequency"
@@ -27,4 +27,4 @@ testnet = true
 [chains.github_release]
 owner = "LibertyDSNP"
 repo = "frequency"
-genesis_hash = "0x055dccdb090bf02dce7661ea4a15406b8de6e1c92209ed928feba5ba1ee85387"
+genesis_hash = "0x2e4c812c20a86dc98692b6cba8ae6de21ccfb1c4303b5c166f68ccfa3117fdc9"

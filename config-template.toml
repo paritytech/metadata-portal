@@ -292,6 +292,10 @@ public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
   name = "snow"
   color = "#2026AE"
 
+  [chains."DAO IPCI"]
+  name = "Ipci"
+  color = "#800742"
+
   # Test networks
   [chains.Westmint]
   name = "westmint"

@@ -104,7 +104,7 @@ testnet = false
 
 [[chains]]
 name = 'kilt-spiritnet'
-title = 'KILT Spiritnet'
+title = 'KILT'
 color = '#8c145a'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/KILT_Spiritnet.svg'
 rpc_endpoints = [
@@ -210,6 +210,7 @@ icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/ch
 rpc_endpoints = [
     'wss://kusama.rpc.robonomics.network/',
     'wss://robonomics-rpc.dwellir.com',
+    'wss://robonomics.leemo.me',
 ]
 testnet = false
 
@@ -521,6 +522,7 @@ rpc_endpoints = [
     'wss://ws.gm.bldnodes.org',
     'wss://ws-node-gm.terrabiodao.org',
     'wss://kusama.gmordie.com',
+    'wss://leemo.gmordie.com',
 ]
 testnet = false
 
@@ -529,7 +531,7 @@ name = 'amplitude'
 title = 'Amplitude'
 color = '#5defa7'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Amplitude.svg'
-rpc_endpoints = ['wss://rpc.pendulumchain.tech']
+rpc_endpoints = ['wss://rpc-amplitude.pendulumchain.tech']
 testnet = false
 
 [[chains]]
@@ -581,4 +583,12 @@ title = 'Snow'
 color = '#2026AE'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/SNOW.svg'
 rpc_endpoints = ['wss://snow-rpc.icenetwork.io']
+testnet = false
+
+[[chains]]
+name = 'Ipci'
+title = 'DAO IPCI'
+color = '#800742'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/DAOIPCI.svg'
+rpc_endpoints = ['wss://kusama.rpc.ipci.io']
 testnet = false

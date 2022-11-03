@@ -42,9 +42,9 @@ public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
   title = "Khala"
   color = "#03f3f3"
 
-  [chains."KILT Spiritnet"]
+  [chains."KILT"]
   name = "kilt-spiritnet"
-  title = "KILT Spiritnet"
+  title = "KILT"
   color = "#8c145a"
 
   [chains.Calamari]

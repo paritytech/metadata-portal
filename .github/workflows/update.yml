@@ -2,12 +2,8 @@ name: Check Updates
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - '**/*.yml'
-      - 'config.toml'
+  schedule:
+    - cron: '0 0 * * *'
 
 env:
   BRANCH_PREFIX: sign-me

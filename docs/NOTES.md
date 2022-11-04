@@ -49,7 +49,7 @@
     b. Determines which metadata QR files are versioned equal to or greater than the current meta data version; these files are kept in the HashSet
     c. Stores Chainspec QR files are kept in the HashSet
 7. Determines the difference of all files and kept files, these are the files to be removed
-8. Iterate through each file to be removed and delete it
+8. Iterates through each file to be removed and delete it
 
 ## Check Deployment
 1. Compares the local `public/data.json` with the the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json`

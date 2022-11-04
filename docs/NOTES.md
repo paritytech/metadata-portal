@@ -52,7 +52,8 @@
 8. Iterate through each file to be removed and delete it
 
 ## Check Deployment
-1. Check if deployment is up to date
+1. Compares the local `public/data.json` with the the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json`
+2. If local vs hosted `data.json` mismatch, `exit(12)`
 
 # Github Actions workflows
 

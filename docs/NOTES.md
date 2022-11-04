@@ -61,7 +61,11 @@
 Runs daily at 00:00 UTC.
 ### Jobs
 #### update
-- Checks for an existing branch prepended with "sign-me" and checks it out if it exists. Otherwise, creates a new branch named "sign-me-<year>-<month>-<day>"
+- This workflow uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the repository's `public/qr` directory. A member of the technical committee or a sudo key holder may then checkout the branch locally and:
+    - Run `make signer` to sign the files
+    - Run `make collector` to collect version information about the current chains
+    - Run `make cleaner` to remove obsolete QR image files
+    - Commit changes to the branch so that it may be reviewed 
 - Determines if there is an updated runtime metadata by querying the RPC node. Also determines if there will be an upcoming runtime upgrade by checking the Frequency github repository assets
 - Commits unsigned metadata QR imagefiles to the branch if updates exist and creates a pull request
 - Notifies a Matrix channel (if specified) that new metadata is available

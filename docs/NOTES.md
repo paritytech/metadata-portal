@@ -61,18 +61,22 @@
 Runs daily at 00:00 UTC.
 ### Jobs
 #### update
-- This workflow uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the repository's `public/qr` directory. A member of the technical committee or a sudo key holder may then checkout the branch locally and:
+- This workflow uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the its `public/qr` directory.
+- Determines if there is updated runtime metadata from:
+    - The RPC node (current version)
+    - GitHub latest WASM release assets (next version)
+- If metadata has been updated:
+    - Commits added files to the branch
+    - Creates a pull request
+- Notifies technical council or sudo key holder via a Matrix channel (if specified) that new metadata is available
+- A member of the technical council or a sudo key holder may then checkout the branch locally and:
     - Run `make signer` to sign the files
     - Run `make collector` to collect version information about the current chains
     - Run `make cleaner` to remove obsolete QR image files
-    - Commit changes to the branch so that it may be reviewed 
-- Determines if there is an updated runtime metadata by querying the RPC node. Also determines if there will be an upcoming runtime upgrade by checking the Frequency github repository assets
-- Commits unsigned metadata QR imagefiles to the branch if updates exist and creates a pull request
-- Notifies a Matrix channel (if specified) that new metadata is available
-- A user is then able to pull the branch, sign the files, commit and merge
+    - Commit changes to the branch so that it may be reviewed by the technical committee
 
 #### check-deployment
 - Compares hosted https://metadata.frequency.xyz/data.json vs generated spec state from the repository.
 - If the generated vs hosted state differ
-    - Runs the collector to build anew `data.json`
+    - Runs the collector to build a new `data.json`
     - Initiates the deploy workflow to redeploy with the updated `data.json`

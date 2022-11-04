@@ -52,9 +52,23 @@
 8. Iterates through each file to be removed and delete it
 
 ## Check Deployment
-1. Compares the local `public/data.json` with the the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json`
-2. If local vs hosted `data.json` mismatch, `exit(12)`
+1. Generates the contents of a `data.json` and compares the generated file with the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json
+2. If generated vs hosted `data.json` mismatch, `exit(12)`
 
 # Github Actions workflows
 
-## <Insert information on actions workflows>
+## Update.yml
+Runs daily at 00:00 UTC.
+### Jobs
+#### update
+- Checks for an existing branch prepended with "sign-me" and checks it out if it exists. Otherwise, creates a new branch named "sign-me-<year>-<month>-<day>"
+- Determines if there is an updated runtime metadata by querying the RPC node. Also determines if there will be an upcoming runtime upgrade by checking the Frequency github repository assets
+- Commits unsigned metadata QR imagefiles to the branch if updates exist and creates a pull request
+- Notifies a Matrix channel (if specified) that new metadata is available
+- A user is then able to pull the branch, sign the files, commit and merge
+
+#### check-deployment
+- Compares hosted https://metadata.frequency.xyz/data.json vs generated spec state from the repository.
+- If the generated vs hosted state differ
+    - Runs the collector to build anew `data.json`
+    - Initiates the deploy workflow to redeploy with the updated `data.json`

@@ -92,3 +92,22 @@ Runs on file changes to `*.yml` files or the `config.toml` in the `main` branch.
 - Runs the verifier to make sure all QR image files are signed by Frequency
 - Runs the collector to build a new `data.json`
 - Initiates the deploy workflow (`.github/workflows/deploy/action.yml`) to redeploy the GitHub pages hosted site with the updated `data.json`
+
+## CLI Workflow (`.github/workflows/cli-test.yml`)
+Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
+### Jobs
+#### test
+- The purpose of test is to make sure that formatting, linting and tests pass.
+- Runs `cargo fmt --all -- --check`
+    - This currently fails on the stable channel of the rust toolkit
+- Runs `cargo clippy`
+- Runs `cargo test`
+- Runs `cargo check`
+
+## Frontend test Workflow (`.github/workflows/frontend-test.yml`)
+Runs on pull requests targeting the `main` branch.
+
+### Jobs
+#### frontend-test
+- The purpose of frontend-test is to run linting and react tests
+

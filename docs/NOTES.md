@@ -76,7 +76,8 @@ Runs daily at 00:00 UTC.
     - Commit changes to the branch so that it may be reviewed by the technical committee
 
 #### check-deployment
-- Compares hosted https://metadata.frequency.xyz/data.json vs generated spec state from the repository.
-- If the generated vs hosted state differ
+- The purpose of check-deployment is to keep the data.json up to date
+- Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node
+- If the hosted vs fetched specs differ
     - Runs the collector to build a new `data.json`
     - Initiates the deploy workflow to redeploy with the updated `data.json`

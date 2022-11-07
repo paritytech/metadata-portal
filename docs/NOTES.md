@@ -111,3 +111,18 @@ Runs on pull requests targeting the `main` branch.
 #### frontend-test
 - The purpose of frontend-test is to run linting and react tests
 
+## Verify Workflow (`.github/workflows/verify.yml`)
+Runs on pull requests targeting the `main` branch with file changes in `public/qr/**` or `config.toml`.
+
+### Jobs
+#### verify
+- The purpose of verify is to ensure that all QR image files are signed by Frequency
+
+## Verify Skip Workflow (`.github/workflows/verify-skip.yml`)
+Runs on pull requests targeting the `main` branch with file changes excluding `public/qr/**` or `config.toml`.
+
+### Jobs
+#### verify-skip
+- The purpose of verify-skip is to serve as a negation of the verify workflow and job
+- Echoes "No verification required" into the workflow output to signify that the file changes did NOT require re verification
+

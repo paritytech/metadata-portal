@@ -57,8 +57,9 @@
 
 # Github Actions workflows
 
-## Update.yml
+## Update Workflow (`.github/workflows/update.yml`)
 Runs daily at 00:00 UTC.
+
 ### Jobs
 #### update
 - This workflow uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the its `public/qr` directory.
@@ -80,4 +81,14 @@ Runs daily at 00:00 UTC.
 - Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node
 - If the hosted vs fetched specs differ
     - Runs the collector to build a new `data.json`
-    - Initiates the deploy workflow to redeploy with the updated `data.json`
+    - Initiates the deploy workflow (`.github/workflows/deploy/action.yml`) to redeploy the GitHub pages hosted site with the updated `data.json`
+
+## Deploy Main Workflow (`.github/workflows/deploy.yml`)
+Runs on file changes to `*.yml` files or the `config.toml` in the `main` branch.
+
+### Jobs
+#### deploy
+- The purpose of deploy is to make sure that all QR image files are signed by frequency and that `data.json` is up to date
+- Runs the verifier to make sure all QR image files are signed by Frequency
+- Runs the collector to build a new `data.json`
+- Initiates the deploy workflow (`.github/workflows/deploy/action.yml`) to redeploy the GitHub pages hosted site with the updated `data.json`

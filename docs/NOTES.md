@@ -90,7 +90,7 @@ The purpose of deploy is to:
 3. Redeploy the GitHub pages site with the updated `data.json` (by use of the deploy action)
 
 ## CLI Workflow
-(`.github/workflows/cli-test.yml`)
+`.github/workflows/cli-test.yml`
 Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
 ### test
 The purpose of test is to make sure that formatting, linting and tests pass.

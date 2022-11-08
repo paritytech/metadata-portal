@@ -84,15 +84,15 @@ Runs daily at 00:00 UTC.
 Triggered by changes to `*.yml` files or the `config.toml` in the `main` branch.
 
 ### deploy
-- The purpose of deploy is to:
-    1. Run the verifier to make sure all QR image files are signed by Frequency
-    2. Run the collector to build a new `data.json`
-    3. Redeploy the GitHub pages site with the updated `data.json` (by use of the deploy action)
+The purpose of deploy is to:
+1. Run the verifier to make sure all QR image files are signed by Frequency
+2. Run the collector to build a new `data.json`
+3. Redeploy the GitHub pages site with the updated `data.json` (by use of the deploy action)
 
 ## CLI Workflow (`.github/workflows/cli-test.yml`)
 Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
 ### test
-- The purpose of test is to make sure that formatting, linting and tests pass.
+The purpose of test is to make sure that formatting, linting and tests pass.
     1. Runs `cargo fmt --all -- --check`
         - This currently fails on the stable channel of the rust toolkit
     2. Runs `cargo clippy`
@@ -101,23 +101,16 @@ Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
 
 ## Frontend test Workflow (`.github/workflows/frontend-test.yml`)
 Runs on pull requests targeting the `main` branch.
-
-### Jobs
-#### frontend-test
+### frontend-test
 - The purpose of frontend-test is to run linting and React tests
 
 ## Verify Workflow (`.github/workflows/verify.yml`)
 Runs on pull requests targeting the `main` branch with file changes in `public/qr/**` or `config.toml`.
-
-### Jobs
-#### verify
+### verify
 - The purpose of verify is to ensure that all QR image files are signed by Frequency
-
 ## Verify Skip Workflow (`.github/workflows/verify-skip.yml`)
 Runs on pull requests targeting the `main` branch with file changes excluding `public/qr/**` or `config.toml`.
-
-### Jobs
-#### verify-skip
+### verify-skip
 - The purpose of verify-skip is to serve as a negation of the verify workflow and job
 - Echoes "No verification required" into the workflow output to signify that the file changes did NOT require re verification
 

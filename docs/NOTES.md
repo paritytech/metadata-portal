@@ -61,7 +61,7 @@
 `.github/workflows/update.yml`
 
 Runs daily at 00:00 UTC.
-### update
+### update job
 This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the its `public/qr` directory.
 1. Determines if there is updated runtime metadata from:
     - The RPC node (current version)
@@ -75,7 +75,7 @@ This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch
     - Run `make collector` to collect version information about the current chains
     - Run `make cleaner` to remove obsolete QR image files
     - Commit changes to the branch so that it may be reviewed by the technical committee
-### check-deployment
+### check-deployment job
 The purpose of check-deployment is to keep the data.json up to date
 1. Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node
 2. If the hosted vs fetched specs differ

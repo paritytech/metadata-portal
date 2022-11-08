@@ -91,6 +91,7 @@ The purpose of deploy is to:
 
 ## CLI Workflow
 `.github/workflows/cli-test.yml`
+
 Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
 ### test
 The purpose of test is to make sure that formatting, linting and tests pass.

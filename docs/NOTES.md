@@ -54,7 +54,7 @@
 ## Check Deployment
 1. Generates the contents of a `data.json` and compares the generated file with the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json
 2. If generated vs hosted `data.json` mismatch, `exit(12)`
-
+***
 # Github Actions Workflows
 
 ## Update Workflow
@@ -92,7 +92,7 @@ The purpose of deploy is to:
 1. Run the verifier to make sure all QR image files are signed by Frequency
 2. Run the collector to build a new `data.json`
 3. Redeploy the GitHub pages site with the updated `data.json` (by use of the deploy action)
-***
+
 ## CLI Workflow
 `.github/workflows/cli-test.yml`
 

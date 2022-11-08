@@ -55,7 +55,7 @@
 1. Generates the contents of a `data.json` and compares the generated file with the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json
 2. If generated vs hosted `data.json` mismatch, `exit(12)`
 
-# Github Actions workflows
+# Github Actions Workflows
 
 ## Update Workflow
 `.github/workflows/update.yml`
@@ -76,7 +76,7 @@ This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch
     - Run `make cleaner` to remove obsolete QR image files
     - Commit changes to the branch so that it may be reviewed by the technical committee
 ### check-deployment
-- The purpose of check-deployment is to keep the data.json up to date
+The purpose of check-deployment is to keep the data.json up to date
 1. Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node
 2. If the hosted vs fetched specs differ
     - Runs the collector to build a new `data.json`
@@ -92,7 +92,7 @@ The purpose of deploy is to:
 1. Run the verifier to make sure all QR image files are signed by Frequency
 2. Run the collector to build a new `data.json`
 3. Redeploy the GitHub pages site with the updated `data.json` (by use of the deploy action)
-
+***
 ## CLI Workflow
 `.github/workflows/cli-test.yml`
 
@@ -110,20 +110,20 @@ The purpose of test is to make sure that formatting, linting and tests pass.
 
 Runs on pull requests targeting the `main` branch.
 ### frontend-test
-- The purpose of frontend-test is to run linting and React tests
+The purpose of frontend-test is to run linting and React tests
 
 ## Verify Workflow
 `.github/workflows/verify.yml`
 
 Runs on pull requests targeting the `main` branch with file changes in `public/qr/**` or `config.toml`.
 ### verify
-- The purpose of verify is to ensure that all QR image files are signed by Frequency
+The purpose of verify is to ensure that all QR image files are signed by Frequency
 
 ## Verify Skip Workflow
 `.github/workflows/verify-skip.yml`
 
 Runs on pull requests targeting the `main` branch with file changes excluding `public/qr/**` or `config.toml`.
 ### verify-skip
-- The purpose of verify-skip is to serve as a negation of the verify workflow and job
-- Echoes "No verification required" into the workflow output to signify that the file changes did NOT require re verification
+The purpose of verify-skip is to serve as a negation of the verify workflow and job
+- Displays "No verification required" to signify that the file changes did NOT require reverification
 

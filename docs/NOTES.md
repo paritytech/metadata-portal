@@ -60,25 +60,25 @@
 ## Update Workflow (`.github/workflows/update.yml`)
 Runs daily at 00:00 UTC.
 ### update
-- This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the its `public/qr` directory.
-    1. Determines if there is updated runtime metadata from:
-        - The RPC node (current version)
-        - GitHub latest WASM release assets (next version)
-    2. If metadata has been updated:
-        - Commits added files to the branch
-        - Creates a pull request
-    3. Notifies technical council or sudo key holder via a Matrix channel (if specified) that new metadata is available
-    4. A member of the technical council or a sudo key holder may then checkout the branch locally and:
-        - Run `make signer` to sign the files
-        - Run `make collector` to collect version information about the current chains
-        - Run `make cleaner` to remove obsolete QR image files
-        - Commit changes to the branch so that it may be reviewed by the technical committee
+This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the its `public/qr` directory.
+1. Determines if there is updated runtime metadata from:
+    - The RPC node (current version)
+    - GitHub latest WASM release assets (next version)
+2. If metadata has been updated:
+    - Commits added files to the branch
+    - Creates a pull request
+3. Notifies technical council or sudo key holder via a Matrix channel (if specified) that new metadata is available
+4. A member of the technical council or a sudo key holder may then checkout the branch locally and:
+    - Run `make signer` to sign the files
+    - Run `make collector` to collect version information about the current chains
+    - Run `make cleaner` to remove obsolete QR image files
+    - Commit changes to the branch so that it may be reviewed by the technical committee
 ### check-deployment
 - The purpose of check-deployment is to keep the data.json up to date
-    1. Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node
-    2. If the hosted vs fetched specs differ
-        - Runs the collector to build a new `data.json`
-        - Initiates the deploy workflow (`.github/workflows/deploy/action.yml`) to redeploy the GitHub pages hosted site with the updated `data.json`
+1. Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node
+2. If the hosted vs fetched specs differ
+    - Runs the collector to build a new `data.json`
+    - Initiates the deploy workflow (`.github/workflows/deploy/action.yml`) to redeploy the GitHub pages hosted site with the updated `data.json`
 
 ## Deploy Main Workflow (`.github/workflows/deploy.yml`)
 Triggered by changes to `*.yml` files or the `config.toml` in the `main` branch.
@@ -89,15 +89,16 @@ The purpose of deploy is to:
 2. Run the collector to build a new `data.json`
 3. Redeploy the GitHub pages site with the updated `data.json` (by use of the deploy action)
 
-## CLI Workflow (`.github/workflows/cli-test.yml`)
+## CLI Workflow
+(`.github/workflows/cli-test.yml`)
 Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
 ### test
 The purpose of test is to make sure that formatting, linting and tests pass.
-    1. Runs `cargo fmt --all -- --check`
-        - This currently fails on the stable channel of the rust toolkit
-    2. Runs `cargo clippy`
-    3. Runs `cargo test`
-    4. Runs `cargo check`
+1. Runs `cargo fmt --all -- --check`
+    - This currently fails on the stable channel of the rust toolkit
+2. Runs `cargo clippy`
+3. Runs `cargo test`
+4. Runs `cargo check`
 
 ## Frontend test Workflow (`.github/workflows/frontend-test.yml`)
 Runs on pull requests targeting the `main` branch.

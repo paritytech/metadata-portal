@@ -59,7 +59,7 @@
 
 ## Update Workflow (`.github/workflows/update.yml`)
 Runs daily at 00:00 UTC.
-#### update
+### update
 - This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the its `public/qr` directory.
     1. Determines if there is updated runtime metadata from:
         - The RPC node (current version)
@@ -73,7 +73,7 @@ Runs daily at 00:00 UTC.
         - Run `make collector` to collect version information about the current chains
         - Run `make cleaner` to remove obsolete QR image files
         - Commit changes to the branch so that it may be reviewed by the technical committee
-#### check-deployment
+### check-deployment
 - The purpose of check-deployment is to keep the data.json up to date
     1. Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node
     2. If the hosted vs fetched specs differ
@@ -83,8 +83,7 @@ Runs daily at 00:00 UTC.
 ## Deploy Main Workflow (`.github/workflows/deploy.yml`)
 Triggered by changes to `*.yml` files or the `config.toml` in the `main` branch.
 
-### Jobs
-#### deploy
+### deploy
 - The purpose of deploy is to:
     1. Run the verifier to make sure all QR image files are signed by Frequency
     2. Run the collector to build a new `data.json`
@@ -92,8 +91,7 @@ Triggered by changes to `*.yml` files or the `config.toml` in the `main` branch.
 
 ## CLI Workflow (`.github/workflows/cli-test.yml`)
 Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
-### Jobs
-#### test
+### test
 - The purpose of test is to make sure that formatting, linting and tests pass.
     1. Runs `cargo fmt --all -- --check`
         - This currently fails on the stable channel of the rust toolkit

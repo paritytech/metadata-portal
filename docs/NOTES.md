@@ -57,7 +57,9 @@
 
 # Github Actions workflows
 
-## Update Workflow (`.github/workflows/update.yml`)
+## Update Workflow
+`.github/workflows/update.yml`
+
 Runs daily at 00:00 UTC.
 ### update
 This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the its `public/qr` directory.
@@ -80,7 +82,9 @@ This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch
     - Runs the collector to build a new `data.json`
     - Initiates the deploy workflow (`.github/workflows/deploy/action.yml`) to redeploy the GitHub pages hosted site with the updated `data.json`
 
-## Deploy Main Workflow (`.github/workflows/deploy.yml`)
+## Deploy Main Workflow
+`.github/workflows/deploy.yml`
+
 Triggered by changes to `*.yml` files or the `config.toml` in the `main` branch.
 
 ### deploy
@@ -101,16 +105,23 @@ The purpose of test is to make sure that formatting, linting and tests pass.
 3. Runs `cargo test`
 4. Runs `cargo check`
 
-## Frontend test Workflow (`.github/workflows/frontend-test.yml`)
+## Frontend Test Workflow
+`.github/workflows/frontend-test.yml`
+
 Runs on pull requests targeting the `main` branch.
 ### frontend-test
 - The purpose of frontend-test is to run linting and React tests
 
-## Verify Workflow (`.github/workflows/verify.yml`)
+## Verify Workflow
+`.github/workflows/verify.yml`
+
 Runs on pull requests targeting the `main` branch with file changes in `public/qr/**` or `config.toml`.
 ### verify
 - The purpose of verify is to ensure that all QR image files are signed by Frequency
-## Verify Skip Workflow (`.github/workflows/verify-skip.yml`)
+
+## Verify Skip Workflow
+`.github/workflows/verify-skip.yml`
+
 Runs on pull requests targeting the `main` branch with file changes excluding `public/qr/**` or `config.toml`.
 ### verify-skip
 - The purpose of verify-skip is to serve as a negation of the verify workflow and job

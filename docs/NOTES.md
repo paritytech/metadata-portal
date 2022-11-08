@@ -57,7 +57,7 @@
 ***
 # Github Actions Workflows
 
-## Update Workflow
+## Check Updates Workflow
 `.github/workflows/update.yml`
 
 Runs daily at 00:00 UTC.
@@ -87,7 +87,7 @@ The purpose of check-deployment is to keep the data.json up to date
 
 Triggered by changes to `*.yml` files or the `config.toml` in the `main` branch.
 
-### deploy
+### deploy job
 The purpose of deploy is to:
 1. Run the verifier to make sure all QR image files are signed by Frequency
 2. Run the collector to build a new `data.json`
@@ -97,7 +97,7 @@ The purpose of deploy is to:
 `.github/workflows/cli-test.yml`
 
 Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
-### test
+### test job
 The purpose of test is to make sure that formatting, linting and tests pass.
 1. Runs `cargo fmt --all -- --check`
     - This currently fails on the stable channel of the rust toolkit
@@ -109,21 +109,21 @@ The purpose of test is to make sure that formatting, linting and tests pass.
 `.github/workflows/frontend-test.yml`
 
 Runs on pull requests targeting the `main` branch.
-### frontend-test
+### frontend-test job
 The purpose of frontend-test is to run linting and React tests
 
 ## Verify Workflow
 `.github/workflows/verify.yml`
 
 Runs on pull requests targeting the `main` branch with file changes in `public/qr/**` or `config.toml`.
-### verify
+### verify job
 The purpose of verify is to ensure that all QR image files are signed by Frequency
 
 ## Verify Skip Workflow
 `.github/workflows/verify-skip.yml`
 
 Runs on pull requests targeting the `main` branch with file changes excluding `public/qr/**` or `config.toml`.
-### verify-skip
+### verify-skip job
 The purpose of verify-skip is to serve as a negation of the verify workflow and job
 - Displays "No verification required" to signify that the file changes did NOT require reverification
 

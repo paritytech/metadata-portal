@@ -50,6 +50,7 @@ export default function App({ mode }: Props) {
         localStorageNetwork && localStorageNetwork.toLowerCase();
       const network =
         (Object.keys(r).includes(location) && location) ||
+        (Object.keys(r).find(key => r[key].genesisHash == location)) ||
         (Object.keys(r).includes(lastVisited) && lastVisited) ||
         Object.keys(r)[0];
       setCurrentNetwork(network);

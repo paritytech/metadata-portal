@@ -1,11 +1,26 @@
 public_dir = "public"
 qr_dir = "public/qr"
 
-[verifier]
-name = "Novasama Technologies"
-public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
+[verifiers]
+  [verifiers.novasama]
+    name = "Novasama Technologies"
+    public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
+
+  [verifiers.parity]
+    name = "Parity"
+    public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
 
 [chains]
+  [chains.Polkadot]
+  name = "polkadot"
+  color = "#e6007a"
+  verifier = "parity"
+
+  [chains.Kusama]
+  name = "kusama"
+  color = "#000000"
+  verifier = "parity"
+
   [chains.Acala]
   name = "acala"
   color = "#645AFF"
@@ -297,6 +312,11 @@ public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
   color = "#800742"
 
   # Test networks
+  [chains."Westend"]
+  name = "westend"
+  color = "#f27230"
+  verifier = "parity"
+
   [chains.Westmint]
   name = "westmint"
   title = "Westmint"

@@ -7,12 +7,12 @@ mod config;
 mod deployment_checker;
 mod export;
 mod fetch;
-mod lib;
 mod opts;
 mod qrs;
 mod signer;
 mod source;
 mod updater;
+mod utils;
 mod verifier;
 
 use std::process::exit;

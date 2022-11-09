@@ -14,7 +14,7 @@ use crate::config::AppConfig;
 use crate::fetch::Fetcher;
 use crate::qrs::{find_metadata_qrs, find_spec_qrs};
 use crate::source::{save_source_info, Source};
-use crate::updater::generate::{generate_metadata_qr, generate_spec_qr};
+use crate::updater::generate::{download_metadata_qr, generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
 
@@ -40,12 +40,16 @@ pub(crate) fn update_from_node(
                 );
                 continue;
             }
-            generate_spec_qr(
-                &specs_res.unwrap(),
-                &config.qr_dir,
-                sign,
-                signing_key.to_owned(),
-            )?;
+            if chain.verifier == "parity" {
+                warn!("The chain {} should be added and signed by Parity, please check it on the Parity Metadata portal https://metadata.parity.io/", chain.name);
+            } else {
+                generate_spec_qr(
+                    &specs_res.unwrap(),
+                    &config.qr_dir,
+                    sign,
+                    signing_key.to_owned(),
+                )?;
+            }
             is_changed = true;
         }
 
@@ -68,17 +72,25 @@ pub(crate) fn update_from_node(
                 continue;
             }
         }
-        let path = generate_metadata_qr(
-            &fetched_meta.meta_values,
-            &fetched_meta.genesis_hash,
-            &config.qr_dir,
-            sign,
-            signing_key.to_owned(),
-        )?;
-        let source = Source::Rpc {
-            block: fetched_meta.block_hash,
-        };
-        save_source_info(&path, &source)?;
+        if chain.verifier == "parity" {
+            download_metadata_qr(
+                "https://metadata.parity.io/qr",
+                &fetched_meta.meta_values,
+                &config.qr_dir,
+            )?;
+        } else {
+            let path = generate_metadata_qr(
+                &fetched_meta.meta_values,
+                &fetched_meta.genesis_hash,
+                &config.qr_dir,
+                sign,
+                signing_key.to_owned(),
+            )?;
+            let source = Source::Rpc {
+                block: fetched_meta.block_hash,
+            };
+            save_source_info(&path, &source)?;
+        }
         is_changed = true;
     }
 

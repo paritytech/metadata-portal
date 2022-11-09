@@ -16,11 +16,11 @@ use qr_reader_pc::{run_with_camera, CameraSettings};
 use transaction_parsing::check_signature::pass_crypto;
 
 use crate::config::AppConfig;
-use crate::lib::camera::read_qr_file;
-use crate::lib::path::{ContentType, QrPath};
 use crate::qrs::qrs_in_dir;
 use crate::signer::prompt::{select_file, want_to_continue};
 use crate::source::{read_png_source, save_source_info};
+use crate::utils::camera::read_qr_file;
+use crate::utils::path::{ContentType, QrPath};
 
 pub(crate) fn sign(config: AppConfig) -> anyhow::Result<()> {
     let mut files_to_sign: Vec<QrPath> = qrs_in_dir(config.qr_dir)?

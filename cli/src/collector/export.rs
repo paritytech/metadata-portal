@@ -8,8 +8,8 @@ use log::{info, warn};
 
 use crate::export::{ExportChainSpec, ExportData, QrCode, ReactAssetPath};
 use crate::fetch::Fetcher;
-use crate::lib::path::QrPath;
 use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
+use crate::utils::path::QrPath;
 use crate::AppConfig;
 
 pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<ExportData> {
@@ -43,7 +43,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
 
         let next_metadata_qr = next_version
             .map(|v| extract_metadata_qr(&metadata_qrs, &chain.name, &v).unwrap())
-            .map(|qr| QrCode::from_qr_path(config, qr).unwrap());
+            .map(|qr| QrCode::from_qr_path(config, qr, &chain.verifier).unwrap());
         let latest_meta = update_pointer_to_latest_metadata(&metadata_qr)?;
         export_specs.insert(
             chain.name.clone(),
@@ -51,13 +51,13 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 title: chain.title.as_ref().unwrap_or(&chain.name).clone(),
                 color: chain.color.clone(),
                 rpc_endpoint: chain.rpc_endpoints[0].clone(), // keep only the first one
-                genesis_hash: format!("0x{}", hex::encode(&specs.genesis_hash)),
+                genesis_hash: format!("0x{}", hex::encode(specs.genesis_hash)),
                 unit: specs.unit,
                 icon: chain.icon.clone(),
                 decimals: specs.decimals,
                 base58prefix: specs.base58prefix,
-                metadata_qr: QrCode::from_qr_path(config, metadata_qr)?,
-                specs_qr: QrCode::from_qr_path(config, specs_qr)?,
+                metadata_qr: QrCode::from_qr_path(config, metadata_qr, &chain.verifier)?,
+                specs_qr: QrCode::from_qr_path(config, specs_qr, &chain.verifier)?,
                 next_metadata_version: next_version,
                 next_metadata_qr,
                 metadata_version: active_version,

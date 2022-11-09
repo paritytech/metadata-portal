@@ -5,9 +5,9 @@ use anyhow::{Context, Result};
 use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
 
-use crate::lib::path::QrPath;
-use crate::lib::types::ChainName;
 use crate::source::{read_png_source, Source};
+use crate::utils::path::QrPath;
+use crate::utils::types::ChainName;
 use crate::AppConfig;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
@@ -70,10 +70,14 @@ pub(crate) struct QrCode {
 }
 
 impl QrCode {
-    pub(crate) fn from_qr_path(config: &AppConfig, qr_path: QrPath) -> Result<QrCode> {
+    pub(crate) fn from_qr_path(
+        config: &AppConfig,
+        qr_path: QrPath,
+        verifier_name: &String,
+    ) -> Result<QrCode> {
         let path = ReactAssetPath::from_fs_path(&qr_path.to_path_buf(), &config.public_dir)?;
         let signed_by = match qr_path.file_name.is_signed {
-            true => Some(config.verifier.name.clone()),
+            true => Some(config.verifiers.get(verifier_name).unwrap().name.clone()),
             false => None,
         };
         let source = read_png_source(&qr_path.to_path_buf())?;

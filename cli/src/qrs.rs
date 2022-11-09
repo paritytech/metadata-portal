@@ -4,8 +4,8 @@ use std::path::Path;
 
 use anyhow::{Context, Result};
 
-use crate::lib::path::{ContentType, QrPath};
-use crate::lib::types::{ChainName, SpecVersion};
+use crate::utils::path::{ContentType, QrPath};
+use crate::utils::types::{ChainName, SpecVersion};
 
 type MetadataMap = HashMap<ChainName, BTreeMap<SpecVersion, QrPath>>;
 
@@ -30,12 +30,12 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
 
 /// Maps chain to corresponding metadata QR files
 pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
-    let mut metadata_qrs = HashMap::new();
+    let mut metadata_qrs: HashMap<ChainName, BTreeMap<SpecVersion, QrPath>> = HashMap::new();
     for qr in qrs_in_dir(dir)? {
         if let ContentType::Metadata(version) = qr.file_name.content_type {
             metadata_qrs
                 .entry(qr.file_name.chain.clone())
-                .or_insert(BTreeMap::new())
+                .or_default()
                 .entry(version)
                 .and_modify(|e| {
                     if qr.file_name.is_signed {

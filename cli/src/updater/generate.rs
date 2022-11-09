@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::Write;
+use std::io::{copy, Cursor, Write};
 use std::path::{Path, PathBuf};
 
 use anyhow::{anyhow, bail};
@@ -15,7 +15,7 @@ use log::info;
 use sp_core::bytes::to_hex;
 use sp_core::{sr25519, ByteArray, Pair, H256};
 
-use crate::lib::path::{ContentType, QrFileName};
+use crate::utils::path::{ContentType, QrFileName};
 
 pub(crate) fn generate_metadata_qr(
     meta_values: &MetaValues,
@@ -41,6 +41,26 @@ pub(crate) fn generate_metadata_qr(
         sign,
         signing_key,
     )?;
+    Ok(path)
+}
+
+pub(crate) fn download_metadata_qr(
+    url: &str,
+    meta_values: &MetaValues,
+    target_dir: &Path,
+) -> anyhow::Result<PathBuf> {
+    let file_name = QrFileName::new(
+        &meta_values.name.to_lowercase(),
+        ContentType::Metadata(meta_values.version),
+        true,
+    )
+    .to_string();
+    let path = target_dir.join(&file_name);
+    let url = format!("{}/{}", url, &file_name);
+    let response = reqwest::blocking::get(url).unwrap();
+    let mut content = Cursor::new(response.bytes().unwrap());
+    let mut file = File::create(&path)?;
+    copy(&mut content, &mut file)?;
     Ok(path)
 }
 

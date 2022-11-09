@@ -2,7 +2,11 @@
 
 ## Overview
 
-The Frequency Metadata Portal is a web page that shows users the latest metadata for the Frequency blockchain.
+The *Frequency Metadata Portal* is a web page that shows users the latest metadata for the *Frequency* blockchain.
+
+The URL for accessing the portal is:
+
+https://metadata.frequency.xyz
 
 # CLI Command Definitions
 

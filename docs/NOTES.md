@@ -9,9 +9,8 @@ The URL for accessing the portal is:
 https://metadata.frequency.xyz
 
 The portal is intended for use by:
-- Technical Council members (to validate and sign metadata)
-- Sudo key holders (to validate and sign metadata)
-- *Frequency* users (to sign transactions with the Parity Signer app)
+- *Frequency* developers (to validate and sign metadata)
+- Council members, Sudo key holders and *Frequency* users (to sign transactions with the Parity Signer app)
 
 *Parity Signer* mobile app (air-gapped wallet)
 https://www.parity.io/technologies/signer

@@ -8,6 +8,10 @@ The URL for accessing the portal is:
 
 https://metadata.frequency.xyz
 
+The portal is intended for use by:
+- Technical Council member
+- Sudo key holder
+
 ## CLI Command Definitions
 
 ### Updater

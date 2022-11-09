@@ -1,3 +1,9 @@
+# Frequency Metadata Portal
+
+## Overview
+
+The Frequency Metadata Portal is a web page that shows users the latest metadata for the Frequency blockchain.
+
 # CLI Command Definitions
 
 ## Updater

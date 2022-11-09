@@ -2,15 +2,19 @@
 
 ## Overview
 
-The *Frequency Metadata Portal* is a web page that shows users the latest metadata for the *Frequency* blockchain.
+The *Frequency Metadata Portal* is a web page that shows users the latest metadata for the *Frequency* blockchain for use with the *Parity Signer* mobile app.
 
 The URL for accessing the portal is:
 
 https://metadata.frequency.xyz
 
 The portal is intended for use by:
-- Technical Council member
-- Sudo key holder
+- Technical Council members (to validate and sign metadata)
+- Sudo key holders (to validate and sign metadata)
+- *Frequency* users (to sign transactions with the Parity Signer app)
+
+*Parity Signer* mobile app (air-gapped wallet)
+https://www.parity.io/technologies/signer
 
 ## CLI Command Definitions
 

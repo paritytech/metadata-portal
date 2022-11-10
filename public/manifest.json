@@ -3,7 +3,7 @@
   "name": "Frequency Metadata Portal",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public/FRQCY-Circle-Black.svg",
+      "src": "/FRQCY-Circle-Black.svg",
       "sizes": "454x454",
       "type": "image/svg+xml"
     }

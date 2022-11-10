@@ -4,8 +4,8 @@
   "icons": [
     {
       "src": "https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public//FRQCY-Circle-Black.svg",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "sizes": "454x454",
+      "type": "image/svg+xml"
     }
   ],
   "start_url": ".",

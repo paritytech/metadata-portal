@@ -1,9 +1,9 @@
 {
-  "short_name": "Metadata portal",
-  "name": "Metadata portal",
+  "short_name": "Frequency metadata portal",
+  "name": "Frequency metadata portal",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "%PUBLIC_URL%/FRQCY-Circle-Black.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },

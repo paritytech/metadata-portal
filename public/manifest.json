@@ -1,6 +1,6 @@
 {
-  "short_name": "Frequency metadata portal",
-  "name": "Frequency metadata portal",
+  "short_name": "Frequency Metadata Portal",
+  "name": "Frequency Metadata Portal",
   "icons": [
     {
       "src": "https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public/FRQCY-Circle-Black.svg",

@@ -41,6 +41,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
         export_specs.insert(
             chain.name.clone(),
             ExportChainSpec {
+                vanity_name: chain.vanity_name.clone(),
                 title: chain.title.as_ref().unwrap_or(&chain.name).clone(),
                 color: chain.color.clone(),
                 rpc_endpoint: chain.rpc_endpoints[0].clone(), // keep only the first one

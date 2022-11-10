@@ -107,6 +107,7 @@ pub(crate) struct GithubRepo {
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub(crate) struct Chain {
+    pub(crate) vanity_name: String,
     #[serde(deserialize_with = "case_insensitive")]
     pub(crate) name: String,
     pub(crate) title: Option<String>,

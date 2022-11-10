@@ -72,10 +72,10 @@ export default function Sidebar({
                   className="flex items-center text-sm p-2 mb-3 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded"
                   style={{ backgroundColor: specs.color }}
                 >
-                  <div className="flex items-center text-xl text-white font-inter">
+                  <div className="flex items-center text-lg text-white font-inter">
                     <div className="network_icon">{ c == "frequency-rococo" || c == "frequency" ? <img src="https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public/FRQCY-Circle-Black.svg" /> : c}</div>
                     <div className="network_name">
-                      {capitalizeFirstLetter(allChains[c].title)}
+                    { allChains[c].vanityName ? allChains[c].vanityName : capitalizeFirstLetter(allChains[c].title) }
                     </div>
                   </div>
                 </div>
@@ -88,10 +88,10 @@ export default function Sidebar({
                     setIsOpen(false);
                   }}
                 >
-                  <div className="flex items-center text-xl font-inter">
+                  <div className="flex items-center text-lg font-inter">
                   <div className="network_icon text-[#9E9E9E]">{ c == "frequency-rococo" || c == "frequency" ? <img src="https://raw.githubusercontent.com/LibertyDSNP/metadata-portal/main/public/FRQCY-Circle-Black.svg" /> : c}</div>
                     <div className="network_name">
-                      {capitalizeFirstLetter(allChains[c].title)}
+                    { allChains[c].vanityName ? allChains[c].vanityName : capitalizeFirstLetter(allChains[c].title) }
                     </div>
                   </div>
                 </div>

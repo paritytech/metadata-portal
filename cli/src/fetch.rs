@@ -43,9 +43,12 @@ impl Fetcher for RpcFetcher {
                     unit: token_unit.to_string(),
                 },
             );
-            specs_agnostic(url, Encryption::Sr25519, optional_token_override, None)
+            let optional_signer_title_override = Some(chain.vanity_name.clone());
+            specs_agnostic(url, Encryption::Sr25519, optional_token_override, optional_signer_title_override)
         })
         .map_err(|e| anyhow!("{:?}", e))?;
+        log::debug!("specs: {:?}", specs);
+
         if specs.name.to_lowercase() != chain.name {
             bail!(
                 "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",

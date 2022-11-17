@@ -94,7 +94,7 @@ This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch
     - Run `make cleaner` to remove obsolete QR image files
     - Commit changes to the branch so that it may be reviewed by the technical committee
 #### check-deployment job
-The purpose of check-deployment is to keep the data.json up to date
+The purpose of `check-deployment` is to keep the data.json up to date
 1. Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node
 2. If the hosted vs fetched specs differ
     - Runs the collector to build a new `data.json`
@@ -106,7 +106,7 @@ The purpose of check-deployment is to keep the data.json up to date
 Triggered by changes to `*.yml` files or the `config.toml` in the `main` branch.
 
 #### deploy job
-The purpose of deploy is to:
+The purpose of `deploy` is to:
 1. Run the `verifier` to make sure all QR image files are signed by Frequency
 2. Run the `collector` to build a new `data.json`
 3. Redeploy the GitHub pages site with the updated `data.json` (by use of the deploy action)
@@ -116,7 +116,7 @@ The purpose of deploy is to:
 
 Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
 #### test job
-The purpose of test is to make sure that formatting, linting and tests pass.
+The purpose of `test` is to make sure that formatting, linting and tests pass.
 1. Runs `cargo fmt --all -- --check`
     - This currently fails on the stable channel of the Rust toolkit
 2. Runs `cargo clippy`

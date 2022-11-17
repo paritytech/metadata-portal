@@ -1,13 +1,13 @@
 data_file = 'public/data.json'
 public_dir = 'public'
 qr_dir = 'public/qr'
-[verifiers.parity]
-name = 'Parity'
-public_key = 'c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57'
-
 [verifiers.novasama]
 name = 'Novasama Technologies'
 public_key = '16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f'
+
+[verifiers.parity]
+name = 'Parity'
+public_key = 'c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57'
 
 [[chains]]
 name = 'polkadot'
@@ -271,7 +271,6 @@ color = '#2949d3'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Robonomics.svg'
 rpc_endpoints = [
     'wss://kusama.rpc.robonomics.network/',
-    'wss://robonomics-rpc.dwellir.com',
     'wss://robonomics.leemo.me',
 ]
 testnet = false
@@ -336,10 +335,7 @@ name = 'Crab Parachain'
 title = 'Crab'
 color = '#7C30DD'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Crab.svg'
-rpc_endpoints = [
-    'wss://crab-parachain-rpc.darwinia.network/',
-    'wss://darwiniacrab-rpc.dwellir.com',
-]
+rpc_endpoints = ['wss://crab-parachain-rpc.darwinia.network/']
 testnet = false
 verifier = 'novasama'
 

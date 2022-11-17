@@ -42,9 +42,9 @@ https://www.parity.io/technologies/signer
 1. Obtains a list of unsigned QR image files in `public/qr`
 2. Iterates through the list of unsigned QR image files
     - Prompts user to select an unsigned QR image file to sign
-    - Displays preview of the selected file to scan with Parity Signer mobile app
+    - Displays preview of the selected file to scan with *Parity Signer* mobile app
         - On macOS, the Preview app can display the `.png` QR image file but not the `.apng` QR video file for the metadata.  The `.apng` can be opened with a browser (e.g. Google Chrome)
-    - Opens the computer's camera to scan the signed chain spec or metadata produced by Parity Signer mobile app
+    - Opens the computer's camera to scan the signed chain spec or metadata produced by *Parity Signer* mobile app
     - Deposits the signed chain spec or metadata as a QR image file in `public/qr`
 
 ### Verifier

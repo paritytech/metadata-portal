@@ -107,8 +107,8 @@ Triggered by changes to `*.yml` files or the `config.toml` in the `main` branch.
 
 #### deploy job
 The purpose of deploy is to:
-1. Run the verifier to make sure all QR image files are signed by Frequency
-2. Run the collector to build a new `data.json`
+1. Run the `verifier` to make sure all QR image files are signed by Frequency
+2. Run the `collector` to build a new `data.json`
 3. Redeploy the GitHub pages site with the updated `data.json` (by use of the deploy action)
 
 ### CLI Workflow
@@ -118,7 +118,7 @@ Runs on pull requests targeting the `main` branch with file changes in `cli/**`.
 #### test job
 The purpose of test is to make sure that formatting, linting and tests pass.
 1. Runs `cargo fmt --all -- --check`
-    - This currently fails on the stable channel of the rust toolkit
+    - This currently fails on the stable channel of the Rust toolkit
 2. Runs `cargo clippy`
 3. Runs `cargo test`
 4. Runs `cargo check`
@@ -128,7 +128,7 @@ The purpose of test is to make sure that formatting, linting and tests pass.
 
 Runs on pull requests targeting the `main` branch.
 ### frontend-test job
-The purpose of frontend-test is to run linting and React tests
+The purpose of `frontend-test` is to run linting and React tests
 
 ### Verify Workflow
 `.github/workflows/verify.yml`

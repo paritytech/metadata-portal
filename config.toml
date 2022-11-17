@@ -344,7 +344,7 @@ name = 'subsocial-parachain'
 title = 'Subsocial'
 color = '#69058C'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Subsocial_Parachain.svg'
-rpc_endpoints = ['wss://para.subsocial.network']
+rpc_endpoints = ['wss://para.f3joule.space/']
 testnet = false
 verifier = 'novasama'
 

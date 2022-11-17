@@ -53,7 +53,7 @@ https://www.parity.io/technologies/signer
     - Returns an error and exit if the QR image file is unsigned
 3. Iterates through the list of all QR image files (second round)
     - Determines if the QR image file is of content type metadata
-        1. Determines if the signature of the metadata QR image file was produced by the private key holder of the public_key provided in `config.toml`
+        1. Determines if the signature of the metadata QR image file was produced by the private key holder of the public key provided in `config.toml`
         2. Returns an error and exits if the signature doesn't match
 ### Cleaner
 1. Obtains a list of:
@@ -64,7 +64,7 @@ https://www.parity.io/technologies/signer
 3. Instantiates a HashSet to store files to keep
 4. Iterates through each chain in `config.toml`
     - Determines the current metadata version from the chain specs
-    - Determines which metadata QR files are versioned equal to or greater than the current meta data version; these files are kept in the HashSet
+    - Determines which metadata QR files are versioned equal to or greater than the current metadata version; these files are kept in the HashSet
     - Stores Chainspec QR files are kept in the HashSet
 5. Determines the difference of all files and kept files, these are the files to be removed
 6. Iterates through each file to be removed and delete it

@@ -43,7 +43,7 @@ https://www.parity.io/technologies/signer
 2. Iterates through the list of unsigned QR image files
     - Prompts user to select an unsigned QR image file to sign
     - Displays preview of the selected file to scan with *Parity Signer* mobile app
-        - On macOS, the Preview app can display the `.png` QR image file but not the `.apng` QR video file for the metadata.  The `.apng` can be opened with a browser (e.g. Google Chrome)
+        - On *macOS*, the *Preview* app can display the `.png` QR image file but not the `.apng` QR video file for the metadata.  The `.apng` can be opened with a browser (e.g. Google Chrome)
     - Opens the computer's camera to scan the signed chain spec or metadata produced by *Parity Signer* mobile app
     - Deposits the signed chain spec or metadata as a QR image file in `public/qr`
 
@@ -65,7 +65,7 @@ https://www.parity.io/technologies/signer
 4. Iterates through each chain in `config.toml`
     - Determines the current metadata version from the chain specs
     - Determines which metadata QR files are versioned equal to or greater than the current metadata version; these files are kept in the HashSet
-    - Stores Chainspec QR files are kept in the HashSet
+    - Stores chainspec QR files are kept in the HashSet
 5. Determines the difference of all files and kept files, these are the files to be removed
 6. Iterates through each file to be removed and delete it
 

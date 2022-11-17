@@ -10,7 +10,7 @@ https://metadata.frequency.xyz
 
 The portal is intended for use by:
 - *Frequency* developers (to validate and sign metadata)
-- Council members, Sudo key holders and *Frequency* users (to sign transactions with the Parity Signer app)
+- Council members, *Sudo* key holders and *Frequency* users (to sign transactions with the *Parity Signer* app)
 
 *Parity Signer* mobile app (air-gapped wallet)
 https://www.parity.io/technologies/signer
@@ -88,7 +88,7 @@ This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch
     - Commits added files to the branch
     - Creates a pull request
 3. Notifies technical council or sudo key holder via a Matrix channel (if specified) that new metadata is available
-4. A member of the technical council or a sudo key holder may then checkout the branch locally and:
+4. A member of the *technical council* or a *sudo key holder* may then checkout the branch locally and:
     - Run `make signer` to sign the files
     - Run `make collector` to collect version information about the current chains
     - Run `make cleaner` to remove obsolete QR image files

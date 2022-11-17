@@ -21,11 +21,11 @@ public_key = "4402e2896c0aa61006b223f7f9b5e3703080c2f172642fd0c43de9892df76d79"
 [[chains]]
 vanity_name = "Frequency Rococo"
 name = "frequency-rococo"
-rpc_endpoint = "wss://frequency-seal.liberti.social:9944"
+rpc_endpoint = "wss://rpc.rococo.frequency.xyz/"
 color = "#4B64FF"
 testnet = true
 
 [chains.github_release]
 owner = "LibertyDSNP"
 repo = "frequency"
-genesis_hash = "0x2e4c812c20a86dc98692b6cba8ae6de21ccfb1c4303b5c166f68ccfa3117fdc9"
+genesis_hash = "0x0c33dfffa907de5683ae21cc6b4af899b5c4de83f3794ed75b2dc74e1b088e72"

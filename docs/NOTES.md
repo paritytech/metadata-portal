@@ -98,7 +98,7 @@ The purpose of check-deployment is to keep the data.json up to date
 1. Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node
 2. If the hosted vs fetched specs differ
     - Runs the collector to build a new `data.json`
-    - Initiates the deploy workflow (`.github/workflows/deploy/action.yml`) to redeploy the GitHub pages hosted site with the updated `data.json`
+    - Initiates the `deploy` workflow (`.github/workflows/deploy/action.yml`) to redeploy the GitHub pages hosted site with the updated `data.json`
 
 ### Deploy Main Workflow
 `.github/workflows/deploy.yml`
@@ -135,12 +135,12 @@ The purpose of frontend-test is to run linting and React tests
 
 Runs on pull requests targeting the `main` branch with file changes in `public/qr/**` or `config.toml`.
 #### verify job
-The purpose of verify is to ensure that all QR image files are signed by Frequency
+The purpose of `verify` is to ensure that all QR image files are signed by Frequency
 
 ### Verify Skip Workflow
 `.github/workflows/verify-skip.yml`
 
 Runs on pull requests targeting the `main` branch with file changes excluding `public/qr/**` or `config.toml`.
 #### verify-skip job
-The purpose of verify-skip is to serve as a negation of the verify workflow and job
+The purpose of `verify-skip` is to serve as a negation of the verify workflow and job
 - Displays "No verification required" to signify that the file changes did NOT require reverification

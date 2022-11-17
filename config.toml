@@ -16,7 +16,6 @@ public_key = "4402e2896c0aa61006b223f7f9b5e3703080c2f172642fd0c43de9892df76d79"
 # owner = "LibertyDSNP"
 # repo = "frequency"
 # genesis_hash = "0x055dccdb090bf02dce7661ea4a15406b8de6e1c92209ed928feba5ba1ee85387"
-#
 
 [[chains]]
 vanity_name = "Frequency Rococo"

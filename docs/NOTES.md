@@ -2,7 +2,7 @@
 
 ## Overview
 
-The *Frequency Metadata Portal* is a web page that shows users the latest metadata for the *Frequency* blockchain for use with the *Parity Signer* mobile app.
+The *Frequency Metadata Portal* is a website that shows users the latest metadata for the *Frequency* blockchain for use with the *Parity Signer* mobile app.  It utilizes static and video [QR bar codes](https://en.wikipedia.org/wiki/QR_code).
 
 The URL for accessing the portal is:
 
@@ -87,7 +87,7 @@ This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch
 2. If metadata has been updated:
     - Commits added files to the branch
     - Creates a pull request
-3. Notifies technical council or sudo key holder via a Matrix channel (if specified) that new metadata is available
+3. Notifies *technical council* or *sudo key holder* via a [*Matrix*](https://matrix.org) channel (if specified) that new metadata is available
 4. A member of the *technical council* or a *sudo key holder* may then checkout the branch locally and:
     - Run `make signer` to sign the files
     - Run `make collector` to collect version information about the current chains

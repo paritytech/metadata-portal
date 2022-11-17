@@ -6,22 +6,23 @@ qr_dir = "public/qr"
 name = "Frequency"
 public_key = "4402e2896c0aa61006b223f7f9b5e3703080c2f172642fd0c43de9892df76d79"
 
-# [[chains]]
-# name = "frequency"
-# rpc_endpoint = "wss://collator1.frequency.xyz"
-# color = "#4B64FF"
-# testnet = false
-#
-# [chains.github_release]
-# owner = "LibertyDSNP"
-# repo = "frequency"
-# genesis_hash = "0x055dccdb090bf02dce7661ea4a15406b8de6e1c92209ed928feba5ba1ee85387"
+[[chains]]
+vanity_name = "Frequency"
+name = "frequency"
+rpc_endpoint = "wss://node-6999003637804199936.gx.onfinality.io/ws?apikey=31444de7-f7cd-4b04-8916-40f19a024293"
+color = "#4B64FF"
+testnet = false
+
+[chains.github_release]
+owner = "LibertyDSNP"
+repo = "frequency"
+genesis_hash = "0x4a587bf17a404e3572747add7aab7bbe56e805a5479c6c436f07f36fcc8d3ae1"
 
 [[chains]]
 vanity_name = "Frequency Rococo"
 name = "frequency-rococo"
 rpc_endpoint = "wss://rpc.rococo.frequency.xyz"
-color = "#4B64FF"
+color = "#29FD47"
 testnet = true
 
 [chains.github_release]

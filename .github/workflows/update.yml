@@ -8,6 +8,7 @@ on:
 env:
   BRANCH_PREFIX: sign-me
   NOTIFY_MATRIX: false
+  RUST_LOG: debug
 
 jobs:
   update:

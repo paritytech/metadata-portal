@@ -8,6 +8,9 @@ on:
      - '**/*.yml'
      - '**/config.toml'
 
+env:
+  RUST_LOG: debug
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

@@ -29,4 +29,4 @@ testnet = true
 owner = "LibertyDSNP"
 repo = "frequency"
 genesis_hash = "0x0c33dfffa907de5683ae21cc6b4af899b5c4de83f3794ed75b2dc74e1b088e72"
-#
+

@@ -143,4 +143,4 @@ The purpose of `verify` is to ensure that all QR image files are signed by Frequ
 Runs on pull requests targeting the `main` branch with file changes excluding `public/qr/**` or `config.toml`.
 #### verify-skip job
 The purpose of `verify-skip` is to serve as a negation of the verify workflow and job
-- Displays "No verification required" to signify that the file changes did NOT require reverification
+- Displays "No verification required" to signify that the file changes did NOT require re-verification

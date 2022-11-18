@@ -33,7 +33,7 @@ jobs:
             git checkout --track $SIGN_ME_BRANCH
             switched="true"
           fi
-          echo "::set-output name=switched::$switched"
+          echo "name=switched::$switched" >> $GITHUB_OUTPUT
 
       - name: ⚙ Build metadata-cli
         uses: actions-rs/cargo@v1

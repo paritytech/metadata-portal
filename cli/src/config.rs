@@ -129,6 +129,7 @@ impl Default for Chain {
     fn default() -> Self {
         Self {
             name: "polkadot".to_string(),
+            vanity_name: "polkadot".to_string(),
             title: None,
             color: color_default(),
             rpc_endpoints: vec!["wss://example.com".to_string()],

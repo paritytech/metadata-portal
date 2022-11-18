@@ -64,7 +64,7 @@ jobs:
         id: new-branch
         run: |
           NAME="$BRANCH_PREFIX-$(date '+%Y-%m-%d')"
-          echo "::set-output name=name::$NAME"
+          echo "name=name::$NAME" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request if not exist
         if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
@@ -109,10 +109,10 @@ jobs:
           exit_code=$?
           if [ $exit_code -eq 12 ]
           then
-            echo "::set-output name=redeploy::true"
+            echo "name=redeploy::true" >> $GITHUB_OUTPUT
             exit 0
           fi
-          echo "::set-output name=redeploy::false"
+          echo "name=redeploy::false" >> $GITHUB_OUTPUT
           exit $exit_code
         shell: bash {0}
 

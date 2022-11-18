@@ -9,7 +9,7 @@ public_key = "4402e2896c0aa61006b223f7f9b5e3703080c2f172642fd0c43de9892df76d79"
 [[chains]]
 vanity_name = "Frequency"
 name = "frequency"
-rpc_endpoint = "wss://node-6999003637804199936.gx.onfinality.io/ws?apikey=31444de7-f7cd-4b04-8916-40f19a024293"
+rpc_endpoint = "wss://1.rpc.frequency.xyz"
 color = "#4B64FF"
 testnet = false
 

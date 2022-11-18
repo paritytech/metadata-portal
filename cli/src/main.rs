@@ -11,6 +11,7 @@ mod signer;
 mod source;
 mod updater;
 mod verifier;
+mod autosigner;
 
 use std::process::exit;
 
@@ -28,6 +29,7 @@ use crate::signer::sign;
 use crate::updater::source::UpdateSource;
 use crate::updater::{update_from_github, update_from_node};
 use crate::verifier::verify;
+use crate::autosigner::autosign;
 
 /// Main entry point of the `metadata-cli`
 fn main() {
@@ -48,6 +50,7 @@ fn main() {
         SubCommand::Clean => clean(config),
         SubCommand::Collect => collect(config),
         SubCommand::Sign => sign(config),
+        SubCommand::AutoSign => autosign(config),
         SubCommand::Verify => verify(config),
         SubCommand::Update(update_opts) => match update_opts.source {
             UpdateSource::Github => update_from_github(config),

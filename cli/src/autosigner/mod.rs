@@ -13,8 +13,10 @@ use generate_message::parser::{
 };
 use log::info;
 use sp_core::H256;
-
-use crate::lib::path::{ContentType, QrFileName};
+use crate::config::AppConfig;
+use definitions::crypto::Encryption;
+use definitions::error::TransferContent;
+use crate::lib::path::{ContentType, QrFileName, QrPath};
 
 pub(crate) fn autosign(config: AppConfig) -> anyhow::Result<()> {
     log::debug!("autosign()");

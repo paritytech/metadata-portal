@@ -22,6 +22,9 @@ cleaner:
 signer:
 	cargo run --release sign
 
+autosigner:
+	cargo run --release auto-sign
+
 tests:
 	cargo test --release
 

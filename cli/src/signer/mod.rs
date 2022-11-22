@@ -63,7 +63,7 @@ fn run_for_file(qr_path: &QrPath) -> anyhow::Result<()> {
 }
 
 fn sign_qr(unsigned_qr: &QrPath, signature: String) -> anyhow::Result<QrPath> {
-    log::debug!("sign_qr()");
+    log::debug!("sign_qr({}, {})", unsigned_qr, signature);
 
     let mut signed_qr = unsigned_qr.clone();
     signed_qr.file_name.is_signed = true;

@@ -1,132 +1,145 @@
-use std::env;
-use std::fs::File;
-use std::io::Write;
-use std::path::{Path, PathBuf};
+mod generate;
+// mod github;
+// pub(crate) mod source;
+// mod wasm;
 
-use anyhow::anyhow;
-use definitions::metadata::MetaValues;
-use definitions::network_specs::NetworkSpecsToSend;
-use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};
-use generate_message::full_run;
-use generate_message::parser::{
-    Command as SignerCommand, Goal, Make, Msg, Signature, Sufficient, Verifier,
-};
-use log::info;
+use std::str::FromStr;
+
+use blake2_rfc::blake2b::blake2b;
+use hex::ToHex;
+use log::{info, warn};
 use sp_core::H256;
+
 use crate::config::AppConfig;
-use definitions::crypto::Encryption;
-use definitions::error::TransferContent;
-use crate::lib::path::{ContentType, QrFileName, QrPath};
-use sp_core::{ecdsa, ed25519, sr25519, Pair};
+use crate::fetch::Fetcher;
+use crate::qrs::{find_metadata_qrs, find_spec_qrs};
+use crate::source::{save_source_info, Source};
+use crate::updater::github::fetch_latest_runtime;
+use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
+use sp_core::{sr25519, Pair};
 
-pub(crate) fn autosign(config: AppConfig) -> anyhow::Result<()> {
-    log::debug!("autosign()");
 
-    let key = "SIGNING_SEED_PHRASE";
-    match env::var(key) {
-        Ok(val) => {
-            println!("{key}: {val:?}");
-            //let pair = Pair::from_phrase(&val);
-        },
-        Err(e) => println!("couldn't interpret {key}: {e}"),
+// pub(crate) fn autosign(config: AppConfig) -> anyhow::Result<()> {
+//     log::debug!("autosign()");
+
+//     let key = "SIGNING_SEED_PHRASE";
+//     match env::var(key) {
+//         Ok(val) => {
+//             println!("{key}: {val:?}");
+//             //let pair = Pair::from_phrase(&val);
+//         },
+//         Err(e) => println!("couldn't interpret {key}: {e}"),
+//     }
+
+//     // Private key (hex)
+//     // 0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849
+
+//     Ok(())
+// }
+
+pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
+    log::debug!("autosign_from_node()");
+
+    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
+    let specs_qrs = find_spec_qrs(&config.qr_dir)?;
+
+    let mut is_changed = false;
+    for chain in config.chains {
+        // if !specs_qrs.contains_key(chain.name.as_str()) {
+        //     let specs = fetcher.fetch_specs(&chain)?;
+        //      (&specs, &config.qr_dir)?;
+        //     is_changed = true;
+        // }
+        let specs = fetcher.fetch_specs(&chain)?;
+        // (&specs, &config.qr_dir)?;
+        is_changed = true;
+
+        println!("chain={}", chain.name.as_str());
+
+        // let secret = "0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849";
+        let secret = "caution juice atom organ advance problem want pledge someone senior holiday very";
+
+        let sr25519_pair =
+        sr25519::Pair::from_string(secret, None).ok();
+        match sr25519_pair {
+            Some(pair) => {
+                println!("pair={}", pair.public().to_string());
+                let signature = pair.sign(&specs[..]).0.to_vec();
+                println!("signature={}", signature.encode_hex());
+         },
+            None => {},
+        }
+
+
+//        println!("sr25519_pair={}", sr25519_pair);
+
+
+        // let fetched_meta = fetcher.fetch_metadata(&chain)?;
+        // let version = fetched_meta.meta_values.version;
+
+        // // Skip if already have QR for the same version
+        // if let Some(map) = metadata_qrs.get(&chain.name) {
+        //     if map.contains_key(&version) {
+        //         continue;
+        //     }
+        // }
+        // let path = generate_metadata_qr(
+        //     &fetched_meta.meta_values,
+        //     &fetched_meta.genesis_hash,
+        //     &config.qr_dir,
+        // )?;
+        // let source = Source::Rpc {
+        //     block: fetched_meta.block_hash,
+        // };
+        // save_source_info(&path, &source)?;
+        // is_changed = true;
     }
 
+    if !is_changed {
+        info!("🎉 Everything is up to date!");
+    }
     Ok(())
 }
 
-// pub(crate) fn generate_signed_metadata_qr(
-//     meta_values: &MetaValues,
-//     genesis_hash: &H256,
-//     target_dir: &Path,
-// ) -> anyhow::Result<PathBuf> {
-//     log::debug!("generate_signed_metadata_qr()");
+#[tokio::main]
+pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()> {
+    log::debug!("autosign_from_github()");
 
-//     // Create a filename for the signed metadata.
-//     // e.g. {chain_name}_metadata_{spec_version}.apng
-//     let file_name = QrFileName::new(
-//         &meta_values.name.to_lowercase(),
-//         ContentType::Metadata(meta_values.version),
-//         true,
-//     )
-//     .to_string();
-//     let path = target_dir.join(&file_name);
+    // let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
+    // for chain in config.chains {
+    //     info!("🔍 Checking for updates for {}", chain.name);
+    //     if chain.github_release.is_none() {
+    //         info!("↪️ No GitHub releases configured, skipping",);
+    //         continue;
+    //     }
 
-//     // The content for the bar code
-//     let content = ContentLoadMeta::generate(&meta_values.meta, genesis_hash);
+    //     let github_repo = chain.github_release.unwrap();
+    //     let wasm = fetch_latest_runtime(&github_repo, &chain.name).await?;
+    //     if wasm.is_none() {
+    //         warn!("🤨 No releases found");
+    //         continue;
+    //     }
+    //     let wasm = wasm.unwrap();
+    //     info!("📅 Found version {}", wasm.version);
+    //     let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
 
-//     // Generate a signed QR barcode for the metadata using the filename
-//     info!("⚙️  Generating {}...", file_name);
-//     generate_signed_qr(&content.to_sign(), &path, Msg::LoadMetadata, signature)?;
-//     Ok(path)
-// }
+    //     // Skip if already have QR for the same version
+    //     if let Some(map) = metadata_qrs.get(&chain.name) {
+    //         if map.contains_key(&wasm.version) || map.keys().min().unwrap_or(&0) > &wasm.version {
+    //             info!("🎉 {} is up to date!", chain.name);
+    //             continue;
+    //         }
+    //     }
+    //     let wasm_bytes = download_wasm(wasm.to_owned()).await?;
+    //     let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
+    //     let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
+    //     let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir)?;
+    //     let source = Source::Wasm {
+    //         github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
+    //         hash: format!("0x{}", hex::encode(meta_hash)),
+    //     };
+    //     save_source_info(&path, &source)?;
+    // }
+    Ok(())
+}
 
-// pub(crate) fn generate_signed_spec_qr(
-//     specs: &NetworkSpecsToSend,
-//     target_dir: &Path,
-// ) -> anyhow::Result<PathBuf> {
-//     log::debug!("generate_signed_spec_qr()");
-
-//     // Create a filename for the signed specs.
-//     // e.g. {chain_name}_specs.png
-//     let file_name =
-//         QrFileName::new(&specs.name.to_lowercase(), ContentType::Specs, true).to_string();
-//     let path = target_dir.join(&file_name);
-
-//     // The content for the bar code
-//     let content = ContentAddSpecs::generate(specs);
-
-//     // Generate a signed QR barcode for specs using the filename
-//     info!("⚙️  Generating {}...", file_name);
-//     generate_signed_qr(&content.to_sign(), &path, Msg::AddSpecs, signature)?;
-//     Ok(path)
-// }
-
-// fn generate_signed_qr(
-//     content: &[u8],
-//     signed_qr: &QrPath,
-//     msg_type: Msg,
-//     signature: String,
-// ) -> anyhow::Result<QrPath> {
-//     log::debug!("generate_signed_qr()");
-
-//     let transfer_content = match signed_qr.file_name.content_type {
-//         ContentType::Metadata(_) => TransferContent::LoadMeta,
-//         ContentType::Specs => TransferContent::AddSpecs,
-//     };
-//     let passed_crypto = pass_crypto(&content, transfer_content).map_err(|e| anyhow!("{:?}", e))?;
-
-//     let tmp_dir = tempfile::tempdir()?;
-//     let content_file = tmp_dir.path().join("content");
-//     let mut f = File::create(&content_file)?;
-//     f.write_all(passed_crypto.message.deref())?;
-
-//     let make = Make {
-//         goal: Goal::Qr,
-//         verifier: Verifier {
-//             verifier_alice: None,
-//             verifier_hex: None,
-//             verifier_file: None,
-//         },
-//         signature: Signature {
-//             signature_hex: None,
-//             signature_file: None,
-//         },
-//         sufficient: Sufficient {
-//             sufficient_hex: Some(signature),
-//             sufficient_file: None,
-//         },
-//         msg: msg_type,
-//         name: Some(signed_qr.to_path_buf()),
-//         files_dir: signed_qr.dir.clone(),
-//         payload: content_file,
-//         export_dir: signed_qr.dir.clone(),
-//         crypto: Some(Encryption::Sr25519),
-//     };
-//     println!("⚙ generating {}...", signed_qr);
-//     full_run(SignerCommand::Make(make)).map_err(|e| anyhow!("{:?}", e))?;
-//     // Preserve png source information
-//     if let Some(png_source) = read_png_source(&unsigned_qr.to_path_buf())? {
-//         save_source_info(&signed_qr.to_path_buf(), &png_source)?;
-//     };
-//     Ok(signed_qr)
-// }

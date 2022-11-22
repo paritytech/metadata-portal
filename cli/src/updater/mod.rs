@@ -1,7 +1,7 @@
 mod generate;
-mod github;
+pub(crate) mod github;
 pub(crate) mod source;
-mod wasm;
+pub(crate) mod wasm;
 
 use std::str::FromStr;
 

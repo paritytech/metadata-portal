@@ -42,6 +42,7 @@ This flow is for security-oriented users and Parity itself. It allows chain owne
 ## Deployment
 ### Requirements
 1. install https://github.com/paritytech/parity-signer to your signing device
+2. Have the chain wasm runtime in the releases of it's github repository
 
 ### Steps
 

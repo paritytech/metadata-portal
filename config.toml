@@ -30,7 +30,7 @@ verifier = 'insipx'
 [[chains]]
 name = 'astar'
 title = 'Astar'
-color = '#1b6dc1d9'
+color = '#1b6dc1'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Astar.svg'
 rpc_endpoints = [
     'wss://rpc.astar.network',

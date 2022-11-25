@@ -8,4 +8,7 @@ public_key = "6274199fd286efcd04b0234aec390311f312a3af78c3917f8280d16597f40d2a"
 
 [[chains]]
 name = "parallel"
-rpc_endpoint = "wss://parallel.api.onfinality.io/public-ws"
+rpc_endpoints = [
+    'wss://rpc.parallel.fi',
+    'wss://parallel.api.onfinality.io/public-ws',
+]

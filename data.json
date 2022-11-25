@@ -72,14 +72,13 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "metadataVersion": 9320,
+    "metadataVersion": 9330,
     "metadataQr": {
-      "path": "qr/westend_metadata_9320.apng",
+      "path": "qr/westend_metadata_9330.apng",
       "signedBy": "Parity",
       "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0x65e1b568a2d16ddb3568ee5ec0ea798c55149d5cb9637ae314939e98c1ed5adf"
+        "type": "Rpc",
+        "block": "0xa2bf186056fd112b1f8948666633a8775b395184c6d17ba9773f6ea31911938d"
       }
     },
     "nextMetadataVersion": null,

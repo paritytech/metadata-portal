@@ -12,3 +12,5 @@ rpc_endpoints = [
     'wss://rpc.parallel.fi',
     'wss://parallel.api.onfinality.io/public-ws',
 ]
+testnet = false
+verifier = "insipx"

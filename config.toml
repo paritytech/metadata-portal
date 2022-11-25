@@ -3,35 +3,15 @@ public_dir = "public"
 qr_dir = "public/qr"
 
 [verifier]
-name = "Parity"
-public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+name = "OpenTensor (Test)"
+public_key = "a494bc676de50279ddc7ba2ddc87302efc5ff9846965f3041001bf4b2b5c0912"
 
 [[chains]]
-name = "polkadot"
-rpc_endpoint = "wss://rpc.polkadot.io"
-color = "#e6007a"
+name = "node-subtensor"
+rpc_endpoint = "wss://archivelb.nakamoto.opentensor.ai:9943"
+color = "#FFFFFF"
 
 [chains.github_release]
-owner = "paritytech"
-repo = "polkadot"
-genesis_hash = "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3"
-
-[[chains]]
-name = "kusama"
-rpc_endpoint = "wss://kusama-rpc.polkadot.io"
-color = "#000000"
-
-[chains.github_release]
-owner = "paritytech"
-repo = "polkadot"
-genesis_hash = "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"
-
-[[chains]]
-name = "westend"
-rpc_endpoint = "wss://westend-rpc.polkadot.io"
-color = "#f27230"
-
-[chains.github_release]
-owner = "paritytech"
-repo = "polkadot"
-genesis_hash = "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e"
+owner = "opentensor"
+repo = "subtensor"
+genesis_hash = "0xadcb639cec07168f455d8bd3a43badf1114a414836829f5000e8279f70d4c667"

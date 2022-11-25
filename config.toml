@@ -9,7 +9,7 @@ public_key = "a494bc676de50279ddc7ba2ddc87302efc5ff9846965f3041001bf4b2b5c0912"
 [[chains]]
 name = "node-subtensor"
 rpc_endpoint = "wss://archivelb.nakamoto.opentensor.ai:9943"
-color = "#FFFFFF"
+color = "#000000"
 
 [chains.github_release]
 owner = "opentensor"

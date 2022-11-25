@@ -14,3 +14,94 @@ rpc_endpoints = [
 ]
 testnet = false
 verifier = "insipx"
+
+[[chains]]
+name = 'efinity'
+title = 'Efinity'
+color = '#496ddb'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Efinity.svg'
+rpc_endpoints = [
+    'wss://rpc.efinity.io',
+    'wss://efinity-rpc.dwellir.com',
+]
+testnet = false
+verifier = 'insipx'
+
+[[chains]]
+name = 'astar'
+title = 'Astar'
+color = '#1b6dc1d9'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Astar.svg'
+rpc_endpoints = [
+    'wss://rpc.astar.network',
+    'wss://astar.api.onfinality.io/public-ws',
+]
+testnet = false
+verifier = 'insipx'
+
+[[chains]]
+name = 'karura'
+title = 'Karura'
+color = '#ff4c3b'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Karura.svg'
+rpc_endpoints = [
+    'wss://karura-rpc.dwellir.com',
+    'wss://karura-rpc-0.aca-api.network',
+    'wss://karura-rpc-1.aca-api.network',
+    'wss://karura-rpc-2.aca-api.network/ws',
+    'wss://karura-rpc-3.aca-api.network/ws',
+]
+testnet = false
+verifier = 'insipx'
+
+[[chains]]
+name = 'shiden'
+title = 'Shiden'
+color = '#5923B2'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Shiden.svg'
+rpc_endpoints = [
+    'wss://rpc.shiden.astar.network',
+    'wss://shiden.api.onfinality.io/public-ws',
+    'wss://rpc.pinknode.io/shiden/explorer',
+]
+testnet = false
+verifier = 'insipx'
+
+[[chains]]
+name = 'basilisk'
+title = 'Basilisk'
+color = '#9eec1b'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Basilisk.svg'
+rpc_endpoints = [
+    'wss://rpc.basilisk.cloud',
+    'wss://basilisk-rpc.dwellir.com',
+]
+testnet = false
+verifier = 'insipx'
+
+
+[[chains]]
+name = 'heiko'
+title = 'Parallel Heiko'
+color = '#42d5de'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/ParallelHeiko.svg'
+rpc_endpoints = [
+    'wss://heiko-rpc.parallel.fi',
+    'wss://parallel-heiko.api.onfinality.io/public-ws',
+]
+testnet = false
+verifier = 'insipx'
+
+
+[[chains]]
+name = 'statemint'
+title = 'Statemint'
+color = '#86e62a'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Statemint.svg'
+rpc_endpoints = [
+    'wss://statemint-rpc.polkadot.io',
+    'wss://statemint.api.onfinality.io/public-ws',
+    'wss://statemint-rpc.dwellir.com',
+]
+testnet = false
+verifier = 'insipx'

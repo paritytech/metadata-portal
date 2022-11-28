@@ -54,8 +54,16 @@
         "hash": "0xd05890cbf09d8d1462cbf22c505459a13c6afa13a5edc1bddda0a1f5c2810559"
       }
     },
-    "nextMetadataVersion": null,
-    "nextMetadataQr": null,
+    "nextMetadataVersion": 9330,
+    "nextMetadataQr": {
+      "path": "qr/kusama_metadata_9330.apng",
+      "signedBy": "Parity",
+      "source": {
+        "type": "Wasm",
+        "github_repo": "paritytech/polkadot",
+        "hash": "0x746ca1216c15b4b40a983f1efb4b07883dd581d3b49b72fbb8d03d93f91b0a01"
+      }
+    },
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",

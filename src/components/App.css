@@ -18,6 +18,10 @@
   @apply text-center text-3xl mr-2;
 }
 
+  .network_icon img {
+    filter: invert(95%) sepia(99%) saturate(29%) hue-rotate(285deg) brightness(106%) contrast(100%);
+  }
+
 .network_name {
   font-family: "Inter bold";
 }

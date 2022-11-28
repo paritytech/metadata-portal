@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { Chains } from "../scheme";
 import { capitalizeFirstLetter } from "../utils";
 import { ArrowSmRightIcon } from "@heroicons/react/solid";
+import tao_logo from "../assets/img/tao.svg";
 
 interface Props {
   allChains: Chains;
@@ -73,7 +74,10 @@ export default function Sidebar({
                   style={{ backgroundColor: specs.color }}
                 >
                   <div className="flex items-center text-xl text-white font-inter">
-                    <div className="network_icon">{c}</div>
+                    {/** Remove hyphen because Ligatures don't support hyphens */}
+                    <div className="network_icon">
+                      <img src={tao_logo} />
+                      </div> 
                     <div className="network_name">
                       {capitalizeFirstLetter(allChains[c].title)}
                     </div>

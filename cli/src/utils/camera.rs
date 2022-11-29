@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use anyhow::bail;
+use anyhow::{bail, Error};
 use image::{GrayImage, ImageBuffer, Luma};
 use indicatif::ProgressBar;
 use opencv::{
@@ -80,7 +80,10 @@ fn process_qr_image(image: &GrayImage, decoding: InProgress) -> anyhow::Result<R
 
     match codes.last() {
         Some(Ok(code)) => match code.decode() {
-            Ok(decoded) => process_decoded_payload(decoded.payload, decoding),
+            Ok(decoded) => match process_decoded_payload(decoded.payload, decoding) {
+                Ok(result) => Ok(result),
+                Err(_) => Err(Error::msg("error")),
+            },
             Err(_) => Ok(Ready::NotYet(decoding)),
         },
         Some(_) => Ok(Ready::NotYet(decoding)),

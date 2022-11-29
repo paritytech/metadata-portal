@@ -2,8 +2,9 @@ use std::collections::HashMap;
 use std::path::Path;
 
 use anyhow::{anyhow, bail, ensure, Result};
+use definitions::crypto::Encryption;
 use definitions::error::TransferContent;
-use definitions::helpers::multisigner_to_public;
+use definitions::helpers::{multisigner_to_encryption, multisigner_to_public};
 use definitions::metadata::MetaValues;
 use definitions::network_specs::Verifier as NetworkVerifier;
 use definitions::network_specs::VerifierValue;
@@ -57,18 +58,29 @@ fn validate_metadata_qr(
     let data_hex = read_qr_file(&qr_path.to_path_buf())?;
     let signed =
         pass_crypto(&data_hex, TransferContent::LoadMeta).map_err(|e| anyhow!("{:?}", e))?;
+    let encryption = match &signed.verifier.v {
+        Some(VerifierValue::Standard { m }) => multisigner_to_encryption(m),
+        _ => bail!(
+            "unable to get verifier key from qr file: {:?}",
+            &signed.verifier
+        ),
+    };
 
     let (meta, _) = ContentLoadMeta::from_slice(&signed.message)
         .meta_genhash()
         .map_err(|e| anyhow!("{:?}", e))?;
     let meta_values = MetaValues::from_slice_metadata(&meta).map_err(|e| anyhow!("{:?}", e))?;
-    verify_signature(
-        &signed.verifier,
-        &chain_verifier_map
-            .get(&meta_values.name.to_lowercase())
-            .unwrap()
-            .public_key,
-    )?;
+
+    let verifier = &chain_verifier_map
+        .get(&meta_values.name.to_lowercase())
+        .unwrap();
+    let public_key = match encryption {
+        Encryption::Sr25519 => &verifier.public_key,
+        Encryption::Ethereum | Encryption::Ecdsa => verifier.ethereum_public_key.as_ref().unwrap(),
+        _ => bail!("unsupported verifier type: {:?}", &signed.verifier),
+    };
+
+    verify_signature(&signed.verifier, public_key)?;
 
     verify_filename(&meta_values, &qr_path.file_name)?;
     Ok(())

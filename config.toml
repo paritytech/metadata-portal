@@ -4,6 +4,7 @@ qr_dir = 'public/qr'
 [verifiers.novasama]
 name = 'Novasama Technologies'
 public_key = '16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f'
+ethereum_public_key = '031b195495f907908aeedd8e9a0ae128dcf23b6a7425dd16d282df7d867855e7f1'
 
 [verifiers.parity]
 name = 'Parity'
@@ -344,7 +345,10 @@ name = 'subsocial-parachain'
 title = 'Subsocial'
 color = '#69058C'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Subsocial_Parachain.svg'
-rpc_endpoints = ['wss://para.f3joule.space/']
+rpc_endpoints = [
+    'wss://para.f3joule.space',
+    'wss://para.subsocial.network',
+]
 testnet = false
 verifier = 'novasama'
 
@@ -688,5 +692,26 @@ title = 'DAO IPCI'
 color = '#800742'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/DAOIPCI.svg'
 rpc_endpoints = ['wss://kusama.rpc.ipci.io']
+testnet = false
+verifier = 'novasama'
+
+[[chains]]
+name = 'appchain'
+title = 'Myriad'
+color = '#7342CC'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Myriad.svg'
+rpc_endpoints = ['wss://gateway.mainnet.octopus.network/myriad/a4cb0a6e30ff5233a3567eb4e8cb71e0']
+testnet = false
+verifier = 'novasama'
+
+[[chains]]
+name = 'xxnetwork'
+title = 'XX network'
+color = '#0F364A'
+icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/XX_network.svg'
+rpc_endpoints = [
+    'wss://rpc.xx.network',
+    'wss://xxnetwork-rpc.dwellir.com',
+]
 testnet = false
 verifier = 'novasama'

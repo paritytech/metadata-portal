@@ -112,6 +112,7 @@ impl AppConfig {
 pub(crate) struct Verifier {
     pub(crate) name: String,
     pub(crate) public_key: String,
+    pub(crate) ethereum_public_key: Option<String>,
 }
 
 #[cfg(test)]
@@ -120,6 +121,7 @@ impl Default for Verifier {
         Self {
             name: "Test Verifier".to_string(),
             public_key: "123".to_string(),
+            ethereum_public_key: Some("321".to_string()),
         }
     }
 }
@@ -146,6 +148,7 @@ pub(crate) struct Chain {
     pub(crate) github_release: Option<GithubRepo>,
     pub(crate) testnet: Option<bool>,
     pub(crate) verifier: String,
+    pub(crate) encryption: Option<String>,
 }
 
 fn color_default() -> String {
@@ -166,6 +169,7 @@ impl Default for Chain {
             github_release: None,
             testnet: Some(false),
             verifier: String::from("novasama"),
+            encryption: None,
         }
     }
 }

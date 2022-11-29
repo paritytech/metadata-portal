@@ -131,6 +131,7 @@ This flow is important for all users who want to always have the latest metadata
 in their signing devices to parse and sign their transactions right away.
 
 - Cron job `make updsigner --signing-key=<private key> --source=<source>`
+  - where `<private key>` is a private key for signing
   - runs every N hours and checks every known network for the latest metadata version
   - If any network has a new version of metadata that has not yet been published on the Metadata Portal
     - generates signed metadata QR code

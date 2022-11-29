@@ -39,15 +39,15 @@ pub(crate) struct ChainNode {
 }
 
 const EXCLUDE_CHAINS: [&str; 9] = [
-    "Moonbeam",
-    "Moonriver",
-    "Moonbase Relay Testnet",
-    "Moonbase Alpha",
     "Arctic Relay Testnet",
     "Aleph Zero Testnet", //TODO name matches with mainnet and will override it
     "Edgeware",           //TODO (MetadataError(NoVersionInConstants))
     "KICO",               //TODO Specs(Base58PrefixMismatch { specs: 51, meta: 42 })
     "Composable Finance", //TODO  Specs(Base58PrefixMismatch { specs: 50, meta: 49 })
+    "Moonbeam",           //uncomment after PS release
+    "Moonriver",          //uncomment after PS release
+    "Moonbase Relay Testnet", //uncomment after PS release
+    "Moonbase Alpha",     //uncomment after PS release
 ];
 
 pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
@@ -97,13 +97,23 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                     github_release: None,
                     token_decimals: None,
                     token_unit: None,
-                    testnet: match chain.options {
+                    testnet: match &chain.options {
                         Some(options) => Some(options.contains(&String::from("testnet"))),
                         None => Some(false),
                     },
                     verifier: match &chain_template.verifier {
                         Some(value) => String::from(value),
                         None => String::from("novasama"),
+                    },
+                    encryption: match &chain.options {
+                        Some(options) => {
+                            if options.contains(&String::from("ethereumBased")) {
+                                Some(String::from("ethereum"))
+                            } else {
+                                None
+                            }
+                        }
+                        None => None,
                     },
                 });
             }

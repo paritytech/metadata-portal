@@ -89,7 +89,7 @@ mod tests {
 
     use definitions::crypto::Encryption;
     use definitions::metadata::MetaValues;
-    use definitions::network_specs::NetworkSpecsToSend;
+    use definitions::network_specs::NetworkSpecs;
     use generate_message::helpers::MetaFetched;
     use sp_core::H256;
 
@@ -98,8 +98,8 @@ mod tests {
 
     struct MockFetcher;
     impl Fetcher for MockFetcher {
-        fn fetch_specs(&self, _chain: &Chain) -> Result<NetworkSpecsToSend> {
-            Ok(NetworkSpecsToSend {
+        fn fetch_specs(&self, _chain: &Chain) -> Result<NetworkSpecs> {
+            Ok(NetworkSpecs {
                 base58prefix: 0,
                 color: "".to_string(),
                 decimals: 10,

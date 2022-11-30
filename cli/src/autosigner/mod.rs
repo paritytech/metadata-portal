@@ -3,13 +3,18 @@ mod generate;
 // pub(crate) mod source;
 // mod wasm;
 
-use generate::generate_signed_spec_qr;
-use log::info;
+use log::{info,warn};
 use sp_core::{sr25519, Pair};
 
-use crate::autosigner::generate::generate_signed_metadata_qr;
+use generate::{generate_signed_spec_qr,generate_signed_metadata_qr};
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
+use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
+use crate::updater::github::fetch_latest_runtime;
+use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
+use sp_core::H256;
+use blake2_rfc::blake2b::blake2b;
+use std::str::FromStr;
 
 pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
     log::debug!("autosign_from_node()");
@@ -38,7 +43,12 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
         let fetched_meta = fetcher.fetch_metadata(&chain)?;
         let version = fetched_meta.meta_values.version;
 
-        generate_signed_metadata_qr(&sr25519_pair, &fetched_meta.meta_values, &fetched_meta.genesis_hash, &config.qr_dir);
+        generate_signed_metadata_qr(
+            &sr25519_pair,
+            &fetched_meta.meta_values,
+            &fetched_meta.genesis_hash,
+            &config.qr_dir,
+        );
 
         // // Skip if already have QR for the same version
         // if let Some(map) = metadata_qrs.get(&chain.name) {
@@ -68,40 +78,55 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
 pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()> {
     log::debug!("autosign_from_github()");
 
-    // let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
-    // for chain in config.chains {
-    //     info!("🔍 Checking for updates for {}", chain.name);
-    //     if chain.github_release.is_none() {
-    //         info!("↪️ No GitHub releases configured, skipping",);
-    //         continue;
-    //     }
+    let secret = "caution juice atom organ advance problem want pledge someone senior holiday very";
+    let sr25519_pair = match sr25519::Pair::from_string(secret, None) {
+        Ok(pair) => pair,
+        Err(e) => {
+            log::error!("Bad secret seed phrase");
+            panic!();
+        }
+    };
 
-    //     let github_repo = chain.github_release.unwrap();
-    //     let wasm = fetch_latest_runtime(&github_repo, &chain.name).await?;
-    //     if wasm.is_none() {
-    //         warn!("🤨 No releases found");
-    //         continue;
-    //     }
-    //     let wasm = wasm.unwrap();
-    //     info!("📅 Found version {}", wasm.version);
-    //     let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
+    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
+    for chain in config.chains {
+        info!("🔍 Checking for updates for {}", chain.name);
+        if chain.github_release.is_none() {
+            info!("↪️ No GitHub releases configured, skipping",);
+            continue;
+        }
 
-    //     // Skip if already have QR for the same version
-    //     if let Some(map) = metadata_qrs.get(&chain.name) {
-    //         if map.contains_key(&wasm.version) || map.keys().min().unwrap_or(&0) > &wasm.version {
-    //             info!("🎉 {} is up to date!", chain.name);
-    //             continue;
-    //         }
-    //     }
-    //     let wasm_bytes = download_wasm(wasm.to_owned()).await?;
-    //     let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
-    //     let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
-    //     let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir)?;
-    //     let source = Source::Wasm {
-    //         github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
-    //         hash: format!("0x{}", hex::encode(meta_hash)),
-    //     };
-    //     save_source_info(&path, &source)?;
-    // }
+        let github_repo = chain.github_release.unwrap();
+        let wasm = fetch_latest_runtime(&github_repo, &chain.name).await?;
+        if wasm.is_none() {
+            warn!("🤨 No releases found");
+            continue;
+        }
+        let wasm = wasm.unwrap();
+        info!("📅 Found version {}", wasm.version);
+        let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
+
+        // Skip if already have QR for the same version
+        if let Some(map) = metadata_qrs.get(&chain.name) {
+            if map.contains_key(&wasm.version) || map.keys().min().unwrap_or(&0) > &wasm.version {
+                info!("🎉 {} is up to date!", chain.name);
+                continue;
+            }
+        }
+        let wasm_bytes = download_wasm(wasm.to_owned()).await?;
+        let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
+        let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
+        generate_signed_metadata_qr(
+            &sr25519_pair,
+            &meta_values,
+            &genesis_hash,
+            &config.qr_dir,
+        );
+        // let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir)?;
+        //     let source = Source::Wasm {
+        //         github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
+        //         hash: format!("0x{}", hex::encode(meta_hash)),
+        //     };
+        //     save_source_info(&path, &source)?;
+    }
     Ok(())
 }

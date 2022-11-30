@@ -1,3 +1,4 @@
+mod autosigner;
 mod cleaner;
 mod collector;
 mod config;
@@ -11,7 +12,6 @@ mod signer;
 mod source;
 mod updater;
 mod verifier;
-mod autosigner;
 
 use std::process::exit;
 

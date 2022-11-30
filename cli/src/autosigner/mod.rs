@@ -3,79 +3,39 @@ mod generate;
 // pub(crate) mod source;
 // mod wasm;
 
-use std::str::FromStr;
-
-use blake2_rfc::blake2b::blake2b;
-use hex::ToHex;
-use log::{info, warn};
-use sp_core::H256;
+use generate::generate_signed_spec_qr;
+use log::info;
+use sp_core::{sr25519, Pair};
 
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
-use crate::qrs::{find_metadata_qrs, find_spec_qrs};
-use crate::source::{save_source_info, Source};
-use crate::updater::github::fetch_latest_runtime;
-use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
-use sp_core::{sr25519, Pair};
-
-
-// pub(crate) fn autosign(config: AppConfig) -> anyhow::Result<()> {
-//     log::debug!("autosign()");
-
-//     let key = "SIGNING_SEED_PHRASE";
-//     match env::var(key) {
-//         Ok(val) => {
-//             println!("{key}: {val:?}");
-//             //let pair = Pair::from_phrase(&val);
-//         },
-//         Err(e) => println!("couldn't interpret {key}: {e}"),
-//     }
-
-//     // Private key (hex)
-//     // 0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849
-
-//     Ok(())
-// }
 
 pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
     log::debug!("autosign_from_node()");
 
-    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
-    let specs_qrs = find_spec_qrs(&config.qr_dir)?;
+    let secret = "caution juice atom organ advance problem want pledge someone senior holiday very";
+    let sr25519_pair = match sr25519::Pair::from_string(secret, None) {
+        Ok(pair) => pair,
+        Err(e) => {
+            log::error!("Bad secret seed phrase");
+            panic!();
+        }
+    };
 
     let mut is_changed = false;
     for chain in config.chains {
-        // if !specs_qrs.contains_key(chain.name.as_str()) {
-        //     let specs = fetcher.fetch_specs(&chain)?;
-        //      (&specs, &config.qr_dir)?;
-        //     is_changed = true;
-        // }
-        let specs = fetcher.fetch_specs(&chain)?;
+        let network_specs = fetcher.fetch_specs(&chain)?;
         // (&specs, &config.qr_dir)?;
         is_changed = true;
 
         println!("chain={}", chain.name.as_str());
 
-        // let secret = "0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849";
-        let secret = "caution juice atom organ advance problem want pledge someone senior holiday very";
+        generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir);
 
-        let sr25519_pair =
-        sr25519::Pair::from_string(secret, None).ok();
-        match sr25519_pair {
-            Some(pair) => {
-                println!("pair={}", pair.public().to_string());
-                let signature = pair.sign(&specs[..]).0.to_vec();
-                println!("signature={}", signature.encode_hex());
-         },
-            None => {},
-        }
+        // println!("sr25519_pair={}", sr25519_pair);
 
-
-//        println!("sr25519_pair={}", sr25519_pair);
-
-
-        // let fetched_meta = fetcher.fetch_metadata(&chain)?;
-        // let version = fetched_meta.meta_values.version;
+        let fetched_meta = fetcher.fetch_metadata(&chain)?;
+        let version = fetched_meta.meta_values.version;
 
         // // Skip if already have QR for the same version
         // if let Some(map) = metadata_qrs.get(&chain.name) {
@@ -142,4 +102,3 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
     // }
     Ok(())
 }
-

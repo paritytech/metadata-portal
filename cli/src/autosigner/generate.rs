@@ -46,18 +46,17 @@ pub(crate) fn generate_signed_spec_qr(
     let msg_type_code = "c1";
     let msg_type = Msg::AddSpecs;
     let prelude = format!("53{}{}", crypto_type_code, msg_type_code);
-    let sr25519_pair = pair;
-    let sig = sr25519_pair.sign(&message_to_verify[..]);
+    let sig = pair.sign(&message_to_verify[..]);
     let signature = sig.0.to_vec();
     let s = SufficientCrypto::Sr25519 {
-        public: pair.public(),
+        public: pair.clone().public(),
         signature: sig,
     };
     let signature_encoded = SufficientCrypto::encode(&s);
     let signature_hex = hex::encode(&signature_encoded);
     let complete_message = [
         hex::decode(prelude).expect("known value"),
-        sr25519_pair.public().to_vec(),
+        pair.public().to_vec(),
         message_to_transfer,
         signature,
     ]
@@ -106,32 +105,61 @@ pub(crate) fn generate_signed_spec_qr(
     Ok(path)
 }
 
-fn sign_qr(
-    unsigned_qr: &QrPath,
-    data: &str,
-    content_type: ContentType,
-    signature: String,
-) -> anyhow::Result<QrPath> {
-    log::debug!("sign_qr({}, {})", unsigned_qr, signature);
+pub(crate) fn generate_signed_metadata_qr(
+    pair: &sp_core::sr25519::Pair,
+    meta_values: &MetaValues,
+    genesis_hash: &H256,
+    target_dir: &Path,
+) -> anyhow::Result<PathBuf> {
+    log::debug!("generate_signed_metadata_qr()");
 
-    let mut signed_qr = unsigned_qr.clone();
-    signed_qr.file_name.is_signed = true;
+    let content = ContentLoadMeta::generate(&meta_values.meta, genesis_hash);
 
-    let transfer_content = match content_type {
-        ContentType::Metadata(_) => TransferContent::LoadMeta,
-        ContentType::Specs => TransferContent::AddSpecs,
+    let file_name = QrFileName::new(
+        &meta_values.name.to_lowercase(),
+        ContentType::Metadata(meta_values.version),
+        true,
+    )
+    .to_string();
+    let path = target_dir.join(&file_name);
+    let qrPath = QrPath::try_from(&path).ok().unwrap();
+
+    let message_to_verify = content.to_sign();
+    let message_to_transfer = content.to_transfer();
+    let crypto_type_code = "01";
+    let msg_type_code = "80";
+    let msg_type = Msg::LoadMetadata;
+    let prelude = format!("53{}{}", crypto_type_code, msg_type_code);
+    let sig = pair.sign(&message_to_verify[..]);
+    let signature = sig.0.to_vec();
+    let s = SufficientCrypto::Sr25519 {
+        public: pair.clone().public(),
+        signature: sig,
     };
+    let signature_encoded = SufficientCrypto::encode(&s);
+    let signature_hex = hex::encode(&signature_encoded);
+    let complete_message = [
+        hex::decode(prelude).expect("known value"),
+        pair.clone().public().to_vec(),
+        message_to_transfer,
+        signature,
+    ]
+    .concat();
 
-    let passed_crypto = pass_crypto(data, transfer_content).map_err(|e| anyhow!("{:?}", e))?;
+    let data_hex = hex::encode(&complete_message);
+    let passed_crypto =
+        pass_crypto(&data_hex, TransferContent::LoadMeta).map_err(|e| anyhow!("{:?}", e))?;
 
-    let msg_type = match content_type {
-        ContentType::Metadata(_) => Msg::LoadMetadata,
-        ContentType::Specs => Msg::AddSpecs,
-    };
     let tmp_dir = tempfile::tempdir()?;
     let content_file = tmp_dir.path().join("content");
     let mut f = File::create(&content_file)?;
-    f.write_all(passed_crypto.message.deref())?;
+    f.write_all(&passed_crypto.message.deref())?;
+
+    let signed_qr = qrPath;
+
+    println!("FILE={}", signed_qr);
+    println!("SIGNATURE={}", signature_hex);
+    println!("MESSAGE={}", hex::encode(&complete_message));
 
     let make = Make {
         goal: Goal::Qr,
@@ -145,7 +173,7 @@ fn sign_qr(
             signature_file: None,
         },
         sufficient: Sufficient {
-            sufficient_hex: Some(signature),
+            sufficient_hex: Some(signature_hex),
             sufficient_file: None,
         },
         msg: msg_type,
@@ -156,41 +184,8 @@ fn sign_qr(
         crypto: Some(Encryption::Sr25519),
     };
     println!("⚙ Generating {}...", signed_qr);
-    full_run(SignerCommand::Make(make)).map_err(|e| anyhow!("{:?}", e))?;
-    // Preserve png source information
-    // if let Some(png_source) = read_png_source(&unsigned_qr.to_path_buf())? {
-    //     save_source_info(&signed_qr.to_path_buf(), &png_source)?;
-    // };
-    Ok(signed_qr)
-}
+    full_run(SignerCommand::Make(make)).map_err(|e| anyhow!("{:?}", e));
 
-pub(crate) fn generate_signed_metadata_qr(
-    pair: sp_core::sr25519::Pair,
-    meta_values: &MetaValues,
-    genesis_hash: &H256,
-    target_dir: &Path,
-) -> anyhow::Result<PathBuf> {
-    log::debug!("generate_signed_metadata_qr()");
-
-    let content = ContentLoadMeta::generate(&meta_values.meta, genesis_hash);
-    let signature = pair.sign(&content.to_sign());
-    //println!("signature={:?}", signature);
-
-    let file_name = QrFileName::new(
-        &meta_values.name.to_lowercase(),
-        ContentType::Metadata(meta_values.version),
-        true,
-    )
-    .to_string();
-    let path = target_dir.join(&file_name);
-
-    info!("⚙️  Generating {}...", file_name);
-    generate_signed_qr(
-        &content.to_sign(),
-        signature.encode_hex::<String>(),
-        &path,
-        Msg::LoadMetadata,
-    )?;
     Ok(path)
 }
 

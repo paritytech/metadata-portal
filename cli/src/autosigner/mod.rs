@@ -7,6 +7,7 @@ use generate::generate_signed_spec_qr;
 use log::info;
 use sp_core::{sr25519, Pair};
 
+use crate::autosigner::generate::generate_signed_metadata_qr;
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
 
@@ -36,6 +37,8 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
 
         let fetched_meta = fetcher.fetch_metadata(&chain)?;
         let version = fetched_meta.meta_values.version;
+
+        generate_signed_metadata_qr(&sr25519_pair, &fetched_meta.meta_values, &fetched_meta.genesis_hash, &config.qr_dir);
 
         // // Skip if already have QR for the same version
         // if let Some(map) = metadata_qrs.get(&chain.name) {

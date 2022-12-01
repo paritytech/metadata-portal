@@ -35,7 +35,7 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
         // (&specs, &config.qr_dir)?;
         is_changed = true;
 
-        println!("chain={}", chain.name.as_str());
+        log::debug!("chain={}", chain.name.as_str());
 
         generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir);
 
@@ -113,13 +113,17 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
         let wasm_bytes = download_wasm(wasm.to_owned()).await?;
         let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
         let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
-        generate_signed_metadata_qr(&sr25519_pair, &meta_values, &genesis_hash, &config.qr_dir);
-        // let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir)?;
-        //     let source = Source::Wasm {
-        //         github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
-        //         hash: format!("0x{}", hex::encode(meta_hash)),
-        //     };
-        //     save_source_info(&path, &source)?;
+        let path = generate_signed_metadata_qr(
+            &sr25519_pair,
+            &meta_values,
+            &genesis_hash,
+            &config.qr_dir,
+        )?;
+        let source = Source::Wasm {
+            github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
+            hash: format!("0x{}", hex::encode(meta_hash)),
+        };
+        save_source_info(&path, &source)?;
     }
     Ok(())
 }

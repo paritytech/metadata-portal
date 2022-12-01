@@ -12,7 +12,7 @@ use sp_core::{sr25519, Pair};
 
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
-use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
+use crate::qrs::{find_metadata_qrs, find_spec_qrs, next_metadata_version};
 use crate::source::{save_source_info, Source};
 use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
@@ -24,7 +24,7 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
     let sr25519_pair = match sr25519::Pair::from_string(secret, None) {
         Ok(pair) => pair,
         Err(e) => {
-            log::error!("Bad secret seed phrase");
+            log::error!("Error: Bad secret seed phrase {e:?}");
             panic!();
         }
     };
@@ -37,7 +37,7 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
 
         log::debug!("chain={}", chain.name.as_str());
 
-        generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir);
+        generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir)?;
 
         // println!("sr25519_pair={}", sr25519_pair);
 
@@ -80,7 +80,7 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
     let sr25519_pair = match sr25519::Pair::from_string(secret, None) {
         Ok(pair) => pair,
         Err(e) => {
-            log::error!("Bad secret seed phrase");
+            log::error!("Error: Bad secret seed phrase. {e:?}");
             panic!();
         }
     };

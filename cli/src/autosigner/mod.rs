@@ -1,20 +1,21 @@
 mod generate;
 // mod github;
-// pub(crate) mod source;
 // mod wasm;
 
-use log::{info,warn};
+use std::str::FromStr;
+
+use blake2_rfc::blake2b::blake2b;
+use generate::{generate_signed_metadata_qr, generate_signed_spec_qr};
+use log::{info, warn};
+use sp_core::H256;
 use sp_core::{sr25519, Pair};
 
-use generate::{generate_signed_spec_qr,generate_signed_metadata_qr};
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
 use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
+use crate::source::{save_source_info, Source};
 use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
-use sp_core::H256;
-use blake2_rfc::blake2b::blake2b;
-use std::str::FromStr;
 
 pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
     log::debug!("autosign_from_node()");
@@ -43,28 +44,25 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
         let fetched_meta = fetcher.fetch_metadata(&chain)?;
         let version = fetched_meta.meta_values.version;
 
-        generate_signed_metadata_qr(
-            &sr25519_pair,
-            &fetched_meta.meta_values,
-            &fetched_meta.genesis_hash,
-            &config.qr_dir,
-        );
-
         // // Skip if already have QR for the same version
         // if let Some(map) = metadata_qrs.get(&chain.name) {
         //     if map.contains_key(&version) {
         //         continue;
         //     }
         // }
-        // let path = generate_metadata_qr(
-        //     &fetched_meta.meta_values,
-        //     &fetched_meta.genesis_hash,
-        //     &config.qr_dir,
-        // )?;
-        // let source = Source::Rpc {
-        //     block: fetched_meta.block_hash,
-        // };
-        // save_source_info(&path, &source)?;
+
+        let path = generate_signed_metadata_qr(
+            &sr25519_pair,
+            &fetched_meta.meta_values,
+            &fetched_meta.genesis_hash,
+            &config.qr_dir,
+        )?;
+
+        let source = Source::Rpc {
+            block: fetched_meta.block_hash,
+        };
+        save_source_info(&path, &source)?;
+
         // is_changed = true;
     }
 
@@ -115,12 +113,7 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
         let wasm_bytes = download_wasm(wasm.to_owned()).await?;
         let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
         let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
-        generate_signed_metadata_qr(
-            &sr25519_pair,
-            &meta_values,
-            &genesis_hash,
-            &config.qr_dir,
-        );
+        generate_signed_metadata_qr(&sr25519_pair, &meta_values, &genesis_hash, &config.qr_dir);
         // let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir)?;
         //     let source = Source::Wasm {
         //         github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),

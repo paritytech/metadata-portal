@@ -96,10 +96,6 @@ pub(crate) fn generate_signed_spec_qr(
     };
     println!("⚙ Generating {}...", signed_qr);
     full_run(SignerCommand::Make(make)).map_err(|e| anyhow!("{:?}", e))?;
-    // // Preserve png source information
-    // if let Some(png_source) = read_png_source(&unsigned_qr.to_path_buf())? {
-    //     save_source_info(&signed_qr.to_path_buf(), &png_source)?;
-    // };
 
     Ok(path)
 }

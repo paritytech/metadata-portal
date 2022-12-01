@@ -37,7 +37,7 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
 
         log::debug!("chain={}", chain.name.as_str());
 
-        generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir)?;
+        let path = generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir)?;
 
         // println!("sr25519_pair={}", sr25519_pair);
 
@@ -58,6 +58,7 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
             &config.qr_dir,
         )?;
 
+        info!("Saving source metadata.");
         let source = Source::Rpc {
             block: fetched_meta.block_hash,
         };
@@ -119,6 +120,7 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
             &genesis_hash,
             &config.qr_dir,
         )?;
+        info!("Saving source metadata.");
         let source = Source::Wasm {
             github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
             hash: format!("0x{}", hex::encode(meta_hash)),

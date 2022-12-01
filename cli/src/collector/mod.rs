@@ -1,5 +1,5 @@
 pub(crate) mod export;
-mod file;
+pub(crate) mod file;
 
 use crate::collector::export::export_specs;
 use crate::collector::file::save_to_file;

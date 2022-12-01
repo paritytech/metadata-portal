@@ -2,6 +2,7 @@ mod generate;
 // mod github;
 // mod wasm;
 
+use std::env;
 use std::str::FromStr;
 
 use blake2_rfc::blake2b::blake2b;
@@ -23,18 +24,29 @@ use crate::fetch::RpcFetcher;
 pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
     log::debug!("autosign_from_node()");
 
-    let specs = export_specs(&config, RpcFetcher)?;
-    save_to_file(&specs, config.data_file)?;
+    // let specs = export_specs(&config, RpcFetcher)?;
+    // save_to_file(&specs, config.data_file)?;
 
-    let secret = "caution juice atom organ advance problem want pledge someone senior holiday very";
-    let sr25519_pair = match sr25519::Pair::from_string(secret, None) {
+    //let secret = "caution juice atom organ advance problem want pledge someone senior holiday very";
+
+    let secret_key = "SIGNING_SEED_PHRASE";
+    let mut secret_seed_phrase = String::from("");
+
+    match env::var(secret_key) {
+        Ok(value) => secret_seed_phrase = value,
+        Err(e) => {
+            log::error!("Could not interpret environment variable: {secret_key}: {e}");
+            panic!();
+        },
+    }
+
+    let sr25519_pair = match sr25519::Pair::from_string(&secret_seed_phrase, None) {
         Ok(pair) => pair,
         Err(e) => {
             log::error!("Error: Bad secret seed phrase {e:?}");
             panic!();
         }
     };
-
     let mut is_changed = false;
     for chain in config.chains {
         let network_specs = fetcher.fetch_specs(&chain)?;

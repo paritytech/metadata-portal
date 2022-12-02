@@ -4,7 +4,7 @@ qr_dir = "public/qr"
 
 [verifier]
 name = "Frequency"
-public_key = "d6a3105d6768e956e9e5d41050ac29843f98561410d3a47f9dd5b3b227ab8746"
+public_key = "4402e2896c0aa61006b223f7f9b5e3703080c2f172642fd0c43de9892df76d79"
 
 [[chains]]
 vanity_name = "Frequency"

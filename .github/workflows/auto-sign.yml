@@ -1,0 +1,135 @@
+name: Auto Sign
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+env:
+  BRANCH_PREFIX: auto-signed
+  NOTIFY_MATRIX: false
+  RUST_LOG: debug
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
+
+      - name: Try to checkout exising PR branch
+        id: checkout-pr
+        run: |
+          AUTO_SIGNED_BRANCH=$(git branch -r --list "origin/$BRANCH_PREFIX-*" --sort=-refname | head -n 1)
+          if [ -z "$AUTO_SIGNED_BRANCH" ]
+          then
+            switched="false"
+          else
+            git checkout --track $AUTO_SIGNED_BRANCH
+            switched="true"
+          fi
+          echo "name=switched::$switched" >> $GITHUB_OUTPUT
+
+      - name: ⚙ Build metadata-cli
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release
+
+      - name: ⚙ Autosign QRs from RPC nodes
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- auto-sign --source node
+
+      - name: ⚙ Autosign QRs from GitHub releases
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- auto-sign --source github
+
+      - name: ⚙ Run Collector
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- collect
+
+      - name: ⚙ Run Cleaner
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- clean
+
+      - name: 📌 Commit changes if PR exists
+        if: ${{ steps.checkout-pr.outputs.switched == 'true' }}
+        uses: ./.github/workflows/commit-changes
+        with:
+          message: 'metadata update'
+
+      - name: New PR branch
+        if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
+        id: new-branch
+        run: |
+          NAME="$BRANCH_PREFIX-$(date '+%Y-%m-%d')"
+          echo "name=name::$NAME" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request if not exist
+        if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
+        id: cpr
+        uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330
+        with:
+          commit-message: add signed QR image files
+          branch: ${{ steps.new-branch.outputs.name }}
+          delete-branch: true
+          base: main
+          title: '[Automated] New signed metadata QR image files'
+          body: |
+            Inspect this branch and ensure the correctness of new signed metadata QR image files
+          draft: true
+
+      - name: Notify Matrix channel
+        uses: s3krit/matrix-message-action@v0.0.3
+        if: ${{ env.NOTIFY_MATRIX == 'true' && steps.cpr.outputs.pull-request-operation == 'created' }}
+        with:
+          room_id: ${{ secrets.MATRIX_ROOM_ID }}
+          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          server: ${{ secrets.MATRIX_SERVER }}
+          message: "# New metadata is available! 📑
+[GitHub PR#${{ steps.cpr.outputs.pull-request-number }}](${{ steps.cpr.outputs.pull-request-url }})"
+
+  check-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
+
+      - name: ⚙ Check existing deployment
+        id: check-deployment
+        run: |
+          cargo run --release -- check-deployment
+          exit_code=$?
+          if [ $exit_code -eq 12 ]
+          then
+            echo "name=redeploy::true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          echo "name=redeploy::false" >> $GITHUB_OUTPUT
+          exit $exit_code
+        shell: bash {0}
+
+      - name: ⚙ Run collector
+        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        run: make collector
+
+      - if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
+        uses: ./.github/workflows/deploy
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

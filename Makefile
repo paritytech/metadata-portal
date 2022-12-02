@@ -18,7 +18,7 @@ clean:
 	rm -rf target
 
 remove:
-	rm -f public/data.json public/qr/*
+	rm -f public/data.json public/qr/*.{png,apng}
 
 verifier:
 	cargo run --release verify

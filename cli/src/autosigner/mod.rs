@@ -7,15 +7,12 @@ use std::str::FromStr;
 
 use blake2_rfc::blake2b::blake2b;
 use generate::{generate_signed_metadata_qr, generate_signed_spec_qr};
-use log::{error, info, warn};
+use log::{info, warn};
 use sp_core::H256;
 use sp_core::{sr25519, Pair};
 
-use crate::collector::export::export_specs;
-use crate::collector::file::save_to_file;
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
-use crate::fetch::RpcFetcher;
 use crate::qrs::{find_metadata_qrs, find_spec_qrs, next_metadata_version};
 use crate::source::{save_source_info, Source};
 use crate::updater::github::fetch_latest_runtime;
@@ -27,7 +24,7 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
     // let devsecret = "caution juice atom organ advance problem want pledge someone senior holiday very";
 
     let secret_key = "SIGNING_SEED_PHRASE";
-    let mut secret_seed_phrase = String::from("");
+    let secret_seed_phrase;
 
     match env::var(secret_key) {
         Ok(value) => secret_seed_phrase = value,
@@ -95,7 +92,7 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
     // let devsecret = "caution juice atom organ advance problem want pledge someone senior holiday very";
 
     let secret_key = "SIGNING_SEED_PHRASE";
-    let mut secret_seed_phrase = String::from("");
+    let secret_seed_phrase;
 
     match env::var(secret_key) {
         Ok(value) => secret_seed_phrase = value,

@@ -7,27 +7,24 @@ use std::str::FromStr;
 
 use blake2_rfc::blake2b::blake2b;
 use generate::{generate_signed_metadata_qr, generate_signed_spec_qr};
-use log::{info, warn};
+use log::{error, info, warn};
 use sp_core::H256;
 use sp_core::{sr25519, Pair};
 
+use crate::collector::export::export_specs;
+use crate::collector::file::save_to_file;
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
+use crate::fetch::RpcFetcher;
 use crate::qrs::{find_metadata_qrs, find_spec_qrs, next_metadata_version};
 use crate::source::{save_source_info, Source};
 use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
-use crate::collector::export::export_specs;
-use crate::collector::file::save_to_file;
-use crate::fetch::RpcFetcher;
 
 pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyhow::Result<()> {
     log::debug!("autosign_from_node()");
 
-    // let specs = export_specs(&config, RpcFetcher)?;
-    // save_to_file(&specs, config.data_file)?;
-
-    //let secret = "caution juice atom organ advance problem want pledge someone senior holiday very";
+    // let devsecret = "caution juice atom organ advance problem want pledge someone senior holiday very";
 
     let secret_key = "SIGNING_SEED_PHRASE";
     let mut secret_seed_phrase = String::from("");
@@ -37,7 +34,7 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
         Err(e) => {
             log::error!("Could not interpret environment variable: {secret_key}: {e}");
             panic!();
-        },
+        }
     }
 
     let sr25519_pair = match sr25519::Pair::from_string(&secret_seed_phrase, None) {
@@ -95,10 +92,19 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
 pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()> {
     log::debug!("autosign_from_github()");
 
-    let specs = export_specs(&config, RpcFetcher)?;
-    save_to_file(&specs, config.data_file)?;
+    // let devsecret = "caution juice atom organ advance problem want pledge someone senior holiday very";
 
-    let secret = "caution juice atom organ advance problem want pledge someone senior holiday very";
+    let secret_key = "SIGNING_SEED_PHRASE";
+    let mut secret_seed_phrase = String::from("");
+
+    match env::var(secret_key) {
+        Ok(value) => secret_seed_phrase = value,
+        Err(e) => {
+            log::error!("Could not interpret environment variable: {secret_key}: {e}");
+            panic!();
+        }
+    }
+
     let sr25519_pair = match sr25519::Pair::from_string(secret, None) {
         Ok(pair) => pair,
         Err(e) => {
@@ -148,5 +154,6 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
         };
         save_source_info(&path, &source)?;
     }
+
     Ok(())
 }

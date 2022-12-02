@@ -13,7 +13,7 @@ use sp_core::{sr25519, Pair};
 
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
-use crate::qrs::{find_metadata_qrs, find_spec_qrs, next_metadata_version};
+use crate::qrs::{find_metadata_qrs, find_spec_qrs};
 use crate::source::{save_source_info, Source};
 use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
@@ -41,27 +41,29 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
             panic!();
         }
     };
+
+    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
+    let specs_qrs = find_spec_qrs(&config.qr_dir)?;
+
     let mut is_changed = false;
     for chain in config.chains {
-        let network_specs = fetcher.fetch_specs(&chain)?;
-        // (&specs, &config.qr_dir)?;
-        is_changed = true;
-
         log::debug!("chain={}", chain.name.as_str());
 
-        let path = generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir)?;
-
-        // println!("sr25519_pair={}", sr25519_pair);
+        if !specs_qrs.contains_key(chain.name.as_str()) {
+            let network_specs = fetcher.fetch_specs(&chain)?;
+            generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir)?;
+            is_changed = true;
+        }
 
         let fetched_meta = fetcher.fetch_metadata(&chain)?;
         let version = fetched_meta.meta_values.version;
 
-        // // Skip if already have QR for the same version
-        // if let Some(map) = metadata_qrs.get(&chain.name) {
-        //     if map.contains_key(&version) {
-        //         continue;
-        //     }
-        // }
+        // Skip if already have QR for the same version
+        if let Some(map) = metadata_qrs.get(&chain.name) {
+            if map.contains_key(&version) {
+                continue;
+            }
+        }
 
         let path = generate_signed_metadata_qr(
             &sr25519_pair,
@@ -70,12 +72,12 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
             &config.qr_dir,
         )?;
 
-        info!("Saving source metadata.");
+        info!("💾 Saving source metadata.");
         let source = Source::Rpc {
             block: fetched_meta.block_hash,
         };
         save_source_info(&path, &source)?;
-        // is_changed = true;
+        is_changed = true;
     }
 
     if !is_changed {

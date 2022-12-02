@@ -5,7 +5,20 @@ ifeq ($(UNAME), Darwin)
 	export DYLD_FALLBACK_LIBRARY_PATH=$(shell xcode-select --print-path)/usr/lib
 endif
 
-all: tests verifier updater collector cleaner signer
+# "all" target builds the project
+# "clean" target cleans installed build to prepare for a fresh build
+# "remove" target removes data files including QR bar codes
+
+#all: tests verifier updater collector cleaner signer
+
+all:
+	cargo build --release  
+
+clean:
+	rm -rf target
+
+remove:
+	rm -f public/data.json public/qr/*
 
 verifier:
 	cargo run --release verify

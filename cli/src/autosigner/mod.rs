@@ -75,7 +75,6 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
             block: fetched_meta.block_hash,
         };
         save_source_info(&path, &source)?;
-
         // is_changed = true;
     }
 

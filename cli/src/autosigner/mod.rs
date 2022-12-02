@@ -105,10 +105,10 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
         }
     }
 
-    let sr25519_pair = match sr25519::Pair::from_string(secret, None) {
+    let sr25519_pair = match sr25519::Pair::from_string(&secret_seed_phrase, None) {
         Ok(pair) => pair,
         Err(e) => {
-            log::error!("Error: Bad secret seed phrase. {e:?}");
+            log::error!("Error: Bad secret seed phrase {e:?}");
             panic!();
         }
     };

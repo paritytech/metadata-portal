@@ -59,9 +59,11 @@ pub(crate) fn download_metadata_qr(
     let path = target_dir.join(&file_name);
     let url = format!("{}/{}", url, &file_name);
     let response = reqwest::blocking::get(url).unwrap();
-    let mut content = Cursor::new(response.bytes().unwrap());
-    let mut file = File::create(&path)?;
-    copy(&mut content, &mut file)?;
+    if response.status() == 200 {
+      let mut content = Cursor::new(response.bytes().unwrap());
+      let mut file = File::create(&path)?;
+      copy(&mut content, &mut file)?;
+    }
     Ok(path)
 }
 

@@ -23,7 +23,10 @@ jobs:
 
       - name: ⚙ Run verifier
         id: verify
-        run: make verifier
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release -- verify
 
       - name: ⚙ Run collector
         id: collect

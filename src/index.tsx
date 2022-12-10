@@ -9,11 +9,11 @@ ReactDOM.render(
     <React.StrictMode>
       <Routes>
         <Route
-          path="/metadata-portal"
+          path="/"
           element={<App mode={ChainsMode.Prod} />}
         />
         <Route
-          path="/metadata-portal/dev"
+          path="/dev"
           element={<App mode={ChainsMode.Dev} />}
         />
       </Routes>

@@ -22,7 +22,7 @@ jobs:
       - name: 🔧 Install rust dependencies
         uses: ./.github/workflows/rust-install
 
-      - name: Try to checkout exising PR branch
+      - name: Try to checkout existing PR branch
         id: checkout-pr
         run: |
           SIGN_ME_BRANCH=$(git branch -r --list "origin/$BRANCH_PREFIX-*" --sort=-refname | head -n 1)

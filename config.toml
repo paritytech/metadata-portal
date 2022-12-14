@@ -1,14 +1,14 @@
 data_file = 'public/data.json'
 public_dir = 'public'
 qr_dir = 'public/qr'
+[verifiers.parity]
+name = 'Parity'
+public_key = 'c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57'
+
 [verifiers.novasama]
 name = 'Novasama Technologies'
 public_key = '16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f'
 ethereum_public_key = '031b195495f907908aeedd8e9a0ae128dcf23b6a7425dd16d282df7d867855e7f1'
-
-[verifiers.parity]
-name = 'Parity'
-public_key = 'c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57'
 
 [[chains]]
 name = 'polkadot'

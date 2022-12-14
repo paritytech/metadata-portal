@@ -38,10 +38,9 @@ pub(crate) struct ChainNode {
     pub(crate) url: String,
 }
 
-const EXCLUDE_CHAINS: [&str; 9] = [
+const EXCLUDE_CHAINS: [&str; 8] = [
     "Arctic Relay Testnet",
     "Aleph Zero Testnet", //TODO name matches with mainnet and will override it
-    "Edgeware",           //TODO (MetadataError(NoVersionInConstants))
     "KICO",               //TODO Specs(Base58PrefixMismatch { specs: 51, meta: 42 })
     "Composable Finance", //TODO  Specs(Base58PrefixMismatch { specs: 50, meta: 49 })
     "Moonbeam",           //uncomment after PS release

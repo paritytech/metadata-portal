@@ -8,14 +8,8 @@ ReactDOM.render(
   <Router>
     <React.StrictMode>
       <Routes>
-        <Route
-          path="/"
-          element={<App mode={ChainsMode.Prod} />}
-        />
-        <Route
-          path="/dev"
-          element={<App mode={ChainsMode.Dev} />}
-        />
+        <Route path="/" element={<App mode={ChainsMode.Prod} />} />
+        <Route path="/dev" element={<App mode={ChainsMode.Dev} />} />
       </Routes>
     </React.StrictMode>
   </Router>,

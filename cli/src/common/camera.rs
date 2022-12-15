@@ -35,7 +35,7 @@ pub(crate) fn read_qr_file(source_file: &Path) -> anyhow::Result<String> {
             }
             Ready::Yes(a) => {
                 pb.finish_and_clear();
-                line.push_str(&hex::encode(&a));
+                line.push_str(&hex::encode(a));
                 break;
             }
         }

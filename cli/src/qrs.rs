@@ -4,8 +4,8 @@ use std::path::Path;
 
 use anyhow::{Context, Result};
 
-use crate::lib::path::{ContentType, QrPath};
-use crate::lib::types::{ChainName, SpecVersion};
+use crate::common::path::{ContentType, QrPath};
+use crate::common::types::{ChainName, SpecVersion};
 
 type MetadataMap = HashMap<ChainName, BTreeMap<SpecVersion, QrPath>>;
 
@@ -30,12 +30,12 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
 
 /// Maps chain to corresponding metadata QR files
 pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
-    let mut metadata_qrs = HashMap::new();
+    let mut metadata_qrs: MetadataMap = HashMap::new();
     for qr in qrs_in_dir(dir)? {
         if let ContentType::Metadata(version) = qr.file_name.content_type {
             metadata_qrs
                 .entry(qr.file_name.chain.clone())
-                .or_insert(BTreeMap::new())
+                .or_default()
                 .entry(version)
                 .and_modify(|e| {
                     if qr.file_name.is_signed {
@@ -106,7 +106,7 @@ mod tests {
     #[test]
     fn return_sorted_metadata() {
         let path = Path::new("./src/for_tests/sequential");
-        let files = find_metadata_qrs(&path).unwrap();
+        let files = find_metadata_qrs(path).unwrap();
         let mut result = files.get("kusama").unwrap().iter();
         let (first, _) = result.next().unwrap();
         assert_eq!(*first, 9);
@@ -118,7 +118,7 @@ mod tests {
     fn return_active_metadata() {
         let path = Path::new("./src/for_tests/sequential");
         let chain = &String::from("kusama");
-        let map = find_metadata_qrs(&path).unwrap();
+        let map = find_metadata_qrs(path).unwrap();
         let qr = extract_metadata_qr(&map, chain, &10);
         assert!(qr.is_ok());
         let qr = extract_metadata_qr(&map, chain, &11);
@@ -129,7 +129,7 @@ mod tests {
     fn test_next_metadata_version() {
         let path = Path::new("./src/for_tests/sequential");
         let chain = &String::from("kusama");
-        let map = find_metadata_qrs(&path).unwrap();
+        let map = find_metadata_qrs(path).unwrap();
         let v = next_metadata_version(&map, chain, 9).unwrap();
         assert!(v.is_some());
         assert_eq!(v.unwrap(), 10);

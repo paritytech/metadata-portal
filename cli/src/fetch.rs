@@ -1,14 +1,15 @@
 use anyhow::{anyhow, bail, Result};
 use definitions::crypto::Encryption;
-use definitions::network_specs::NetworkSpecsToSend;
+use definitions::network_specs::NetworkSpecs;
 use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
 use generate_message::parser::Token;
 use log::warn;
 
 use crate::config::Chain;
+use crate::ethereum::is_ethereum;
 
 pub(crate) trait Fetcher {
-    fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecsToSend>;
+    fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecs>;
     fn fetch_metadata(&self, chain: &Chain) -> Result<MetaFetched>;
 }
 
@@ -30,7 +31,7 @@ where
 pub(crate) struct RpcFetcher;
 
 impl Fetcher for RpcFetcher {
-    fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecsToSend> {
+    fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecs> {
         let specs = call_urls(&chain.rpc_endpoints, |url| {
             let optional_token_override = chain.token_decimals.zip(chain.token_unit.as_ref()).map(
                 |(token_decimals, token_unit)| Token {
@@ -38,7 +39,11 @@ impl Fetcher for RpcFetcher {
                     unit: token_unit.to_string(),
                 },
             );
-            specs_agnostic(url, Encryption::Sr25519, optional_token_override, None)
+            let signing_algorithm = match is_ethereum(chain.name.as_str()) {
+                true => Encryption::Ethereum,
+                false => Encryption::Sr25519,
+            };
+            specs_agnostic(url, signing_algorithm, optional_token_override, None)
         })
         .map_err(|e| anyhow!("{:?}", e))?;
         if specs.name.to_lowercase() != chain.name {

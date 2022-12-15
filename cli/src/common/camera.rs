@@ -80,7 +80,7 @@ fn process_qr_image(image: &GrayImage, decoding: InProgress) -> anyhow::Result<R
 
     match codes.last() {
         Some(Ok(code)) => match code.decode() {
-            Ok(decoded) => process_decoded_payload(decoded.payload, decoding),
+            Ok(decoded) => process_decoded_payload(decoded.payload, decoding).map_err(|e| e.into()),
             Err(_) => Ok(Ready::NotYet(decoding)),
         },
         Some(_) => Ok(Ready::NotYet(decoding)),

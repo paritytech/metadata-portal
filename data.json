@@ -44,18 +44,8 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "metadataVersion": 9340,
+    "metadataVersion": 9350,
     "metadataQr": {
-      "path": "qr/kusama_metadata_9340.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0xc1067b95ba2d78cadd57d0b376ef6f99c4957e5a997d16f5a5a6ef3ff655deec"
-      }
-    },
-    "nextMetadataVersion": 9350,
-    "nextMetadataQr": {
       "path": "qr/kusama_metadata_9350.apng",
       "signedBy": "Parity",
       "source": {
@@ -64,6 +54,8 @@
         "hash": "0xdcfd2b86c0306cc6b831e15fb22436b7042523f0b7f20cd8ad6994d2cf91d60d"
       }
     },
+    "nextMetadataVersion": null,
+    "nextMetadataQr": null,
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",
@@ -80,13 +72,13 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "metadataVersion": 9340,
+    "metadataVersion": 9350,
     "metadataQr": {
-      "path": "qr/westend_metadata_9340.apng",
+      "path": "qr/westend_metadata_9350.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Rpc",
-        "block": "0x6a44add6d84c9f1bc8c5d91821749deb624c6a9b2a926b1572b536c91b45fd90"
+        "block": "0x6fa0da66069c64447c27c401889c85ef941a778c6763a5e756bb59b82d44b2d0"
       }
     },
     "nextMetadataVersion": null,

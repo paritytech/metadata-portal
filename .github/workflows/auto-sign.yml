@@ -1,9 +1,13 @@
 name: Auto Sign
 
+concurrency:
+  group: ${{github.workflow}}
+  cancel-in-progress: true
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 * * * *'
 
 env:
   BRANCH_PREFIX: auto-signed

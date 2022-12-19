@@ -44,7 +44,7 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
 pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
     log::debug!("find_metadata_qrs()");
 
-    let mut metadata_qrsL MetadataMap = HashMap::new();
+    let mut metadata_qrs: MetadataMap = HashMap::new();
     for qr in qrs_in_dir(dir)? {
         if let ContentType::Metadata(version) = qr.file_name.content_type {
             metadata_qrs

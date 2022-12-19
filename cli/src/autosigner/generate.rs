@@ -18,7 +18,7 @@ use sp_core::crypto::Pair;
 use sp_core::H256;
 use transaction_parsing::check_signature::pass_crypto;
 
-use crate::lib::path::{ContentType, QrFileName, QrPath};
+use crate::common::path::{ContentType, QrFileName, QrPath};
 
 pub(crate) fn generate_signed_spec_qr(
     pair: &sp_core::sr25519::Pair,

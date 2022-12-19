@@ -4,7 +4,7 @@ use std::path::{Path, PathBuf};
 
 use anyhow::anyhow;
 use definitions::metadata::MetaValues;
-use definitions::network_specs::NetworkSpecsToSend;
+use definitions::network_specs::NetworkSpecs;
 use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};
 use generate_message::full_run;
 use generate_message::parser::{
@@ -13,7 +13,7 @@ use generate_message::parser::{
 use log::info;
 use sp_core::H256;
 
-use crate::lib::path::{ContentType, QrFileName};
+use crate::common::path::{ContentType, QrFileName};
 
 pub(crate) fn generate_metadata_qr(
     meta_values: &MetaValues,
@@ -38,7 +38,7 @@ pub(crate) fn generate_metadata_qr(
 }
 
 pub(crate) fn generate_spec_qr(
-    specs: &NetworkSpecsToSend,
+    specs: &NetworkSpecs,
     target_dir: &Path,
 ) -> anyhow::Result<PathBuf> {
     log::debug!("generate_spec_qr()");

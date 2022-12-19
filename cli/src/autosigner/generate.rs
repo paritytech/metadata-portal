@@ -7,7 +7,7 @@ use anyhow::anyhow;
 use definitions::crypto::{Encryption, SufficientCrypto};
 use definitions::error::TransferContent;
 use definitions::metadata::MetaValues;
-use definitions::network_specs::NetworkSpecsToSend;
+use definitions::network_specs::NetworkSpecs;
 use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};
 use generate_message::full_run;
 use generate_message::parser::{
@@ -18,11 +18,11 @@ use sp_core::crypto::Pair;
 use sp_core::H256;
 use transaction_parsing::check_signature::pass_crypto;
 
-use crate::lib::path::{ContentType, QrFileName, QrPath};
+use crate::common::path::{ContentType, QrFileName, QrPath};
 
 pub(crate) fn generate_signed_spec_qr(
     pair: &sp_core::sr25519::Pair,
-    network_specs: &NetworkSpecsToSend,
+    network_specs: &NetworkSpecs,
     target_dir: &Path,
 ) -> anyhow::Result<PathBuf> {
     log::debug!("generate_signed_spec_qr()");

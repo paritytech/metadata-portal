@@ -6,9 +6,9 @@ use anyhow::{Context, Result};
 use indexmap::IndexMap;
 use log::info;
 
+use crate::common::path::QrPath;
 use crate::export::{ExportChainSpec, ExportData, QrCode, ReactAssetPath};
 use crate::fetch::Fetcher;
-use crate::lib::path::QrPath;
 use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
 use crate::AppConfig;
 
@@ -73,7 +73,7 @@ fn update_pointer_to_latest_metadata(metadata_qr: &QrPath) -> Result<PathBuf> {
     if latest_metadata_qr.is_symlink() {
         fs::remove_file(&latest_metadata_qr).unwrap();
     }
-    symlink(&metadata_qr.to_path_buf(), &latest_metadata_qr).unwrap();
+    symlink(metadata_qr.to_path_buf(), &latest_metadata_qr).unwrap();
     Ok(latest_metadata_qr)
 }
 
@@ -84,7 +84,7 @@ mod tests {
 
     use definitions::crypto::Encryption;
     use definitions::metadata::MetaValues;
-    use definitions::network_specs::NetworkSpecsToSend;
+    use definitions::network_specs::NetworkSpecs;
     use generate_message::helpers::MetaFetched;
     use sp_core::H256;
 
@@ -93,10 +93,10 @@ mod tests {
 
     struct MockFetcher;
     impl Fetcher for MockFetcher {
-        fn fetch_specs(&self, _chain: &Chain) -> Result<NetworkSpecsToSend> {
+        fn fetch_specs(&self, _chain: &Chain) -> Result<NetworkSpecs> {
             log::debug!("fetch_specs()");
 
-            Ok(NetworkSpecsToSend {
+            Ok(NetworkSpecs {
                 base58prefix: 0,
                 color: "".to_string(),
                 decimals: 10,

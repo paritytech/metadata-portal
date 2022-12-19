@@ -46,6 +46,10 @@ impl Fetcher for RpcFetcher {
             );
 
             let optional_signer_title_override = Some(chain.vanity_name.clone());
+            let signing_algorithm = match is_ethereum(chain.name.as_str()) {
+                true => Encryption::Ethereum,
+                false => Encryption::Sr25519,
+            };
             specs_agnostic(
                 url,
                 signing_algorithm,

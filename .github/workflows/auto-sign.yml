@@ -38,15 +38,15 @@ jobs:
             hasbranch='true'
           fi
           echo "hasbranch=$hasbranch" >> $GITHUB_OUTPUT
-      
+
       - name: ⚙ Build metadata-cli
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:
           command: build
           args: --release
 
       - name: ⚙ Autosign QRs from RPC nodes
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         env:
           SIGNING_SEED_PHRASE: ${{secrets.SIGNING_SEED_PHRASE}}
         with:
@@ -54,7 +54,7 @@ jobs:
           args: --release -- auto-sign --source node
 
       - name: ⚙ Autosign QRs from GitHub releases
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         env:
           SIGNING_SEED_PHRASE: ${{secrets.SIGNING_SEED_PHRASE}}
         with:
@@ -62,13 +62,13 @@ jobs:
           args: --release -- auto-sign --source github
 
       - name: ⚙ Run Collector
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:
           command: run
           args: --release -- collect
 
       - name: ⚙ Run Cleaner
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:
           command: run
           args: --release -- clean
@@ -89,7 +89,7 @@ jobs:
       - name: Create PR branch if it doesn't already exist
         if: ${{ steps.checkout-pr-branch.outputs.hasbranch == 'false' }}
         id: cpr
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04
         with:
           commit-message: add signed QR image files
           branch: ${{ steps.new-branch.outputs.branchname }}
@@ -99,15 +99,6 @@ jobs:
           body: |
             If the Metadata Portal needs updated data, inspect the data.json file to determine whether it is correct and then merge this PR.
           draft: true
-
-      - name: Notify Matrix channel
-        uses: s3krit/matrix-message-action@v0.0.3
-        if: ${{ env.NOTIFY_MATRIX == 'true' && steps.cpr.outputs.pull-request-operation == 'created' }}
-        with:
-          room_id: ${{ secrets.MATRIX_ROOM_ID }}
-          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          server: ${{ secrets.MATRIX_SERVER }}
-          message: "# New metadata is available! 📑 [GitHub PR#${{ steps.cpr.outputs.pull-request-number }}](${{ steps.cpr.outputs.pull-request-url }})"
 
   check-deployment:
     runs-on: ubuntu-latest

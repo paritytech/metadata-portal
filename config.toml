@@ -296,8 +296,8 @@ title = 'Encointer'
 color = '#0000cc'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Encointer.svg'
 rpc_endpoints = [
-    'wss://encointer.api.onfinality.io/public-ws',
     'wss://api.kusama.encointer.org',
+    'wss://encointer.api.onfinality.io/public-ws',
 ]
 testnet = false
 verifier = 'novasama'

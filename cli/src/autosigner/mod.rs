@@ -47,16 +47,20 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
     for chain in config.chains {
         log::debug!("chain={}", chain.name.as_str());
 
+        // CHAIN/NETWORK SPECS
+
+        // Check to see if the chain specs already exist
         if !specs_qrs.contains_key(chain.name.as_str()) {
             let network_specs = fetcher.fetch_specs(&chain)?;
             generate_signed_spec_qr(&sr25519_pair, &network_specs, &config.qr_dir)?;
             is_changed = true;
         }
 
+        // METADATA
         let fetched_meta = fetcher.fetch_metadata(&chain)?;
         let version = fetched_meta.meta_values.version;
 
-        // Skip if already have QR for the same version
+        // Check to see if the metadata version has changed
         if let Some(map) = metadata_qrs.get(&chain.name) {
             if map.contains_key(&version) {
                 continue;
@@ -123,18 +127,33 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
         }
         let wasm = wasm.unwrap();
         info!("📅 Found version {}", wasm.version);
-        let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
 
-        // Skip if already has QR for the same version
+        // Check to see if there is newer metadata
         if let Some(map) = metadata_qrs.get(&chain.name) {
-            if map.contains_key(&wasm.version) || map.keys().min().unwrap_or(&0) > &wasm.version {
+            let mut needs_updating: bool = false;
+            for metadata_file_version in map.keys() {
+                if &wasm.version > metadata_file_version {
+                    needs_updating = true;
+                    info!(
+                        "The GitHub version {} is newer than {} in the file.",
+                        &wasm.version, metadata_file_version
+                    );
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            if needs_updating == false {
                 info!("🎉 {} is up to date!", chain.name);
                 continue;
             }
         }
+
+        // Generate a new signed QR bar code
         let wasm_bytes = download_wasm(wasm.to_owned()).await?;
         let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
         let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
+        let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
         let path = generate_signed_metadata_qr(
             &sr25519_pair,
             &meta_values,

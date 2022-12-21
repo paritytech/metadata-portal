@@ -37,10 +37,7 @@ pub(crate) fn generate_metadata_qr(
     Ok(path)
 }
 
-pub(crate) fn generate_spec_qr(
-    specs: &NetworkSpecs,
-    target_dir: &Path,
-) -> anyhow::Result<PathBuf> {
+pub(crate) fn generate_spec_qr(specs: &NetworkSpecs, target_dir: &Path) -> anyhow::Result<PathBuf> {
     log::debug!("generate_spec_qr()");
 
     let file_name =

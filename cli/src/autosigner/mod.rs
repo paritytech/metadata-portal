@@ -141,7 +141,7 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
                     break;
                 }
             }
-            if needs_updating == false {
+            if !needs_updating {
                 info!("🎉 {} is up to date!", chain.name);
                 continue;
             }

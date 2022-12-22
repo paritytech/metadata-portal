@@ -113,7 +113,7 @@ pub(crate) fn generate_signed_metadata_qr(
     log::debug!("Chain is {}", &meta_values.name.to_lowercase());
 
     let file_name = QrFileName::new(
-        &meta_values.name.to_lowercase(),
+        &chain_name.to_lowercase(),
         ContentType::Metadata(meta_values.version),
         true,
     )

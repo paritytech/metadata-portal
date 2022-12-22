@@ -30,7 +30,7 @@ pub(crate) fn generate_signed_spec_qr(
     // Create the file name for the QR bar code
     let file_name =
         QrFileName::new(&network_specs.name.to_lowercase(), ContentType::Specs, true).to_string();
-    let path = target_dir.join(&file_name);
+    let path = target_dir.join(file_name);
 
     let signed_qr = QrPath::try_from(&path).ok().unwrap();
 
@@ -50,7 +50,7 @@ pub(crate) fn generate_signed_spec_qr(
         signature: sig,
     };
     let signature_encoded = SufficientCrypto::encode(&s);
-    let signature_hex = hex::encode(&signature_encoded);
+    let signature_hex = hex::encode(signature_encoded);
     let complete_message = [
         hex::decode(prelude).expect("known value"),
         pair.public().to_vec(),
@@ -59,7 +59,7 @@ pub(crate) fn generate_signed_spec_qr(
     ]
     .concat();
 
-    let data_hex = hex::encode(&complete_message);
+    let data_hex = hex::encode(complete_message);
     let passed_crypto =
         pass_crypto(&data_hex, TransferContent::AddSpecs).map_err(|e| anyhow!("{:?}", e))?;
 
@@ -100,14 +100,17 @@ pub(crate) fn generate_signed_spec_qr(
 }
 
 pub(crate) fn generate_signed_metadata_qr(
+    chain_name: &str,
     pair: &sp_core::sr25519::Pair,
     meta_values: &MetaValues,
     genesis_hash: &H256,
     target_dir: &Path,
 ) -> anyhow::Result<PathBuf> {
-    log::debug!("generate_signed_metadata_qr()");
+    log::debug!("generate_signed_metadata_qr({})", chain_name);
 
     let content = ContentLoadMeta::generate(&meta_values.meta, genesis_hash);
+
+    log::debug!("Chain is {}", &meta_values.name.to_lowercase());
 
     let file_name = QrFileName::new(
         &meta_values.name.to_lowercase(),
@@ -115,7 +118,8 @@ pub(crate) fn generate_signed_metadata_qr(
         true,
     )
     .to_string();
-    let path = target_dir.join(&file_name);
+
+    let path = target_dir.join(file_name);
     let signed_qr = QrPath::try_from(&path).ok().unwrap();
 
     let message_to_verify = content.to_sign();
@@ -131,7 +135,7 @@ pub(crate) fn generate_signed_metadata_qr(
         signature: sig,
     };
     let signature_encoded = SufficientCrypto::encode(&s);
-    let signature_hex = hex::encode(&signature_encoded);
+    let signature_hex = hex::encode(signature_encoded);
     let complete_message = [
         hex::decode(prelude).expect("known value"),
         pair.clone().public().to_vec(),
@@ -140,7 +144,7 @@ pub(crate) fn generate_signed_metadata_qr(
     ]
     .concat();
 
-    let data_hex = hex::encode(&complete_message);
+    let data_hex = hex::encode(complete_message);
     let passed_crypto =
         pass_crypto(&data_hex, TransferContent::LoadMeta).map_err(|e| anyhow!("{:?}", e))?;
 

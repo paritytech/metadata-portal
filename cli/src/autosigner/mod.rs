@@ -68,7 +68,6 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
         }
 
         let path = generate_signed_metadata_qr(
-            &chain.name,
             &sr25519_pair,
             &fetched_meta.meta_values,
             &fetched_meta.genesis_hash,
@@ -154,7 +153,6 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
         let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
         let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
         let path = generate_signed_metadata_qr(
-            &chain.name,
             &sr25519_pair,
             &meta_values,
             &genesis_hash,

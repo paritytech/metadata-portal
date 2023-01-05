@@ -132,6 +132,7 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
         if let Some(map) = metadata_qrs.get(&chain.name) {
             let mut needs_updating: bool = false;
             for metadata_file_version in map.keys() {
+                info!("Comparing {} > {} for {}",  &wasm.version, metadata_file_version, &chain.name);
                 if &wasm.version > metadata_file_version {
                     needs_updating = true;
                     info!(

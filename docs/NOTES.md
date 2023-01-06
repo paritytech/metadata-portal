@@ -35,7 +35,18 @@ SUBCOMMANDS:
     update              Check updates
     verify              Verify signed QR codes
 ```
- 
+
+### `% metadata-cli auto-sign`
+1. This subcommand can update and automatically sign the QR bar codes from either a live node or from the GitHub release assets. By default, it updates from a node.  
+    - To update from a node: `metadata-cli auto-sign -s node`
+    - To update from GitHub: `metadata-cli auto-sign -s github`
+2. Iterates through each chain in `config.toml`
+   - Fetches chain specs and metadata for each chain
+   - Generates a signed QR code for each chain spec
+    - If the metadata version is not equal to the current version
+        1. Generates a new video QR code
+        2. Inserts metadata into QR code
+
 ### `% metadata-cli check-deployment`
 1. Generates the contents of a `data.json` and compares the generated file with the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json
 2. If generated vs hosted `data.json` mismatch, `exit(12)`
@@ -76,7 +87,7 @@ SUBCOMMANDS:
     - Deposits the signed chain spec or metadata as a QR image file in `public/qr`
 
 ### `% metadata-cli update`
-1. This subcommand can update from either a live node or from the GitHub release assets. By default, it updates from a node.  
+1. This subcommand can update (for later manual signing) from either a live node or from the GitHub release assets. By default, it updates from a node.  
     - To update from a node: `metadata-cli update -s node`
     - To update from GitHub: `metadata-cli update -s github`
 2. Iterates through each chain in `config.toml`

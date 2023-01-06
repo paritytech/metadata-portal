@@ -37,7 +37,7 @@ SUBCOMMANDS:
 ```
 
 ### `% metadata-cli auto-sign`
-1. This subcommand can update and automatically sign the QR bar codes from either a live node or from the GitHub release assets. By default, it updates from a node.  
+1. This subcommand can update and automatically sign the QR bar codes from either a live node or from the GitHub release assets. By default, it updates from a node.
     - To update from a node: `metadata-cli auto-sign -s node`
     - To update from GitHub: `metadata-cli auto-sign -s github`
 2. Iterates through each chain in `config.toml`
@@ -87,7 +87,7 @@ SUBCOMMANDS:
     - Deposits the signed chain spec or metadata as a QR image file in `public/qr`
 
 ### `% metadata-cli update`
-1. This subcommand can update (for later manual signing) from either a live node or from the GitHub release assets. By default, it updates from a node.  
+1. This subcommand can update (for later manual signing) from either a live node or from the GitHub release assets. By default, it updates from a node.
     - To update from a node: `metadata-cli update -s node`
     - To update from GitHub: `metadata-cli update -s github`
 2. Iterates through each chain in `config.toml`
@@ -108,24 +108,21 @@ SUBCOMMANDS:
 
 ## Github Actions Workflows
 
-### Check Updates Workflow
-`.github/workflows/update.yml`
+### Auto Sign Workflow
+`.github/workflows/auto-sign.yml`
 
 Runs daily at 00:00:00 UTC.
-#### update job
-This job uses a branch of the format: `sign-me-<year>-<month>-<day>`. The branch places unsigned metadata QR barcode image files into the its `public/qr` directory.
-1. Determines if there is updated runtime metadata from:
+#### auto-sign job
+This job uses a branch of the format: `auto-signed-<year>-<month>-<day>`. The branch places signed metadata QR barcode image files into the its `public/qr` directory.
+1. Determines if there is an updated runtime metadata from:
     - The RPC node (current version)
     - GitHub latest WASM release assets (next version)
 2. If metadata has been updated:
-    - Commits added files to the branch
-    - Creates a pull request
-3. Notifies *technical council* or *sudo key holder* via a [*Matrix*](https://matrix.org) channel (if specified) that new metadata is available
-4. A member of the *technical council* or a *sudo key holder* may then checkout the branch locally and:
-    - Run `make signer` to sign the files
-    - Run `make collector` to collect version information about the current chains
-    - Run `make cleaner` to remove obsolete QR image files
-    - Commit changes to the branch so that it may be reviewed by the technical committee
+    - Commits signed QR barcode image files to the branch
+    - Creates a draft pull request
+4. A maintainer of the Frequency Metadata Portal must then review the branch and merge it
+    - Upon merging, the Deploy Main workflow should kick off, resulting in an update push to the Frequency Metadata Portal
+    - *NOTE* The `auto-signed-<year>-<month>-<day>` branch must be deleted on merge. If a dangling auto-sign branch exists, it will be checked out by the Auto Sign workflow and may cause confusion as auto-signing will not run against `main`.
 #### check-deployment job
 The purpose of `check-deployment` is to keep the data.json up to date
 1. Compares GitHub pages hosted https://metadata.frequency.xyz/data.json vs RPC fetched specs from the node

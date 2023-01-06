@@ -11,7 +11,6 @@ on:
 
 env:
   BRANCH_PREFIX: auto-signed
-  NOTIFY_MATRIX: false
   RUST_LOG: debug
 
 jobs:

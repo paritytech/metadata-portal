@@ -39,6 +39,13 @@ jobs:
           fi
           echo "hasbranch=$hasbranch" >> $GITHUB_OUTPUT
 
+
+      - name: ⚙ Clean metadata-cli
+        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
+        with:
+          command: clean
+          args: --release
+
       - name: ⚙ Build metadata-cli
         uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:

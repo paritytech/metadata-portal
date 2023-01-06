@@ -35,15 +35,24 @@ SUBCOMMANDS:
     update              Check updates
     verify              Verify signed QR codes
 ```
-    
-### `% metadata-cli update`
-1. Updates using "node" by default but can also update from "github"
-2. Iterates through each chain in `config.toml`
-   - Fetches chain specs and metadata for each chain
-   - Generates a QR code for each chain spec
-    - If the metadata version is not equal to the current version
-        1. Generates a new video QR code
-        2. Inserts metadata into QR code
+ 
+### `% metadata-cli check-deployment`
+1. Generates the contents of a `data.json` and compares the generated file with the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json
+2. If generated vs hosted `data.json` mismatch, `exit(12)`
+
+### `% metadata-cli clean`
+1. Obtains a list of:
+   - All QR image files in `public/qr`
+   - Each metadata QR image file
+   - Each chainspec QR image file
+2. Fetches the chain specs
+3. Instantiates a HashSet to store files to keep
+4. Iterates through each chain in `config.toml`
+    - Determines the current metadata version from the chain specs
+    - Determines which metadata QR files are versioned equal to or greater than the current metadata version; these files are kept in the HashSet
+    - Stores chainspec QR files are kept in the HashSet
+5. Determines the difference of all files and kept files, these are the files to be removed
+6. Iterates through each file to be removed and delete it
 
 ### `% metadata-cli collect`
 1. Fetches all spec and metadata QR codes
@@ -66,6 +75,15 @@ SUBCOMMANDS:
     - Opens the computer's camera to scan the signed chain spec or metadata produced by *Parity Signer* mobile app
     - Deposits the signed chain spec or metadata as a QR image file in `public/qr`
 
+### `% metadata-cli update`
+1. Updates using "node" by default but can also update from "github"
+2. Iterates through each chain in `config.toml`
+   - Fetches chain specs and metadata for each chain
+   - Generates a QR code for each chain spec
+    - If the metadata version is not equal to the current version
+        1. Generates a new video QR code
+        2. Inserts metadata into QR code
+
 ### `% metadata-cli verify`
 1. Obtains a list of all QR barcode image files in `public/qr`
 2. Iterates through the files
@@ -74,23 +92,6 @@ SUBCOMMANDS:
     - Determines if the QR image file is of content type metadata
         1. Determines if the signature of the metadata QR image file was produced by the private key holder of the public key provided in `config.toml`
         2. Returns an error and exits if the signature doesn't match
-### `% metadata-cli clean`
-1. Obtains a list of:
-   - All QR image files in `public/qr`
-   - Each metadata QR image file
-   - Each chainspec QR image file
-2. Fetches the chain specs
-3. Instantiates a HashSet to store files to keep
-4. Iterates through each chain in `config.toml`
-    - Determines the current metadata version from the chain specs
-    - Determines which metadata QR files are versioned equal to or greater than the current metadata version; these files are kept in the HashSet
-    - Stores chainspec QR files are kept in the HashSet
-5. Determines the difference of all files and kept files, these are the files to be removed
-6. Iterates through each file to be removed and delete it
-
-### `% metadata-cli check-deployment`
-1. Generates the contents of a `data.json` and compares the generated file with the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json
-2. If generated vs hosted `data.json` mismatch, `exit(12)`
 
 ## Github Actions Workflows
 

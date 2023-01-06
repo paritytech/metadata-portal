@@ -76,7 +76,9 @@ SUBCOMMANDS:
     - Deposits the signed chain spec or metadata as a QR image file in `public/qr`
 
 ### `% metadata-cli update`
-1. Updates using "node" by default but can also update from "github"
+1. This subcommand can update from either a live node or from the GitHub release assets. By default, it updates from a node.  
+    - To update from a node: `metadata-cli update -s node`
+    - To update from GitHub: `metadata-cli update -s github`
 2. Iterates through each chain in `config.toml`
    - Fetches chain specs and metadata for each chain
    - Generates a QR code for each chain spec

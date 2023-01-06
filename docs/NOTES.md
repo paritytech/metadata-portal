@@ -17,45 +17,41 @@ https://www.parity.io/technologies/signer
 
 ## CLI Command Definitions
 
-### Updater
-1. Updates using "node" by default but can also update from "github"
+```
+USAGE:
+    metadata-cli [OPTIONS] <SUBCOMMAND>
+
+OPTIONS:
+    -c, --config <CONFIG>    Path to config file [default: config.toml]
+    -h, --help               Print help information
+
+SUBCOMMANDS:
+    auto-sign           Update and autosign QR codes
+    check-deployment    Check if deployment is up to date
+    clean               Remove unused QR codes
+    collect             Generate json data file for frontend
+    help                Print this message or the help of the given subcommand(s)
+    sign                Sign unsigned QR codes
+    update              Check updates
+    verify              Verify signed QR codes
+```
+
+### `% metadata-cli auto-sign`
+1. This subcommand can update and automatically sign the QR bar codes from either a live node or from the GitHub release assets. By default, it updates from a node.  
+    - To update from a node: `metadata-cli auto-sign -s node`
+    - To update from GitHub: `metadata-cli auto-sign -s github`
 2. Iterates through each chain in `config.toml`
    - Fetches chain specs and metadata for each chain
-   - Generates a QR code for each chain spec
+   - Generates a signed QR code for each chain spec
     - If the metadata version is not equal to the current version
         1. Generates a new video QR code
         2. Inserts metadata into QR code
 
-### Collector
-1. Fetches all spec and metadata QR codes
-2. Iterates through each chain in `config.toml`
-    - Fetches the chain specs and metadata
-    - Gets active metadata version
-    - Checks if there is an existing metadata QR image file
-    - Checks if there is an existing chainspec QR image file
-    - Determines if a metadata QR file is of a later version than the metadata currently deployed
-    - Updates a symlink to point to the latest metadata QR imagefile
-    - Builds a map containing the chain name to a list of spec values
-3. Writes the map to `public/data.json`
+### `% metadata-cli check-deployment`
+1. Generates the contents of a `data.json` and compares the generated file with the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json
+2. If generated vs hosted `data.json` mismatch, `exit(12)`
 
-### Signer
-1. Obtains a list of unsigned QR image files in `public/qr`
-2. Iterates through the list of unsigned QR image files
-    - Prompts user to select an unsigned QR image file to sign
-    - Displays preview of the selected file to scan with *Parity Signer* mobile app
-        - On *macOS*, the *Preview* app can display the `.png` QR image file but not the `.apng` QR video file for the metadata.  The `.apng` can be opened with a browser (e.g. Google Chrome)
-    - Opens the computer's camera to scan the signed chain spec or metadata produced by *Parity Signer* mobile app
-    - Deposits the signed chain spec or metadata as a QR image file in `public/qr`
-
-### Verifier
-1. Obtains a list of all QR barcode image files in `public/qr`
-2. Iterates through the files
-    - Returns an error and exit if the QR image file is unsigned
-3. Iterates through the list of all QR image files (second round)
-    - Determines if the QR image file is of content type metadata
-        1. Determines if the signature of the metadata QR image file was produced by the private key holder of the public key provided in `config.toml`
-        2. Returns an error and exits if the signature doesn't match
-### Cleaner
+### `% metadata-cli clean`
 1. Obtains a list of:
    - All QR image files in `public/qr`
    - Each metadata QR image file
@@ -69,9 +65,46 @@ https://www.parity.io/technologies/signer
 5. Determines the difference of all files and kept files, these are the files to be removed
 6. Iterates through each file to be removed and delete it
 
-### Check Deployment
-1. Generates the contents of a `data.json` and compares the generated file with the hosted `data.json` stored at the root of the homepage specified in `package.json`; for example: https://metadata.frequency.xyz/data.json
-2. If generated vs hosted `data.json` mismatch, `exit(12)`
+### `% metadata-cli collect`
+1. Fetches all spec and metadata QR codes
+2. Iterates through each chain in `config.toml`
+    - Fetches the chain specs and metadata
+    - Gets active metadata version
+    - Checks if there is an existing metadata QR image file
+    - Checks if there is an existing chainspec QR image file
+    - Determines if a metadata QR file is of a later version than the metadata currently deployed
+    - Updates a symlink to point to the latest metadata QR imagefile
+    - Builds a map containing the chain name to a list of spec values
+3. Writes the map to `public/data.json`
+
+### `% metadata-cli sign`
+1. Obtains a list of unsigned QR image files in `public/qr`
+2. Iterates through the list of unsigned QR image files
+    - Prompts user to select an unsigned QR image file to sign
+    - Displays preview of the selected file to scan with *Parity Signer* mobile app
+        - On *macOS*, the *Preview* app can display the `.png` QR image file but not the `.apng` QR video file for the metadata.  The `.apng` can be opened with a browser (e.g. Google Chrome)
+    - Opens the computer's camera to scan the signed chain spec or metadata produced by *Parity Signer* mobile app
+    - Deposits the signed chain spec or metadata as a QR image file in `public/qr`
+
+### `% metadata-cli update`
+1. This subcommand can update (for later manual signing) from either a live node or from the GitHub release assets. By default, it updates from a node.  
+    - To update from a node: `metadata-cli update -s node`
+    - To update from GitHub: `metadata-cli update -s github`
+2. Iterates through each chain in `config.toml`
+   - Fetches chain specs and metadata for each chain
+   - Generates a QR code for each chain spec
+    - If the metadata version is not equal to the current version
+        1. Generates a new video QR code
+        2. Inserts metadata into QR code
+
+### `% metadata-cli verify`
+1. Obtains a list of all QR barcode image files in `public/qr`
+2. Iterates through the files
+    - Returns an error and exit if the QR image file is unsigned
+3. Iterates through the list of all QR image files (second round)
+    - Determines if the QR image file is of content type metadata
+        1. Determines if the signature of the metadata QR image file was produced by the private key holder of the public key provided in `config.toml`
+        2. Returns an error and exits if the signature doesn't match
 
 ## Github Actions Workflows
 

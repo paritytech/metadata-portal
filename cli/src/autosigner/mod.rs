@@ -126,7 +126,7 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
             continue;
         }
         let wasm = wasm.unwrap();
-        info!("📅 Found *** version {}", wasm.version);
+        info!("📅 Found VERSION version {}", wasm.version);
 
         // Check to see if there is newer metadata
         if let Some(map) = metadata_qrs.get(&chain.name) {

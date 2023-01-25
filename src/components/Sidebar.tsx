@@ -77,7 +77,7 @@ export default function Sidebar({
                     {/** Remove hyphen because Ligatures don't support hyphens */}
                     <div className="network_icon">
                       <img src={tao_logo} />
-                      </div> 
+                    </div>
                     <div className="network_name">
                       {capitalizeFirstLetter(allChains[c].title)}
                     </div>

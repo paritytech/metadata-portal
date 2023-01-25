@@ -3,8 +3,8 @@ public_dir = "public"
 qr_dir = "public/qr"
 
 [verifier]
-name = "OpenTensor (Test)"
-public_key = "a494bc676de50279ddc7ba2ddc87302efc5ff9846965f3041001bf4b2b5c0912"
+name = "Local Metadata Signer"
+public_key = "0xee6a7cd8146e9f02e4ae9f59908a5b513186e786696c6afe9644ff59bdbdbe7c"
 
 [[chains]]
 name = "node-subtensor"

@@ -4,7 +4,7 @@ qr_dir = "public/qr"
 
 [verifier]
 name = "Local Metadata Signer"
-public_key = "0xee6a7cd8146e9f02e4ae9f59908a5b513186e786696c6afe9644ff59bdbdbe7c"
+public_key = "ee6a7cd8146e9f02e4ae9f59908a5b513186e786696c6afe9644ff59bdbdbe7c"
 
 [[chains]]
 name = "node-subtensor"

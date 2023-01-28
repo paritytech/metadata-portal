@@ -3,7 +3,7 @@ name: Check updates
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: '0 */6 * * *'
 
 env:
   BRANCH_PREFIX: sign-me
@@ -46,11 +46,11 @@ jobs:
           command: run
           args: --release -- update --source node
 
-      - name: ⚙ Update QRs from GitHub releases
-        uses: actions-rs/cargo@v1
-        with:
-          command: run
-          args: --release -- update --source github
+      #- name: ⚙ Update QRs from GitHub releases
+      #  uses: actions-rs/cargo@v1
+      #  with:
+      #    command: run
+      #    args: --release -- update --source github
 
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}

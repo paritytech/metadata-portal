@@ -20,7 +20,7 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
         match QrPath::try_from(&file.path()) {
             Ok(qr_path) => files.push(qr_path),
             Err(e) => {
-                eprintln!("{}", e);
+                eprintln!("{e}");
                 continue;
             }
         }
@@ -75,10 +75,7 @@ pub(crate) fn extract_metadata_qr(
     let qr = metadata_qrs
         .get(chain)
         .and_then(|map| map.get(version))
-        .context(format!(
-            "No metadata found for {} version {}",
-            chain, version
-        ))?;
+        .context(format!("No metadata found for {chain} version {version}"))?;
     Ok(qr.clone())
 }
 
@@ -90,7 +87,7 @@ pub(crate) fn next_metadata_version(
     let available_versions = metadata_qrs
         .get(chain)
         .map(|map| map.keys().copied().collect::<Vec<_>>())
-        .context(format!("No metadata QRs for {}", chain))?;
+        .context(format!("No metadata QRs for {chain}"))?;
     Ok(available_versions
         .iter()
         .find(|&v| *v > active_version)

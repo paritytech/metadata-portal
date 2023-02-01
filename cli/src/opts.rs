@@ -7,7 +7,7 @@ use crate::updater::source::UpdateSource;
 #[derive(Parser)]
 pub(crate) struct Opts {
     /// Path to config file
-    #[clap(short, long, default_value = "config.toml")]
+    #[arg(short, long, default_value = "config.toml")]
     pub(crate) config: PathBuf,
 
     #[clap(subcommand)]
@@ -38,6 +38,6 @@ pub(crate) enum SubCommand {
 
 #[derive(Parser)]
 pub(crate) struct UpdateOpts {
-    #[clap(short, long, default_value = "node")]
+    #[arg(short, long, default_value = "node")]
     pub(crate) source: UpdateSource,
 }

@@ -9,7 +9,7 @@ fn case_insensitive<'de, D>(deserializer: D) -> Result<String, D::Error>
 where
     D: Deserializer<'de>,
 {
-    let s: &str = Deserialize::deserialize(deserializer)?;
+    let s: String = Deserialize::deserialize(deserializer)?;
     Ok(s.to_lowercase())
 }
 

@@ -46,7 +46,7 @@ pub(crate) enum ContentType {
 impl fmt::Display for ContentType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
-            ContentType::Metadata(version) => write!(f, "metadata_{}", version),
+            ContentType::Metadata(version) => write!(f, "metadata_{version}"),
             ContentType::Specs => write!(f, "specs"),
         }
     }
@@ -107,7 +107,7 @@ impl TryFrom<&PathBuf> for QrFileName {
 
         let content_type = ContentType::try_from(stripped).context("error parsing context type")?;
         let chain = stripped
-            .strip_suffix(&format!("_{}", content_type))
+            .strip_suffix(&format!("_{content_type}"))
             .context("error parsing chain name")?;
 
         Ok(Self {
@@ -127,8 +127,8 @@ impl fmt::Display for QrFileName {
         };
         let file_name = format!("{}{}_{}", prefix, self.chain, self.content_type);
         match &self.extension {
-            Some(ext) => write!(f, "{}.{}", file_name, ext),
-            None => write!(f, "{}", file_name),
+            Some(ext) => write!(f, "{file_name}.{ext}"),
+            None => write!(f, "{file_name}"),
         }
     }
 }

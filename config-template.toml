@@ -189,9 +189,9 @@ qr_dir = "public/qr"
   title = "Composable Finance"
   color = "#C90E8A"
 
-  [chains."Polkadex Solochain"]
+  [chains."Polkadex"]
   name = "node"
-  title = "Polkadex Solochain"
+  title = "Polkadex"
   color = "#7C30DD"
 
   [chains."OriginTrail Parachain"]

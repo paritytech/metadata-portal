@@ -1,14 +1,14 @@
 data_file = 'public/data.json'
 public_dir = 'public'
 qr_dir = 'public/qr'
+[verifiers.parity]
+name = 'Parity'
+public_key = 'c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57'
+
 [verifiers.novasama]
 name = 'Novasama Technologies'
 public_key = '16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f'
 ethereum_public_key = '031b195495f907908aeedd8e9a0ae128dcf23b6a7425dd16d282df7d867855e7f1'
-
-[verifiers.parity]
-name = 'Parity'
-public_key = 'c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57'
 
 [[chains]]
 name = 'polkadot'
@@ -17,7 +17,6 @@ color = '#e6007a'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Polkadot.svg'
 rpc_endpoints = [
     'wss://polkadot.api.onfinality.io/public-ws',
-    'wss://public-rpc.pinknode.io/polkadot',
     'wss://polkadot-rpc.dwellir.com',
     'wss://rpc.polkadot.io',
     'wss://1rpc.io/dot',
@@ -31,11 +30,10 @@ title = 'Kusama'
 color = '#000000'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Kusama.svg'
 rpc_endpoints = [
-    'wss://kusama.api.onfinality.io/public-ws',
-    'wss://public-rpc.pinknode.io/kusama',
     'wss://kusama-rpc.dwellir.com',
     'wss://kusama.public.curie.radiumblock.co/ws',
     'wss://kusama-rpc.polkadot.io',
+    'wss://kusama.api.onfinality.io/public-ws',
 ]
 testnet = false
 verifier = 'parity'
@@ -49,7 +47,6 @@ rpc_endpoints = [
     'wss://westend-rpc.polkadot.io',
     'wss://westend.api.onfinality.io/public-ws',
     'wss://westend-rpc.dwellir.com',
-    'wss://rpc.pinknode.io/westend/explorer',
 ]
 testnet = true
 verifier = 'parity'
@@ -90,7 +87,7 @@ icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/ch
 rpc_endpoints = [
     'wss://rpc.shiden.astar.network',
     'wss://shiden.api.onfinality.io/public-ws',
-    'wss://rpc.pinknode.io/shiden/explorer',
+    'wss://shiden-rpc.dwellir.com',
 ]
 testnet = false
 verifier = 'novasama'
@@ -140,6 +137,7 @@ icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/ch
 rpc_endpoints = [
     'wss://heiko-rpc.parallel.fi',
     'wss://parallel-heiko.api.onfinality.io/public-ws',
+    'wss://heiko-rpc.dwellir.com',
 ]
 testnet = false
 verifier = 'novasama'
@@ -238,6 +236,7 @@ icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/ch
 rpc_endpoints = [
     'wss://rpc.astar.network',
     'wss://astar.api.onfinality.io/public-ws',
+    'wss://astar-rpc.dwellir.com',
 ]
 testnet = false
 verifier = 'novasama'
@@ -311,7 +310,10 @@ name = 'picasso'
 title = 'Picasso'
 color = '#000000'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Picasso.svg'
-rpc_endpoints = ['wss://picasso-rpc.composable.finance']
+rpc_endpoints = [
+    'wss://picasso-rpc.composable.finance',
+    'wss://picasso-rpc.dwellir.com',
+]
 testnet = false
 verifier = 'novasama'
 
@@ -470,13 +472,10 @@ verifier = 'novasama'
 
 [[chains]]
 name = 'node'
-title = 'Polkadex Solochain'
+title = 'Polkadex'
 color = '#7C30DD'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Polkadex.svg'
-rpc_endpoints = [
-    'wss://polkadex.api.onfinality.io/public-ws',
-    'wss://mainnet.polkadex.trade',
-]
+rpc_endpoints = ['wss://mainnet.polkadex.trade']
 testnet = false
 verifier = 'novasama'
 

@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { ChainSpec } from "../scheme";
 import "./SpecsTab.css";
 import Hash from "./Hash";
-import { ExternalLinkIcon } from "@heroicons/react/outline";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 interface SpecsProps {
   specs: ChainSpec;
@@ -57,7 +57,7 @@ export default function SpecsTab({ specs }: SpecsProps) {
                 {`${location.origin}/${
                   process.env.PUBLIC_URL + latestMetadata
                 }`}
-                <ExternalLinkIcon className={"inline w-4 h-4 ml-1"} />
+                <ArrowTopRightOnSquareIcon className={"inline w-4 h-4 ml-1"} />
               </a>
             </>,
             true
@@ -75,7 +75,7 @@ export default function SpecsTab({ specs }: SpecsProps) {
           rel="noreferrer"
         >
           Parity Signer App
-          <ExternalLinkIcon className={"inline w-4 h-4 ml-1"} />
+          <ArrowTopRightOnSquareIcon className={"inline w-4 h-4 ml-1"} />
         </a>
       </div>
 

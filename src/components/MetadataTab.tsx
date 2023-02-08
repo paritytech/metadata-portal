@@ -9,8 +9,8 @@ import Hash from "./Hash";
 import { row } from "./SpecsTab";
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { ExternalLinkIcon } from "@heroicons/react/outline";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/24/solid";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 type LabeledQr = {
   qr: QrInfo;
@@ -48,7 +48,7 @@ export default function MetadataTab({ specs }: MetadataTabProps) {
               <SignedBy signer={qrs[selectedIdx].qr.signedBy} />
             </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <SelectorIcon
+              <ChevronUpDownIcon
                 className="h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
@@ -105,7 +105,7 @@ export default function MetadataTab({ specs }: MetadataTabProps) {
           rel="noreferrer"
         >
           Parity Signer App
-          <ExternalLinkIcon className={"inline w-4 h-4 ml-2"} />
+          <ArrowTopRightOnSquareIcon className={"inline w-4 h-4 ml-2"} />
         </a>
       </div>
 
@@ -141,7 +141,7 @@ function SourceBlock({ source }: SourceBlockProps) {
                 rel="noreferrer"
               >
                 {s.github_repo}
-                <ExternalLinkIcon className={"inline w-4 h-4 ml-1"} />
+                <ArrowTopRightOnSquareIcon className={"inline w-4 h-4 ml-1"} />
               </a>
             )}
             {row("Blake2-256 hash", <Hash value={s.hash} />)}

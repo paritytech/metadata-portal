@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { Chains } from "../scheme";
 import { capitalizeFirstLetter } from "../utils";
-import { ArrowSmRightIcon } from "@heroicons/react/solid";
+import { ArrowSmallRightIcon } from "@heroicons/react/24/solid";
 
 interface Props {
   allChains: Chains;
@@ -111,7 +111,7 @@ export default function Sidebar({
           target={"blank"}
         >
           <div className="flex float-left font-bold">
-            More on GitHub <ArrowSmRightIcon className="inline ml-1 w-4" />
+            More on GitHub <ArrowSmallRightIcon className="inline ml-1 w-4" />
           </div>
         </a>
         <a
@@ -121,7 +121,7 @@ export default function Sidebar({
           rel="noreferrer"
         >
           <div className="text-left font-bold">
-            Terms & Services <ArrowSmRightIcon className="inline ml-1 w-4" />
+            Terms & Services <ArrowSmallRightIcon className="inline ml-1 w-4" />
           </div>
         </a>
       </div>

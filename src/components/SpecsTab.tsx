@@ -1,104 +1,69 @@
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 import { ChainSpec } from "../scheme";
-import "./SpecsTab.css";
 import Hash from "./Hash";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import "./SpecsTab.css";
 
-interface SpecsProps {
-  specs: ChainSpec;
-}
-
-export default function SpecsTab({ specs }: SpecsProps) {
-  const {
-    color,
-    rpcEndpoint,
-    genesisHash,
-    unit,
-    base58prefix,
-    specsQr,
-    latestMetadata,
-  } = specs;
+export default function SpecsTab({ specs }: { specs: ChainSpec }) {
+  const { color, rpcEndpoint, genesisHash, unit, base58prefix, specsQr } =
+    specs;
 
   return (
-    <div className="px-2">
-      <div className="py-5 border-b border-neutral-300">
-        <ul>{row("RPC endpoint", <>{rpcEndpoint}</>, true)}</ul>
-        <ul className="flex">
-          {row("Genesis hash", <Hash value={genesisHash} />)}
-          {row("Address prefix", base58prefix.toString())}
-        </ul>
-        <ul className="flex">
-          {row(
-            "Color",
-            <>
+    <div className="space-y-4">
+      <div className="flex flex-col items-center text-sm space-y-2">
+        <img
+          className="w-full"
+          src={process.env.PUBLIC_URL + specsQr.path}
+          alt="Qr code"
+        />
+        <div>
+          {"Scan this code to add chain specs to the "}
+          <a
+            href="https://parity.io/signer/"
+            className="font-bold"
+            style={{ color }}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Parity Signer App
+          </a>
+        </div>
+      </div>
+      <div>
+        <ul>
+          <Row title="RPC endpoint">{rpcEndpoint}</Row>
+          <Row title="Genesis hash">
+            <Hash value={genesisHash} />
+          </Row>
+          <Row title="Address prefix">{base58prefix}</Row>
+          <Row title="Color">
+            <div className="flex space-x-2">
+              <div className="ml-2">{color}</div>
               <div
                 style={{ backgroundColor: color }}
-                className="w-6 rounded-md border-none block"
-              ></div>
-              <div className="ml-2">{color}</div>
-            </>
-          )}
-          {row("Unit", unit)}
+                className="w-6 rounded-md"
+              />
+            </div>
+          </Row>
+          <Row title="Unit">{unit}</Row>
         </ul>
-      </div>
-
-      <div className="py-5 border-b border-neutral-300">
-        <ul>
-          {row(
-            "Latest metadata QR",
-            <>
-              <a
-                href={process.env.PUBLIC_URL + latestMetadata}
-                target="_blank"
-                className="font-medium"
-                style={{ color: `${color}` }}
-                rel="noreferrer"
-              >
-                {`${location.origin}/${
-                  process.env.PUBLIC_URL + latestMetadata
-                }`}
-                <ArrowTopRightOnSquareIcon className={"inline w-4 h-4 ml-1"} />
-              </a>
-            </>,
-            true
-          )}
-        </ul>
-      </div>
-
-      <div className="pt-3">
-        {"Scan this code to add chain specs to the "}
-        <a
-          href="https://parity.io/signer/"
-          target="_blank"
-          className="font-medium"
-          style={{ color: `${color}` }}
-          rel="noreferrer"
-        >
-          Parity Signer App
-          <ArrowTopRightOnSquareIcon className={"inline w-4 h-4 ml-1"} />
-        </a>
-      </div>
-
-      <div className="flex justify-center">
-        <img src={process.env.PUBLIC_URL + specsQr.path} alt="Qr code" />
       </div>
     </div>
   );
 }
 
-export function row(
-  title: string,
-  content: ReactElement | string,
-  fullWidth = false,
-  color = "#000000"
-) {
-  const liSize = fullWidth ? "py-1" : "py-1 w-1/2";
+export function Row({
+  title,
+  children,
+  color = "#000000",
+}: {
+  title: string;
+  children?: ReactNode;
+  color?: string;
+}) {
   return (
-    <li className={liSize}>
-      <div className="text-sm text-black">{title}</div>
-      <div className="flex" style={{ color }}>
-        {content}
-      </div>
+    <li className="flex py-1 justify-between text-sm">
+      <div>{title}</div>
+      <div style={{ color }}>{children}</div>
     </li>
   );
 }

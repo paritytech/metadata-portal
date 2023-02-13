@@ -26,7 +26,7 @@ export default function Hash({ value }: HashProps) {
     const sliced = el.slice(0, 6) + "..." + el.slice(el.length - 4, el.length);
     const cName = copied ? "fade" : "hidden";
     return (
-      <>
+      <div className="flex">
         <div className="flex float-left">{sliced}</div>
         <DocumentDuplicateIcon
           className="w-5 h-5 ml-2 cursor-pointer"
@@ -36,7 +36,7 @@ export default function Hash({ value }: HashProps) {
           }}
         />
         <div className={"text-green-500 ml-3 ".concat(cName)}>Copied</div>
-      </>
+      </div>
     );
   };
 

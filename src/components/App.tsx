@@ -2,18 +2,12 @@ import { useEffect, useState } from "react";
 import { Chains } from "../scheme";
 import { useLocation } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { Tab } from "@headlessui/react";
 import { capitalizeFirstLetter } from "../utils";
 
 import "./App.css";
 import Sidebar from "./Sidebar";
-import MetadataTab from "./MetadataTab";
-import SpecsTab from "./SpecsTab";
 import { AppLinks } from "./AppLinks";
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import { Network } from "./Network";
 
 export default function App() {
   const [localStorageNetwork, setLocalStorageNetwork] =
@@ -105,34 +99,9 @@ export default function App() {
             }}
           />
         )}
-        <Tab.Group>
-          <div className="flex flex-col w-full px-2 md:px-8">
-            <Tab.List className="flex flex-row w-full border-b border-neutral-300">
-              {["Metadata", "Chain Specs"].map((title) => (
-                <Tab
-                  key={title}
-                  className={({ selected }) =>
-                    classNames(
-                      "w-32 h-12 py-2.5 font-semibold leading-5 mb-[-1px] focus-visible:outline-none",
-                      selected ? `border-b-2` : "!text-black"
-                    )
-                  }
-                  style={{ borderColor: `${color}`, color: `${color}` }}
-                >
-                  {title}
-                </Tab>
-              ))}
-            </Tab.List>
-            <Tab.Panels>
-              <Tab.Panel className="flex justify-center">
-                <MetadataTab specs={{ ...specs }} key={specs.title} />
-              </Tab.Panel>
-              <Tab.Panel>
-                <SpecsTab specs={{ ...specs }} />
-              </Tab.Panel>
-            </Tab.Panels>
-          </div>
-        </Tab.Group>
+        <main className="p-4 w-full">
+          <Network spec={specs} />
+        </main>
       </div>
     </div>
   );

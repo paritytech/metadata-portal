@@ -1,3 +1,6 @@
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/24/solid";
+import { Fragment, useState } from "react";
 import {
   ChainSpec,
   QrInfo,
@@ -6,11 +9,7 @@ import {
   WasmSource,
 } from "../scheme";
 import Hash from "./Hash";
-import { row } from "./SpecsTab";
-import { Fragment, useState } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/24/solid";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { Row } from "./SpecsTab";
 
 type LabeledQr = {
   qr: QrInfo;
@@ -39,9 +38,9 @@ export default function MetadataTab({ specs }: MetadataTabProps) {
   const [selectedIdx, setSelectedIdx] = useState(0);
 
   return (
-    <div className="w-fit">
+    <div className="space-y-4">
       <Listbox value={selectedIdx} onChange={setSelectedIdx}>
-        <div className="relative mt-4 w-full">
+        <div className="relative w-full">
           <Listbox.Button className="border border-gray-200 relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
             <span className="block truncate">
               <span className="font-bold">{qrs[selectedIdx].label}</span>
@@ -95,29 +94,26 @@ export default function MetadataTab({ specs }: MetadataTabProps) {
         </div>
       </Listbox>
 
-      <div className="pt-10 md:px-4 text-center md:text-left">
-        {"Scan this QR video to update "}
-        <a
-          href="https://parity.io/signer/"
-          target="_blank"
-          className="font-medium"
-          style={{ color: `${color}` }}
-          rel="noreferrer"
-        >
-          Parity Signer App
-          <ArrowTopRightOnSquareIcon className={"inline w-4 h-4 ml-2"} />
-        </a>
-      </div>
-
-      <div className="md:w-[468px] md:h-[468px]">
+      <div className="flex flex-col items-center text-sm space-y-2">
         <img
+          className="w-full"
           src={process.env.PUBLIC_URL + qrs[selectedIdx].qr.path}
           alt="metadata qr code"
         />
+        <div>
+          {"Scan this code to add chain specs to the "}
+          <a
+            href="https://parity.io/signer/"
+            className="font-bold"
+            style={{ color }}
+            rel="noreferrer"
+          >
+            Parity Signer App
+          </a>
+        </div>
       </div>
-      <div className="px-4">
-        <SourceBlock source={qrs[selectedIdx].qr.source} />
-      </div>
+
+      <SourceBlock source={qrs[selectedIdx].qr.source} />
     </div>
   );
 }
@@ -132,27 +128,29 @@ function SourceBlock({ source }: SourceBlockProps) {
       case "Wasm": {
         const s = source as WasmSource;
         return (
-          <ul className="flex">
-            {row(
-              "Metadata source",
+          <ul>
+            <Row title="Metadata source">
               <a
                 href={`https://github.com/${s.github_repo}/releases`}
                 target="_blank"
                 rel="noreferrer"
               >
                 {s.github_repo}
-                <ArrowTopRightOnSquareIcon className={"inline w-4 h-4 ml-1"} />
               </a>
-            )}
-            {row("Blake2-256 hash", <Hash value={s.hash} />)}
+            </Row>
+            <Row title="Blake2-256 hash">
+              <Hash value={s.hash} />
+            </Row>
           </ul>
         );
       }
       case "Rpc": {
         const s = source as RpcSource;
         return (
-          <ul className="flex">
-            {row("Source block", <Hash value={s.block} />, true)}
+          <ul>
+            <Row title="Source block">
+              <Hash value={s.block} />
+            </Row>
           </ul>
         );
       }

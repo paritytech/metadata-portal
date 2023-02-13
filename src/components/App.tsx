@@ -9,6 +9,7 @@ import "./App.css";
 import Sidebar from "./Sidebar";
 import MetadataTab from "./MetadataTab";
 import SpecsTab from "./SpecsTab";
+import { AppLinks } from "./AppLinks";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -71,6 +72,7 @@ export default function App() {
   const color = specs.color;
   return (
     <div className="flex flex-col w-full overflow-auto">
+      <AppLinks />
       <div
         className="md:hidden md:invisible px-2 text-white font-bold text-2xl flex flex-row"
         style={{ backgroundColor: color }}

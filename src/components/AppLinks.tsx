@@ -6,7 +6,7 @@ const LINKS = [
 
 export const AppLinks = () => {
   return (
-    <div className="flex justify-end p-2 space-x-4 text-sm bg-neutral-100">
+    <div className="flex justify-end p-2 space-x-4 text-sm bg-black text-white">
       <span>{STATESMENT}</span>
       {LINKS.map(([label, href], i) => (
         <a href={href} key={i}>

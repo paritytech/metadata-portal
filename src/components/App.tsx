@@ -1,13 +1,31 @@
 import { useEffect, useState } from "react";
-import { Chains } from "../scheme";
 import { useLocation } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { capitalizeFirstLetter } from "../utils";
-
+import { Chains } from "../scheme";
 import "./App.css";
-import Sidebar from "./Sidebar";
 import { AppLinks } from "./AppLinks";
 import { Network } from "./Network";
+
+const About = () => (
+  <div className="text-xs bg-neutral-100 p-4 rounded-2xl">
+    Metadata Portal is a self-hosted web page which shows you the latest
+    metadata for a given network.
+  </div>
+);
+
+const NetworkSelect = () => (
+  <div className="border border-neutral-200 p-4 rounded-2xl space-y-3">
+    <div>
+      <div className="text-sm text-neutral-500">Metadata Portal</div>
+      <div className="text-lg">Parity Portal</div>
+    </div>
+    <hr className="bg-neutral-200" />
+    <div>
+      <div className="text-sm text-neutral-500">Selected Network</div>
+      <div className="text-lg">Polkadot</div>
+    </div>
+  </div>
+);
 
 export default function App() {
   const [localStorageNetwork, setLocalStorageNetwork] =
@@ -63,78 +81,14 @@ export default function App() {
     return null;
   }
 
-  const color = specs.color;
   return (
-    <div className="flex flex-col w-full overflow-auto">
+    <div>
       <AppLinks />
-      <div
-        className="md:hidden md:invisible px-2 text-white font-bold text-2xl flex flex-row"
-        style={{ backgroundColor: color }}
-      >
-        <div
-          className="bg-white py-2 visible items-center"
-          style={{ backgroundColor: color }}
-        >
-          <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
-        </div>
-        <span className="self-center">
-          {capitalizeFirstLetter(specs.title)}
-        </span>
-      </div>
-      <div className="flex flex-row">
-        <Sidebar
-          allChains={allChains}
-          currentNetwork={currentNetwork}
-          setLocalStorageNetwork={setLocalStorageNetwork}
-          setCurrentNetwork={setCurrentNetwork}
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
-        />
-        {/** darker layer*/}
-        {isOpen && (
-          <div
-            className="absolute w-full bg-black h-full opacity-80 z-20 visible"
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
-          />
-        )}
-        <main className="p-4 w-full">
-          <Network spec={specs} />
-        </main>
+      <div className="p-2 space-y-2">
+        <About />
+        <NetworkSelect />
+        <Network spec={specs} />
       </div>
     </div>
-  );
-}
-
-interface BurgerButtonProps {
-  isOpen: boolean;
-  onClick: () => void;
-}
-
-function BurgerButton({ isOpen, onClick }: BurgerButtonProps) {
-  return (
-    <button
-      className="flex top-0 left-0 relative w-8 h-10 text-white focus:outline-none"
-      onClick={onClick}
-    >
-      <div className="absolute w-5 transform -translate-x-1/2 -translate-y-1/2 top-1/2">
-        <span
-          className={`absolute h-0.5 w-5 bg-white transform transition duration-200 ease-in-out ${
-            isOpen ? "rotate-45 delay-100" : "-translate-y-1.5"
-          }`}
-        ></span>
-        <span
-          className={`absolute h-0.5 bg-white transform transition-all duration-100 ease-in-out ${
-            isOpen ? "w-0 opacity-50" : "w-5 delay-100 opacity-100"
-          }`}
-        ></span>
-        <span
-          className={`absolute h-0.5 w-5 bg-white transform transition duration-200 ease-in-out ${
-            isOpen ? "-rotate-45 delay-100" : "translate-y-1.5"
-          }`}
-        ></span>
-      </div>
-    </button>
   );
 }

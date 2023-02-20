@@ -211,12 +211,12 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
           </Tab.Panels>
         </Tab.Group>
         <div
-          className="absolute inset-0 rounded-[32px] pointer-events-none"
+          className="absolute inset-0 rounded-4xl pointer-events-none"
           style={{ backgroundColor: `${spec.color}0D` }}
         />
       </div>
       <div
-        className="absolute inset-0 rounded-[32px] border-2 pointer-events-none"
+        className="absolute inset-0 rounded-4xl border-2 pointer-events-none"
         style={{
           backgroundColor: `${spec.color}0D`,
           borderColor: `${spec.color}1A`,

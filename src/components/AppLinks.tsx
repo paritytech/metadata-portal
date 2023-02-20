@@ -1,18 +1,24 @@
-const STATESMENT = "Parity Signer";
-const LINKS = [
-  ["iOS", "https://itunes.apple.com/us/app/parity-signer/id1218174838"],
-  ["Android", "https://play.google.com/store/apps/details?id=io.parity.signer"],
-];
+const LINKS = [["Download", "https://www.parity.io/technologies/signer/"]];
 
 export const AppLinks = () => {
   return (
-    <div className="flex justify-end p-2 space-x-4 text-sm bg-black text-white">
-      <span>{STATESMENT}</span>
-      {LINKS.map(([label, href], i) => (
-        <a href={href} key={i}>
-          {label}
-        </a>
-      ))}
+    <div className="flex justify-between p-4 text-sm bg-black text-white">
+      <span className="font-bold">
+        Get <span className="text-pink-400">Polkadot Vault</span>
+      </span>
+      <span className="space-x-4">
+        {LINKS.map(([label, href], i) => (
+          <a
+            className="py-2 px-8 rounded-4xl bg-pink-600 font-bold"
+            href={href}
+            key={i}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {label}
+          </a>
+        ))}
+      </span>
     </div>
   );
 };

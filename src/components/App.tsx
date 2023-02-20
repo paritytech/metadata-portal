@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Chains } from "../scheme";
 import { About } from "./About";
-import "./App.css";
 import { AppLinks } from "./AppLinks";
 import { FAQ } from "./FAQ";
 import { Hr } from "./Hr";
 import { Links } from "./Links";
 import { Network } from "./Network";
+import { NetworkAndPortalSelectMobile } from "./NetworkAndPortalSelectMobile";
 import { NetworkSelect } from "./NetworkSelect";
+import { PortalSelect } from "./PortalSelect";
 
 export default function App() {
   const [chains, setChains] = useState<Chains>({} as Chains);
@@ -44,18 +45,43 @@ export default function App() {
   return (
     <div>
       <AppLinks />
-      <div className="p-2 pb-4 space-y-2">
-        <About />
-        <NetworkSelect
-          chains={chains}
-          currentChain={currentChain}
-          onSelect={setCurrentChain}
-        />
-        <div className="space-y-8">
-          <Network spec={spec} />
-          <FAQ />
-          <Hr />
-          <Links />
+      <div className="flex flex-col md:flex-row p-2 md:p-4 pb-4 md:space-x-4 space-y-2 md:space-y-0">
+        <div className="md:max-w-xs space-y-2">
+          <div className="md:hidden">
+            <About />
+          </div>
+          <div className="md:hidden">
+            <NetworkAndPortalSelectMobile
+              chains={chains}
+              currentChain={currentChain}
+              onSelect={setCurrentChain}
+            />
+          </div>
+          <div className="hidden md:block">
+            <PortalSelect />
+          </div>
+          <div className="hidden md:block">
+            <About />
+          </div>
+          <div className="hidden md:block">
+            <NetworkSelect
+              chains={chains}
+              currentChain={currentChain}
+              onSelect={setCurrentChain}
+            />
+          </div>
+        </div>
+        <div className="w-full">
+          <div className="space-y-8">
+            <Network spec={spec} />
+            <FAQ />
+            <div className="md:hidden">
+              <Hr />
+            </div>
+            <div className="md:hidden">
+              <Links />
+            </div>
+          </div>
         </div>
       </div>
     </div>

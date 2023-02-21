@@ -2,11 +2,18 @@ const LINKS = [["Download", "https://www.parity.io/technologies/signer/"]];
 
 export const AppLinks = () => {
   return (
-    <div className="flex justify-between p-4 text-sm bg-black text-white">
-      <span className="font-bold">
-        Get <span className="text-pink-400">Polkadot Vault</span>
-      </span>
-      <span className="space-x-4">
+    <div className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:z-50 lg flex items-center space-x-4 p-4 text-sm bg-black text-white">
+      <div className="flex flex-1">
+        <div className="hidden lg:block w-full max-w-xs -mr-2" />
+        <div className="font-bold w-full">
+          Download <span className="text-pink-400">Polkadot Vault</span>
+          <span className="hidden lg:inline">{" cold storage wallet app"}</span>
+          <span className="hidden xl:inline">
+            {" and use the portal for adding and updating networks"}
+          </span>
+        </div>
+      </div>
+      <div className="space-x-4">
         {LINKS.map(([label, href], i) => (
           <a
             className="py-2 px-8 rounded-4xl bg-pink-600 font-bold"
@@ -18,7 +25,7 @@ export const AppLinks = () => {
             {label}
           </a>
         ))}
-      </span>
+      </div>
     </div>
   );
 };

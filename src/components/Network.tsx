@@ -2,10 +2,10 @@ import { Listbox, Tab, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { ChainSpec, QrInfo, RpcSource, WasmSource } from "../scheme";
 import { capitalizeFirstLetter, cn } from "../utils";
+import { ChevronIcon } from "./ChevronIcon";
 import Hash from "./Hash";
-import { Row } from "./Row";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/24/solid";
 import { Links } from "./Links";
+import { Row } from "./Row";
 
 type LabeledQr = {
   qr: QrInfo;
@@ -32,12 +32,18 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
 
   return (
     <>
-      <div className="hidden md:flex items-center justify-between">
+      <div className="hidden lg:flex items-start justify-between">
         <div className="text-6xl">{capitalizeFirstLetter(spec.title)}</div>
         <Links />
       </div>
-      <div className="relative p-1 flex flex-col md:flex-row">
-        <div className="flex flex-col flex-1 items-center p-4 pb-12">
+      <div
+        className="flex flex-col lg:flex-row p-2 border-2 rounded-4xl space-y-2 lg:space-y-0 lg:space-x-2"
+        style={{
+          backgroundColor: `${spec.color}0D`,
+          borderColor: `${spec.color}1A`,
+        }}
+      >
+        <div className="flex flex-col items-center p-2 lg:p-8 pb-12 lg:w-1/2 bg-white rounded-3xl">
           <div className="w-full max-w-lg aspect-square bg-neutral-100">
             {selectedIndex === 0 && (
               <img
@@ -67,7 +73,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
             </a>
           </div>
         </div>
-        <div className="relative p-2 md:p-8 pb-8 w-full max-w-sm">
+        <div className="p-2 lg:p-8 pb-12 lg:w-1/2 bg-white rounded-3xl">
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
             <Tab.List className="flex bg-neutral-200 rounded-full p-1 mb-6">
               {["Chain Specs", "Metadata"].map((title) => (
@@ -108,82 +114,52 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
               </Tab.Panel>
               <Tab.Panel>
                 <div className="space-y-4">
-                  <Listbox value={selectedIdx} onChange={setSelectedIdx}>
-                    <div className="relative w-full">
-                      <Listbox.Button className="border border-gray-200 relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
-                        <span className="block truncate">
-                          <span className="font-bold">
-                            {qrs[selectedIdx].label}
-                          </span>
-                          {qrs[selectedIdx].qr.signedBy ? (
-                            <span className="p-1 mx-2 rounded-full text-xs text-green-700 bg-green-100">
-                              Signed by {qrs[selectedIdx].qr.signedBy}
-                            </span>
-                          ) : (
-                            <span className="p-1 mx-2 rounded-full text-red-700 bg-red-100">
-                              Unsigned
-                            </span>
-                          )}
+                  <Listbox
+                    as="div"
+                    className="relative w-full"
+                    value={selectedIdx}
+                    onChange={setSelectedIdx}
+                  >
+                    <Listbox.Button className="bordered-action flex items-center justify-between w-full space-x-4">
+                      <span className="flex items-center space-x-2">
+                        <span>{qrs[selectedIdx].label}</span>
+                        <span className="px-2 py-1 text-sm rounded-full bg-neutral-200">
+                          {qrs[selectedIdx].qr.signedBy
+                            ? `Signed by ${qrs[selectedIdx].qr.signedBy}`
+                            : "Unsigned"}
                         </span>
-                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                          <ChevronUpDownIcon
-                            className="h-5 w-5 text-gray-400"
-                            aria-hidden="true"
-                          />
-                        </span>
-                      </Listbox.Button>
-                      <Transition
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                          {qrs.map((qr, idx) => (
-                            <Listbox.Option
-                              key={idx}
-                              className={({ active }) =>
-                                `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                  active
-                                    ? "bg-amber-100 text-amber-900"
-                                    : "text-gray-900"
-                                }`
-                              }
-                              value={idx}
-                            >
-                              {({ selected }) => (
-                                <>
-                                  <span
-                                    className={`block truncate ${
-                                      selected ? "font-medium" : "font-normal"
-                                    }`}
-                                  >
-                                    {qr.label}
-                                    {qr.qr.signedBy ? (
-                                      <span className="p-1 mx-2 rounded-full text-xs text-green-700 bg-green-100">
-                                        Signed by {qr.qr.signedBy}
-                                      </span>
-                                    ) : (
-                                      <span className="p-1 mx-2 rounded-full text-red-700 bg-red-100">
-                                        Unsigned
-                                      </span>
-                                    )}
-                                  </span>
-                                  {selected ? (
-                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                                      <CheckIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                      />
-                                    </span>
-                                  ) : null}
-                                </>
-                              )}
-                            </Listbox.Option>
-                          ))}
-                        </Listbox.Options>
-                      </Transition>
-                    </div>
+                      </span>
+                      <ChevronIcon />
+                    </Listbox.Button>
+                    <Transition
+                      as={Fragment}
+                      leave="transition ease-in duration-100"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <Listbox.Options className="absolute mt-1 left-0 right-0 overflow-auto rounded-md bg-white py-2 text-base shadow-lg focus:outline-none">
+                        {qrs.map((qr, idx) => (
+                          <Listbox.Option key={idx} value={idx}>
+                            {({ selected }) => (
+                              <div
+                                className={cn(
+                                  "flex items-center space-x-2 px-4 py-2",
+                                  selected && "bg-neutral-100",
+                                  selected ? "cursor-default" : "cursor-pointer"
+                                )}
+                              >
+                                <span>{qr.label}</span>
+                                <span className="px-2 py-1 text-sm rounded-full bg-neutral-200">
+                                  {qrs[selectedIdx].qr.signedBy
+                                    ? `Signed by ${qrs[selectedIdx].qr.signedBy}`
+                                    : "Unsigned"}
+                                </span>
+                              </div>
+                            )}
+                          </Listbox.Option>
+                        ))}
+                      </Listbox.Options>
+                    </Transition>
                   </Listbox>
                   {qrs[selectedIdx].qr.source?.type === "Wasm" && (
                     <ul className="space-y-4">
@@ -226,18 +202,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
-          <div
-            className="absolute inset-0 rounded-4xl pointer-events-none"
-            style={{ backgroundColor: `${spec.color}0D` }}
-          />
         </div>
-        <div
-          className="absolute inset-0 rounded-4xl border-2 pointer-events-none"
-          style={{
-            backgroundColor: `${spec.color}0D`,
-            borderColor: `${spec.color}1A`,
-          }}
-        />
       </div>
     </>
   );

@@ -1,1 +1,1 @@
-export const PORTALS = ["Parity Portal"];
+export const PORTALS = ["Parity"];

@@ -7,12 +7,12 @@ import { ChevronIcon } from "./ChevronIcon";
 export const PortalSelect = () => (
   <div className="bordered-action">
     <Listbox as="div" value={PORTALS[0]} className="relative">
-      <Listbox.Button className="block w-full text-left">
-        <div className="text-sm text-neutral-500">Metadata Portal</div>
-        <div className="flex items-center justify-between w-full text-lg">
+      <Listbox.Button className="flex items-center justify-between w-full text-xl">
+        <div className="space-x-2">
+          <span className="nowrap text-neutral-400">Metadata Portal</span>
           <span>{PORTALS[0]}</span>
-          <ChevronIcon />
         </div>
+        <ChevronIcon />
       </Listbox.Button>
       <Transition
         as={Fragment}
@@ -20,17 +20,18 @@ export const PortalSelect = () => (
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg focus:outline-none">
+        <Listbox.Options className="absolute mt-1 -left-4 -right-4 overflow-auto rounded-md bg-white py-2 text-base shadow-lg focus:outline-none">
           {PORTALS.map((portal) => (
             <Listbox.Option key={portal} value={portal}>
               {({ selected }) => (
                 <div
                   className={cn(
-                    "flex items-center space-x-2 px-2 py-1",
-                    selected && "bg-neutral-100"
+                    "flex items-center space-x-2 px-4 py-2",
+                    selected && "bg-neutral-100",
+                    selected ? "cursor-default" : "cursor-pointer"
                   )}
                 >
-                  <div className="text-xl">{portal}</div>
+                  {portal}
                 </div>
               )}
             </Listbox.Option>

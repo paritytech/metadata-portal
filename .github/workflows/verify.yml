@@ -21,9 +21,10 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
+          args: --release
 
       - name: ⚙ Run verifier
         uses: actions-rs/cargo@v1
         with:
           command: run
-          args: -- verify
+          args: --release -- verify

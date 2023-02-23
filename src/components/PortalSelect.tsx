@@ -20,13 +20,13 @@ export const PortalSelect = () => (
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Listbox.Options className="absolute mt-1 -left-4 -right-4 overflow-auto rounded-md bg-white py-2 text-base shadow-lg focus:outline-none">
+        <Listbox.Options className="absolute mt-1 -left-4 -right-4 overflow-auto rounded-lg bg-white p-2 text-base shadow-lg focus:outline-none">
           {PORTALS.map((portal) => (
             <Listbox.Option key={portal} value={portal}>
               {({ selected }) => (
                 <div
                   className={cn(
-                    "flex items-center space-x-2 px-4 py-2",
+                    "flex items-center space-x-2 p-2 rounded-md text-2xl",
                     selected && "bg-neutral-100",
                     selected ? "cursor-default" : "cursor-pointer"
                   )}

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Unbounded&display=swap");
+/*
 @font-face {
   font-family: "Web3-Regular";
   src: url("./assets/fonts/Web3-Regular.woff") format("woff"),
@@ -10,6 +12,14 @@
 
 .web3-regular {
   font-family: "Web3-Regular";
+} */
+
+body {
+  font-family: "Inter";
+}
+
+.unbounded {
+  font-family: "Unbounded";
 }
 
 @layer components {

@@ -36,7 +36,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
   return (
     <div>
       <div className="hidden xl:flex items-center justify-between mb-10">
-        <div className="flex items-center space-x-2 text-5xl">
+        <div className="flex items-center space-x-2 text-5xl unbounded">
           <img
             src={LOGOS[spec.title as "polkadot"]}
             className="w-16 h-16 rounded-full bg-neutral-200"

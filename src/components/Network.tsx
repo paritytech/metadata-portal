@@ -43,7 +43,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
           borderColor: `${spec.color}1A`,
         }}
       >
-        <div className="flex flex-col items-center p-2 lg:p-8 pb-12 lg:w-1/2 bg-white rounded-3xl">
+        <div className="flex flex-col items-center p-2 lg:p-8 pb-12 lg:w-3/5 bg-white rounded-3xl">
           <div className="w-full max-w-lg aspect-square bg-neutral-100">
             {selectedIndex === 0 && (
               <img
@@ -73,7 +73,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
             </a>
           </div>
         </div>
-        <div className="p-2 lg:p-8 pb-12 lg:w-1/2 bg-white rounded-3xl">
+        <div className="p-2 lg:p-8 pb-12 lg:w-2/5 bg-white rounded-3xl">
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
             <Tab.List className="flex bg-neutral-200 rounded-full p-1 mb-6">
               {["Chain Specs", "Metadata"].map((title) => (

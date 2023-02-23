@@ -21,8 +21,8 @@ export const NetworkSelect = ({
             {({ selected }) => (
               <div
                 className={cn(
-                  "flex items-center space-x-2 p-2",
-                  selected && "bg-neutral-100 rounded-full",
+                  "flex items-center space-x-2 p-2 transition-colors rounded-full hover:bg-neutral-100",
+                  selected && "bg-neutral-100",
                   selected ? "cursor-default" : "cursor-pointer"
                 )}
               >

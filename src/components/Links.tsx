@@ -7,7 +7,11 @@ export const Links = () => {
   return (
     <div className="flex space-x-2 text-neutral-400">
       {LINKS.map(([label, href], i) => (
-        <a className="bordered-action" href={href} key={i}>
+        <a
+          className="bordered-action hover:bg-neutral-100 transition-colors"
+          href={href}
+          key={i}
+        >
           {label}
         </a>
       ))}

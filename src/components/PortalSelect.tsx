@@ -33,7 +33,7 @@ export const PortalSelect = () => (
               {({ selected }) => (
                 <div
                   className={cn(
-                    "flex items-center space-x-2 p-2 rounded-md text-2xl",
+                    "flex items-center space-x-2 p-2 rounded-md text-2xl hover:bg-neutral-100 transition-colors",
                     selected && "bg-neutral-100",
                     selected ? "cursor-default" : "cursor-pointer"
                   )}

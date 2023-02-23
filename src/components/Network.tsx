@@ -15,8 +15,22 @@ type LabeledQr = {
   label: string;
 };
 
+function tabFromSearch() {
+  const params = new URLSearchParams(location.search);
+  const tab = parseInt(params.get("tab") || "0", 10);
+
+  return tab === 0 || tab === 1 ? tab : 0;
+}
+
+function setTabToSearch(v: number) {
+  const params = new URLSearchParams(location.search);
+  params.set("tab", v.toString());
+  location.search = `?${params}`;
+}
+
 export const Network = ({ spec }: { spec: ChainSpec }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedTab, setSelectedTab] = useState(tabFromSearch());
+  const [selectedQr, setSelectedQr] = useState(0);
   const qrs = [
     { qr: spec.metadataQr, label: `Current: #${spec.metadataVersion}` },
     spec.nextMetadataQr &&
@@ -31,7 +45,11 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
       label: `Next #${spec.nextMetadataVersion}`,
     });
   }
-  const [selectedIdx, setSelectedIdx] = useState(0);
+
+  function updateTab(v: number) {
+    setTabToSearch(v);
+    setSelectedTab(v);
+  }
 
   return (
     <div>
@@ -54,26 +72,25 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
       >
         <div className="flex flex-col items-center p-16 md:w-1/2 bg-white rounded-3xl">
           <div className="w-full max-w-xs aspect-square bg-neutral-100">
-            {selectedIndex === 0 && (
+            {selectedTab === 0 && (
               <img
                 className="w-full"
                 src={process.env.PUBLIC_URL + spec.specsQr.path}
                 alt="Qr code"
               />
             )}
-            {selectedIndex === 1 && (
+            {selectedTab === 1 && (
               <img
                 className="w-full"
-                src={process.env.PUBLIC_URL + qrs[selectedIdx].qr.path}
+                src={process.env.PUBLIC_URL + qrs[selectedQr].qr.path}
                 alt="metadata qr code"
               />
             )}
           </div>
           <div className="text-center text-sm text-neutral-400">
             <div>
-              {selectedIndex === 0 &&
-                "Scan this code to add chain specs to the "}
-              {selectedIndex === 1 && "Scan this code to update "}
+              {selectedTab === 0 && "Scan this code to add chain specs to the "}
+              {selectedTab === 1 && "Scan this code to update "}
             </div>
             <a
               href="https://parity.io/signer/"
@@ -86,7 +103,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
           </div>
         </div>
         <div className="p-2 md:p-4 md:w-1/2 bg-white rounded-3xl">
-          <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+          <Tab.Group selectedIndex={selectedTab} onChange={updateTab}>
             <Tab.List className="flex bg-neutral-200 rounded-full p-1">
               {["Chain Specs", "Update Metadata"].map((title) => (
                 <Tab as={Fragment} key={title}>
@@ -138,15 +155,15 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                   <Listbox
                     as="div"
                     className="relative w-full"
-                    value={selectedIdx}
-                    onChange={setSelectedIdx}
+                    value={selectedQr}
+                    onChange={setSelectedQr}
                   >
                     <Listbox.Button className="bordered-action flex items-center justify-between w-full space-x-4">
                       <span className="flex items-center space-x-2">
-                        <span>{qrs[selectedIdx].label}</span>
+                        <span>{qrs[selectedQr].label}</span>
                         <span className="px-2 py-1 text-sm rounded-full bg-neutral-200">
-                          {qrs[selectedIdx].qr.signedBy
-                            ? `Signed by ${qrs[selectedIdx].qr.signedBy}`
+                          {qrs[selectedQr].qr.signedBy
+                            ? `Signed by ${qrs[selectedQr].qr.signedBy}`
                             : "Unsigned"}
                         </span>
                       </span>
@@ -158,21 +175,21 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className="absolute mt-1 left-0 right-0 overflow-auto rounded-md bg-white py-2 text-base shadow-lg focus:outline-none">
+                      <Listbox.Options className="absolute mt-1 left-0 right-0 overflow-auto rounded-lg bg-white p-2 text-base shadow-lg focus:outline-none">
                         {qrs.map((qr, idx) => (
                           <Listbox.Option key={idx} value={idx}>
                             {({ selected }) => (
                               <div
                                 className={cn(
-                                  "flex items-center space-x-2 px-4 py-2",
+                                  "flex items-center space-x-2 p-2 rounded-md hover:bg-neutral-100 transition-colors",
                                   selected && "bg-neutral-100",
                                   selected ? "cursor-default" : "cursor-pointer"
                                 )}
                               >
                                 <span>{qr.label}</span>
                                 <span className="px-2 py-1 text-sm rounded-full bg-neutral-200">
-                                  {qrs[selectedIdx].qr.signedBy
-                                    ? `Signed by ${qrs[selectedIdx].qr.signedBy}`
+                                  {qrs[selectedQr].qr.signedBy
+                                    ? `Signed by ${qrs[selectedQr].qr.signedBy}`
                                     : "Unsigned"}
                                 </span>
                               </div>
@@ -182,39 +199,35 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                       </Listbox.Options>
                     </Transition>
                   </Listbox>
-                  {qrs[selectedIdx].qr.source?.type === "Wasm" && (
+                  {qrs[selectedQr].qr.source?.type === "Wasm" && (
                     <ul className="space-y-4">
                       <Row title="Metadata source">
                         <a
                           href={`https://github.com/${
-                            (qrs[selectedIdx].qr.source as WasmSource)
+                            (qrs[selectedQr].qr.source as WasmSource)
                               .github_repo
                           }/releases`}
                           target="_blank"
                           rel="noreferrer"
                         >
                           {
-                            (qrs[selectedIdx].qr.source as WasmSource)
+                            (qrs[selectedQr].qr.source as WasmSource)
                               .github_repo
                           }
                         </a>
                       </Row>
                       <Row title="hash">
                         <Hash
-                          value={
-                            (qrs[selectedIdx].qr.source as WasmSource).hash
-                          }
+                          value={(qrs[selectedQr].qr.source as WasmSource).hash}
                         />
                       </Row>
                     </ul>
                   )}
-                  {qrs[selectedIdx].qr.source?.type === "Rpc" && (
+                  {qrs[selectedQr].qr.source?.type === "Rpc" && (
                     <ul className="space-y-4">
                       <Row title="Source block">
                         <Hash
-                          value={
-                            (qrs[selectedIdx].qr.source as RpcSource).block
-                          }
+                          value={(qrs[selectedQr].qr.source as RpcSource).block}
                         />
                       </Row>
                     </ul>

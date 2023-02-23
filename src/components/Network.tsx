@@ -4,8 +4,11 @@ import { ChainSpec, QrInfo, RpcSource, WasmSource } from "../scheme";
 import { capitalizeFirstLetter, cn } from "../utils";
 import { ChevronIcon } from "./ChevronIcon";
 import Hash from "./Hash";
+import { Hr } from "./Hr";
 import { Links } from "./Links";
 import { Row } from "./Row";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import { LOGOS } from "../constants";
 
 type LabeledQr = {
   qr: QrInfo;
@@ -31,20 +34,26 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
   const [selectedIdx, setSelectedIdx] = useState(0);
 
   return (
-    <>
-      <div className="hidden lg:flex items-start justify-between">
-        <div className="text-6xl">{capitalizeFirstLetter(spec.title)}</div>
+    <div>
+      <div className="hidden md:flex items-center justify-between mb-10">
+        <div className="flex items-center space-x-2 text-5xl">
+          <img
+            src={LOGOS[spec.title as "polkadot"]}
+            className="w-16 h-16 rounded-full bg-neutral-200"
+          />
+          <span>{capitalizeFirstLetter(spec.title)}</span>
+        </div>
         <Links />
       </div>
       <div
-        className="flex flex-col lg:flex-row p-2 border-2 rounded-4xl space-y-2 lg:space-y-0 lg:space-x-2"
+        className="flex flex-col md:flex-row p-2 border-2 rounded-4xl space-y-2 md:space-y-0 md:space-x-2"
         style={{
           backgroundColor: `${spec.color}0D`,
           borderColor: `${spec.color}1A`,
         }}
       >
-        <div className="flex flex-col items-center p-2 lg:p-8 pb-12 lg:w-3/5 bg-white rounded-3xl">
-          <div className="w-full max-w-lg aspect-square bg-neutral-100">
+        <div className="flex flex-col items-center p-16 md:w-1/2 bg-white rounded-3xl">
+          <div className="w-full max-w-xs aspect-square bg-neutral-100">
             {selectedIndex === 0 && (
               <img
                 className="w-full"
@@ -60,28 +69,31 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
               />
             )}
           </div>
-          <div className="px-8 text-center text-sm text-neutral-500">
-            {selectedIndex === 0 && "Scan this code to add chain specs to the "}
-            {selectedIndex === 1 && "Scan this code to update "}
+          <div className="text-center text-sm text-neutral-400">
+            <div>
+              {selectedIndex === 0 &&
+                "Scan this code to add chain specs to the "}
+              {selectedIndex === 1 && "Scan this code to update "}
+            </div>
             <a
               href="https://parity.io/signer/"
               className="font-bold"
               target="_blank"
               rel="noreferrer"
             >
-              Parity Signer App
+              Polkadot Vault
             </a>
           </div>
         </div>
-        <div className="p-2 lg:p-8 pb-12 lg:w-2/5 bg-white rounded-3xl">
+        <div className="p-2 md:p-4 pb-12 md:w-1/2 bg-white rounded-3xl">
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-            <Tab.List className="flex bg-neutral-200 rounded-full p-1 mb-6">
-              {["Chain Specs", "Metadata"].map((title) => (
+            <Tab.List className="flex bg-neutral-200 rounded-full p-1">
+              {["Chain Specs", "Update Metadata"].map((title) => (
                 <Tab as={Fragment} key={title}>
                   {({ selected }) => (
                     <button
                       className={cn(
-                        "flex-1 p-3 rounded-full font-bold focus-visible:outline-none",
+                        "flex-1 p-3 rounded-full focus:outline-none",
                         selected && "text-white"
                       )}
                       style={{ backgroundColor: selected ? spec.color : "" }}
@@ -92,14 +104,16 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                 </Tab>
               ))}
             </Tab.List>
-            <Tab.Panels>
+            <div className="m-4">
+              <Hr />
+            </div>
+            <Tab.Panels className="m-4 mt-6 mb-8">
               <Tab.Panel>
                 <ul className="space-y-4">
                   <Row title="RPC endpoint">{spec.rpcEndpoint}</Row>
                   <Row title="Genesis hash">
                     <Hash value={spec.genesisHash} />
                   </Row>
-                  <Row title="Address prefix">{spec.base58prefix}</Row>
                   <Row title="Color">
                     <div className="flex space-x-2">
                       <div className="ml-2">{spec.color}</div>
@@ -109,7 +123,14 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                       />
                     </div>
                   </Row>
+                  <Row title="Address prefix">{spec.base58prefix}</Row>
                   <Row title="Unit">{spec.unit}</Row>
+                  <Row title="Latest metadata QR">
+                    <div className="flex items-center space-x-1">
+                      <span>{spec.metadataVersion}</span>
+                      <ChevronRightIcon className="w-5 h-5" />
+                    </div>
+                  </Row>
                 </ul>
               </Tab.Panel>
               <Tab.Panel>
@@ -178,7 +199,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                           }
                         </a>
                       </Row>
-                      <Row title="Blake2-256 hash">
+                      <Row title="hash">
                         <Hash
                           value={
                             (qrs[selectedIdx].qr.source as WasmSource).hash
@@ -204,6 +225,6 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
           </Tab.Group>
         </div>
       </div>
-    </>
+    </div>
   );
 };

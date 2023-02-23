@@ -45,25 +45,25 @@ export default function App() {
   return (
     <div>
       <AppLinks />
-      <div className="flex flex-col lg:flex-row">
-        <div className="lg:sticky lg:top-0 w-full p-2 lg:p-4 lg:pr-2 lg:pt-24 lg:max-w-xs lg:h-screen">
-          <div className="lg:hidden mb-2">
+      <div className="flex flex-col md:flex-row">
+        <div className="md:sticky md:top-0 w-full p-2 md:p-4 md:pr-2 md:pt-24 md:max-w-sm md:h-screen">
+          <div className="md:hidden mb-2">
             <About />
           </div>
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <NetworkAndPortalSelectMobile
               chains={chains}
               currentChain={currentChain}
               onSelect={setCurrentChain}
             />
           </div>
-          <div className="hidden lg:block mb-4">
+          <div className="hidden md:block mt-2 mb-11">
             <PortalSelect />
           </div>
-          <div className="hidden lg:block mb-4">
+          <div className="hidden md:block mb-6">
             <About />
           </div>
-          <div className="hidden lg:block">
+          <div className="hidden md:block">
             <NetworkSelect
               chains={chains}
               currentChain={currentChain}
@@ -71,13 +71,13 @@ export default function App() {
             />
           </div>
         </div>
-        <div className="w-full p-2 pt-0 pb-8 lg:p-4 lg:pl-2 lg:pt-24 space-y-4">
+        <div className="w-full p-2 pt-0 pb-8 md:p-4 md:pl-2 md:pt-24 space-y-4">
           <Network spec={spec} />
           <FAQ />
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <Hr />
           </div>
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <Links />
           </div>
         </div>

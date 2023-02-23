@@ -7,8 +7,8 @@ import { ChevronIcon } from "./ChevronIcon";
 export const PortalSelect = () => (
   <div className="bordered-action">
     <Listbox as="div" value={PORTALS[0]} className="relative">
-      <Listbox.Button className="flex items-center justify-between w-full text-xl">
-        <div className="space-x-2">
+      <Listbox.Button className="flex items-center justify-between w-full text-2xl">
+        <div className="space-x-2 border-y border-transparent">
           <span className="nowrap text-neutral-400">Metadata Portal</span>
           <span>{PORTALS[0]}</span>
         </div>

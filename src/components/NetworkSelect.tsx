@@ -1,4 +1,5 @@
 import { Listbox } from "@headlessui/react";
+import { LOGOS } from "../constants";
 import { Chains } from "../scheme";
 import { capitalizeFirstLetter, cn } from "../utils";
 
@@ -12,7 +13,7 @@ export const NetworkSelect = ({
   onSelect: (v: string) => void;
 }) => (
   <div>
-    <div className="text-sm text-neutral-500 mb-2">Networks</div>
+    <div className="text-neutral-400 mb-4">Networks</div>
     <Listbox value={currentChain} onChange={onSelect}>
       <Listbox.Options static>
         {Object.keys(chains).map((chain) => (
@@ -20,14 +21,15 @@ export const NetworkSelect = ({
             {({ selected }) => (
               <div
                 className={cn(
-                  "flex items-center space-x-2 px-2 py-2",
+                  "flex items-center space-x-2 p-2",
                   selected && "bg-neutral-100 rounded-full",
                   selected ? "cursor-default" : "cursor-pointer"
                 )}
               >
-                <div className="web3-regular text-2xl text-center w-8">
-                  {chain}
-                </div>
+                <img
+                  src={LOGOS[chain as "polkadot"]}
+                  className="w-8 rounded-full"
+                />
                 <div className="text-xl">
                   {capitalizeFirstLetter(chains[chain].title)}
                 </div>

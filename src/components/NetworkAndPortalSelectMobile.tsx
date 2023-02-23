@@ -19,7 +19,7 @@ export const NetworkAndPortalSelectMobile = ({
     <div>
       <Listbox value={PORTALS[0]}>
         <Listbox.Button className="block w-full text-left">
-          <div className="text-sm text-neutral-500">Metadata Portal</div>
+          <div className="text-sm text-neutral-400">Metadata Portal</div>
           <div className="flex items-center justify-between w-full text-lg">
             <span>{PORTALS[0]}</span>
             <ChevronIcon />
@@ -53,7 +53,7 @@ export const NetworkAndPortalSelectMobile = ({
     <div>
       <Listbox value={currentChain} onChange={onSelect}>
         <Listbox.Button className="block w-full text-left">
-          <div className="text-sm text-neutral-500">Selected Network</div>
+          <div className="text-sm text-neutral-400">Selected Network</div>
           <div className="flex items-center justify-between w-full text-lg">
             <span>{capitalizeFirstLetter(chains[currentChain]?.title)}</span>
             <ChevronIcon />

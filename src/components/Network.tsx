@@ -35,7 +35,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
 
   return (
     <div>
-      <div className="hidden md:flex items-center justify-between mb-10">
+      <div className="hidden xl:flex items-center justify-between mb-10">
         <div className="flex items-center space-x-2 text-5xl">
           <img
             src={LOGOS[spec.title as "polkadot"]}
@@ -85,7 +85,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
             </a>
           </div>
         </div>
-        <div className="p-2 md:p-4 pb-12 md:w-1/2 bg-white rounded-3xl">
+        <div className="p-2 md:p-4 md:w-1/2 bg-white rounded-3xl">
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
             <Tab.List className="flex bg-neutral-200 rounded-full p-1">
               {["Chain Specs", "Update Metadata"].map((title) => (

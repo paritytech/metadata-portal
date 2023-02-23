@@ -4,9 +4,9 @@ const LINKS = [["Download", "https://www.parity.io/technologies/signer/"]];
 
 export const AppLinks = () => {
   return (
-    <div className="md:fixed md:top-0 md:left-0 md:right-0 md:z-50 lg flex items-center space-x-4 p-4 text-sm bg-black text-white">
+    <div className="xl:fixed xl:top-0 xl:left-0 xl:right-0 xl:z-50 flex items-center space-x-4 p-4 text-sm bg-black text-white">
       <div className="flex flex-1">
-        <div className="hidden md:block w-full max-w-xs -mr-2" />
+        <div className="hidden xl:block w-full max-w-xs -mr-2" />
         <div className="w-full">
           <img
             src={iconSrc}

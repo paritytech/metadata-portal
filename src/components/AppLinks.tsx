@@ -1,3 +1,5 @@
+import IconSrc from "../assets/icons/vault.svg";
+
 const LINKS = [["Download", "https://www.parity.io/technologies/signer/"]];
 
 export const AppLinks = () => {
@@ -6,7 +8,12 @@ export const AppLinks = () => {
       <div className="flex flex-1">
         <div className="hidden lg:block w-full max-w-xs -mr-2" />
         <div className="font-bold w-full">
-          Download <span className="text-pink-400">Polkadot Vault</span>
+          <img
+            src={IconSrc}
+            className="relative -top-px inline-block w-6 mr-2"
+          />
+          <span>{"Download "}</span>
+          <span className="text-pink-400">Polkadot Vault</span>
           <span className="hidden lg:inline">{" cold storage wallet app"}</span>
           <span className="hidden xl:inline">
             {" and use the portal for adding and updating networks"}

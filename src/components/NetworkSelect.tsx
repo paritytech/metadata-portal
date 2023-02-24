@@ -13,7 +13,7 @@ export const NetworkSelect = ({
   onSelect: (v: string) => void;
 }) => (
   <div>
-    <div className="text-neutral-400 mb-4">Networks</div>
+    <div className="text-black opacity-70 mb-4">Networks</div>
     <Listbox value={currentChain} onChange={onSelect}>
       <Listbox.Options static className="space-y-2">
         {Object.keys(chains).map((chain) => (

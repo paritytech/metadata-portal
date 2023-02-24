@@ -5,7 +5,7 @@ const LINKS = [
 
 export const Links = () => {
   return (
-    <div className="flex space-x-2 text-neutral-400">
+    <div className="flex space-x-2 text-black opacity-70">
       {LINKS.map(([label, href], i) => (
         <a
           className="bordered-action hover:bg-neutral-100 transition-colors"

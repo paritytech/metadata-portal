@@ -35,22 +35,13 @@ jobs:
           echo "switched=$switched" >> $GITHUB_OUTPUT
 
       - name: ⚙ Build metadata-cli
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --release
+        run: cargo build --release
 
       - name: ⚙ Update QRs from RPC nodes
-        uses: actions-rs/cargo@v1
-        with:
-          command: run
-          args: --release -- update --source node
+        run: cargo run --release -- update --source node
 
       - name: ⚙ Update QRs from GitHub releases
-        uses: actions-rs/cargo@v1
-        with:
-          command: run
-          args: --release -- update --source github
+        run: cargo run --release -- update --source github
 
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}
@@ -68,7 +59,7 @@ jobs:
       - name: Create Pull Request if not exist
         if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
         id: cpr
-        uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330
+        uses: peter-evans/create-pull-request@v4
         with:
           commit-message: add unsigned QR codes
           branch: ${{ steps.new-branch.outputs.name }}

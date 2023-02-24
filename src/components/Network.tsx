@@ -87,7 +87,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
               />
             )}
           </div>
-          <div className="text-center text-sm text-black opacity-70">
+          <div className="text-center text-sm text-black opacity-50">
             <div>
               {selectedTab === 0 && "Scan this code to add chain specs to the "}
               {selectedTab === 1 && "Scan this code to update "}

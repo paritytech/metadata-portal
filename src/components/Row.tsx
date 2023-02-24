@@ -9,7 +9,7 @@ export function Row({
 }) {
   return (
     <li className="flex justify-between space-x-8">
-      <div className="text-black opacity-70">{title}</div>
+      <div className="text-black opacity-50">{title}</div>
       <div className="text-right">{children}</div>
     </li>
   );

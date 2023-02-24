@@ -17,7 +17,7 @@ export const PortalSelect = () => (
       >
         <div className="flex items-center justify-between -my-px">
           <div className="space-x-2 text-2xl">
-            <span className="nowrap text-black opacity-70">
+            <span className="nowrap text-black opacity-50">
               Metadata Portal
             </span>
             <span>{PORTALS[0]}</span>

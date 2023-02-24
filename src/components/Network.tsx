@@ -142,12 +142,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                   </Row>
                   <Row title="Address prefix">{spec.base58prefix}</Row>
                   <Row title="Unit">{spec.unit}</Row>
-                  <Row title="Latest metadata QR">
-                    <div className="flex items-center space-x-1">
-                      <span>{spec.metadataVersion}</span>
-                      <ChevronRightIcon className="w-5 h-5" />
-                    </div>
-                  </Row>
+                  <Row title="Latest metadata">{spec.metadataVersion}</Row>
                 </ul>
               </Tab.Panel>
               <Tab.Panel>

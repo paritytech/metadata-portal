@@ -169,7 +169,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className="absolute mt-1 left-0 right-0 overflow-auto rounded-lg bg-white p-2 text-base shadow-lg focus:outline-none">
+                      <Listbox.Options className="absolute mt-1 left-0 right-0 overflow-auto rounded-lg bg-white p-2 text-base shadow-lg focus:outline-none z-10">
                         {qrs.map((qr, idx) => (
                           <Listbox.Option key={idx} value={idx}>
                             {({ selected }) => (

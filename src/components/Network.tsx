@@ -54,10 +54,10 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
   return (
     <div>
       <div className="hidden xl:flex items-center justify-between mb-10">
-        <div className="flex items-center space-x-2 text-5xl unbounded">
+        <div className="flex items-center space-x-2 text-[40px] leading-none unbounded">
           <img
             src={LOGOS[spec.title as "polkadot"]}
-            className="w-16 h-16 rounded-full bg-neutral-200"
+            className="w-14 h-14 rounded-full bg-neutral-200"
           />
           <span>{capitalizeFirstLetter(spec.title)}</span>
         </div>
@@ -70,7 +70,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
           borderColor: `${spec.color}1A`,
         }}
       >
-        <div className="flex flex-col items-center p-16 md:w-1/2 bg-white rounded-3xl">
+        <div className="flex flex-col items-center p-10 md:w-1/2 bg-white rounded-3xl">
           <div className="w-full max-w-xs aspect-square bg-neutral-100">
             {selectedTab === 0 && (
               <img
@@ -124,9 +124,9 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
             <div className="m-4">
               <Hr />
             </div>
-            <Tab.Panels className="m-4 mt-6 mb-8">
+            <Tab.Panels className="m-4 mt-6 mb-4">
               <Tab.Panel>
-                <ul className="space-y-4">
+                <ul className="space-y-6">
                   <Row title="RPC endpoint">{spec.rpcEndpoint}</Row>
                   <Row title="Genesis hash">
                     <Hash value={spec.genesisHash} />
@@ -151,7 +151,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                 </ul>
               </Tab.Panel>
               <Tab.Panel>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <Listbox
                     as="div"
                     className="relative w-full"
@@ -200,7 +200,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                     </Transition>
                   </Listbox>
                   {qrs[selectedQr].qr.source?.type === "Wasm" && (
-                    <ul className="space-y-4">
+                    <ul className="space-y-6">
                       <Row title="Metadata source">
                         <a
                           href={`https://github.com/${
@@ -216,7 +216,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                           }
                         </a>
                       </Row>
-                      <Row title="hash">
+                      <Row title="Hash">
                         <Hash
                           value={(qrs[selectedQr].qr.source as WasmSource).hash}
                         />

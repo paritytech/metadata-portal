@@ -15,7 +15,7 @@ export const NetworkSelect = ({
   <div>
     <div className="text-neutral-400 mb-4">Networks</div>
     <Listbox value={currentChain} onChange={onSelect}>
-      <Listbox.Options static>
+      <Listbox.Options static className="space-y-2">
         {Object.keys(chains).map((chain) => (
           <Listbox.Option key={chain} value={chain}>
             {({ selected }) => (
@@ -30,7 +30,7 @@ export const NetworkSelect = ({
                   src={LOGOS[chain as "polkadot"]}
                   className="w-8 rounded-full"
                 />
-                <div className="text-xl">
+                <div className="text-lg">
                   {capitalizeFirstLetter(chains[chain].title)}
                 </div>
               </div>

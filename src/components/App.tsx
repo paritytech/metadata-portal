@@ -57,7 +57,7 @@ export default function App() {
               onSelect={setCurrentChain}
             />
           </div>
-          <div className="hidden xl:block mt-2 mb-11">
+          <div className="hidden xl:block mb-10">
             <PortalSelect />
           </div>
           <div className="hidden xl:block mb-6">

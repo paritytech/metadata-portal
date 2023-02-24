@@ -3,7 +3,7 @@ import { ChevronIcon } from "./ChevronIcon";
 
 export const FAQ = () => (
   <div>
-    <h3 className="text-5xl py-8 unbounded">FAQ</h3>
+    <h3 className="text-[40px] py-8 unbounded">FAQ</h3>
     <div className="space-y-2">
       <Disclosure as="div" className="border border-neutral-200 rounded-4xl">
         <Disclosure.Button className="flex items-center justify-between w-full p-4 pl-6 space-x-4">

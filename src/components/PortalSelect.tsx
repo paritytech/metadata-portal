@@ -10,16 +10,18 @@ export const PortalSelect = () => (
       <Listbox.Button
         className={({ open }) =>
           cn(
-            "flex items-center justify-between w-full text-2xl bordered-action hover:bg-neutral-100 transition-colors",
+            "w-full bordered-action py-3 hover:bg-neutral-100 transition-colors",
             open && "bg-neutral-100"
           )
         }
       >
-        <div className="space-x-2 border-y border-transparent">
-          <span className="nowrap text-neutral-400">Metadata Portal</span>
-          <span>{PORTALS[0]}</span>
+        <div className="flex items-center justify-between -my-px">
+          <div className="space-x-2 text-2xl">
+            <span className="nowrap text-neutral-400">Metadata Portal</span>
+            <span>{PORTALS[0]}</span>
+          </div>
+          <ChevronIcon />
         </div>
-        <ChevronIcon />
       </Listbox.Button>
       <Transition
         as={Fragment}

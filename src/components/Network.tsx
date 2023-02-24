@@ -7,7 +7,6 @@ import Hash from "./Hash";
 import { Hr } from "./Hr";
 import { Links } from "./Links";
 import { Row } from "./Row";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { LOGOS } from "../constants";
 
 type LabeledQr = {

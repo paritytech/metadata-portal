@@ -22,9 +22,9 @@ function tabFromSearch() {
 }
 
 function setTabToSearch(v: number) {
-  const params = new URLSearchParams(location.search);
-  params.set("tab", v.toString());
-  location.search = `?${params}`;
+  const url = new URL(location.href);
+  url.searchParams.set("tab", v.toString());
+  window.history.replaceState(null, "", url);
 }
 
 export const Network = ({ spec }: { spec: ChainSpec }) => {

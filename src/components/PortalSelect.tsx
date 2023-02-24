@@ -31,7 +31,7 @@ export const PortalSelect = () => (
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Listbox.Options className="absolute mt-1 left-0 right-0 overflow-auto rounded-lg bg-white p-2 text-base shadow-lg focus:outline-none">
+        <Listbox.Options className="absolute mt-1 left-0 right-0 overflow-auto rounded-lg bg-white p-2 text-base shadow-lg focus:outline-none z-10">
           {PORTALS.map((portal) => (
             <Listbox.Option key={portal} value={portal}>
               {({ selected }) => (

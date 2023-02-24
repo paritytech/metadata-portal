@@ -46,7 +46,7 @@ export default function App() {
     <div>
       <AppLinks />
       <div className="flex flex-col xl:flex-row">
-        <div className="xl:sticky xl:top-0 w-full p-2 md:px-4 xl:p-4 xl:pr-2 xl:pt-24 xl:max-w-sm xl:h-screen">
+        <div className="xl:sticky xl:top-0 w-full p-2 md:px-4 xl:p-4 xl:pr-2 xl:pt-24 xl:w-full xl:max-w-[360px] xl:h-screen">
           <div className="xl:hidden mb-2">
             <About />
           </div>

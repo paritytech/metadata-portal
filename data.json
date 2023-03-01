@@ -80,13 +80,13 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "metadataVersion": 9380,
+    "metadataVersion": 9390,
     "metadataQr": {
-      "path": "qr/westend_metadata_9380.apng",
+      "path": "qr/westend_metadata_9390.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Rpc",
-        "block": "0xae86d7a804c4b38c77f21366af302e9b898c91dc60b7bc0ed5f0abffecf51271"
+        "block": "0x355abc8723d65b994a4637b6472d43c5f19499790ce4cd48a3edfc24c75c978d"
       }
     },
     "nextMetadataVersion": null,

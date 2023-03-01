@@ -379,3 +379,7 @@ qr_dir = "public/qr"
   [chains."Beresheet"]
   name = "Beresheet_v46"
   color = "#111111"
+
+  [chains."Pendulum"]
+  name = "Pendulum"
+  color = "#49E2FD"

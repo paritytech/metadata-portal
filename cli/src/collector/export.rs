@@ -78,7 +78,7 @@ fn update_pointer_to_latest_metadata(metadata_qr: &QrPath) -> Result<PathBuf> {
     if latest_metadata_qr.is_symlink() {
         fs::remove_file(&latest_metadata_qr).unwrap();
     }
-    symlink(&metadata_qr.to_path_buf(), &latest_metadata_qr).unwrap();
+    symlink(metadata_qr.to_path_buf(), &latest_metadata_qr).unwrap();
     Ok(latest_metadata_qr)
 }
 

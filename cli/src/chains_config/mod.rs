@@ -38,15 +38,11 @@ pub(crate) struct ChainNode {
     pub(crate) url: String,
 }
 
-const EXCLUDE_CHAINS: [&str; 8] = [
+const EXCLUDE_CHAINS: [&str; 4] = [
     "Arctic Relay Testnet",
     "Aleph Zero Testnet", //TODO name matches with mainnet and will override it
     "KICO",               //TODO Specs(Base58PrefixMismatch { specs: 51, meta: 42 })
     "Composable Finance", //TODO  Specs(Base58PrefixMismatch { specs: 50, meta: 49 })
-    "Moonbeam",           //uncomment after PS release
-    "Moonriver",          //uncomment after PS release
-    "Moonbase Relay Testnet", //uncomment after PS release
-    "Moonbase Alpha",     //uncomment after PS release
 ];
 
 pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {

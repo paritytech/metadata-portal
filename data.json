@@ -8,24 +8,24 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "metadataVersion": 9360,
+    "metadataVersion": 9370,
     "metadataQr": {
-      "path": "qr/polkadot_metadata_9360.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0x9eff710dc1bf46d2ff5a8ac7aa3fddb63a8cb141bb184e6aa776a1d9c97aca0b"
-      }
-    },
-    "nextMetadataVersion": 9370,
-    "nextMetadataQr": {
       "path": "qr/polkadot_metadata_9370.apng",
       "signedBy": "Parity",
       "source": {
         "type": "Wasm",
         "github_repo": "paritytech/polkadot",
         "hash": "0xaa9c4422abeb8eeb6c04bf642830cb664766fb37ac6972135beef07ddb201a53"
+      }
+    },
+    "nextMetadataVersion": 9380,
+    "nextMetadataQr": {
+      "path": "qr/polkadot_metadata_9380.apng",
+      "signedBy": "Parity",
+      "source": {
+        "type": "Wasm",
+        "github_repo": "paritytech/polkadot",
+        "hash": "0x5b55a3e68f3520fd0f999d69d77dd882041f91af08d63a88916f479f8e38c3be"
       }
     },
     "latestMetadata": "qr/polkadot_metadata_latest.apng",

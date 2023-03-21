@@ -2,7 +2,8 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { Chains } from "../scheme";
 import { capitalizeFirstLetter } from "../utils";
 import { ArrowSmRightIcon } from "@heroicons/react/solid";
-import tao_logo from "../assets/img/tao.svg";
+import nakamoto_tao_logo from "../assets/img/nakamoto_tao.svg";
+import finney_tao_logo from "../assets/img/finney_tao.svg";
 
 interface Props {
   allChains: Chains;
@@ -76,11 +77,22 @@ export default function Sidebar({
                   <div className="flex items-center text-xl text-white font-inter">
                     {/** Remove hyphen because Ligatures don't support hyphens */}
                     <div className="network_icon">
-                      <img src={tao_logo} />
+                      {allChains[c].genesisHash === "0xadcb639cec07168f455d8bd3a43badf1114a414836829f5000e8279f70d4c667" ? (
+                        <img src={nakamoto_tao_logo} />
+                      ) : (
+                        <img src={finney_tao_logo} />
+                      )}
                     </div>
-                    <div className="network_name">
-                      {capitalizeFirstLetter(allChains[c].title)}
-                    </div>
+                    {allChains[c].genesisHash === "0xadcb639cec07168f455d8bd3a43badf1114a414836829f5000e8279f70d4c667" ? (
+                      <div className="network_name">
+                        Nakamoto
+                      </div>
+                      ) : (
+                        <div className="network_name">
+                          Finney
+                        </div>
+                      )}
+                    
                   </div>
                 </div>
               ) : (

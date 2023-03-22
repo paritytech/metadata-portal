@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { Chains } from "../scheme";
 import { capitalizeFirstLetter } from "../utils";
-import { ArrowSmRightIcon } from "@heroicons/react/solid";
+import { ArrowSmallRightIcon } from "@heroicons/react/24/solid";
 import nakamoto_tao_logo from "../assets/img/nakamoto_tao.svg";
 import finney_tao_logo from "../assets/img/finney_tao.svg";
 
@@ -77,22 +77,19 @@ export default function Sidebar({
                   <div className="flex items-center text-xl text-white font-inter">
                     {/** Remove hyphen because Ligatures don't support hyphens */}
                     <div className="network_icon">
-                      {allChains[c].genesisHash === "0xadcb639cec07168f455d8bd3a43badf1114a414836829f5000e8279f70d4c667" ? (
+                      {allChains[c].genesisHash ===
+                      "0xadcb639cec07168f455d8bd3a43badf1114a414836829f5000e8279f70d4c667" ? (
                         <img src={nakamoto_tao_logo} />
                       ) : (
                         <img src={finney_tao_logo} />
                       )}
                     </div>
-                    {allChains[c].genesisHash === "0xadcb639cec07168f455d8bd3a43badf1114a414836829f5000e8279f70d4c667" ? (
-                      <div className="network_name">
-                        Nakamoto
-                      </div>
-                      ) : (
-                        <div className="network_name">
-                          Finney
-                        </div>
-                      )}
-                    
+                    {allChains[c].genesisHash ===
+                    "0xadcb639cec07168f455d8bd3a43badf1114a414836829f5000e8279f70d4c667" ? (
+                      <div className="network_name">Nakamoto</div>
+                    ) : (
+                      <div className="network_name">Finney</div>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -127,7 +124,7 @@ export default function Sidebar({
           target={"blank"}
         >
           <div className="flex float-left font-bold">
-            More on GitHub <ArrowSmRightIcon className="inline ml-1 w-4" />
+            More on GitHub <ArrowSmallRightIcon className="inline ml-1 w-4" />
           </div>
         </a>
         <a
@@ -137,7 +134,7 @@ export default function Sidebar({
           rel="noreferrer"
         >
           <div className="text-left font-bold">
-            Terms & Services <ArrowSmRightIcon className="inline ml-1 w-4" />
+            Terms & Services <ArrowSmallRightIcon className="inline ml-1 w-4" />
           </div>
         </a>
       </div>

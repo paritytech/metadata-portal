@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./SpecsTab.css";
-import { DocumentDuplicateIcon } from "@heroicons/react/outline";
+import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 
 interface HashProps {
   value: string;

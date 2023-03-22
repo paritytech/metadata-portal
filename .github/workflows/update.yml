@@ -32,25 +32,16 @@ jobs:
             git checkout --track $SIGN_ME_BRANCH
             switched="true"
           fi
-          echo "::set-output name=switched::$switched"
+          echo "switched=$switched" >> $GITHUB_OUTPUT
 
       - name: ⚙ Build metadata-cli
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --release
+        run: cargo build --release
 
       - name: ⚙ Update QRs from RPC nodes
-        uses: actions-rs/cargo@v1
-        with:
-          command: run
-          args: --release -- update --source node
+        run: cargo run --release -- update --source node
 
-      #- name: ⚙ Update QRs from GitHub releases
-      #  uses: actions-rs/cargo@v1
-      #  with:
-      #    command: run
-      #    args: --release -- update --source github
+      - name: ⚙ Update QRs from GitHub releases
+        run: cargo run --release -- update --source github
 
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}
@@ -63,12 +54,12 @@ jobs:
         id: new-branch
         run: |
           NAME="$BRANCH_PREFIX-$(date '+%Y-%m-%d')"
-          echo "::set-output name=name::$NAME"
+          echo "name=$NAME" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request if not exist
         if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
         id: cpr
-        uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330
+        uses: peter-evans/create-pull-request@v4
         with:
           commit-message: add unsigned QR codes
           branch: ${{ steps.new-branch.outputs.name }}
@@ -108,10 +99,10 @@ jobs:
           exit_code=$?
           if [ $exit_code -eq 12 ]
           then
-            echo "::set-output name=redeploy::true"
+            echo "redeploy=true" >> $GITHUB_OUTPUT
             exit 0
           fi
-          echo "::set-output name=redeploy::false"
+          echo "redeploy=false" >> $GITHUB_OUTPUT
           exit $exit_code
         shell: bash {0}
 

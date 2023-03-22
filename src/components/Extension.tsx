@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { UploadIcon } from "@heroicons/react/solid";
+import { ArrowUpTrayIcon } from "@heroicons/react/24/solid";
 import { web3Enable } from "@polkadot/extension-dapp";
 import {
   InjectedExtension,
@@ -49,7 +49,7 @@ export default function Extension(chainSpec: ChainSpec) {
         label="Upgradable extensions:"
         actionButton={
           <Button
-            label={<UploadIcon className="w-5 h-5" />}
+            label={<ArrowUpTrayIcon className="w-5 h-5" />}
             onClick={() => {
               selected?.metadata?.provide(meta).then((ok) => {
                 if (ok) {

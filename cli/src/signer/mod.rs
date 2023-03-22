@@ -105,7 +105,7 @@ fn sign_qr(unsigned_qr: &QrPath, signature: String) -> anyhow::Result<QrPath> {
         export_dir: signed_qr.dir.clone(),
         crypto: Some(signing_algorithm),
     };
-    println!("⚙ generating {}...", signed_qr);
+    println!("⚙ generating {signed_qr}...");
     full_run(SignerCommand::Make(make)).map_err(|e| anyhow!("{:?}", e))?;
     // Preserve png source information
     if let Some(png_source) = read_png_source(&unsigned_qr.to_path_buf())? {

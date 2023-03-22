@@ -9,7 +9,7 @@ public_key = "ee6a7cd8146e9f02e4ae9f59908a5b513186e786696c6afe9644ff59bdbdbe7c"
 [[chains]]
 name = "node-subtensor"
 rpc_endpoint = "ws://209.126.7.11:9944"
-color = "#FFFFFF"
+color = "#000000"
 
 [chains.github_release]
 owner = "opentensor"

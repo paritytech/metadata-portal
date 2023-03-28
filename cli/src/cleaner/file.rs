@@ -5,7 +5,7 @@ use std::path::PathBuf;
 use anyhow::Context;
 
 use crate::export::read_export_file;
-use crate::qrs::{find_metadata_qrs, find_spec_qrs};
+use crate::qrs::{metadata_files, spec_files};
 use crate::AppConfig;
 
 pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>> {
@@ -15,26 +15,31 @@ pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>
         .collect();
 
     let mut keep_files: HashSet<PathBuf> = HashSet::new();
-    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
-    let specs_qrs = find_spec_qrs(&config.qr_dir)?;
+    let all_metadata = metadata_files(&config.qr_dir)?;
+    let all_specs = spec_files(&config.qr_dir)?;
     let chain_specs = read_export_file(config)?;
 
     for chain in &config.chains {
-        let actual_ver = chain_specs
+        let latest_version = match chain_specs
             .get(&chain.name)
             .context(format!("No data found for {}", chain.name))?
-            .metadata_version;
-        let metadata_to_keep = metadata_qrs
+            .metadata_qrs
+            .first()
+        {
+            Some(qr) => qr.version,
+            None => continue,
+        };
+        let metadata_to_keep = all_metadata
             .get(&chain.name)
             .map(|map| {
                 map.iter()
-                    .filter(|(&v, _)| v >= actual_ver)
+                    .filter(|(&v, _)| v >= latest_version)
                     .map(|(_, qr)| qr.to_path_buf())
                     .collect::<HashSet<_>>()
             })
             .context("Could not get metadata to keep")?;
         keep_files.extend(metadata_to_keep);
-        if let Some(qr) = specs_qrs.get(&chain.name) {
+        if let Some(qr) = all_specs.get(&chain.name) {
             keep_files.insert(qr.to_path_buf());
         }
     }

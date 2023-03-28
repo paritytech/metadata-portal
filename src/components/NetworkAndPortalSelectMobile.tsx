@@ -35,14 +35,28 @@ export const NetworkAndPortalSelectMobile = ({
           {PORTALS.map((portal) => (
             <Listbox.Option key={portal} value={portal}>
               {({ selected }) => (
-                <div
-                  className={cn(
-                    "flex items-center space-x-2 px-2 py-1",
-                    selected && "bg-neutral-100 rounded-full"
+                <>
+                  {portal === "Novasama" ? (
+                    <a
+                      className={cn(
+                        "flex items-center space-x-2 px-2 py-1",
+                        selected && "bg-neutral-100 rounded-full"
+                      )}
+                      href="https://metadata.novasama.io/#/darwinia%20parachain"
+                    >
+                      <div className="text-xl">{portal}</div>
+                    </a>
+                  ) : (
+                    <div
+                      className={cn(
+                        "flex items-center space-x-2 px-2 py-1",
+                        selected && "bg-neutral-100 rounded-full"
+                      )}
+                    >
+                      <div className="text-xl">{portal}</div>
+                    </div>
                   )}
-                >
-                  <div className="text-xl">{portal}</div>
-                </div>
+                </>
               )}
             </Listbox.Option>
           ))}

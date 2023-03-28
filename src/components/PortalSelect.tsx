@@ -16,7 +16,7 @@ export const PortalSelect = () => (
         }
       >
         <div className="flex items-center justify-between -my-px">
-          <div className="space-x-2">
+          <div className="space-x-1">
             <span className="nowrap text-black opacity-50">
               Metadata Portal
             </span>
@@ -35,15 +35,30 @@ export const PortalSelect = () => (
           {PORTALS.map((portal) => (
             <Listbox.Option key={portal} value={portal}>
               {({ selected }) => (
-                <div
-                  className={cn(
-                    "flex items-center space-x-2 p-2 rounded-md text-2xl hover:bg-neutral-100 transition-colors",
-                    selected && "bg-neutral-100",
-                    selected ? "cursor-default" : "cursor-pointer"
+                <>
+                  {portal === "Novasama" ? (
+                    <a
+                      className={cn(
+                        "flex items-center space-x-2 p-2 rounded-md hover:bg-neutral-100 transition-colors",
+                        selected && "bg-neutral-100",
+                        selected ? "cursor-default" : "cursor-pointer"
+                      )}
+                      href="https://metadata.novasama.io/#/darwinia%20parachain"
+                    >
+                      {portal}
+                    </a>
+                  ) : (
+                    <div
+                      className={cn(
+                        "flex items-center space-x-2 p-2 rounded-md hover:bg-neutral-100 transition-colors",
+                        selected && "bg-neutral-100",
+                        selected ? "cursor-default" : "cursor-pointer"
+                      )}
+                    >
+                      {portal}
+                    </div>
                   )}
-                >
-                  {portal}
-                </div>
+                </>
               )}
             </Listbox.Option>
           ))}

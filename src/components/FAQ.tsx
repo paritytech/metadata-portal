@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { ChevronIcon } from "./ChevronIcon";
 
 const OrdinalNumber = ({ children }: { children: ReactNode }) => (
-  <div className="w-8 h-8 rounded-full border border-neutral-200 text-neutral-300 flex flex-shrink-0 items-center justify-center mr-4">
+  <div className="w-8 h-8 rounded-full border border-neutral-200 text-black text-opacity-40 flex flex-shrink-0 items-center justify-center mr-4">
     {children}
   </div>
 );
@@ -134,15 +134,27 @@ export const FAQ = () => (
             <li className="flex items-top">
               <OrdinalNumber>1</OrdinalNumber>
               <div className="pt-1">
-                <strong className="font-bold">Parity</strong> for Polkadot,
-                Kusama, and Westend
+                <a
+                  href="https://metadata.parity.io/#/polkadot"
+                  rel="noopener noreferrer"
+                  className="font-bold underline"
+                >
+                  Parity
+                </a>{" "}
+                for Polkadot, Kusama, and Westend
               </div>
             </li>
             <li className="flex items-top">
-              <OrdinalNumber>1</OrdinalNumber>
+              <OrdinalNumber>2</OrdinalNumber>
               <div className="pt-1">
-                <strong className="font-bold">Novasama</strong> for Parachains
-                and Solochains
+                <a
+                  href="https://metadata.novasama.io/#/darwinia%20parachain"
+                  rel="noopener noreferrer"
+                  className="font-bold underline"
+                >
+                  Novasama
+                </a>{" "}
+                for Parachains and Solochains
               </div>
             </li>
           </ol>

@@ -104,7 +104,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
         <div className="p-2 md:p-4 md:w-[45%] bg-white rounded-3xl">
           <Tab.Group selectedIndex={selectedTab} onChange={updateTab}>
             <Tab.List className="flex bg-neutral-200 rounded-full p-1">
-              {["Chain Specs", "Update Metadata"].map((title) => (
+              {["Chain Specs", "Metadata"].map((title) => (
                 <Tab as={Fragment} key={title}>
                   {({ selected }) => (
                     <button

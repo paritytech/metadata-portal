@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Chains } from "../scheme";
+import { Chains, Portals } from "../scheme";
 import { About } from "./About";
 import { AppLinks } from "./AppLinks";
 import { FAQ } from "./FAQ";
@@ -11,7 +11,8 @@ import { NetworkSelect } from "./NetworkSelect";
 import { PortalSelect } from "./PortalSelect";
 
 export default function App() {
-  const [chains, setChains] = useState<Chains>({} as Chains);
+  const [chains, setChains] = useState({} as Chains);
+  const [portals, setPortals] = useState({} as Portals);
   const [currentChain, setCurrentChain] = useState<string>("");
   const spec = chains[currentChain];
 
@@ -24,6 +25,15 @@ export default function App() {
         );
       })
       .then(setChains);
+  }, []);
+
+  useEffect(() => {
+    fetch("portals.json")
+      .then((res) => res.json())
+      .catch(() => {
+        console.error("Unable to fetch portals file");
+      })
+      .then(setPortals);
   }, []);
 
   useEffect(() => {
@@ -53,12 +63,13 @@ export default function App() {
           <div className="xl:hidden">
             <NetworkAndPortalSelectMobile
               chains={chains}
+              portals={portals}
               currentChain={currentChain}
               onSelect={setCurrentChain}
             />
           </div>
-          <div className="hidden xl:block mb-10">
-            <PortalSelect />
+          <div className="hidden xl:block mb-10 empty:hidden">
+            <PortalSelect portals={portals} />
           </div>
           <div className="hidden xl:block mb-6">
             <About />

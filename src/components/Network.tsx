@@ -7,7 +7,7 @@ import Hash from "./Hash";
 import { Hr } from "./Hr";
 import { Links } from "./Links";
 import { Row } from "./Row";
-import { LOGOS } from "../constants";
+import { icon } from "../icons";
 
 type LabeledQr = {
   qr: QrInfo;
@@ -55,7 +55,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
       <div className="hidden xl:flex items-center justify-between mb-10">
         <div className="flex items-center space-x-2 text-[40px] leading-none unbounded">
           <img
-            src={LOGOS[spec.title as "polkadot"]}
+            src={icon(spec.title)}
             className="w-14 h-14 rounded-full bg-neutral-200"
           />
           <span>{capitalizeFirstLetter(spec.title)}</span>

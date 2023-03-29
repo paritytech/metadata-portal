@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.5c5cabd8.css",
-    "main.js": "/static/js/main.6399dc11.js",
-    "static/media/Inter-Bold.woff": "/static/media/Inter-Bold.00dc41b74c73bd548602.woff",
-    "static/media/Web3-Regular.woff": "/static/media/Web3-Regular.5471d3ea491575c4087a.woff",
-    "static/media/Web3-Regular.woff2": "/static/media/Web3-Regular.a0e473333c74d873ba89.woff2",
+    "main.css": "/static/css/main.b54d4e09.css",
+    "main.js": "/static/js/main.148ac327.js",
+    "static/media/polkadot.svg": "/static/media/polkadot.7e356a76d93533052931dda2c013650e.svg",
+    "static/media/kusama.svg": "/static/media/kusama.d9a93a0fd9ff87e4de894486742039d4.svg",
     "index.html": "/index.html",
-    "main.5c5cabd8.css.map": "/static/css/main.5c5cabd8.css.map",
-    "main.6399dc11.js.map": "/static/js/main.6399dc11.js.map"
+    "static/media/vault.svg": "/static/media/vault.1aa02aa17789e8cf6d405b6deddda21c.svg",
+    "static/media/westend.svg": "/static/media/westend.d2256c4fb719c6738bbe03f24408a797.svg",
+    "main.b54d4e09.css.map": "/static/css/main.b54d4e09.css.map",
+    "main.148ac327.js.map": "/static/js/main.148ac327.js.map"
   },
   "entrypoints": [
-    "static/css/main.5c5cabd8.css",
-    "static/js/main.6399dc11.js"
+    "static/css/main.b54d4e09.css",
+    "static/js/main.148ac327.js"
   ]
 }

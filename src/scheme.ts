@@ -45,3 +45,11 @@ export interface AddToSignerInterface {
 export interface Chains {
   [name: string]: ChainSpec;
 }
+
+export type Portal = {
+  name: string;
+  url: string;
+};
+export interface Portals {
+  [name: string]: Portal;
+}

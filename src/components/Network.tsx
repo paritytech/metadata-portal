@@ -30,10 +30,13 @@ function setTabToSearch(v: number) {
 export const Network = ({ spec }: { spec: ChainSpec }) => {
   const [selectedTab, setSelectedTab] = useState(tabFromSearch());
   const [selectedQr, setSelectedQr] = useState(0);
-  const qrs = spec.metadataQrs.map(qr => ({
-    qr: qr.file,
-    label: `${capitalizeFirstLetter(qr.status.toString())} #${qr.version}`
-  } as LabeledQr));
+  const qrs = spec.metadataQrs.map(
+    (qr) =>
+      ({
+        qr: qr.file,
+        label: `${capitalizeFirstLetter(qr.status.toString())} #${qr.version}`,
+      } as LabeledQr)
+  );
 
   function updateTab(v: number) {
     setTabToSearch(v);

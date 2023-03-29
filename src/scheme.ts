@@ -22,9 +22,9 @@ export interface QrInfo {
 }
 
 export interface MetadataQr {
-    version: number;
-    file: QrInfo;
-    status: string;
+  version: number;
+  file: QrInfo;
+  status: string;
 }
 
 interface SourceBase {

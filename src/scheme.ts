@@ -7,10 +7,8 @@ export interface ChainSpec {
   base58prefix: number;
   decimals: number;
   logo: string;
-  metadataVersion: number;
-  metadataQr: QrInfo;
-  nextMetadataVersion: number | null;
-  nextMetadataQr: QrInfo | null;
+  liveMetaVersion: number;
+  metadataQrs: MetadataQr[];
   latestMetadata: string;
   specsQr: QrInfo;
 }
@@ -21,6 +19,12 @@ export interface QrInfo {
   path: string;
   signedBy: string | null;
   source: SourceType;
+}
+
+export interface MetadataQr {
+    version: number;
+    file: QrInfo;
+    status: string;
 }
 
 interface SourceBase {

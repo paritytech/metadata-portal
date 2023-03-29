@@ -15,9 +15,10 @@
           "path": "qr/polkadot_metadata_9.apng",
           "signedBy": "Parity"
         },
-        "status": "live"
+        "status": "now"
       }
     ],
+    "liveMetaVersion": 9,
     "latestMetadata": "",
     "specsQr": {
       "path": "/qr/polkadot_specs.png",

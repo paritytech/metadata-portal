@@ -8,6 +8,7 @@
     "base58prefix": 0,
     "logo": "logo",
     "decimals": 10,
+    "liveMetaVersion": 9,
     "metadataQrs": [
       {
         "version": 9,
@@ -19,7 +20,7 @@
             "block": "0x0000000000000000000000000000000000000000000000000000000000000000"
           }
         },
-        "status": "live"
+        "status": "now"
       },
       {
         "version": 10,

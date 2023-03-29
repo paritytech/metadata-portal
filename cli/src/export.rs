@@ -44,6 +44,7 @@ pub(crate) struct ExportChainSpec {
     pub(crate) logo: String,
     pub(crate) decimals: u8,
 
+    pub(crate) live_meta_version: u32,
     pub(crate) metadata_qrs: Vec<MetadataQr>,
     pub(crate) latest_metadata: ReactAssetPath,
     pub(crate) specs_qr: QrCode,
@@ -61,7 +62,7 @@ pub(crate) struct MetadataQr {
 #[serde(rename_all = "camelCase")]
 pub(crate) enum MetadataStatus {
     Outdated,
-    Live,
+    Now,
     Future,
 }
 

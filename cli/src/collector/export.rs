@@ -52,6 +52,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 specs_qr: QrCode::from_qr_path(config, specs_qr)?,
                 latest_metadata: ReactAssetPath::from_fs_path(&latest_meta, &config.public_dir)?,
                 metadata_qrs: export_metadata_files(config, metadata_qrs, &live_meta_version),
+                live_meta_version,
             },
         );
     }
@@ -68,7 +69,7 @@ fn export_metadata_files(
             if let ContentType::Metadata(version) = qr.file_name.content_type {
                 let status = match version.cmp(live_version) {
                     Ordering::Less => MetadataStatus::Outdated,
-                    Ordering::Equal => MetadataStatus::Live,
+                    Ordering::Equal => MetadataStatus::Now,
                     Ordering::Greater => MetadataStatus::Future,
                 };
                 MetadataQr {

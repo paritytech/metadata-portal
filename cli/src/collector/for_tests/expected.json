@@ -8,25 +8,46 @@
     "base58prefix": 0,
     "logo": "logo",
     "decimals": 10,
-    "metadataVersion": 9,
-    "metadataQr": {
-      "path": "for_tests/polkadot_metadata_9.apng",
-      "signedBy": "Test Verifier",
-      "source": {
-        "type": "Rpc",
-        "block": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    "liveMetaVersion": 9,
+    "metadataQrs": [
+      {
+        "version": 9,
+        "file": {
+          "path": "for_tests/polkadot_metadata_9.apng",
+          "signedBy": "Test Verifier",
+          "source": {
+            "type": "Rpc",
+            "block": "0x0000000000000000000000000000000000000000000000000000000000000000"
+          }
+        },
+        "status": "now"
+      },
+      {
+        "version": 10,
+        "file": {
+          "path": "for_tests/polkadot_metadata_10.apng",
+          "signedBy": "Test Verifier",
+          "source": {
+            "type": "Wasm",
+            "github_repo": "paritytech/polkadot",
+            "hash": "0xbce731f223d5fd37ecacafb5eae59b8e9df39154cdea1f3692525c260534f8d7"
+          }
+        },
+        "status": "future"
+      },
+      {
+        "version": 11,
+        "file": {
+          "path": "for_tests/polkadot_metadata_11.apng",
+          "signedBy": "Test Verifier",
+          "source": {
+            "type": "Rpc",
+            "block": "0x0000000000000000000000000000000000000000000000000000000000000000"
+          }
+        },
+        "status": "future"
       }
-    },
-    "nextMetadataVersion": 10,
-    "nextMetadataQr": {
-      "path": "for_tests/polkadot_metadata_10.apng",
-      "signedBy": "Test Verifier",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0xbce731f223d5fd37ecacafb5eae59b8e9df39154cdea1f3692525c260534f8d7"
-      }
-    },
+    ],
     "latestMetadata": "for_tests/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "for_tests/polkadot_specs.png",

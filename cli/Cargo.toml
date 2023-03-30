@@ -32,7 +32,7 @@ quircs = "0.10"
 hex = "0.4"
 indicatif = "0.17"
 serde_json = "1.0"
-octocrab = "0.18.1"
+octocrab = "0.19.0"
 tokio = { version = "1", features = ["full"] }
 reqwest = { version = "0.11", features = ["json", "blocking"]}
 png = "0.17.5"
@@ -41,6 +41,6 @@ blake2-rfc = "0.2.18"
 indexmap = {version="1", features=["serde"]}
 
 [dependencies.opencv]
-version = "0.76.3"
+version = "0.78.2"
 default-features = false
 features = ["videoio", "imgproc", "highgui"]

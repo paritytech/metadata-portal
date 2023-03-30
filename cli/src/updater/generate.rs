@@ -1,12 +1,9 @@
 use std::fs::File;
 use std::io::{copy, Cursor, Write};
-use std::fs::File;
-use std::io::Write;
 use std::path::{Path, PathBuf};
 
 use anyhow::{anyhow, bail};
 use definitions::crypto::Encryption;
-use anyhow::anyhow;
 use definitions::metadata::MetaValues;
 use definitions::network_specs::NetworkSpecs;
 use definitions::qr_transfers::{ContentAddSpecs, ContentLoadMeta};

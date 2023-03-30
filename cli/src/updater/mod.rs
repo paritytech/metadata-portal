@@ -10,6 +10,7 @@ use blake2_rfc::blake2b::blake2b;
 use log::{info, warn};
 use sp_core::H256;
 
+use crate::common::types::get_crypto;
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
 use crate::qrs::{metadata_files, spec_files};
@@ -17,7 +18,6 @@ use crate::source::{save_source_info, Source};
 use crate::updater::generate::{download_metadata_qr, generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
-use crate::utils::types::get_crypto;
 
 pub(crate) fn update_from_node(
     config: AppConfig,
@@ -111,7 +111,11 @@ pub(crate) fn update_from_node(
 }
 
 #[tokio::main]
-pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> {
+pub(crate) async fn update_from_github(
+    config: AppConfig,
+    sign: bool,
+    signing_key: String,
+) -> anyhow::Result<()> {
     let metadata_qrs = metadata_files(&config.qr_dir)?;
     for chain in config.chains {
         info!("🔍 Checking for updates for {}", chain.name);
@@ -120,8 +124,8 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
             continue;
         }
 
-        let github_repo = chain.github_release.unwrap();
-        let wasm = fetch_latest_runtime(&github_repo, &chain.name).await?;
+        let github_repo = chain.github_release.as_ref().unwrap();
+        let wasm = fetch_latest_runtime(github_repo, &chain.name).await?;
         if wasm.is_none() {
             warn!("🤨 No releases found");
             continue;

@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use anyhow::{bail, Error};
+use anyhow::bail;
 use image::{GrayImage, ImageBuffer, Luma};
 use indicatif::ProgressBar;
 use opencv::{
@@ -88,16 +88,9 @@ fn process_qr_image(image: &GrayImage, decoding: InProgress) -> anyhow::Result<R
 
     match codes.last() {
         Some(Ok(code)) => match code.decode() {
-<<<<<<<< HEAD:cli/src/utils/camera.rs
-            Ok(decoded) => match process_decoded_payload(decoded.payload, decoding) {
-                Ok(result) => Ok(result),
-                Err(_) => Err(Error::msg("error")),
-            },
-========
             Ok(decoded) => {
                 process_decoded_payload(decoded.payload, &None, decoding).map_err(|e| e.into())
             }
->>>>>>>> parity-master:cli/src/common/camera.rs
             Err(_) => Ok(Ready::NotYet(decoding)),
         },
         Some(_) => Ok(Ready::NotYet(decoding)),

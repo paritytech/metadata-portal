@@ -26,7 +26,7 @@ export const NetworkSelect = ({
                   selected ? "cursor-default" : "cursor-pointer"
                 )}
               >
-                <img src={icon(chain)} className="w-8 rounded-full" />
+                <img src={chains[chain].icon} className="w-8 rounded-full" />
                 <div className="text-lg">
                   {capitalizeFirstLetter(chains[chain].title)}
                 </div>

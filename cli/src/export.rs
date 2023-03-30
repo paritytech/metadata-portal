@@ -8,8 +8,6 @@ use serde::{Deserialize, Serialize};
 use crate::common::path::QrPath;
 use crate::common::types::ChainName;
 use crate::source::{read_png_source, Source};
-use crate::utils::path::QrPath;
-use crate::utils::types::ChainName;
 use crate::AppConfig;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]

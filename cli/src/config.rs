@@ -51,7 +51,7 @@ pub(crate) struct AppConfig {
     pub(crate) data_file: PathBuf,
     pub(crate) public_dir: PathBuf,
     pub(crate) qr_dir: PathBuf,
-    pub(crate) verifier: Verifier,
+    pub(crate) verifiers: HashMap<String, Verifier>,
     pub(crate) chains: Vec<Chain>,
 }
 #[derive(Serialize, Deserialize, Debug)]
@@ -76,7 +76,7 @@ impl Default for AppConfig {
             data_file: PathBuf::from("data.json"),
             public_dir: PathBuf::from("src/public"),
             qr_dir: PathBuf::from("qr"),
-            verifier: Verifier::default(),
+            verifiers,
             chains: vec![Chain::default()],
         }
     }

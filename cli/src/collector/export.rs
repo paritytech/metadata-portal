@@ -5,11 +5,6 @@ use std::path::PathBuf;
 
 use anyhow::{Context, Result};
 use indexmap::IndexMap;
-use log::{info, warn};
-
-use crate::export::{ExportChainSpec, ExportData, QrCode, ReactAssetPath};
-use anyhow::{Context, Result};
-use indexmap::IndexMap;
 use log::info;
 
 use crate::common::path::{ContentType, QrPath};
@@ -19,7 +14,6 @@ use crate::export::{
 };
 use crate::fetch::Fetcher;
 use crate::qrs::{collect_metadata_qrs, metadata_files, spec_files};
-use crate::utils::path::QrPath;
 use crate::AppConfig;
 
 pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<ExportData> {
@@ -55,10 +49,16 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 icon: chain.icon.clone(),
                 decimals: specs.decimals,
                 base58prefix: specs.base58prefix,
-                specs_qr: QrCode::from_qr_path(config, specs_qr)?,
+                specs_qr: QrCode::from_qr_path(config, specs_qr, &chain.verifier)?,
                 latest_metadata: ReactAssetPath::from_fs_path(&latest_meta, &config.public_dir)?,
-                metadata_qrs: export_metadata_files(config, metadata_qrs, &live_meta_version),
+                metadata_qrs: export_metadata_files(
+                    config,
+                    metadata_qrs,
+                    &live_meta_version,
+                    &chain.verifier,
+                ),
                 live_meta_version,
+                testnet: chain.testnet.unwrap_or(false),
             },
         );
     }
@@ -69,6 +69,7 @@ fn export_metadata_files(
     config: &AppConfig,
     qrs: Vec<QrPath>,
     live_version: &MetaVersion,
+    verifier_name: &String,
 ) -> Vec<MetadataQr> {
     qrs.into_iter()
         .map(|qr| {
@@ -80,7 +81,7 @@ fn export_metadata_files(
                 };
                 MetadataQr {
                     version,
-                    file: QrCode::from_qr_path(config, qr).unwrap(),
+                    file: QrCode::from_qr_path(config, qr, verifier_name).unwrap(),
                     status,
                 }
             } else {

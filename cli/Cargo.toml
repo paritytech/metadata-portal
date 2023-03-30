@@ -16,7 +16,7 @@ clap = {version = "4.1.4", features = ["derive", "env", "unicode", "cargo"]}
 env_logger = "0.10.0"
 log = "0.4"
 anyhow = "1.0"
-toml = "0.7.1"
+toml = "0.7.3"
 serde = { version = "1.0", features = ["derive"] }
 dialoguer = "0.10"
 qr_reader_phone = {git = "https://github.com/paritytech/parity-signer"}

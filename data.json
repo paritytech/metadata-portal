@@ -8,26 +8,61 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "metadataVersion": 9370,
-    "metadataQr": {
-      "path": "qr/polkadot_metadata_9370.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0xaa9c4422abeb8eeb6c04bf642830cb664766fb37ac6972135beef07ddb201a53"
+    "liveMetaVersion": 9370,
+    "metadataQrs": [
+      {
+        "version": 9370,
+        "file": {
+          "path": "qr/polkadot_metadata_9370.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Wasm",
+            "github_repo": "paritytech/polkadot",
+            "hash": "0xaa9c4422abeb8eeb6c04bf642830cb664766fb37ac6972135beef07ddb201a53"
+          }
+        },
+        "status": "now"
+      },
+      {
+        "version": 9380,
+        "file": {
+          "path": "qr/polkadot_metadata_9380.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Wasm",
+            "github_repo": "paritytech/polkadot",
+            "hash": "0x5b55a3e68f3520fd0f999d69d77dd882041f91af08d63a88916f479f8e38c3be"
+          }
+        },
+        "status": "future"
+      },
+      {
+        "version": 9390,
+        "file": {
+          "path": "qr/polkadot_metadata_9390.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Wasm",
+            "github_repo": "paritytech/polkadot",
+            "hash": "0xae24f892bf0c48fb423ac71bec1c6c9991a59fc139ea0d51eff951f9119e5293"
+          }
+        },
+        "status": "future"
+      },
+      {
+        "version": 9400,
+        "file": {
+          "path": "qr/polkadot_metadata_9400.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Wasm",
+            "github_repo": "paritytech/polkadot",
+            "hash": "0xade876b7e04461fb4c9ca0aa4aa21a9c30f264abf57c24e0fbff9a008a3c1150"
+          }
+        },
+        "status": "future"
       }
-    },
-    "nextMetadataVersion": 9380,
-    "nextMetadataQr": {
-      "path": "qr/polkadot_metadata_9380.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0x5b55a3e68f3520fd0f999d69d77dd882041f91af08d63a88916f479f8e38c3be"
-      }
-    },
+    ],
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",
@@ -44,26 +79,61 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "metadataVersion": 9370,
-    "metadataQr": {
-      "path": "qr/kusama_metadata_9370.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0xed87da6ce6ef52c150977f3b2ac03a7edfd4cd1175574e5fd49bbe86c27e3514"
+    "liveMetaVersion": 9370,
+    "metadataQrs": [
+      {
+        "version": 9370,
+        "file": {
+          "path": "qr/kusama_metadata_9370.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Wasm",
+            "github_repo": "paritytech/polkadot",
+            "hash": "0xed87da6ce6ef52c150977f3b2ac03a7edfd4cd1175574e5fd49bbe86c27e3514"
+          }
+        },
+        "status": "now"
+      },
+      {
+        "version": 9380,
+        "file": {
+          "path": "qr/kusama_metadata_9380.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Wasm",
+            "github_repo": "paritytech/polkadot",
+            "hash": "0x4a30a543fab215a43e0e463161bf1e62b7a8e414c4a0a220201bffee39aa6add"
+          }
+        },
+        "status": "future"
+      },
+      {
+        "version": 9390,
+        "file": {
+          "path": "qr/kusama_metadata_9390.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Wasm",
+            "github_repo": "paritytech/polkadot",
+            "hash": "0xf727d8fe1be82de9e7c8039945b115529fad6c8c77241900c2dd4eeb2e898eb5"
+          }
+        },
+        "status": "future"
+      },
+      {
+        "version": 9400,
+        "file": {
+          "path": "qr/kusama_metadata_9400.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Wasm",
+            "github_repo": "paritytech/polkadot",
+            "hash": "0xef5e03df732867eb9169154a5676e6b22e47154ccb17ced73fc836bdae026e1e"
+          }
+        },
+        "status": "future"
       }
-    },
-    "nextMetadataVersion": 9380,
-    "nextMetadataQr": {
-      "path": "qr/kusama_metadata_9380.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0x4a30a543fab215a43e0e463161bf1e62b7a8e414c4a0a220201bffee39aa6add"
-      }
-    },
+    ],
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",
@@ -80,17 +150,21 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "metadataVersion": 9400,
-    "metadataQr": {
-      "path": "qr/westend_metadata_9400.apng",
-      "signedBy": "Parity",
-      "source": {
-        "type": "Rpc",
-        "block": "0x43cca101481b537c35654e614459584f926b0d9bd6587f53fe07fa46f7b2814b"
+    "liveMetaVersion": 9400,
+    "metadataQrs": [
+      {
+        "version": 9400,
+        "file": {
+          "path": "qr/westend_metadata_9400.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Rpc",
+            "block": "0x43cca101481b537c35654e614459584f926b0d9bd6587f53fe07fa46f7b2814b"
+          }
+        },
+        "status": "now"
       }
-    },
-    "nextMetadataVersion": null,
-    "nextMetadataQr": null,
+    ],
     "latestMetadata": "qr/westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend_specs.png",

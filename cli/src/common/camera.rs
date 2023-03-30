@@ -38,6 +38,14 @@ pub(crate) fn read_qr_file(source_file: &Path) -> anyhow::Result<String> {
                 line.push_str(&hex::encode(a));
                 break;
             }
+            Ready::BananaSplitPasswordRequest => {
+                pb.finish_and_clear();
+                bail!("Banana split is not supported.");
+            }
+            Ready::BananaSplitReady(_) => {
+                pb.finish_and_clear();
+                bail!("Banana split is not supported.");
+            }
         }
     }
     Ok(line)
@@ -80,10 +88,16 @@ fn process_qr_image(image: &GrayImage, decoding: InProgress) -> anyhow::Result<R
 
     match codes.last() {
         Some(Ok(code)) => match code.decode() {
+<<<<<<<< HEAD:cli/src/utils/camera.rs
             Ok(decoded) => match process_decoded_payload(decoded.payload, decoding) {
                 Ok(result) => Ok(result),
                 Err(_) => Err(Error::msg("error")),
             },
+========
+            Ok(decoded) => {
+                process_decoded_payload(decoded.payload, &None, decoding).map_err(|e| e.into())
+            }
+>>>>>>>> parity-master:cli/src/common/camera.rs
             Err(_) => Ok(Ready::NotYet(decoding)),
         },
         Some(_) => Ok(Ready::NotYet(decoding)),

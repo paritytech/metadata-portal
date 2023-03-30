@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
-import { Chains } from "../scheme";
-import { useLocation } from "react-router-dom";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { Tab } from "@headlessui/react";
-import { capitalizeFirstLetter, getBackgroundStyle } from "../utils";
-
-import "./App.css";
-import Sidebar from "./Sidebar";
-import MetadataTab from "./MetadataTab";
-import SpecsTab from "./SpecsTab";
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import { Chains, Portals } from "../scheme";
+import { About } from "./About";
+import { AppLinks } from "./AppLinks";
+import { FAQ } from "./FAQ";
+import { Hr } from "./Hr";
+import { Links } from "./Links";
+import { Network } from "./Network";
+import { NetworkAndPortalSelectMobile } from "./NetworkAndPortalSelectMobile";
+import { NetworkSelect } from "./NetworkSelect";
+import { PortalSelect } from "./PortalSelect";
 
 interface Props {
   mode: ChainsMode;
@@ -24,158 +20,90 @@ export enum ChainsMode {
 }
 
 export default function App({ mode }: Props) {
-  const [localStorageNetwork, setLocalStorageNetwork] =
-    useLocalStorage("chosenNetwork");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const [allChains, setAllChains] = useState<Chains>({} as Chains);
+  const [chains, setChains] = useState({} as Chains);
+  const [portals, setPortals] = useState({} as Portals);
+  const [currentChain, setCurrentChain] = useState<string>("");
+  const spec = chains[currentChain];
   const dataFileName =
     mode === ChainsMode.Dev ? "../data_dev.json" : "data.json";
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch(dataFileName)
-        .then((response) => response.json())
-        .catch((e) => {
-          console.error(
-            `Unable to fetch data file ${dataFileName}. Run 'make collector' to generate it`
-          );
-          return e;
-        });
-      return (await data) as Chains;
-    };
-    fetchData().then((r) => {
-      setAllChains(r);
-      const lastVisited =
-        localStorageNetwork && localStorageNetwork.toLowerCase();
-      const network =
-        (Object.keys(r).includes(location) && location) ||
-        Object.keys(r).find((key) => r[key].genesisHash == location) ||
-        (Object.keys(r).includes(lastVisited) && lastVisited) ||
-        Object.keys(r)[0];
-      setCurrentNetwork(network);
-    });
+    fetch("data.json")
+      .then((res) => res.json())
+      .catch(() => {
+        console.error(
+          "Unable to fetch data file. Run `make collector` to generate it"
+        );
+      })
+      .then(setChains);
   }, []);
 
-  // replace existing url hash in order to identify the network
-  // from the url if it exists (it prioritizes over every other option below)
-  const location = useLocation().hash.replace("#/", "");
-  // check if URL exists in given Networks, if not
-  // check localStorage if it contains a - from before - chosen network, if not
-  // retrieve the 1st available network from the given ones, else (rare and wrong case)
-  const [currentNetwork, setCurrentNetwork] = useState<string>("");
-
-  const specs = allChains[currentNetwork];
+  useEffect(() => {
+    fetch("portals.json")
+      .then((res) => res.json())
+      .catch(() => {
+        console.error("Unable to fetch portals file");
+      })
+      .then(setPortals);
+  }, []);
 
   useEffect(() => {
-    const name = currentNetwork?.toLowerCase();
-    if (name) {
-      // In case the changed name is not the same as the url
-      // then change the url accordingly to the selected network
-      if (name !== location) window.location.assign("#/" + name);
-    }
-  }, [currentNetwork, allChains]);
+    if (Object.keys(chains).length === 0 || currentChain) return;
 
-  if (!specs) {
-    return null;
-  }
+    const locationChain = location.hash.replace("#/", "");
+    const network =
+      (Object.keys(chains).includes(locationChain) && locationChain) ||
+      Object.keys(chains)[0];
+    setCurrentChain(network);
+  }, [chains]);
 
-  const color = specs.color;
+  useEffect(() => {
+    if (currentChain) location.assign("#/" + currentChain);
+  }, [currentChain]);
+
+  if (!spec) return null;
+
   return (
-    <div className="flex flex-col w-full overflow-auto">
-      <div
-        className="md:hidden md:invisible px-2 text-white font-bold text-2xl flex flex-row"
-        style={getBackgroundStyle(color)}
-      >
-        <div
-          className="bg-white py-2 visible items-center"
-          style={getBackgroundStyle(color)}
-        >
-          <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
-        </div>
-        <span className="self-center">
-          {capitalizeFirstLetter(specs.title)}
-        </span>
-      </div>
-      <div className="flex flex-row">
-        <Sidebar
-          allChains={allChains}
-          currentNetwork={currentNetwork}
-          setLocalStorageNetwork={setLocalStorageNetwork}
-          setCurrentNetwork={setCurrentNetwork}
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
-        />
-        {/** darker layer*/}
-        {isOpen && (
-          <div
-            className="absolute w-full bg-black h-full opacity-80 z-20 visible"
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
-          />
-        )}
-        <Tab.Group>
-          <div className="flex flex-col w-full px-2 md:px-8">
-            <Tab.List className="flex flex-row w-full border-b border-neutral-300">
-              {["Metadata", "Chain Specs"].map((title) => (
-                <Tab
-                  key={title}
-                  className={({ selected }) =>
-                    classNames(
-                      "w-32 h-12 py-2.5 font-semibold leading-5 mb-[-1px] focus-visible:outline-none",
-                      selected ? `border-b-2` : "!text-black"
-                    )
-                  }
-                  style={{ borderColor: `${color}`, color: `${color}` }}
-                >
-                  {title}
-                </Tab>
-              ))}
-            </Tab.List>
-            <Tab.Panels>
-              <Tab.Panel className="flex justify-center">
-                <MetadataTab specs={{ ...specs }} key={specs.title} />
-              </Tab.Panel>
-              <Tab.Panel>
-                <SpecsTab specs={{ ...specs }} />
-              </Tab.Panel>
-            </Tab.Panels>
+    <div>
+      <AppLinks />
+      <div className="flex flex-col xl:flex-row">
+        <div className="xl:sticky xl:top-0 w-full p-2 md:px-4 xl:p-4 xl:pr-2 xl:pt-24 xl:w-full xl:max-w-[360px] xl:h-screen">
+          <div className="xl:hidden mb-2">
+            <About />
           </div>
-        </Tab.Group>
+          <div className="xl:hidden">
+            <NetworkAndPortalSelectMobile
+              chains={chains}
+              portals={portals}
+              currentChain={currentChain}
+              onSelect={setCurrentChain}
+            />
+          </div>
+          <div className="hidden xl:block mb-10 empty:hidden">
+            <PortalSelect portals={portals} />
+          </div>
+          <div className="hidden xl:block mb-6">
+            <About />
+          </div>
+          <div className="hidden xl:block">
+            <NetworkSelect
+              chains={chains}
+              currentChain={currentChain}
+              onSelect={setCurrentChain}
+            />
+          </div>
+        </div>
+        <div className="w-full p-2 pt-0 pb-8 md:pb-24 md:p-4 xl:pl-2 xl:pt-24 space-y-4">
+          <Network spec={spec} />
+          <FAQ />
+          <div className="py-4 xl:hidden">
+            <Hr />
+          </div>
+          <div className="xl:hidden">
+            <Links />
+          </div>
+        </div>
       </div>
     </div>
-  );
-}
-
-interface BurgerButtonProps {
-  isOpen: boolean;
-  onClick: () => void;
-}
-
-function BurgerButton({ isOpen, onClick }: BurgerButtonProps) {
-  return (
-    <button
-      className="flex top-0 left-0 relative w-8 h-10 text-white focus:outline-none"
-      onClick={onClick}
-    >
-      <div className="absolute w-5 transform -translate-x-1/2 -translate-y-1/2 top-1/2">
-        <span
-          className={`absolute h-0.5 w-5 bg-white transform transition duration-200 ease-in-out ${
-            isOpen ? "rotate-45 delay-100" : "-translate-y-1.5"
-          }`}
-        ></span>
-        <span
-          className={`absolute h-0.5 bg-white transform transition-all duration-100 ease-in-out ${
-            isOpen ? "w-0 opacity-50" : "w-5 delay-100 opacity-100"
-          }`}
-        ></span>
-        <span
-          className={`absolute h-0.5 w-5 bg-white transform transition duration-200 ease-in-out ${
-            isOpen ? "-rotate-45 delay-100" : "translate-y-1.5"
-          }`}
-        ></span>
-      </div>
-    </button>
   );
 }

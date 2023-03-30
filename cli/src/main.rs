@@ -3,8 +3,10 @@ extern crate core;
 mod chains_config;
 mod cleaner;
 mod collector;
+mod common;
 mod config;
 mod deployment_checker;
+mod ethereum;
 mod export;
 mod fetch;
 mod opts;
@@ -17,7 +19,7 @@ mod verifier;
 
 use std::process::exit;
 
-use clap::StructOpt;
+use clap::Parser;
 use env_logger::Env;
 use log::error;
 

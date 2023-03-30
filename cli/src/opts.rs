@@ -41,7 +41,7 @@ pub(crate) enum SubCommand {
 
 #[derive(Parser)]
 pub(crate) struct UpdateOpts {
-    #[clap(short = 's', long, default_value = "node")]
+    #[arg(short = 's', long, default_value = "node")]
     pub(crate) source: UpdateSource,
 
     #[clap(long)]

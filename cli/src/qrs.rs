@@ -4,10 +4,10 @@ use std::path::Path;
 
 use anyhow::{Context, Result};
 
-use crate::utils::path::{ContentType, QrPath};
-use crate::utils::types::{ChainName, SpecVersion};
+use crate::common::path::{ContentType, QrPath};
+use crate::common::types::{ChainName, MetaVersion};
 
-type MetadataMap = HashMap<ChainName, BTreeMap<SpecVersion, QrPath>>;
+type MetadataMap = HashMap<ChainName, BTreeMap<MetaVersion, QrPath>>;
 
 /// QR dir content
 pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
@@ -20,7 +20,7 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
         match QrPath::try_from(&file.path()) {
             Ok(qr_path) => files.push(qr_path),
             Err(e) => {
-                eprintln!("{}", e);
+                eprintln!("{e}");
                 continue;
             }
         }
@@ -29,8 +29,8 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
 }
 
 /// Maps chain to corresponding metadata QR files
-pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
-    let mut metadata_qrs: HashMap<ChainName, BTreeMap<SpecVersion, QrPath>> = HashMap::new();
+pub(crate) fn metadata_files(dir: impl AsRef<Path>) -> Result<MetadataMap> {
+    let mut metadata_qrs: MetadataMap = HashMap::new();
     for qr in qrs_in_dir(dir)? {
         if let ContentType::Metadata(version) = qr.file_name.content_type {
             metadata_qrs
@@ -49,7 +49,7 @@ pub(crate) fn find_metadata_qrs(dir: impl AsRef<Path>) -> Result<MetadataMap> {
 }
 
 // Find all specs QR files in the given directory
-pub(crate) fn find_spec_qrs(dir: impl AsRef<Path>) -> Result<HashMap<ChainName, QrPath>> {
+pub(crate) fn spec_files(dir: impl AsRef<Path>) -> Result<HashMap<ChainName, QrPath>> {
     let mut specs_qrs = HashMap::new();
     for qr in qrs_in_dir(dir)? {
         if let ContentType::Specs = qr.file_name.content_type {
@@ -67,34 +67,25 @@ pub(crate) fn find_spec_qrs(dir: impl AsRef<Path>) -> Result<HashMap<ChainName, 
 }
 
 // Helper function to extract metadata QR
-pub(crate) fn extract_metadata_qr(
-    metadata_qrs: &MetadataMap,
+pub(crate) fn collect_metadata_qrs(
+    all_metadata: &MetadataMap,
     chain: &ChainName,
-    version: &SpecVersion,
-) -> Result<QrPath> {
-    let qr = metadata_qrs
-        .get(chain)
-        .and_then(|map| map.get(version))
-        .context(format!(
-            "No metadata found for {} version {}",
-            chain, version
-        ))?;
-    Ok(qr.clone())
-}
-
-pub(crate) fn next_metadata_version(
-    metadata_qrs: &MetadataMap,
-    chain: &ChainName,
-    active_version: SpecVersion,
-) -> Result<Option<SpecVersion>> {
-    let available_versions = metadata_qrs
-        .get(chain)
-        .map(|map| map.keys().copied().collect::<Vec<_>>())
-        .context(format!("No metadata QRs for {}", chain))?;
-    Ok(available_versions
+    live_version: &MetaVersion,
+) -> Result<Vec<QrPath>> {
+    let mut metadata_qrs = vec![];
+    for (version, qr) in all_metadata
+        .get(chain.as_str())
+        .with_context(|| format!("No metadata qr found for {}", chain))?
         .iter()
-        .find(|&v| *v > active_version)
-        .copied())
+    {
+        if version <= live_version {
+            // only keep the latest metadata
+            metadata_qrs = vec![qr.clone()];
+        } else {
+            metadata_qrs.push(qr.clone());
+        }
+    }
+    Ok(metadata_qrs)
 }
 
 #[cfg(test)]
@@ -106,7 +97,7 @@ mod tests {
     #[test]
     fn return_sorted_metadata() {
         let path = Path::new("./src/for_tests/sequential");
-        let files = find_metadata_qrs(&path).unwrap();
+        let files = metadata_files(path).unwrap();
         let mut result = files.get("kusama").unwrap().iter();
         let (first, _) = result.next().unwrap();
         assert_eq!(*first, 9);
@@ -115,33 +106,22 @@ mod tests {
     }
 
     #[test]
-    fn return_active_metadata() {
+    fn test_collect_metadata() {
         let path = Path::new("./src/for_tests/sequential");
         let chain = &String::from("kusama");
-        let map = find_metadata_qrs(&path).unwrap();
-        let qr = extract_metadata_qr(&map, chain, &10);
-        assert!(qr.is_ok());
-        let qr = extract_metadata_qr(&map, chain, &11);
-        assert!(qr.is_err());
-    }
-
-    #[test]
-    fn test_next_metadata_version() {
-        let path = Path::new("./src/for_tests/sequential");
-        let chain = &String::from("kusama");
-        let map = find_metadata_qrs(&path).unwrap();
-        let v = next_metadata_version(&map, chain, 9).unwrap();
-        assert!(v.is_some());
-        assert_eq!(v.unwrap(), 10);
-
-        let v = next_metadata_version(&map, chain, 10).unwrap();
-        assert!(v.is_none());
+        let map = metadata_files(path).unwrap();
+        let qrs = collect_metadata_qrs(&map, chain, &9).unwrap();
+        assert_eq!(qrs.len(), 2);
+        let qrs = collect_metadata_qrs(&map, chain, &10).unwrap();
+        assert_eq!(qrs.len(), 1);
+        let qrs = collect_metadata_qrs(&map, chain, &11).unwrap();
+        assert_eq!(qrs.len(), 1);
     }
 
     #[test]
     fn prefer_signed_metadata() {
         let path = Path::new("./src/for_tests/signed_meta");
-        let files = find_metadata_qrs(path).unwrap();
+        let files = metadata_files(path).unwrap();
         let qr = files.get("polkadot").unwrap().get(&9001).unwrap();
         assert!(qr.file_name.is_signed);
     }
@@ -149,7 +129,7 @@ mod tests {
     #[test]
     fn return_latest_metadata_even_unsigned() {
         let path = Path::new("./src/for_tests/unsigned");
-        let files = find_metadata_qrs(path).unwrap();
+        let files = metadata_files(path).unwrap();
 
         let mut result = files.get("polkadot").unwrap().iter();
         let (first, qr) = result.next().unwrap();

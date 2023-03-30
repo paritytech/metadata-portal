@@ -1,3 +1,4 @@
+use std::cmp::Ordering;
 use std::fs;
 use std::os::unix::fs::symlink;
 use std::path::PathBuf;
@@ -7,44 +8,42 @@ use indexmap::IndexMap;
 use log::{info, warn};
 
 use crate::export::{ExportChainSpec, ExportData, QrCode, ReactAssetPath};
+use anyhow::{Context, Result};
+use indexmap::IndexMap;
+use log::info;
+
+use crate::common::path::{ContentType, QrPath};
+use crate::common::types::MetaVersion;
+use crate::export::{
+    ExportChainSpec, ExportData, MetadataQr, MetadataStatus, QrCode, ReactAssetPath,
+};
 use crate::fetch::Fetcher;
-use crate::qrs::{extract_metadata_qr, find_metadata_qrs, find_spec_qrs, next_metadata_version};
+use crate::qrs::{collect_metadata_qrs, metadata_files, spec_files};
 use crate::utils::path::QrPath;
 use crate::AppConfig;
 
 pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<ExportData> {
-    let specs_qrs = find_spec_qrs(&config.qr_dir)?;
-    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
+    let all_specs = spec_files(&config.qr_dir)?;
+    let all_metadata = metadata_files(&config.qr_dir)?;
 
     let mut export_specs = IndexMap::new();
     for chain in &config.chains {
         info!("Collecting {} info...", chain.name);
+        let specs = fetcher.fetch_specs(chain)?;
+        let meta = fetcher.fetch_metadata(chain)?;
+        let live_meta_version = meta.meta_values.version;
 
-        let specs_result = fetcher.fetch_specs(chain);
-        let meta_result = fetcher.fetch_metadata(chain);
-        if specs_result.is_err() || meta_result.is_err() {
-            warn!("Error getting data for {}", chain.name);
-            continue;
-        }
-        let specs = specs_result.unwrap();
-        let meta = meta_result.unwrap();
-        let active_version = meta.meta_values.version;
-        let metadata_qr_result = extract_metadata_qr(&metadata_qrs, &chain.name, &active_version);
-        if metadata_qr_result.is_err() {
-            warn!("No latest metadata found for {}", chain.name);
-            continue;
-        }
-        let metadata_qr = metadata_qr_result.unwrap();
-        let specs_qr = specs_qrs
+        let metadata_qrs = collect_metadata_qrs(&all_metadata, &chain.name, &live_meta_version)?;
+
+        let specs_qr = all_specs
             .get(chain.name.as_str())
             .with_context(|| format!("No specs qr found for {}", chain.name))?
             .clone();
-        let next_version = next_metadata_version(&metadata_qrs, &chain.name, active_version)?;
-
-        let next_metadata_qr = next_version
-            .map(|v| extract_metadata_qr(&metadata_qrs, &chain.name, &v).unwrap())
-            .map(|qr| QrCode::from_qr_path(config, qr, &chain.verifier).unwrap());
-        let latest_meta = update_pointer_to_latest_metadata(&metadata_qr)?;
+        let latest_meta = update_pointer_to_latest_metadata(
+            metadata_qrs
+                .first()
+                .context(format!("No metadata QRs for {}", &chain.name))?,
+        )?;
         export_specs.insert(
             chain.name.clone(),
             ExportChainSpec {
@@ -56,17 +55,39 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 icon: chain.icon.clone(),
                 decimals: specs.decimals,
                 base58prefix: specs.base58prefix,
-                metadata_qr: QrCode::from_qr_path(config, metadata_qr, &chain.verifier)?,
-                specs_qr: QrCode::from_qr_path(config, specs_qr, &chain.verifier)?,
-                next_metadata_version: next_version,
-                next_metadata_qr,
-                metadata_version: active_version,
+                specs_qr: QrCode::from_qr_path(config, specs_qr)?,
                 latest_metadata: ReactAssetPath::from_fs_path(&latest_meta, &config.public_dir)?,
-                testnet: chain.testnet.unwrap_or(false),
+                metadata_qrs: export_metadata_files(config, metadata_qrs, &live_meta_version),
+                live_meta_version,
             },
         );
     }
     Ok(export_specs)
+}
+
+fn export_metadata_files(
+    config: &AppConfig,
+    qrs: Vec<QrPath>,
+    live_version: &MetaVersion,
+) -> Vec<MetadataQr> {
+    qrs.into_iter()
+        .map(|qr| {
+            if let ContentType::Metadata(version) = qr.file_name.content_type {
+                let status = match version.cmp(live_version) {
+                    Ordering::Less => MetadataStatus::Outdated,
+                    Ordering::Equal => MetadataStatus::Now,
+                    Ordering::Greater => MetadataStatus::Future,
+                };
+                MetadataQr {
+                    version,
+                    file: QrCode::from_qr_path(config, qr).unwrap(),
+                    status,
+                }
+            } else {
+                panic!("Not a metadata qr: {:?}", qr);
+            }
+        })
+        .collect()
 }
 
 // Create symlink to latest metadata qr

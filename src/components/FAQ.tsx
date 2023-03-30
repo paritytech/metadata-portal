@@ -14,7 +14,7 @@ export const FAQ = () => (
     <div className="space-y-2">
       <Disclosure as="div" className="border border-neutral-200 rounded-4xl">
         <Disclosure.Button className="flex items-center justify-between w-full p-4 pl-6 space-x-4">
-          <h4 className="text-2xl text-left">How Can I Use The Portal?</h4>
+          <h4 className="md:text-2xl text-left">How Can I Use The Portal?</h4>
           <ChevronIcon />
         </Disclosure.Button>
         <Disclosure.Panel className="px-6 pt-0 pb-8 max-w-3xl">
@@ -31,7 +31,7 @@ export const FAQ = () => (
       </Disclosure>
       <Disclosure as="div" className="border border-neutral-200 rounded-4xl">
         <Disclosure.Button className="flex items-center justify-between w-full p-4 pl-6 space-x-4">
-          <h4 className="text-2xl text-left">What Is Polkadot Vault?</h4>
+          <h4 className="md:text-2xl text-left">What Is Polkadot Vault?</h4>
           <ChevronIcon />
         </Disclosure.Button>
         <Disclosure.Panel className="px-6 pt-0 pb-8 max-w-3xl">
@@ -46,7 +46,7 @@ export const FAQ = () => (
       </Disclosure>
       <Disclosure as="div" className="border border-neutral-200 rounded-4xl">
         <Disclosure.Button className="flex items-center justify-between w-full p-4 pl-6 space-x-4">
-          <h4 className="text-2xl text-left">
+          <h4 className="md:text-2xl text-left">
             How To Add And Update Networks In Polkadot Vault
           </h4>
           <ChevronIcon />
@@ -121,7 +121,7 @@ export const FAQ = () => (
       </Disclosure>
       <Disclosure as="div" className="border border-neutral-200 rounded-4xl">
         <Disclosure.Button className="flex items-center justify-between w-full p-4 pl-6 space-x-4">
-          <h4 className="text-2xl text-left">
+          <h4 className="md:text-2xl text-left">
             {"I Haven't Found The Network I Need"}
           </h4>
           <ChevronIcon />

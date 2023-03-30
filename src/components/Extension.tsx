@@ -31,7 +31,7 @@ export default function Extension(chainSpec: ChainSpec) {
     chain: capitalizeFirstLetter(chainSpec.title),
     genesisHash: chainSpec.genesisHash,
     icon: chainSpec.logo,
-    specVersion: chainSpec.metadataVersion,
+    specVersion: chainSpec.liveMetaVersion,
     ss58Format: chainSpec.base58prefix,
     tokenDecimals: chainSpec.decimals,
     tokenSymbol: chainSpec.unit,
@@ -95,7 +95,7 @@ async function extensionsToUpdate(
       if (!current) {
         return true;
       }
-      return current.specVersion < chainSpec.metadataVersion;
+      return current.specVersion < chainSpec.liveMetaVersion;
     })
     .map((extension) => extension.injectedExtension);
 }

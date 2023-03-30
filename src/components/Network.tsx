@@ -30,20 +30,13 @@ function setTabToSearch(v: number) {
 export const Network = ({ spec }: { spec: ChainSpec }) => {
   const [selectedTab, setSelectedTab] = useState(tabFromSearch());
   const [selectedQr, setSelectedQr] = useState(0);
-  const qrs = [
-    { qr: spec.metadataQr, label: `Current: #${spec.metadataVersion}` },
-    spec.nextMetadataQr &&
-      spec.nextMetadataVersion && {
-        qr: spec.nextMetadataQr,
-        label: `Next #${spec.nextMetadataVersion}`,
-      },
-  ].filter(Boolean) as LabeledQr[];
-  if (spec.nextMetadataVersion && spec.nextMetadataQr) {
-    qrs.push({
-      qr: spec.nextMetadataQr,
-      label: `Next #${spec.nextMetadataVersion}`,
-    });
-  }
+  const qrs = spec.metadataQrs.map(
+    (qr) =>
+      ({
+        qr: qr.file,
+        label: `${capitalizeFirstLetter(qr.status.toString())} #${qr.version}`,
+      } as LabeledQr)
+  );
 
   function updateTab(v: number) {
     setTabToSearch(v);
@@ -141,7 +134,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                   </Row>
                   <Row title="Address prefix">{spec.base58prefix}</Row>
                   <Row title="Unit">{spec.unit}</Row>
-                  <Row title="Latest metadata">{spec.metadataVersion}</Row>
+                  <Row title="Latest metadata">{spec.liveMetaVersion}</Row>
                 </ul>
               </Tab.Panel>
               <Tab.Panel>

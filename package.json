@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.10",
-    "@heroicons/react": "^2.0.14",
+    "@heroicons/react": "^2.0.17",
     "@polkadot/extension-dapp": "^0.44.8",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

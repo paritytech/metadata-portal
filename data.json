@@ -82,17 +82,16 @@
     "liveMetaVersion": 9381,
     "metadataQrs": [
       {
-        "version": 9380,
+        "version": 9381,
         "file": {
-          "path": "qr/kusama_metadata_9380.apng",
+          "path": "qr/kusama_metadata_9381.apng",
           "signedBy": "Parity",
           "source": {
-            "type": "Wasm",
-            "github_repo": "paritytech/polkadot",
-            "hash": "0x4a30a543fab215a43e0e463161bf1e62b7a8e414c4a0a220201bffee39aa6add"
+            "type": "Rpc",
+            "block": "0x12f5da367bdeb1b5f6be87bfd15971883c37540abb6eb139a9bc67907e4c0f5a"
           }
         },
-        "status": "outdated"
+        "status": "now"
       },
       {
         "version": 9390,
@@ -137,7 +136,7 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "liveMetaVersion": 9400,
+    "liveMetaVersion": 9401,
     "metadataQrs": [
       {
         "version": 9400,
@@ -149,7 +148,7 @@
             "block": "0x43cca101481b537c35654e614459584f926b0d9bd6587f53fe07fa46f7b2814b"
           }
         },
-        "status": "now"
+        "status": "outdated"
       }
     ],
     "latestMetadata": "qr/westend_metadata_latest.apng",

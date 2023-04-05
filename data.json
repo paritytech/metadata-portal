@@ -139,16 +139,16 @@
     "liveMetaVersion": 9401,
     "metadataQrs": [
       {
-        "version": 9400,
+        "version": 9401,
         "file": {
-          "path": "qr/westend_metadata_9400.apng",
+          "path": "qr/westend_metadata_9401.apng",
           "signedBy": "Parity",
           "source": {
             "type": "Rpc",
-            "block": "0x43cca101481b537c35654e614459584f926b0d9bd6587f53fe07fa46f7b2814b"
+            "block": "0x407c0df14e8d57ea514b6a7e63cda4a1c3cded2c260b6c621eec4f1b225a13ff"
           }
         },
-        "status": "outdated"
+        "status": "now"
       }
     ],
     "latestMetadata": "qr/westend_metadata_latest.apng",

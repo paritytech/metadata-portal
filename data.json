@@ -157,5 +157,36 @@
       "signedBy": "Parity",
       "source": null
     }
+  },
+  "rococo": {
+    "title": "rococo",
+    "color": "#6f36dc",
+    "rpcEndpoint": "wss://rococo-rpc.polkadot.io",
+    "genesisHash": "0x6408de7737c59c238890533af25896a2c20608d8b380bb01029acb392781063e",
+    "unit": "ROC",
+    "base58prefix": 42,
+    "logo": "rococo",
+    "decimals": 12,
+    "liveMetaVersion": 9390,
+    "metadataQrs": [
+      {
+        "version": 9390,
+        "file": {
+          "path": "qr/rococo_metadata_9390.apng",
+          "signedBy": "Parity",
+          "source": {
+            "type": "Rpc",
+            "block": "0x6611526de4de13c1b3a396f31f2a91474e439c20ada4c1462991093c86a2ab6b"
+          }
+        },
+        "status": "now"
+      }
+    ],
+    "latestMetadata": "qr/rococo_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/rococo_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    }
   }
 }

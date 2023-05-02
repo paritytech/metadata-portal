@@ -41,7 +41,7 @@ jobs:
         run: cargo run --release -- update --source node
 
       - name: ⚙ Update QRs from GitHub releases
-        run: cargo run --release -- update --source github
+        run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} cargo run --release -- update --source github
 
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}

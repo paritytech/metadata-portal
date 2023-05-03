@@ -136,7 +136,7 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "liveMetaVersion": 9401,
+    "liveMetaVersion": 9420,
     "metadataQrs": [
       {
         "version": 9401,
@@ -148,7 +148,7 @@
             "block": "0x407c0df14e8d57ea514b6a7e63cda4a1c3cded2c260b6c621eec4f1b225a13ff"
           }
         },
-        "status": "now"
+        "status": "outdated"
       }
     ],
     "latestMetadata": "qr/westend_metadata_latest.apng",

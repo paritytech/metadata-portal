@@ -196,16 +196,16 @@
     "liveMetaVersion": 9420,
     "metadataQrs": [
       {
-        "version": 9390,
+        "version": 9420,
         "file": {
-          "path": "qr/rococo_metadata_9390.apng",
+          "path": "qr/rococo_metadata_9420.apng",
           "signedBy": "Parity",
           "source": {
             "type": "Rpc",
-            "block": "0x6611526de4de13c1b3a396f31f2a91474e439c20ada4c1462991093c86a2ab6b"
+            "block": "0xd50abb1733b894677933f5d486f264d17f4dc261df23c91ceea81e8d36306753"
           }
         },
-        "status": "outdated"
+        "status": "now"
       }
     ],
     "latestMetadata": "qr/rococo_metadata_latest.apng",

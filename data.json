@@ -92,46 +92,8 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "liveMetaVersion": 9381,
+    "liveMetaVersion": 9420,
     "metadataQrs": [
-      {
-        "version": 9381,
-        "file": {
-          "path": "qr/kusama_metadata_9381.apng",
-          "signedBy": "Parity",
-          "source": {
-            "type": "Rpc",
-            "block": "0x12f5da367bdeb1b5f6be87bfd15971883c37540abb6eb139a9bc67907e4c0f5a"
-          }
-        },
-        "status": "now"
-      },
-      {
-        "version": 9390,
-        "file": {
-          "path": "qr/kusama_metadata_9390.apng",
-          "signedBy": "Parity",
-          "source": {
-            "type": "Wasm",
-            "github_repo": "paritytech/polkadot",
-            "hash": "0xf727d8fe1be82de9e7c8039945b115529fad6c8c77241900c2dd4eeb2e898eb5"
-          }
-        },
-        "status": "future"
-      },
-      {
-        "version": 9400,
-        "file": {
-          "path": "qr/kusama_metadata_9400.apng",
-          "signedBy": "Parity",
-          "source": {
-            "type": "Wasm",
-            "github_repo": "paritytech/polkadot",
-            "hash": "0xef5e03df732867eb9169154a5676e6b22e47154ccb17ced73fc836bdae026e1e"
-          }
-        },
-        "status": "future"
-      },
       {
         "version": 9420,
         "file": {
@@ -143,7 +105,7 @@
             "hash": "0xaa5837e5dc5d96bb4ac1558ca796c2cf8415158ca5b24291f71c21191c798404"
           }
         },
-        "status": "future"
+        "status": "now"
       }
     ],
     "latestMetadata": "qr/kusama_metadata_latest.apng",

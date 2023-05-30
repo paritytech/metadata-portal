@@ -45,7 +45,7 @@ pub(crate) struct ExportChainSpec {
     pub(crate) decimals: u8,
 
     pub(crate) live_meta_version: u32,
-    pub(crate) metadata_qrs: Vec<MetadataQr>,
+    pub(crate) metadata_qr: Option<MetadataQr>,
     pub(crate) latest_metadata: ReactAssetPath,
     pub(crate) specs_qr: QrCode,
 }
@@ -55,15 +55,6 @@ pub(crate) struct ExportChainSpec {
 pub(crate) struct MetadataQr {
     pub(crate) version: u32,
     pub(crate) file: QrCode,
-    pub(crate) status: MetadataStatus,
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum MetadataStatus {
-    Outdated,
-    Now,
-    Future,
 }
 
 pub(crate) type ExportData = IndexMap<ChainName, ExportChainSpec>;

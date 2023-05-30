@@ -8,16 +8,13 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "metadataQrs": [
-      {
-        "version": 9,
-        "file": {
-          "path": "qr/polkadot_metadata_9.apng",
-          "signedBy": "Parity"
-        },
-        "status": "now"
+    "metadataQr": {
+      "version": 9,
+      "file": {
+        "path": "qr/polkadot_metadata_9.apng",
+        "signedBy": "Parity"
       }
-    ],
+    },
     "liveMetaVersion": 9,
     "latestMetadata": "",
     "specsQr": {

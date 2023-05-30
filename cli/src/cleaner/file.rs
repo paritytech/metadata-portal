@@ -20,11 +20,10 @@ pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>
     let chain_specs = read_export_file(config)?;
 
     for chain in &config.chains {
-        let latest_version = match chain_specs
+        let latest_version = match &chain_specs
             .get(&chain.name)
             .context(format!("No data found for {}", chain.name))?
-            .metadata_qrs
-            .first()
+            .metadata_qr
         {
             Some(qr) => qr.version,
             None => continue,

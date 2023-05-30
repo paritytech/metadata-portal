@@ -1,18 +1,12 @@
-import { Listbox, Tab, Transition } from "@headlessui/react";
+import { Tab } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { ChainSpec, QrInfo, RpcSource, WasmSource } from "../scheme";
+import { ChainSpec, RpcSource, WasmSource } from "../scheme";
 import { capitalizeFirstLetter, cn } from "../utils";
-import { ChevronIcon } from "./ChevronIcon";
-import Hash from "./Hash";
+import Copyable, { hashSlicer, keepHeadSlicer } from "./Copyable";
 import { Hr } from "./Hr";
 import { Links } from "./Links";
 import { Row } from "./Row";
 import { icon } from "../icons";
-
-type LabeledQr = {
-  qr: QrInfo;
-  label: string;
-};
 
 function tabFromSearch() {
   const params = new URLSearchParams(location.search);
@@ -29,19 +23,37 @@ function setTabToSearch(v: number) {
 
 export const Network = ({ spec }: { spec: ChainSpec }) => {
   const [selectedTab, setSelectedTab] = useState(tabFromSearch());
-  const [selectedQr, setSelectedQr] = useState(0);
-  const qrs = spec.metadataQrs.map(
-    (qr) =>
-      ({
-        qr: qr.file,
-        label: `${capitalizeFirstLetter(qr.status.toString())} #${qr.version}`,
-      } as LabeledQr)
-  );
+  const metadataQr = spec.metadataQr;
 
   function updateTab(v: number) {
     setTabToSearch(v);
     setSelectedTab(v);
   }
+
+  const vaultLink = (
+    <a
+      href="https://parity.io/signer/"
+      className="font-bold"
+      target="_blank"
+      rel="noreferrer"
+    >
+      Polkadot Vault
+    </a>
+  );
+
+  const createGithubIssueLink = (
+    <a
+      href="https://github.com/paritytech/metadata-portal/issues/new"
+      className="block mt-10 font-extrabold"
+      style={{
+        color: `${spec.color}`,
+      }}
+      target="_blank"
+      rel="noreferrer"
+    >
+      Create a Github issue
+    </a>
+  );
 
   return (
     <div>
@@ -63,35 +75,47 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
         }}
       >
         <div className="flex flex-col items-center p-10 md:w-[55%] bg-white rounded-3xl">
-          <div className="w-full max-w-xs aspect-square bg-neutral-100">
+          <div className="w-full max-w-xs aspect-square">
             {selectedTab === 0 && (
-              <img
-                className="w-full"
-                src={process.env.PUBLIC_URL + spec.specsQr.path}
-                alt="Qr code"
-              />
+              <div>
+                <img
+                  className="w-full"
+                  src={process.env.PUBLIC_URL + spec.specsQr.path}
+                  alt="Qr code"
+                />
+                <div className="text-center text-sm text-black opacity-50">
+                  {"Scan this code to add chain specs to the "}
+                  {vaultLink}
+                </div>
+              </div>
             )}
             {selectedTab === 1 && (
-              <img
-                className="w-full"
-                src={process.env.PUBLIC_URL + qrs[selectedQr].qr.path}
-                alt="metadata qr code"
-              />
+              <div>
+                {!metadataQr && (
+                  <div className="flex aspect-square text-center">
+                    <div className="m-auto">
+                      The metadata for {spec.title} Network is out of date.
+                      Request the new metadata version by creating a Github
+                      issue.
+                      {createGithubIssueLink}
+                    </div>
+                  </div>
+                )}
+                {metadataQr && (
+                  <div>
+                    <img
+                      className="w-full"
+                      src={process.env.PUBLIC_URL + metadataQr?.file.path}
+                      alt="metadata qr code"
+                    />
+                    <div className="text-center text-sm text-black opacity-50">
+                      {"Scan this code to update "}
+                      {vaultLink}
+                    </div>
+                  </div>
+                )}
+              </div>
             )}
-          </div>
-          <div className="text-center text-sm text-black opacity-50">
-            <div>
-              {selectedTab === 0 && "Scan this code to add chain specs to the "}
-              {selectedTab === 1 && "Scan this code to update "}
-            </div>
-            <a
-              href="https://parity.io/signer/"
-              className="font-bold"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Polkadot Vault
-            </a>
           </div>
         </div>
         <div className="p-2 md:p-4 md:w-[45%] bg-white rounded-3xl">
@@ -119,9 +143,14 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
             <Tab.Panels className="m-4 mt-6 mb-4">
               <Tab.Panel>
                 <ul className="space-y-6">
-                  <Row title="RPC endpoint">{spec.rpcEndpoint}</Row>
+                  <Row title="RPC endpoint">
+                    <Copyable
+                      value={spec.rpcEndpoint}
+                      slicer={keepHeadSlicer(25)}
+                    />
+                  </Row>
                   <Row title="Genesis hash">
-                    <Hash value={spec.genesisHash} />
+                    <Copyable value={spec.genesisHash} slicer={hashSlicer} />
                   </Row>
                   <Row title="Color">
                     <div className="flex space-x-2">
@@ -138,88 +167,47 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                 </ul>
               </Tab.Panel>
               <Tab.Panel>
-                <div className="space-y-6">
-                  <Listbox
-                    as="div"
-                    className="relative w-full"
-                    value={selectedQr}
-                    onChange={setSelectedQr}
-                  >
-                    <Listbox.Button className="bordered-action flex items-center justify-between w-full space-x-4">
-                      <span className="flex items-center space-x-2">
-                        <span>{qrs[selectedQr].label}</span>
-                        <span className="px-2 py-1 text-sm rounded-full bg-neutral-200">
-                          {qrs[selectedQr].qr.signedBy
-                            ? `Signed by ${qrs[selectedQr].qr.signedBy}`
-                            : "Unsigned"}
-                        </span>
-                      </span>
-                      <ChevronIcon />
-                    </Listbox.Button>
-                    <Transition
-                      as={Fragment}
-                      leave="transition ease-in duration-100"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0"
-                    >
-                      <Listbox.Options className="absolute mt-1 left-0 right-0 overflow-auto rounded-lg bg-white p-2 text-base shadow-lg focus:outline-none z-10">
-                        {qrs.map((qr, idx) => (
-                          <Listbox.Option key={idx} value={idx}>
-                            {({ selected }) => (
-                              <div
-                                className={cn(
-                                  "flex items-center space-x-2 p-2 rounded-md hover:bg-neutral-100 transition-colors",
-                                  selected && "bg-neutral-100",
-                                  selected ? "cursor-default" : "cursor-pointer"
-                                )}
-                              >
-                                <span>{qr.label}</span>
-                                <span className="px-2 py-1 text-sm rounded-full bg-neutral-200">
-                                  {qrs[selectedQr].qr.signedBy
-                                    ? `Signed by ${qrs[selectedQr].qr.signedBy}`
-                                    : "Unsigned"}
-                                </span>
-                              </div>
-                            )}
-                          </Listbox.Option>
-                        ))}
-                      </Listbox.Options>
-                    </Transition>
-                  </Listbox>
-                  {qrs[selectedQr].qr.source?.type === "Wasm" && (
-                    <ul className="space-y-6">
-                      <Row title="Metadata source">
-                        <a
-                          href={`https://github.com/${
-                            (qrs[selectedQr].qr.source as WasmSource)
-                              .github_repo
-                          }/releases`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {
-                            (qrs[selectedQr].qr.source as WasmSource)
-                              .github_repo
-                          }
-                        </a>
-                      </Row>
-                      <Row title="Hash">
-                        <Hash
-                          value={(qrs[selectedQr].qr.source as WasmSource).hash}
-                        />
-                      </Row>
-                    </ul>
-                  )}
-                  {qrs[selectedQr].qr.source?.type === "Rpc" && (
-                    <ul className="space-y-4">
-                      <Row title="Source block">
-                        <Hash
-                          value={(qrs[selectedQr].qr.source as RpcSource).block}
-                        />
-                      </Row>
-                    </ul>
-                  )}
-                </div>
+                {metadataQr && (
+                  <div className="space-y-6">
+                    {metadataQr?.file.source?.type === "Wasm" && (
+                      <ul className="space-y-6">
+                        <Row title="Metadata source">
+                          <a
+                            href={`https://github.com/${
+                              (metadataQr?.file.source as WasmSource)
+                                .github_repo
+                            }/releases`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {
+                              (metadataQr?.file.source as WasmSource)
+                                .github_repo
+                            }
+                          </a>
+                        </Row>
+                        <Row title="Hash">
+                          <Copyable
+                            value={(metadataQr?.file.source as WasmSource).hash}
+                            slicer={hashSlicer}
+                          />
+                        </Row>
+                      </ul>
+                    )}
+                    {metadataQr?.file.source?.type === "Rpc" && (
+                      <ul className="space-y-4">
+                        <Row title="Source block">
+                          <Copyable
+                            value={(metadataQr?.file.source as RpcSource).block}
+                            slicer={hashSlicer}
+                          />
+                        </Row>
+                      </ul>
+                    )}
+                    <Row title="Metadata Version">#{metadataQr?.version}</Row>
+                    <Row title="Signed by">{metadataQr?.file.signedBy}</Row>
+                  </div>
+                )}
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>

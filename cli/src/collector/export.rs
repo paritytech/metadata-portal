@@ -8,9 +8,7 @@ use log::info;
 
 use crate::common::path::{ContentType, QrPath};
 use crate::common::types::MetaVersion;
-use crate::export::{
-    ExportChainSpec, ExportData, MetadataQr, QrCode, ReactAssetPath,
-};
+use crate::export::{ExportChainSpec, ExportData, MetadataQr, QrCode, ReactAssetPath};
 use crate::fetch::Fetcher;
 use crate::qrs::{collect_metadata_qrs, metadata_files, spec_files};
 use crate::AppConfig;
@@ -49,7 +47,10 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 decimals: specs.decimals,
                 base58prefix: specs.base58prefix,
                 specs_qr: QrCode::from_qr_path(config, specs_qr)?,
-                latest_metadata: ReactAssetPath::from_fs_path(&pointer_to_latest_meta, &config.public_dir)?,
+                latest_metadata: ReactAssetPath::from_fs_path(
+                    &pointer_to_latest_meta,
+                    &config.public_dir,
+                )?,
                 metadata_qr: export_live_metadata(config, metadata_qrs, &live_meta_version),
                 live_meta_version,
             },
@@ -64,12 +65,12 @@ fn export_live_metadata(
     live_version: &MetaVersion,
 ) -> Option<MetadataQr> {
     qrs.into_iter()
-        .find(|qr| matches!(qr.file_name.content_type, ContentType::Metadata(v) if v==*live_version))
-        .map(|qr| {
-                MetadataQr {
-                    version: live_version.clone(),
-                    file: QrCode::from_qr_path(config, qr).unwrap(),
-                }
+        .find(
+            |qr| matches!(qr.file_name.content_type, ContentType::Metadata(v) if v==*live_version),
+        )
+        .map(|qr| MetadataQr {
+            version: live_version.clone(),
+            file: QrCode::from_qr_path(config, qr).unwrap(),
         })
 }
 

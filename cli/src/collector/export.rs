@@ -69,7 +69,7 @@ fn export_live_metadata(
             |qr| matches!(qr.file_name.content_type, ContentType::Metadata(v) if v==*live_version),
         )
         .map(|qr| MetadataQr {
-            version: live_version.clone(),
+            version: *live_version,
             file: QrCode::from_qr_path(config, qr).unwrap(),
         })
 }

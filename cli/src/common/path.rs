@@ -97,8 +97,11 @@ impl TryFrom<&PathBuf> for QrFileName {
     type Error = anyhow::Error;
 
     fn try_from(path: &PathBuf) -> Result<Self, Self::Error> {
+        
         let extension = path.extension().map(|s| s.to_str().unwrap().to_owned());
         let filename = path.file_stem().unwrap().to_str().unwrap();
+
+        log::debug!("try_from({filename})");
 
         let (stripped, is_signed) = match filename.strip_prefix(QrFileName::UNSIGNED_PREFIX) {
             Some(s) => (s, false),

@@ -3,7 +3,7 @@
   "name": "Frequency Metadata Portal",
   "icons": [
     {
-      "src": "/FRQCY-Circle-Black.svg",
+      "src": "/frequency.svg",
       "sizes": "288x288",
       "type": "image/svg+xml"
     }

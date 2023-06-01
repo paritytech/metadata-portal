@@ -18,15 +18,15 @@ impl TryFrom<Asset> for WasmRuntime {
 
     fn try_from(asset: Asset) -> Result<Self, Self::Error> {
         log::debug!("try_from({})", asset.name);
+
         if !asset.name.ends_with(".wasm") {
             return Err(anyhow!("{} has no .wasm extension", asset.name));
         }
-        let runtime_info = asset.name.split('.').next().ok_or_else(|| {
-            log::debug!("NO RUNTIME INFO FOUND");
-            anyhow!("no runtime info found")
-        })?;
-
-        log::info!("FOUND RUNTIME INFO!");
+        let runtime_info = asset
+            .name
+            .split('.')
+            .next()
+            .ok_or_else(|| anyhow!("no runtime info found"))?;
         let mut split = runtime_info.split("_runtime-v");
         let chain = split.next().ok_or_else(|| anyhow!("no chain name found"))?;
         let version: u32 = split

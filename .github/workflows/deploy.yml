@@ -3,14 +3,7 @@ name: Deploy Main
 on:
   push:
     branches:
-     - main
-    paths:
-     - '**/*.yml'
-     - '**/config.toml'
-     - 'public/qr/**'
-
-env:
-  RUST_LOG: debug
+      - main
 
 jobs:
   deploy:

@@ -1,6 +1,5 @@
 {
   "polkadot": {
-    "vanityName": "polkadot",
     "title": "polkadot",
     "color": "#000000",
     "rpcEndpoint": "wss://example.com",
@@ -9,23 +8,16 @@
     "base58prefix": 0,
     "logo": "logo",
     "decimals": 10,
-    "metadataVersion": 9,
+    "liveMetaVersion": 9,
     "metadataQr": {
-      "path": "for_tests/polkadot_metadata_9.apng",
-      "signedBy": "Test Verifier",
-      "source": {
-        "type": "Rpc",
-        "block": "0x0000000000000000000000000000000000000000000000000000000000000000"
-      }
-    },
-    "nextMetadataVersion": 10,
-    "nextMetadataQr": {
-      "path": "for_tests/polkadot_metadata_10.apng",
-      "signedBy": "Test Verifier",
-      "source": {
-        "type": "Wasm",
-        "github_repo": "paritytech/polkadot",
-        "hash": "0xbce731f223d5fd37ecacafb5eae59b8e9df39154cdea1f3692525c260534f8d7"
+      "version": 9,
+      "file": {
+        "path": "for_tests/polkadot_metadata_9.apng",
+        "signedBy": "Test Verifier",
+        "source": {
+          "type": "Rpc",
+          "block": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        }
       }
     },
     "latestMetadata": "for_tests/polkadot_metadata_latest.apng",

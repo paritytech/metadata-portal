@@ -1,5 +1,3 @@
-#![allow(special_module_name)]
-
 mod autosigner;
 mod cleaner;
 mod collector;
@@ -18,7 +16,7 @@ mod verifier;
 
 use std::process::exit;
 
-use clap::StructOpt;
+use clap::Parser;
 use env_logger::Env;
 use log::error;
 
@@ -37,7 +35,7 @@ use crate::verifier::verify;
 /// Main entry point of the `metadata-cli`
 fn main() {
     env_logger::Builder::from_env(Env::default().default_filter_or("info"))
-        .format_target(true)
+        .format_target(false)
         .init();
 
     let opts: Opts = Opts::parse();

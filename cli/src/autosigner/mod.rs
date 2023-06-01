@@ -13,7 +13,7 @@ use sp_core::{sr25519, Pair};
 
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
-use crate::qrs::{find_metadata_qrs, find_spec_qrs};
+use crate::qrs::{metadata_files, spec_files};
 use crate::source::{save_source_info, Source};
 use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
@@ -40,8 +40,8 @@ pub(crate) fn autosign_from_node(config: AppConfig, fetcher: impl Fetcher) -> an
         }
     };
 
-    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
-    let specs_qrs = find_spec_qrs(&config.qr_dir)?;
+    let metadata_qrs = metadata_files(&config.qr_dir)?;
+    let specs_qrs = spec_files(&config.qr_dir)?;
 
     let mut is_changed = false;
     for chain in config.chains {
@@ -111,7 +111,7 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
         }
     };
 
-    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
+    let metadata_qrs = metadata_files(&config.qr_dir)?;
     for chain in config.chains {
         info!("🔍 Checking for updates for {}", chain.name);
         if chain.github_release.is_none() {
@@ -134,7 +134,10 @@ pub(crate) async fn autosign_from_github(config: AppConfig) -> anyhow::Result<()
             let num_keys: usize = map.keys().len();
             info!("Checking {} files.", num_keys);
             for metadata_file_version in map.keys() {
-                info!("Comparing version {} > version {} for the {} chain.",  &wasm.version, metadata_file_version, &chain.name);
+                info!(
+                    "Comparing version {} > version {} for the {} chain.",
+                    &wasm.version, metadata_file_version, &chain.name
+                );
                 if &wasm.version > metadata_file_version {
                     needs_updating = true;
                     info!(

@@ -34,8 +34,6 @@ impl fmt::Display for ReactAssetPath {
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ExportChainSpec {
-    pub(crate) vanity_name: String,
-
     pub(crate) title: String,
     pub(crate) color: String,
     pub(crate) rpc_endpoint: String,
@@ -46,21 +44,22 @@ pub(crate) struct ExportChainSpec {
     pub(crate) logo: String,
     pub(crate) decimals: u8,
 
-    pub(crate) metadata_version: u32,
-    pub(crate) metadata_qr: QrCode,
-    pub(crate) next_metadata_version: Option<u32>,
-    pub(crate) next_metadata_qr: Option<QrCode>,
+    pub(crate) live_meta_version: u32,
+    pub(crate) metadata_qr: Option<MetadataQr>,
     pub(crate) latest_metadata: ReactAssetPath,
     pub(crate) specs_qr: QrCode,
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MetadataQr {
+    pub(crate) version: u32,
+    pub(crate) file: QrCode,
 }
 
 pub(crate) type ExportData = IndexMap<ChainName, ExportChainSpec>;
 
 pub(crate) fn read_export_file(config: &AppConfig) -> Result<ExportData> {
-    let path_str = config.data_file.as_os_str().to_str().unwrap();
-
-    log::debug!("read_export_file({})", path_str);
-
     let chain_specs =
         fs::read_to_string(&config.data_file).context(format!("{}", config.data_file.display()))?;
     Ok(serde_json::from_str(&chain_specs)?)
@@ -76,8 +75,6 @@ pub(crate) struct QrCode {
 
 impl QrCode {
     pub(crate) fn from_qr_path(config: &AppConfig, qr_path: QrPath) -> Result<QrCode> {
-        log::debug!("from_qr_path({})", qr_path);
-
         let path = ReactAssetPath::from_fs_path(&qr_path.to_path_buf(), &config.public_dir)?;
         let signed_by = match qr_path.file_name.is_signed {
             true => Some(config.verifier.name.clone()),

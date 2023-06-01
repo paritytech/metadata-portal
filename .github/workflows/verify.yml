@@ -17,14 +17,5 @@ jobs:
 
       - uses: ./.github/workflows/rust-install
 
-      - name: ⚙ Build metadata-cli
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
-        with:
-          command: build
-          args: --release
-
       - name: ⚙ Run verifier
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
-        with:
-          command: run
-          args: --release -- verify
+        run: cargo run --release -- verify

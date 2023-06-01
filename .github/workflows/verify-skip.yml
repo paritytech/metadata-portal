@@ -11,7 +11,7 @@ on:
       - 'config.toml'
 
 jobs:
-  verify-skip:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo "No verification required" '

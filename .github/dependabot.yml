@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: daily
       time: '03:00'
-      timezone: Europe/Berlin
+      timezone: UTC
   - package-ecosystem: npm
     directory: '/'
     schedule:

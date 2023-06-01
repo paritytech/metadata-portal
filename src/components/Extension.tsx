@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { UploadIcon } from "@heroicons/react/solid";
+import { ArrowUpTrayIcon } from "@heroicons/react/24/solid";
 import { web3Enable } from "@polkadot/extension-dapp";
 import {
   InjectedExtension,
@@ -9,7 +9,7 @@ import {
 import { ChainSpec } from "../scheme";
 import Dropdown from "./Dropdown";
 import Button from "./Button";
-import { capitalizeFirstLetter } from "../utils";
+import { title } from "../utils";
 
 export default function Extension(chainSpec: ChainSpec) {
   const [selected, setSelected] = useState<InjectedExtension | undefined>(
@@ -28,10 +28,10 @@ export default function Extension(chainSpec: ChainSpec) {
   }
 
   const meta: MetadataDef = {
-    chain: capitalizeFirstLetter(chainSpec.title),
+    chain: title(chainSpec.title),
     genesisHash: chainSpec.genesisHash,
     icon: chainSpec.logo,
-    specVersion: chainSpec.metadataVersion,
+    specVersion: chainSpec.liveMetaVersion,
     ss58Format: chainSpec.base58prefix,
     tokenDecimals: chainSpec.decimals,
     tokenSymbol: chainSpec.unit,
@@ -49,7 +49,7 @@ export default function Extension(chainSpec: ChainSpec) {
         label="Upgradable extensions:"
         actionButton={
           <Button
-            label={<UploadIcon className="w-5 h-5" />}
+            label={<ArrowUpTrayIcon className="w-5 h-5" />}
             onClick={() => {
               selected?.metadata?.provide(meta).then((ok) => {
                 if (ok) {
@@ -95,7 +95,7 @@ async function extensionsToUpdate(
       if (!current) {
         return true;
       }
-      return current.specVersion < chainSpec.metadataVersion;
+      return current.specVersion < chainSpec.liveMetaVersion;
     })
     .map((extension) => extension.injectedExtension);
 }

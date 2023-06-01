@@ -3,6 +3,7 @@ use definitions::crypto::Encryption;
 use definitions::network_specs::NetworkSpecs;
 use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
 use generate_message::parser::Token;
+use log::warn;
 
 use crate::config::Chain;
 use crate::ethereum::is_ethereum;
@@ -20,12 +21,10 @@ where
     log::debug!("call_urls()");
 
     let n = urls.len();
-
     for url in urls.iter().take(n - 1) {
-        log::debug!("URL={}", url);
         match f(url) {
             Ok(res) => return Ok(res),
-            Err(e) => log::warn!("Failed to fetch {}: {:?}", url, e),
+            Err(e) => warn!("Failed to fetch {}: {:?}", url, e),
         }
     }
     f(&urls[n - 1])
@@ -44,22 +43,13 @@ impl Fetcher for RpcFetcher {
                     unit: token_unit.to_string(),
                 },
             );
-
-            let optional_signer_title_override = Some(chain.vanity_name.clone());
             let signing_algorithm = match is_ethereum(chain.name.as_str()) {
                 true => Encryption::Ethereum,
                 false => Encryption::Sr25519,
             };
-            specs_agnostic(
-                url,
-                signing_algorithm,
-                optional_token_override,
-                optional_signer_title_override,
-            )
+            specs_agnostic(url, signing_algorithm, optional_token_override, None)
         })
         .map_err(|e| anyhow!("{:?}", e))?;
-        log::debug!("specs: {:?}", specs);
-
         if specs.name.to_lowercase() != chain.name {
             bail!(
                 "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",

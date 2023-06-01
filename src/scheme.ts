@@ -1,5 +1,4 @@
 export interface ChainSpec {
-  vanityName: string;
   title: string;
   color: string;
   rpcEndpoint: string;
@@ -8,10 +7,8 @@ export interface ChainSpec {
   base58prefix: number;
   decimals: number;
   logo: string;
-  metadataVersion: number;
-  metadataQr: QrInfo;
-  nextMetadataVersion: number | null;
-  nextMetadataQr: QrInfo | null;
+  liveMetaVersion: number;
+  metadataQr?: MetadataQr;
   latestMetadata: string;
   specsQr: QrInfo;
 }
@@ -22,6 +19,12 @@ export interface QrInfo {
   path: string;
   signedBy: string | null;
   source: SourceType;
+}
+
+export interface MetadataQr {
+  version: number;
+  file: QrInfo;
+  status: string;
 }
 
 interface SourceBase {
@@ -45,4 +48,12 @@ export interface AddToSignerInterface {
 
 export interface Chains {
   [name: string]: ChainSpec;
+}
+
+export type Portal = {
+  name: string;
+  url: string;
+};
+export interface Portals {
+  [name: string]: Portal;
 }

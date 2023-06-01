@@ -9,7 +9,7 @@ fn case_insensitive<'de, D>(deserializer: D) -> Result<String, D::Error>
 where
     D: Deserializer<'de>,
 {
-    let s: &str = Deserialize::deserialize(deserializer)?;
+    let s: String = Deserialize::deserialize(deserializer)?;
     Ok(s.to_lowercase())
 }
 
@@ -107,7 +107,6 @@ pub(crate) struct GithubRepo {
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub(crate) struct Chain {
-    pub(crate) vanity_name: String,
     #[serde(deserialize_with = "case_insensitive")]
     pub(crate) name: String,
     pub(crate) title: Option<String>,
@@ -129,7 +128,6 @@ impl Default for Chain {
     fn default() -> Self {
         Self {
             name: "polkadot".to_string(),
-            vanity_name: "polkadot".to_string(),
             title: None,
             color: color_default(),
             rpc_endpoints: vec!["wss://example.com".to_string()],

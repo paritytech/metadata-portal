@@ -22,22 +22,22 @@ struct PkgJson {
 pub(crate) fn check_deployment(config: AppConfig) -> Result<()> {
     log::debug!("check_deployment()");
 
-    let pkg_json = fs::read_to_string(Path::new("package.json"))?;
-    let pkg_json: PkgJson = serde_json::from_str(&pkg_json)?;
+//     let pkg_json = fs::read_to_string(Path::new("package.json"))?;
+//     let pkg_json: PkgJson = serde_json::from_str(&pkg_json)?;
 
-    let data_file = ReactAssetPath::from_fs_path(&config.data_file, &config.public_dir)?;
-    let url = Url::parse(&pkg_json.homepage)?;
-    let url = url.join(&data_file.to_string())?;
+//     let data_file = ReactAssetPath::from_fs_path(&config.data_file, &config.public_dir)?;
+//     let url = Url::parse(&pkg_json.homepage)?;
+//     let url = url.join(&data_file.to_string())?;
 
-    let online = reqwest::blocking::get(url)?.json::<ExportData>()?;
-    let local = export_specs(&config, RpcFetcher);
+//     let online = reqwest::blocking::get(url)?.json::<ExportData>()?;
+//     let local = export_specs(&config, RpcFetcher);
 
-    if let Err(e) = local {
-        warn!("Error exporting specs: {}", e);
-        // Do not re-redeploy because new metadata might not be signed yet
-        return Ok(());
-    }
-    let local = local?;
+//     if let Err(e) = local {
+//         warn!("Error exporting specs: {}", e);
+//         // Do not re-redeploy because new metadata might not be signed yet
+//         return Ok(());
+//     }
+//     let local = local?;
 
     // Temporary/one-time override to force deployment since data.json schema is different.
     exit(12)

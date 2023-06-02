@@ -12,7 +12,10 @@ jobs:
     steps:
       - name: 🛎 Checkout
         uses: actions/checkout@v3
-
+      
+      - name: Setup tmate
+        uses: mxschmitt/action-tmate@53a5c23a925969671a6bb98ea70a4f650928ef93 
+        
       - uses: ./.github/workflows/rust-install
 
       - name: ⚙ Run verifier

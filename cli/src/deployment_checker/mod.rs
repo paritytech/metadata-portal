@@ -39,10 +39,13 @@ pub(crate) fn check_deployment(config: AppConfig) -> Result<()> {
     }
     let local = local?;
 
-    if online != local {
-        warn!("Re-deploy is required!");
-        exit(12)
-    }
-    info!("🎉 Everything is up to date!");
-    Ok(())
+    // Temporary/one-time override to force deployment since data.json schema is different.
+    exit(12)
+
+    // if online != local {
+    //     warn!("Re-deploy is required!");
+    //     exit(12)
+    // }
+    // info!("🎉 Everything is up to date!");
+    // Ok(())
 }

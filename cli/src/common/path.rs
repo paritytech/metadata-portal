@@ -108,7 +108,7 @@ impl TryFrom<&PathBuf> for QrFileName {
             None => (filename, true),
         };
 
-        let content_type = ContentType::try_from(stripped).context("error parsing context type")?;
+        let content_type = ContentType::try_from(stripped).context(format!("error parsing context type for {stripped}"))?;
         let chain = stripped
             .strip_suffix(&format!("_{content_type}"))
             .context("error parsing chain name")?;

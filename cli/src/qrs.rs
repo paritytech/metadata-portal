@@ -19,11 +19,15 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
         if !file.file_type()?.is_file() {
             continue;
         }
-        match QrPath::try_from(&file.path()) {
-            Ok(qr_path) => files.push(qr_path),
-            Err(e) => {
-                eprintln!("{e}");
-                continue;
+        if let Some(extension) = file.path().extension().and_then(std::ffi::OsStr::to_str) {
+            if extension == "png" || extension == "apng" {
+                match QrPath::try_from(&file.path()) {
+                    Ok(qr_path) => files.push(qr_path),
+                    Err(e) => {
+                        eprintln!("{e}");
+                        continue;
+                    }
+                }
             }
         }
     }

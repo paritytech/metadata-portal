@@ -97,7 +97,6 @@ impl TryFrom<&PathBuf> for QrFileName {
     type Error = anyhow::Error;
 
     fn try_from(path: &PathBuf) -> Result<Self, Self::Error> {
-        
         let extension = path.extension().map(|s| s.to_str().unwrap().to_owned());
         let filename = path.file_stem().unwrap().to_str().unwrap();
 
@@ -108,7 +107,8 @@ impl TryFrom<&PathBuf> for QrFileName {
             None => (filename, true),
         };
 
-        let content_type = ContentType::try_from(stripped).context(format!("error parsing context type for {stripped}"))?;
+        let content_type = ContentType::try_from(stripped)
+            .context(format!("error parsing context type for {stripped}"))?;
         let chain = stripped
             .strip_suffix(&format!("_{content_type}"))
             .context("error parsing chain name")?;

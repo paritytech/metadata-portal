@@ -2,7 +2,7 @@
 
 Metadata Portal is a self-hosted web page that shows you the latest metadata for a given network.
 
-This is an important addition to Signer, which can update the metadata inside only through a special video QR code without going online. 
+This is an important addition to Vault, which can update the metadata inside only through a special video QR code without going online. 
 Parity will host its own version of the page for all chains for which we sign the metadata. 
 External users (chain owners) will be able to deploy their versions of metadata portal if they want.
 

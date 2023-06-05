@@ -78,17 +78,9 @@ pub(crate) fn collect_metadata_qrs(
     chain: &ChainName,
     live_version: &MetaVersion,
 ) -> Result<Vec<QrPath>> {
-    log::info!("collect_metadata_qrs()");
+    log::debug!("collect_metadata_qrs()");
 
     let mut metadata_qrs = vec![];
-
-    log::info!("KEYS=");
-    for (chain_name, inner_map) in all_metadata.iter() {
-        log::info!("chain_name={:?}", chain_name);
-        for meta_version in inner_map.keys() {
-            log::info!("  meta_version={:?} has path {:?}", meta_version, inner_map.get(meta_version));
-        }
-    }
 
     for (version, qr) in all_metadata
         .get(chain.as_str())

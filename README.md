@@ -16,12 +16,24 @@ Metadata Portal supports two metadata sources in parallel. Both are equally impo
 
 This flow is important for all users who want to always have the latest metadata in their signing devices to parse and sign their transactions right away.
 
+### 1a.  Auto Signing
+- Cron job
+  - runs every N hours and checks every known network for the latest metadata version
+  - If any network has a new version of metadata that has not yet been published on the Metadata Portal
+    - automatically generates signed metadata QR code
+    - creates new pull request to the repo
+    - (optional) sends notification to a Matrix channel
+- Owner of the repository
+  - accept and merge the PR
+- Github action is triggered to regenerate and re-deploy the Github Page
+
+### 1b. Manual Signing
 - Cron job
   - runs every N hours and checks every known network for the latest metadata version
   - If any network has a new version of metadata that has not yet been published on the Metadata Portal
     - generates unsigned metadata QR code
     - creates new pull request to the repo
-    - sends notification to a Matrix channel
+    - (optional) sends notification to a Matrix channel
 - Release manager
   - checkouts pull request's branch locally
   - runs `make signer` locally to sign new metadata using his signing air-gapped device

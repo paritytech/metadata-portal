@@ -67,7 +67,17 @@
     "logo": "westend",
     "decimals": 12,
     "liveMetaVersion": 9430,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 9430,
+      "file": {
+        "path": "qr/westend_metadata_9430.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x93833b264a414975deb0502aa4b720c14b35f0b0b85c957816a26a0acb76bb50"
+        }
+      }
+    },
     "latestMetadata": "qr/westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend_specs.png",

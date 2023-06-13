@@ -82,7 +82,7 @@ export default function App() {
             />
           </div>
         </div>
-        <div className="w-full p-2 pt-0 pb-8 md:pb-24 md:p-4 xl:pl-2 xl:pt-24 space-y-4">
+        <div className="w-full p-2 pt-0 pb-8 md:pb-0 md:p-4 xl:pl-2 xl:pt-24 space-y-4">
           <Network spec={spec} />
           <FAQ />
           <div className="py-4 xl:hidden">

@@ -56,7 +56,7 @@ export default function App() {
     <div>
       <AppLinks />
       <div className="flex flex-col xl:flex-row">
-        <div className="xl:top-0 w-full p-2 md:px-4 xl:p-4 xl:pr-2 xl:pt-24 xl:w-full xl:max-w-[360px]">
+        <div className="flex flex-col xl:top-0 w-full p-2 md:px-4 xl:p-4 xl:pr-2 xl:pt-24 xl:w-full xl:max-w-[360px] xl:min-h-screen">
           <div className="xl:hidden mb-2">
             <About />
           </div>
@@ -74,7 +74,7 @@ export default function App() {
           <div className="hidden xl:block mb-6">
             <About />
           </div>
-          <div className="hidden xl:block xl:overflow-y-auto max-h-screen">
+          <div className="hidden xl:flex xl:overflow-y-auto h-0 grow">
             <NetworkSelect
               chains={chains}
               currentChain={currentChain}
@@ -82,7 +82,7 @@ export default function App() {
             />
           </div>
         </div>
-        <div className="w-full p-2 pt-0 pb-8 md:pb-0 md:p-4 xl:pl-2 xl:pt-24 space-y-4">
+        <div className="w-full p-2 pt-0 pb-8 md:pb-24 md:p-4 xl:pl-2 xl:pt-24 space-y-4">
           <Network spec={spec} />
           <FAQ />
           <div className="py-4 xl:hidden">

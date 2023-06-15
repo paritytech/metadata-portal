@@ -25,7 +25,7 @@ export const NetworkSelect = ({
     item.toLowerCase().includes(searchString.toLowerCase())
   );
   return (
-    <div>
+    <div className="w-full">
       <div className="text-black opacity-70 mb-4">Networks</div>
       {chainList.length > 10 && (
         <SearchBar

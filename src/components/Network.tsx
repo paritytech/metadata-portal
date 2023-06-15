@@ -75,7 +75,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
         }}
       >
         <div className="flex flex-col items-center p-10 md:w-[55%] bg-white rounded-3xl">
-          <div className="w-full max-w-xs aspect-square">
+          <div className="w-full max-w-xs">
             {selectedTab === 0 && (
               <div>
                 <img

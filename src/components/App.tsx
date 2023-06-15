@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Chains, Portals } from "../scheme";
 import { About } from "./About";
-import { AppLinks } from "./AppLinks";
+import { Banner } from "./Banner";
 import { FAQ } from "./FAQ";
 import { Hr } from "./Hr";
 import { Links } from "./Links";
@@ -54,9 +54,9 @@ export default function App() {
 
   return (
     <div>
-      <AppLinks />
+      <Banner />
       <div className="flex flex-col xl:flex-row">
-        <div className="flex flex-col xl:top-0 w-full p-2 md:px-4 xl:p-4 xl:pr-2 xl:pt-24 xl:w-full xl:max-w-[360px] xl:min-h-screen">
+        <div className="flex flex-col xl:top-0 w-full p-2 md:px-4 xl:p-4 xl:pr-2 xl:pt-12 xl:w-full xl:max-w-[360px] xl:min-h-screen">
           <div className="xl:hidden mb-2">
             <About />
           </div>
@@ -82,7 +82,7 @@ export default function App() {
             />
           </div>
         </div>
-        <div className="w-full p-2 pt-0 pb-8 md:pb-24 md:p-4 xl:pl-2 xl:pt-24 space-y-4">
+        <div className="w-full p-2 pt-0 pb-8 md:pb-24 md:p-4 xl:pl-2 xl:pt-12 space-y-4">
           <Network spec={spec} />
           <FAQ />
           <div className="py-4 xl:hidden">

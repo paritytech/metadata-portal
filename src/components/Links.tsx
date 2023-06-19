@@ -10,6 +10,8 @@ export const Links = () => {
         <a
           className="bordered-action hover:bg-neutral-100 transition-colors"
           href={href}
+          target="_blank"
+          rel="noreferrer"
           key={i}
         >
           {label}

@@ -6,5 +6,9 @@
   "novasama": {
     "name": "Novasama",
     "url": "https://metadata.novasama.io/"
+  },
+  "opentensor": {
+    "name": "OpenTensor",
+    "url": "https://metadata.opentensor.ai/"
   }
 }

@@ -81,7 +81,7 @@ export const NetworkAndPortalSelectMobile = ({
               Selected Network
             </div>
             <div className="flex items-center justify-between w-full text-lg">
-              <span>{capitalizeFirstLetter(chains[currentChain]?.title)}</span>
+              <span>{currentChain === "node-subtensor" ? "Bittensor" : capitalizeFirstLetter(chains[currentChain]?.title)}</span>
               <ChevronIcon />
             </div>
           </Listbox.Button>
@@ -103,7 +103,7 @@ export const NetworkAndPortalSelectMobile = ({
                   >
                     <img src={icon(chain)} className="w-8 rounded-full" />
                     <div className="text-xl">
-                      {capitalizeFirstLetter(chains[chain].title)}
+                      {chain === "node-subtensor" ? "Bittensor" : capitalizeFirstLetter(chains[chain].title)}
                     </div>
                   </div>
                 )}

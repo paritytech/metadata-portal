@@ -63,7 +63,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
             src={icon(spec.title)}
             className="w-14 h-14 rounded-full bg-neutral-200"
           />
-          <span>{capitalizeFirstLetter(spec.title)}</span>
+          <span>{spec.title === "node-subtensor" ? "Bittensor" : capitalizeFirstLetter(spec.title)}</span>
         </div>
         <Links />
       </div>

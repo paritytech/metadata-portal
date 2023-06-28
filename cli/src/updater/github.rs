@@ -1,3 +1,7 @@
+use std::env;
+
+use octocrab::Octocrab;
+
 use crate::config::GithubRepo;
 use crate::updater::wasm::WasmRuntime;
 
@@ -6,7 +10,11 @@ pub(crate) async fn fetch_latest_runtime(
     config: &GithubRepo,
     chain: &str,
 ) -> anyhow::Result<Option<WasmRuntime>> {
-    let release = octocrab::instance()
+    let github = match env::var("GITHUB_TOKEN") {
+        Ok(token) => Octocrab::builder().personal_token(token).build()?,
+        Err(_) => Octocrab::default(),
+    };
+    let release = github
         .repos(&config.owner, &config.repo)
         .releases()
         .get_latest()

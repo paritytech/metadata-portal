@@ -48,7 +48,9 @@ export const NetworkSelect = ({
                 >
                   <img src={icon(chain)} className="w-8 rounded-full" />
                   <div className="text-lg">
-                    {chain === "node-subtensor" ? "Bittensor" : capitalizeFirstLetter(chains[chain].title)}
+                    {chain === "node-subtensor"
+                      ? "Bittensor"
+                      : capitalizeFirstLetter(chains[chain].title)}
                   </div>
                 </div>
               )}

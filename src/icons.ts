@@ -7,7 +7,7 @@ const ICONS = {
   polkadot: polkadotSrc,
   kusama: kusamaSrc,
   westend: westendSrc,
-  'node-subtensor': finneySrc,
+  "node-subtensor": finneySrc,
 };
 
 export function icon(network: string) {

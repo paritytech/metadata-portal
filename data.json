@@ -37,16 +37,16 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "liveMetaVersion": 9420,
+    "liveMetaVersion": 9430,
     "metadataQr": {
-      "version": 9420,
+      "version": 9430,
       "file": {
-        "path": "qr/kusama_metadata_9420.apng",
+        "path": "qr/kusama_metadata_9430.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Wasm",
           "github_repo": "paritytech/polkadot",
-          "hash": "0xaa5837e5dc5d96bb4ac1558ca796c2cf8415158ca5b24291f71c21191c798404"
+          "hash": "0x67999f8cc63634bee01b20e0266c5fc28b79647310024cc534bdc3318a76e17a"
         }
       }
     },

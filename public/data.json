@@ -37,16 +37,16 @@
     "base58prefix": 42,
     "logo": "frequency-rococo",
     "decimals": 8,
-    "liveMetaVersion": 35,
+    "liveMetaVersion": 44,
     "metadataQr": {
-      "version": 35,
+      "version": 44,
       "file": {
-        "path": "qr/frequency-rococo_metadata_35.apng",
+        "path": "qr/frequency-rococo_metadata_44.apng",
         "signedBy": "Frequency",
         "source": {
           "type": "Wasm",
           "github_repo": "LibertyDSNP/frequency",
-          "hash": "0xb3361ae2198a3657498707d9ce540c4aa51bcc293615830152f2e9605366fc4e"
+          "hash": "0xc3af0572dc2975492e9718ab02b31abd5e08baf74bb0fbac2372e3901ca2401f"
         }
       }
     },

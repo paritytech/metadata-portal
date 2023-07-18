@@ -21,15 +21,15 @@ pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>
 
     for chain in &config.chains {
         let latest_version = match &chain_specs
-            .get(&chain.name)
-            .context(format!("No data found for {}", chain.name))?
+            .get(&chain.portal_id())
+            .context(format!("No data found for {}", chain.portal_id()))?
             .metadata_qr
         {
             Some(qr) => qr.version,
             None => continue,
         };
         let metadata_to_keep = all_metadata
-            .get(&chain.name)
+            .get(&chain.portal_id())
             .map(|map| {
                 map.iter()
                     .filter(|(&v, _)| v >= latest_version)

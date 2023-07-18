@@ -3,7 +3,7 @@ name: Check updates
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: '0 * * * *'
 
 env:
   BRANCH_PREFIX: sign-me

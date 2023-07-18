@@ -117,6 +117,16 @@ pub(crate) struct Chain {
     pub(crate) token_unit: Option<String>,
     pub(crate) token_decimals: Option<u8>,
     pub(crate) github_release: Option<GithubRepo>,
+    pub(crate) relay_chain: Option<String>,
+}
+
+impl Chain {
+    pub(crate) fn portal_id(&self) -> String {
+        match &self.relay_chain {
+            Some(relay) => format!("{relay}-{}", self.name),
+            None => self.name.to_string(),
+        }
+    }
 }
 
 fn color_default() -> String {
@@ -134,6 +144,7 @@ impl Default for Chain {
             token_unit: None,
             token_decimals: None,
             github_release: None,
+            relay_chain: None,
         }
     }
 }

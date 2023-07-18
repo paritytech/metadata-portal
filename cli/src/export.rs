@@ -6,7 +6,7 @@ use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
 
 use crate::common::path::QrPath;
-use crate::common::types::ChainName;
+use crate::common::types::ChainPortalId;
 use crate::source::{read_png_source, Source};
 use crate::AppConfig;
 
@@ -48,6 +48,7 @@ pub(crate) struct ExportChainSpec {
     pub(crate) metadata_qr: Option<MetadataQr>,
     pub(crate) latest_metadata: ReactAssetPath,
     pub(crate) specs_qr: QrCode,
+    pub(crate) relay_chain: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
@@ -57,7 +58,7 @@ pub(crate) struct MetadataQr {
     pub(crate) file: QrCode,
 }
 
-pub(crate) type ExportData = IndexMap<ChainName, ExportChainSpec>;
+pub(crate) type ExportData = IndexMap<ChainPortalId, ExportChainSpec>;
 
 pub(crate) fn read_export_file(config: &AppConfig) -> Result<ExportData> {
     let chain_specs =

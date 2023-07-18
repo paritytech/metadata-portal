@@ -24,11 +24,11 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
         let meta = fetcher.fetch_metadata(chain)?;
         let live_meta_version = meta.meta_values.version;
 
-        let metadata_qrs = collect_metadata_qrs(&all_metadata, &chain.name, &live_meta_version)?;
+        let metadata_qrs = collect_metadata_qrs(&all_metadata, &chain.portal_id(), &live_meta_version)?;
 
         let specs_qr = all_specs
-            .get(chain.name.as_str())
-            .with_context(|| format!("No specs qr found for {}", chain.name))?
+            .get(&chain.portal_id())
+            .with_context(|| format!("No specs qr found for {}", chain.portal_id()))?
             .clone();
         let pointer_to_latest_meta = update_pointer_to_latest_metadata(
             metadata_qrs
@@ -36,7 +36,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 .context(format!("No metadata QRs for {}", &chain.name))?,
         )?;
         export_specs.insert(
-            chain.name.clone(),
+            chain.portal_id(),
             ExportChainSpec {
                 title: chain.title.as_ref().unwrap_or(&chain.name).clone(),
                 color: chain.color.clone(),
@@ -53,6 +53,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 )?,
                 metadata_qr: export_live_metadata(config, metadata_qrs, &live_meta_version),
                 live_meta_version,
+                relay_chain: chain.relay_chain.clone(),
             },
         );
     }

@@ -21,7 +21,13 @@ function setTabToSearch(v: number) {
   window.history.replaceState(null, "", url);
 }
 
-export const Network = ({ spec }: { spec: ChainSpec }) => {
+export const Network = ({
+  spec,
+  chainPortalId,
+}: {
+  spec: ChainSpec;
+  chainPortalId: string;
+}) => {
   const [selectedTab, setSelectedTab] = useState(tabFromSearch());
   const metadataQr = spec.metadataQr;
 
@@ -60,10 +66,14 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
       <div className="hidden xl:flex items-center justify-between mb-10">
         <div className="flex items-center space-x-2 text-[40px] leading-none unbounded">
           <img
-            src={icon(spec.title)}
+            src={icon(chainPortalId)}
             className="w-14 h-14 rounded-full bg-neutral-200"
           />
-          <span>{capitalizeFirstLetter(spec.title)}</span>
+          <span>
+            {capitalizeFirstLetter(
+              spec.relayChain ? spec.relayChain + " " : ""
+            ) + capitalizeFirstLetter(spec.title)}
+          </span>
         </div>
         <Links />
       </div>

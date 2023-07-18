@@ -8,16 +8,16 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "liveMetaVersion": 9420,
+    "liveMetaVersion": 9430,
     "metadataQr": {
-      "version": 9420,
+      "version": 9430,
       "file": {
-        "path": "qr/polkadot_metadata_9420.apng",
+        "path": "qr/polkadot_metadata_9430.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Wasm",
           "github_repo": "paritytech/polkadot",
-          "hash": "0x68708ed16071983a5a20968f6cd94989fa43834242c16fca5cdd58fb73d54e1f"
+          "hash": "0x8500f322de7d01ce9e51593fc3187341e04b647bcb325ab3d20b362dcfb811d2"
         }
       }
     },

@@ -68,7 +68,7 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
         }
 
         let github_repo = chain.github_release.as_ref().unwrap();
-        let wasm = fetch_latest_runtime(&github_repo, &chain.name).await?;
+        let wasm = fetch_latest_runtime(github_repo, &chain.name).await?;
         if wasm.is_none() {
             warn!("🤨 No releases found");
             continue;
@@ -87,7 +87,12 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
         let wasm_bytes = download_wasm(wasm.to_owned()).await?;
         let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
         let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
-        let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir, &chain.portal_id())?;
+        let path = generate_metadata_qr(
+            &meta_values,
+            &genesis_hash,
+            &config.qr_dir,
+            &chain.portal_id(),
+        )?;
         let source = Source::Wasm {
             github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
             hash: format!("0x{}", hex::encode(meta_hash)),

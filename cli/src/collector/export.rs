@@ -24,7 +24,8 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
         let meta = fetcher.fetch_metadata(chain)?;
         let live_meta_version = meta.meta_values.version;
 
-        let metadata_qrs = collect_metadata_qrs(&all_metadata, &chain.portal_id(), &live_meta_version)?;
+        let metadata_qrs =
+            collect_metadata_qrs(&all_metadata, &chain.portal_id(), &live_meta_version)?;
 
         let specs_qr = all_specs
             .get(&chain.portal_id())

@@ -36,7 +36,11 @@ pub(crate) fn generate_metadata_qr(
     Ok(path)
 }
 
-pub(crate) fn generate_spec_qr(specs: &NetworkSpecs, target_dir: &Path, portal_id: &str) -> anyhow::Result<PathBuf> {
+pub(crate) fn generate_spec_qr(
+    specs: &NetworkSpecs,
+    target_dir: &Path,
+    portal_id: &str,
+) -> anyhow::Result<PathBuf> {
     let file_name =
         QrFileName::new(&portal_id.to_lowercase(), ContentType::Specs, false).to_string();
     let path = target_dir.join(&file_name);

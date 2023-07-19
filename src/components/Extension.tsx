@@ -13,7 +13,7 @@ import { capitalizeFirstLetter } from "../utils";
 
 export default function Extension(chainSpec: ChainSpec) {
   const [selected, setSelected] = useState<InjectedExtension | undefined>(
-    undefined
+    undefined,
   );
   const [extensions, setExtensions] = useState<InjectedExtension[]>([]);
   useEffect(() => {
@@ -73,7 +73,7 @@ interface ExtensionWithMeta {
 }
 
 async function extensionsToUpdate(
-  chainSpec: ChainSpec
+  chainSpec: ChainSpec,
 ): Promise<InjectedExtension[]> {
   const allInjected = await web3Enable("Metadata Portal");
 
@@ -84,13 +84,13 @@ async function extensionsToUpdate(
         injectedExtension: injected,
         metadata: metas,
       } as ExtensionWithMeta;
-    })
+    }),
   );
 
   return extensions
     .filter((extension) => {
       const current = extension.metadata.find(
-        ({ genesisHash }) => genesisHash === chainSpec.genesisHash
+        ({ genesisHash }) => genesisHash === chainSpec.genesisHash,
       );
       if (!current) {
         return true;

@@ -21,7 +21,7 @@ export default function App() {
       .then((res) => res.json())
       .catch(() => {
         console.error(
-          "Unable to fetch data file. Run `make collector` to generate it"
+          "Unable to fetch data file. Run `make collector` to generate it",
         );
       })
       .then(setChains);

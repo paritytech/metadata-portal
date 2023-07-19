@@ -71,7 +71,7 @@ export const Network = ({
           />
           <span>
             {capitalizeFirstLetter(
-              spec.relayChain ? spec.relayChain + " " : ""
+              spec.relayChain ? spec.relayChain + " " : "",
             ) + capitalizeFirstLetter(spec.title)}
           </span>
         </div>
@@ -137,7 +137,7 @@ export const Network = ({
                     <button
                       className={cn(
                         "flex-1 p-3 rounded-full focus:outline-none",
-                        selected && "text-white"
+                        selected && "text-white",
                       )}
                       style={{ backgroundColor: selected ? spec.color : "" }}
                     >

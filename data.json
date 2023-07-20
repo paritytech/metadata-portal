@@ -26,7 +26,95 @@
       "path": "qr/polkadot_specs.png",
       "signedBy": "Parity",
       "source": null
-    }
+    },
+    "relayChain": null
+  },
+  "polkadot-statemint": {
+    "title": "AssetHub",
+    "color": "#86e62a",
+    "rpcEndpoint": "wss://polkadot-asset-hub-rpc.polkadot.io",
+    "genesisHash": "0x68d56f15f85d3136970ec16946040bc1752654e906147f7e43e9d539d7c3de2f",
+    "unit": "DOT",
+    "base58prefix": 0,
+    "logo": "statemint",
+    "decimals": 10,
+    "liveMetaVersion": 9430,
+    "metadataQr": {
+      "version": 9430,
+      "file": {
+        "path": "qr/polkadot-statemint_metadata_9430.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x3aeb7216943c926226ee6c14297b5508813389195f13c277847beec74f617844"
+        }
+      }
+    },
+    "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/polkadot-statemint_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "polkadot"
+  },
+  "polkadot-bridge-hub-polkadot": {
+    "title": "BridgeHub",
+    "color": "#000000",
+    "rpcEndpoint": "wss://polkadot-bridge-hub-rpc.polkadot.io",
+    "genesisHash": "0xdcf691b5a3fbe24adc99ddc959c0561b973e329b1aef4c4b22e7bb2ddecb4464",
+    "unit": "DOT",
+    "base58prefix": 0,
+    "logo": "bridge-hub-polkadot",
+    "decimals": 10,
+    "liveMetaVersion": 9430,
+    "metadataQr": {
+      "version": 9430,
+      "file": {
+        "path": "qr/polkadot-bridge-hub-polkadot_metadata_9430.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x7939681575e50cb94d1bef5b145b699424020de644aaea303ee723909d1516fe"
+        }
+      }
+    },
+    "latestMetadata": "qr/polkadot-bridge-hub-polkadot_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/polkadot-bridge-hub-polkadot_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "polkadot"
+  },
+  "polkadot-collectives": {
+    "title": "Collectives",
+    "color": "#e6777a",
+    "rpcEndpoint": "wss://polkadot-collectives-rpc.polkadot.io",
+    "genesisHash": "0x46ee89aa2eedd13e988962630ec9fb7565964cf5023bb351f2b6b25c1b68b0b2",
+    "unit": "DOT",
+    "base58prefix": 0,
+    "logo": "collectives",
+    "decimals": 10,
+    "liveMetaVersion": 9430,
+    "metadataQr": {
+      "version": 9430,
+      "file": {
+        "path": "qr/polkadot-collectives_metadata_9430.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xe34f059c7e86e09e50662e601385e17cc2637cd3aedc3daa25f69bd0af2cd3f0"
+        }
+      }
+    },
+    "latestMetadata": "qr/polkadot-collectives_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/polkadot-collectives_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "polkadot"
   },
   "kusama": {
     "title": "kusama",
@@ -55,7 +143,95 @@
       "path": "qr/kusama_specs.png",
       "signedBy": "Parity",
       "source": null
-    }
+    },
+    "relayChain": null
+  },
+  "kusama-statemine": {
+    "title": "AssetHub",
+    "color": "#113911",
+    "rpcEndpoint": "wss://kusama-asset-hub-rpc.polkadot.io",
+    "genesisHash": "0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a",
+    "unit": "KSM",
+    "base58prefix": 2,
+    "logo": "statemine",
+    "decimals": 12,
+    "liveMetaVersion": 9430,
+    "metadataQr": {
+      "version": 9430,
+      "file": {
+        "path": "qr/kusama-statemine_metadata_9430.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x41d3f195c05ede5ba4a21ff0697da7dc44cdb0f70a65ade4b46d556647aabaed"
+        }
+      }
+    },
+    "latestMetadata": "qr/kusama-statemine_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/kusama-statemine_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "kusama"
+  },
+  "kusama-bridge-hub-kusama": {
+    "title": "BridgeHub",
+    "color": "#000000",
+    "rpcEndpoint": "wss://kusama-bridge-hub-rpc.polkadot.io",
+    "genesisHash": "0x00dcb981df86429de8bbacf9803401f09485366c44efbf53af9ecfab03adc7e5",
+    "unit": "KSM",
+    "base58prefix": 2,
+    "logo": "bridge-hub-kusama",
+    "decimals": 12,
+    "liveMetaVersion": 9430,
+    "metadataQr": {
+      "version": 9430,
+      "file": {
+        "path": "qr/kusama-bridge-hub-kusama_metadata_9430.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x479d58c4a03476e1b3c461746ebf787a91dbf75c6b653bc4542b2e4b4b7f6f60"
+        }
+      }
+    },
+    "latestMetadata": "qr/kusama-bridge-hub-kusama_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/kusama-bridge-hub-kusama_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "kusama"
+  },
+  "kusama-encointer-parachain": {
+    "title": "Encointer",
+    "color": "#0000cc",
+    "rpcEndpoint": "wss://kusama.api.encointer.org",
+    "genesisHash": "0x7dd99936c1e9e6d1ce7d90eb6f33bea8393b4bf87677d675aa63c9cb3e8c5b5b",
+    "unit": "KSM",
+    "base58prefix": 2,
+    "logo": "encointer-parachain",
+    "decimals": 12,
+    "liveMetaVersion": 12,
+    "metadataQr": {
+      "version": 12,
+      "file": {
+        "path": "qr/kusama-encointer-parachain_metadata_12.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x7c96d5c5dbe5da9e5cbb7705144598e2d91241c611909aabdd0b041732b40791"
+        }
+      }
+    },
+    "latestMetadata": "qr/kusama-encointer-parachain_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/kusama-encointer-parachain_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "kusama"
   },
   "westend": {
     "title": "westend",
@@ -83,7 +259,66 @@
       "path": "qr/westend_specs.png",
       "signedBy": "Parity",
       "source": null
-    }
+    },
+    "relayChain": null
+  },
+  "westend-westmint": {
+    "title": "AssetHub",
+    "color": "#77bb77",
+    "rpcEndpoint": "wss://westend-asset-hub-rpc.polkadot.io",
+    "genesisHash": "0x67f9723393ef76214df0118c34bbbd3dbebc8ed46a10973a8c969d48fe7598c9",
+    "unit": "WND",
+    "base58prefix": 42,
+    "logo": "westmint",
+    "decimals": 12,
+    "liveMetaVersion": 9435,
+    "metadataQr": {
+      "version": 9435,
+      "file": {
+        "path": "qr/westend-westmint_metadata_9435.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x44218d594812ac94204e63e8bb64a88c6c6732e6710f90c1b35096b4863eae58"
+        }
+      }
+    },
+    "latestMetadata": "qr/westend-westmint_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/westend-westmint_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "westend"
+  },
+  "westend-collectives": {
+    "title": "collectives",
+    "color": "#e6777a",
+    "rpcEndpoint": "wss://westend-collectives-rpc.polkadot.io",
+    "genesisHash": "0x713daf193a6301583ff467be736da27ef0a72711b248927ba413f573d2b38e44",
+    "unit": "WND",
+    "base58prefix": 0,
+    "logo": "collectives",
+    "decimals": 12,
+    "liveMetaVersion": 9430,
+    "metadataQr": {
+      "version": 9430,
+      "file": {
+        "path": "qr/westend-collectives_metadata_9430.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x7aa2ab80d8d3be7af253c509d6569f767afa9351514d01d2a356fbca69b464a0"
+        }
+      }
+    },
+    "latestMetadata": "qr/westend-collectives_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/westend-collectives_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "westend"
   },
   "rococo": {
     "title": "rococo",
@@ -111,6 +346,123 @@
       "path": "qr/rococo_specs.png",
       "signedBy": "Parity",
       "source": null
-    }
+    },
+    "relayChain": null
+  },
+  "rococo-statemine": {
+    "title": "AssetHub",
+    "color": "#77bb77",
+    "rpcEndpoint": "wss://rococo-asset-hub-rpc.polkadot.io",
+    "genesisHash": "0x7c34d42fc815d392057c78b49f2755c753440ccd38bcb0405b3bcfb601d08734",
+    "unit": "ROC",
+    "base58prefix": 2,
+    "logo": "statemine",
+    "decimals": 12,
+    "liveMetaVersion": 9430,
+    "metadataQr": {
+      "version": 9430,
+      "file": {
+        "path": "qr/rococo-statemine_metadata_9430.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xa614b73f152e46437fcaed422a02ccc54613a2c76c63aa82fadaac46e1a5ae95"
+        }
+      }
+    },
+    "latestMetadata": "qr/rococo-statemine_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/rococo-statemine_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "rococo"
+  },
+  "rococo-bridge-hub-rococo": {
+    "title": "BridgeHub",
+    "color": "#000000",
+    "rpcEndpoint": "wss://rococo-bridge-hub-rpc.polkadot.io",
+    "genesisHash": "0x6de3dc58adbc525bad4ae201a8660c5be8949e10308457b176510c72a413f3a3",
+    "unit": "ROC",
+    "base58prefix": 42,
+    "logo": "bridge-hub-rococo",
+    "decimals": 12,
+    "liveMetaVersion": 9420,
+    "metadataQr": {
+      "version": 9420,
+      "file": {
+        "path": "qr/rococo-bridge-hub-rococo_metadata_9420.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x81b13c5feca3031f73b4828e2906d067d4caf9e74eb9805434dab2f7531588ad"
+        }
+      }
+    },
+    "latestMetadata": "qr/rococo-bridge-hub-rococo_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/rococo-bridge-hub-rococo_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "rococo"
+  },
+  "rococo-contracts-rococo": {
+    "title": "Contracts",
+    "color": "#000000",
+    "rpcEndpoint": "wss://rococo-contracts-rpc.polkadot.io",
+    "genesisHash": "0xc5442742bb6288bb3835ea1c9032981f06433ee5fc65d6e216c4422c0c19b989",
+    "unit": "ROC",
+    "base58prefix": 42,
+    "logo": "contracts-rococo",
+    "decimals": 12,
+    "liveMetaVersion": 9420,
+    "metadataQr": {
+      "version": 9420,
+      "file": {
+        "path": "qr/rococo-contracts-rococo_metadata_9420.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xd6e331cf0f44d6807996960acb220cb1c2af01f1b5b174f2fe6ddcdd87a59d37"
+        }
+      }
+    },
+    "latestMetadata": "qr/rococo-contracts-rococo_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/rococo-contracts-rococo_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "rococo"
+  },
+  "rococo-encointer-parachain": {
+    "title": "Encointer",
+    "color": "#0000cc",
+    "rpcEndpoint": "wss://rococo.api.encointer.org",
+    "genesisHash": "0x5d2947b8565abdf7112beff1c52b8fb017d86ef11cca9e64644f2fe3de878598",
+    "unit": "ROC",
+    "base58prefix": 2,
+    "logo": "encointer-parachain",
+    "decimals": 12,
+    "liveMetaVersion": 13,
+    "metadataQr": {
+      "version": 13,
+      "file": {
+        "path": "qr/rococo-encointer-parachain_metadata_13.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x1bfced2d158439e4a49fa68d666c356b69a59117182cf647e8386579f7687318"
+        }
+      }
+    },
+    "latestMetadata": "qr/rococo-encointer-parachain_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/rococo-encointer-parachain_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "rococo"
   }
 }

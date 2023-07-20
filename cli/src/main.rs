@@ -6,6 +6,7 @@ mod deployment_checker;
 mod ethereum;
 mod export;
 mod fetch;
+mod file;
 mod opts;
 mod qrs;
 mod signer;

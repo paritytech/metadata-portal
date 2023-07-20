@@ -78,7 +78,7 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
         let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
 
         // Skip if already have QR for the same version
-        if let Some(map) = metadata_qrs.get(&chain.name) {
+        if let Some(map) = metadata_qrs.get(&chain.portal_id()) {
             if map.contains_key(&wasm.version) || map.keys().min().unwrap_or(&0) > &wasm.version {
                 info!("🎉 {} is up to date!", chain.name);
                 continue;

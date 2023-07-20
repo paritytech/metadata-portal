@@ -38,7 +38,7 @@ pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>
             })
             .context("Could not get metadata to keep")?;
         keep_files.extend(metadata_to_keep);
-        if let Some(qr) = all_specs.get(&chain.name) {
+        if let Some(qr) = all_specs.get(&chain.portal_id()) {
             keep_files.insert(qr.to_path_buf());
         }
     }

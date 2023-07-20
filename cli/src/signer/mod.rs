@@ -20,7 +20,6 @@ use crate::common::path::{ContentType, QrPath};
 use crate::config::AppConfig;
 use crate::ethereum::is_ethereum;
 use crate::file::files_to_keep;
-
 use crate::signer::prompt::{select_file, want_to_continue};
 use crate::source::{read_png_source, save_source_info};
 

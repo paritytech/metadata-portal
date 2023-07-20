@@ -39,7 +39,7 @@ export const SearchBar = ({
           type="button"
           className={cn(
             "absolute inset-y-0 right-0 flex items-center mr-8",
-            !searchString && "hidden"
+            !searchString && "hidden",
           )}
           onClick={() => setSearchString("")}
         >

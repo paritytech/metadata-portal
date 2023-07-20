@@ -11,6 +11,7 @@ export interface ChainSpec {
   metadataQr?: MetadataQr;
   latestMetadata: string;
   specsQr: QrInfo;
+  relayChain?: string;
 }
 
 export type SourceType = WasmSource | RpcSource | null;

@@ -19,12 +19,12 @@ use crate::common::camera::read_qr_file;
 use crate::common::path::{ContentType, QrPath};
 use crate::config::AppConfig;
 use crate::ethereum::is_ethereum;
-use crate::qrs::qrs_in_dir;
+use crate::file::files_to_keep;
 use crate::signer::prompt::{select_file, want_to_continue};
 use crate::source::{read_png_source, save_source_info};
 
 pub(crate) fn sign(config: AppConfig) -> anyhow::Result<()> {
-    let mut files_to_sign: Vec<QrPath> = qrs_in_dir(config.qr_dir)?
+    let mut files_to_sign: Vec<QrPath> = files_to_keep(&config)?
         .into_iter()
         .filter(|qr| !qr.file_name.is_signed)
         .collect();

@@ -18,14 +18,14 @@ genesis_hash = "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90
 
 [[chains]]
 name = "statemint"
-title = "AssetHub"
+title = "Asset Hub"
 rpc_endpoint = "wss://polkadot-asset-hub-rpc.polkadot.io"
 color = "#86e62a"
 relay_chain = "polkadot"
 
 [[chains]]
 name = "bridge-hub-polkadot"
-title = "BridgeHub"
+title = "Bridge Hub"
 rpc_endpoint = "wss://polkadot-bridge-hub-rpc.polkadot.io"
 relay_chain = "polkadot"
 
@@ -48,14 +48,14 @@ genesis_hash = "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3da
 
 [[chains]]
 name = "statemine"
-title = "AssetHub"
+title = "Asset Hub"
 rpc_endpoint = "wss://kusama-asset-hub-rpc.polkadot.io"
 color = "#113911"
 relay_chain = "kusama"
 
 [[chains]]
 name = "bridge-hub-kusama"
-title = "BridgeHub"
+title = "Bridge Hub"
 rpc_endpoint = "wss://kusama-bridge-hub-rpc.polkadot.io"
 relay_chain = "kusama"
 
@@ -78,7 +78,7 @@ genesis_hash = "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f342
 
 [[chains]]
 name = "westmint"
-title = "AssetHub"
+title = "Asset Hub"
 rpc_endpoint = "wss://westend-asset-hub-rpc.polkadot.io"
 color = "#77bb77"
 relay_chain = "westend"
@@ -96,14 +96,14 @@ color = "#6f36dc"
 
 [[chains]]
 name = "statemine"
-title = "AssetHub"
+title = "Asset Hub"
 rpc_endpoint = "wss://rococo-asset-hub-rpc.polkadot.io"
 color = "#77bb77"
 relay_chain = "rococo"
 
 [[chains]]
 name = "bridge-hub-rococo"
-title = "BridgeHub"
+title = "Bridge Hub"
 rpc_endpoint = "wss://rococo-bridge-hub-rpc.polkadot.io"
 relay_chain = "rococo"
 

@@ -1,7 +1,7 @@
 import { Tab } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { ChainSpec, RpcSource, WasmSource } from "../scheme";
-import { capitalizeFirstLetter, cn } from "../utils";
+import { cn, formatTitle } from "../utils";
 import Copyable, { hashSlicer, keepHeadSlicer } from "./Copyable";
 import { Hr } from "./Hr";
 import { Links } from "./Links";
@@ -69,11 +69,7 @@ export const Network = ({
             src={icon(chainPortalId)}
             className="w-14 h-14 rounded-full bg-neutral-200"
           />
-          <span>
-            {capitalizeFirstLetter(
-              spec.relayChain ? spec.relayChain + " " : "",
-            ) + capitalizeFirstLetter(spec.title)}
-          </span>
+          <span>{formatTitle(spec.title)}</span>
         </div>
         <Links />
       </div>

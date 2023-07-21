@@ -39,7 +39,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
         export_specs.insert(
             chain.portal_id(),
             ExportChainSpec {
-                title: chain.title.as_ref().unwrap_or(&chain.name).clone(),
+                title: chain.formatted_title(),
                 color: chain.color.clone(),
                 rpc_endpoint: chain.rpc_endpoints[0].clone(), // keep only the first one
                 genesis_hash: format!("0x{}", hex::encode(specs.genesis_hash)),

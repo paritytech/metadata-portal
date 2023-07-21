@@ -127,6 +127,14 @@ impl Chain {
             None => self.name.to_string(),
         }
     }
+
+    pub(crate) fn formatted_title(&self) -> String {
+        let mut title = self.title.as_ref().unwrap_or(&self.name).clone();
+        if let Some(relay) = &self.relay_chain {
+            title = format!("{} {}", relay, title);
+        }
+        title.to_owned()
+    }
 }
 
 fn color_default() -> String {

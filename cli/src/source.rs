@@ -4,7 +4,6 @@ use std::io::BufWriter;
 use std::path::Path;
 
 use anyhow::Result;
-use png::Encoder;
 use serde::{Deserialize, Serialize};
 use sp_core::H256;
 use tempfile::tempdir;
@@ -29,7 +28,7 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
     let out_path = tmp_dir.path().join("qr.apng");
     let file = File::create(&out_path).unwrap();
     let w = &mut BufWriter::new(file);
-    let mut encoder = Encoder::new(w, in_info.width, in_info.height);
+    let mut encoder = png::Encoder::new(w, in_info.width, in_info.height);
     encoder.set_color(in_info.color_type);
     encoder.set_depth(in_info.bit_depth);
     if let Some(palette) = in_info.palette.clone() {
@@ -42,6 +41,7 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
         encoder.set_frame_delay(frame.delay_num, frame.delay_den)?;
     }
     encoder.add_ztxt_chunk(SOURCE.to_string(), serde_json::to_string(source)?)?;
+    encoder.set_compression(png::Compression::Best);
 
     let mut writer = encoder.write_header().unwrap();
 

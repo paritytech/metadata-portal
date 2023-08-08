@@ -17,8 +17,6 @@ impl TryFrom<Asset> for WasmRuntime {
     type Error = anyhow::Error;
 
     fn try_from(asset: Asset) -> Result<Self, Self::Error> {
-        log::debug!("try_from({})", asset.name);
-
         if !asset.name.ends_with(".wasm") {
             return Err(anyhow!("{} has no .wasm extension", asset.name));
         }

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Chains } from "../scheme";
 import { About } from "./About";
-import { AppLinks } from "./AppLinks";
+import { Banner } from "./Banner";
 import { FAQ } from "./FAQ";
 import { Hr } from "./Hr";
 import { Links } from "./Links";
 import { Network } from "./Network";
-import { NetworkSelectMobile } from "./NetworkSelectMobile";
 import { NetworkSelect } from "./NetworkSelect";
+import { NetworkSelectMobile } from "./NetworkSelectMobile";
 
 export default function App() {
   const [chains, setChains] = useState({} as Chains);
@@ -19,7 +19,7 @@ export default function App() {
       .then((res) => res.json())
       .catch(() => {
         console.error(
-          "Unable to fetch data file. Run `make collector` to generate it"
+          "Unable to fetch data file. Run `make collector` to generate it",
         );
       })
       .then(setChains);
@@ -28,7 +28,7 @@ export default function App() {
   useEffect(() => {
     if (Object.keys(chains).length === 0 || currentChain) return;
 
-    const locationChain = window.location.hash.replace("#/", "");
+    const locationChain = location.hash.replace("#/", "");
     const network =
       (Object.keys(chains).includes(locationChain) && locationChain) ||
       Object.keys(chains)[0];
@@ -36,16 +36,16 @@ export default function App() {
   }, [chains]);
 
   useEffect(() => {
-    if (currentChain) window.location.assign("#/" + currentChain);
+    if (currentChain) location.assign("#/" + currentChain);
   }, [currentChain]);
 
   if (!spec) return null;
 
   return (
     <div>
-      <AppLinks />
+      <Banner />
       <div className="flex flex-col xl:flex-row">
-        <div className="xl:sticky xl:top-0 w-full p-2 md:px-4 xl:p-4 xl:pr-2 xl:pt-24 xl:w-full xl:max-w-[360px] xl:h-screen">
+        <div className="flex flex-col xl:top-0 w-full p-2 md:px-4 xl:p-4 xl:pr-2 xl:pt-12 xl:w-full xl:max-w-[360px] xl:min-h-screen">
           <div className="xl:hidden mb-2">
             <About />
           </div>
@@ -59,7 +59,7 @@ export default function App() {
           <div className="hidden xl:block mb-6">
             <About />
           </div>
-          <div className="hidden xl:block">
+          <div className="hidden xl:flex xl:overflow-y-auto h-0 grow">
             <NetworkSelect
               chains={chains}
               currentChain={currentChain}
@@ -67,8 +67,8 @@ export default function App() {
             />
           </div>
         </div>
-        <div className="w-full p-2 pt-0 pb-8 md:pb-24 md:p-4 xl:pl-2 xl:pt-24 space-y-4">
-          <Network spec={spec} />
+        <div className="w-full p-2 pt-0 pb-8 md:pb-24 md:p-4 xl:pl-2 xl:pt-12 space-y-4">
+          <Network spec={spec} chainPortalId={currentChain} />
           <FAQ />
           <div className="py-4 xl:hidden">
             <Hr />

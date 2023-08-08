@@ -1,7 +1,7 @@
 import { Tab } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { ChainSpec, RpcSource, WasmSource } from "../scheme";
-import { cn, title } from "../utils";
+import { cn, formatTitle } from "../utils";
 import Copyable, { hashSlicer, keepHeadSlicer } from "./Copyable";
 import { Hr } from "./Hr";
 import { Links } from "./Links";
@@ -21,7 +21,13 @@ function setTabToSearch(v: number) {
   window.history.replaceState(null, "", url);
 }
 
-export const Network = ({ spec }: { spec: ChainSpec }) => {
+export const Network = ({
+  spec,
+  chainPortalId,
+}: {
+  spec: ChainSpec;
+  chainPortalId: string;
+}) => {
   const [selectedTab, setSelectedTab] = useState(tabFromSearch());
   const metadataQr = spec.metadataQr;
 
@@ -60,10 +66,10 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
       <div className="hidden xl:flex items-center justify-between mb-10">
         <div className="flex items-center space-x-2 text-[40px] leading-none unbounded">
           <img
-            src={icon(spec.title)}
+            src={icon(chainPortalId)}
             className="w-14 h-14 rounded-full bg-neutral-200"
           />
-          <span>{title(spec.title)}</span>
+          <span>{formatTitle(spec.title)}</span>
         </div>
         <Links />
       </div>
@@ -75,7 +81,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
         }}
       >
         <div className="flex flex-col items-center p-10 md:w-[55%] bg-white rounded-3xl">
-          <div className="w-full max-w-xs aspect-square">
+          <div className="w-full max-w-xs">
             {selectedTab === 0 && (
               <div>
                 <img
@@ -94,9 +100,9 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                 {!metadataQr && (
                   <div className="flex aspect-square text-center">
                     <div className="m-auto">
-                      The metadata for {title(spec.title)} Network is out of
-                      date. Request the new metadata version by creating a
-                      Github issue.
+                      The metadata for {spec.title} Network is out of date.
+                      Request the new metadata version by creating a Github
+                      issue.
                       {createGithubIssueLink}
                     </div>
                   </div>
@@ -127,7 +133,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                     <button
                       className={cn(
                         "flex-1 p-3 rounded-full focus:outline-none",
-                        selected && "text-white"
+                        selected && "text-white",
                       )}
                       style={{ backgroundColor: selected ? spec.color : "" }}
                     >

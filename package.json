@@ -30,7 +30,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
-    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint": "eslint src/**/*.{ts,tsx} --max-warnings=0 && prettier --check 'src/**/*.(tsx|ts)'",
     "prettier": "prettier --write 'src/**/*.(tsx|ts)'",
     "eject": "react-scripts eject"
   },

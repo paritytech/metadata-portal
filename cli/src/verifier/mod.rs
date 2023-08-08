@@ -7,8 +7,6 @@ use crate::verifier::qr::validate_signed_qrs;
 use crate::AppConfig;
 
 pub(crate) fn verify(config: AppConfig) -> Result<()> {
-    log::debug!("verify()");
-
     validate_signed_qrs(&config.qr_dir, &config.verifier.public_key)?;
     info!("✅ Done");
     Ok(())

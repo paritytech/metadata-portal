@@ -10,8 +10,6 @@ pub(crate) async fn fetch_latest_runtime(
     config: &GithubRepo,
     chain: &str,
 ) -> anyhow::Result<Option<WasmRuntime>> {
-    log::debug!("fetch_latest_runtime()");
-
     let github = match env::var("GITHUB_TOKEN") {
         Ok(token) => Octocrab::builder().personal_token(token).build()?,
         Err(_) => Octocrab::default(),

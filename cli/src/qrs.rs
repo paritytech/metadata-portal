@@ -5,29 +5,23 @@ use std::path::Path;
 use anyhow::{Context, Result};
 
 use crate::common::path::{ContentType, QrPath};
-use crate::common::types::{ChainName, MetaVersion};
+use crate::common::types::{ChainPortalId, MetaVersion};
 
-type MetadataMap = HashMap<ChainName, BTreeMap<MetaVersion, QrPath>>;
+type MetadataMap = HashMap<ChainPortalId, BTreeMap<MetaVersion, QrPath>>;
 
 /// QR dir content
 pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
-    log::debug!("qrs_in_dir()");
-
     let mut files = vec![];
     for file in fs::read_dir(dir)? {
         let file = file?;
         if !file.file_type()?.is_file() {
             continue;
         }
-        if let Some(extension) = file.path().extension().and_then(std::ffi::OsStr::to_str) {
-            if extension == "png" || extension == "apng" {
-                match QrPath::try_from(&file.path()) {
-                    Ok(qr_path) => files.push(qr_path),
-                    Err(e) => {
-                        eprintln!("{e}");
-                        continue;
-                    }
-                }
+        match QrPath::try_from(&file.path()) {
+            Ok(qr_path) => files.push(qr_path),
+            Err(e) => {
+                eprintln!("{e}");
+                continue;
             }
         }
     }
@@ -36,8 +30,6 @@ pub(crate) fn qrs_in_dir(dir: impl AsRef<Path>) -> Result<Vec<QrPath>> {
 
 /// Maps chain to corresponding metadata QR files
 pub(crate) fn metadata_files(dir: impl AsRef<Path>) -> Result<MetadataMap> {
-    log::debug!("metadata_files()");
-
     let mut metadata_qrs: MetadataMap = HashMap::new();
     for qr in qrs_in_dir(dir)? {
         if let ContentType::Metadata(version) = qr.file_name.content_type {
@@ -57,9 +49,7 @@ pub(crate) fn metadata_files(dir: impl AsRef<Path>) -> Result<MetadataMap> {
 }
 
 // Find all specs QR files in the given directory
-pub(crate) fn spec_files(dir: impl AsRef<Path>) -> Result<HashMap<ChainName, QrPath>> {
-    log::debug!("spec_files()");
-
+pub(crate) fn spec_files(dir: impl AsRef<Path>) -> Result<HashMap<ChainPortalId, QrPath>> {
     let mut specs_qrs = HashMap::new();
     for qr in qrs_in_dir(dir)? {
         if let ContentType::Specs = qr.file_name.content_type {
@@ -79,16 +69,13 @@ pub(crate) fn spec_files(dir: impl AsRef<Path>) -> Result<HashMap<ChainName, QrP
 // Helper function to extract metadata QR
 pub(crate) fn collect_metadata_qrs(
     all_metadata: &MetadataMap,
-    chain: &ChainName,
+    chain_portal_id: &ChainPortalId,
     live_version: &MetaVersion,
 ) -> Result<Vec<QrPath>> {
-    log::debug!("collect_metadata_qrs()");
-
     let mut metadata_qrs = vec![];
-
     for (version, qr) in all_metadata
-        .get(chain.as_str())
-        .with_context(|| format!("No metadata qr found for {}", chain))?
+        .get(chain_portal_id.as_str())
+        .with_context(|| format!("No metadata qr found for {}", chain_portal_id))?
         .iter()
     {
         if version <= live_version {

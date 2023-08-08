@@ -14,8 +14,6 @@ use crate::common::path::{ContentType, QrFileName, QrPath};
 use crate::qrs::qrs_in_dir;
 
 pub(crate) fn validate_signed_qrs(dir: impl AsRef<Path>, public_key: &str) -> Result<()> {
-    log::debug!("validate_signed_qrs()");
-
     let all_qrs = qrs_in_dir(&dir)?;
     // Quick check that latest files are signed
     for qr in &all_qrs {
@@ -35,8 +33,6 @@ pub(crate) fn validate_signed_qrs(dir: impl AsRef<Path>, public_key: &str) -> Re
 }
 
 fn validate_metadata_qr(qr_path: &QrPath, public_key: &str) -> Result<()> {
-    log::debug!("validate_metadata_qr()");
-
     ensure!(
         qr_path.file_name.is_signed,
         "{} is not signed",
@@ -59,8 +55,6 @@ fn validate_metadata_qr(qr_path: &QrPath, public_key: &str) -> Result<()> {
 }
 
 fn verify_signature(verifier: &Verifier, public_key: &str) -> Result<()> {
-    log::debug!("verify_signature()");
-
     let discovered_pub_key = match &verifier.v {
         Some(VerifierValue::Standard { m }) => hex::encode(multisigner_to_public(m)),
         _ => bail!("unable to get verifier key from qr file: {:?}", verifier),
@@ -75,15 +69,13 @@ fn verify_signature(verifier: &Verifier, public_key: &str) -> Result<()> {
 }
 
 fn verify_filename(meta_values: &MetaValues, actual_qr_name: &QrFileName) -> Result<()> {
-    log::debug!("verify_filename()");
-
     let expected = QrFileName::new(
         &meta_values.name.to_lowercase(),
         ContentType::Metadata(meta_values.version),
         true,
     );
     ensure!(
-        actual_qr_name == &expected,
+        actual_qr_name.chain.ends_with(&expected.chain),
         "filename mismatch! Expected {}, got {}",
         expected,
         actual_qr_name

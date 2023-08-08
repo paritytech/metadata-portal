@@ -1,15 +1,15 @@
 import { Portals } from "./scheme";
 
-export function title(input: string) {
-  // Split the input string into an array of words
-  const words = input.split("-");
+export function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-  // Capitalize each word and join them with spaces
-  const convertedString = words
-    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+export function formatTitle(title: string) {
+  return title
+    .replace(/-/g, " ") // Dashes to spaces
+    .split(" ")
+    .map((v) => capitalizeFirstLetter(v))
     .join(" ");
-
-  return convertedString;
 }
 
 export function cn(...classes: (string | boolean | undefined)[]) {

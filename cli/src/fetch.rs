@@ -18,8 +18,6 @@ fn call_urls<F, T>(urls: &[String], f: F) -> Result<T, generate_message::Error>
 where
     F: Fn(&str) -> Result<T, generate_message::Error>,
 {
-    log::debug!("call_urls()");
-
     let n = urls.len();
     for url in urls.iter().take(n - 1) {
         match f(url) {
@@ -34,8 +32,6 @@ pub(crate) struct RpcFetcher;
 
 impl Fetcher for RpcFetcher {
     fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecs> {
-        log::debug!("fetch_specs()");
-
         let specs = call_urls(&chain.rpc_endpoints, |url| {
             let optional_token_override = chain.token_decimals.zip(chain.token_unit.as_ref()).map(
                 |(token_decimals, token_unit)| Token {
@@ -61,8 +57,6 @@ impl Fetcher for RpcFetcher {
     }
 
     fn fetch_metadata(&self, chain: &Chain) -> Result<MetaFetched> {
-        log::debug!("fetch_metadata()");
-
         let meta = call_urls(&chain.rpc_endpoints, meta_fetch).map_err(|e| anyhow!("{:?}", e))?;
         if meta.meta_values.name.to_lowercase() != chain.name {
             bail!(

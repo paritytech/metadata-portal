@@ -19,13 +19,12 @@ pub(crate) fn generate_metadata_qr(
     meta_values: &MetaValues,
     genesis_hash: &H256,
     target_dir: &Path,
+    portal_id: &str,
 ) -> anyhow::Result<PathBuf> {
-    log::debug!("generate_metadata_qr()");
-
     let content = ContentLoadMeta::generate(&meta_values.meta, genesis_hash);
 
     let file_name = QrFileName::new(
-        &meta_values.name.to_lowercase(),
+        &portal_id.to_lowercase(),
         ContentType::Metadata(meta_values.version),
         false,
     )
@@ -37,11 +36,13 @@ pub(crate) fn generate_metadata_qr(
     Ok(path)
 }
 
-pub(crate) fn generate_spec_qr(specs: &NetworkSpecs, target_dir: &Path) -> anyhow::Result<PathBuf> {
-    log::debug!("generate_spec_qr()");
-
+pub(crate) fn generate_spec_qr(
+    specs: &NetworkSpecs,
+    target_dir: &Path,
+    portal_id: &str,
+) -> anyhow::Result<PathBuf> {
     let file_name =
-        QrFileName::new(&specs.name.to_lowercase(), ContentType::Specs, false).to_string();
+        QrFileName::new(&portal_id.to_lowercase(), ContentType::Specs, false).to_string();
     let path = target_dir.join(&file_name);
     let content = ContentAddSpecs::generate(specs);
     info!("⚙️  Generating {}...", file_name);
@@ -53,8 +54,6 @@ fn generate_unsigned_qr<P>(content: &[u8], target_path: P, msg_type: Msg) -> any
 where
     P: AsRef<Path>,
 {
-    log::debug!("generate_unsigned_qr()");
-
     let tmp_dir = tempfile::tempdir()?;
     let tmp_f_path = tmp_dir.path().join("content");
     let mut content_file = File::create(&tmp_f_path)?;

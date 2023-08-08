@@ -100,15 +100,12 @@ impl TryFrom<&PathBuf> for QrFileName {
         let extension = path.extension().map(|s| s.to_str().unwrap().to_owned());
         let filename = path.file_stem().unwrap().to_str().unwrap();
 
-        log::debug!("try_from({filename})");
-
         let (stripped, is_signed) = match filename.strip_prefix(QrFileName::UNSIGNED_PREFIX) {
             Some(s) => (s, false),
             None => (filename, true),
         };
 
-        let content_type = ContentType::try_from(stripped)
-            .context(format!("error parsing context type for {stripped}"))?;
+        let content_type = ContentType::try_from(stripped).context("error parsing context type")?;
         let chain = stripped
             .strip_suffix(&format!("_{content_type}"))
             .context("error parsing chain name")?;

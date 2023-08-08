@@ -2,7 +2,7 @@ import { Listbox } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { icon } from "../icons";
 import { Chains } from "../scheme";
-import { title, cn } from "../utils";
+import { formatTitle, cn } from "../utils";
 import { ChevronIcon } from "./ChevronIcon";
 
 export const NetworkSelectMobile = ({
@@ -23,7 +23,7 @@ export const NetworkSelectMobile = ({
               Selected Network
             </div>
             <div className="flex items-center justify-between w-full text-lg">
-              <span>{title(chains[currentChain]?.title)}</span>
+              <span>{formatTitle(chains[currentChain]?.title)}</span>
               <ChevronIcon />
             </div>
           </Listbox.Button>
@@ -40,11 +40,13 @@ export const NetworkSelectMobile = ({
                   <div
                     className={cn(
                       "flex items-center space-x-2 px-2 py-1",
-                      selected && "bg-neutral-100 rounded-full"
+                      selected && "bg-neutral-100 rounded-full",
                     )}
                   >
                     <img src={icon(chain)} className="w-8 rounded-full" />
-                    <div className="text-xl">{title(chains[chain].title)}</div>
+                    <div className="text-xl">
+                      {formatTitle(chains[chain].title)}
+                    </div>
                   </div>
                 )}
               </Listbox.Option>

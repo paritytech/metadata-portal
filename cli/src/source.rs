@@ -1,11 +1,9 @@
-use std::fmt;
 use std::fs;
 use std::fs::File;
 use std::io::BufWriter;
 use std::path::Path;
 
 use anyhow::Result;
-use png::Encoder;
 use serde::{Deserialize, Serialize};
 use sp_core::H256;
 use tempfile::tempdir;
@@ -19,21 +17,8 @@ pub(crate) enum Source {
     Rpc { block: H256 },
 }
 
-impl fmt::Display for Source {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        match self {
-            Source::Wasm { .. } => write!(f, "Wasm"),
-            Source::Rpc { .. } => write!(f, "Rpc"),
-        }
-    }
-}
-
 // Add `Source` info to png file as a zTXt chunk
 pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
-    let path_str = path.as_os_str().to_str().unwrap();
-
-    log::debug!("save_source_info({}, {})", path_str, source);
-
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let mut reader = decoder.read_info().unwrap();
     // If the text chunk is before the image data frames, `reader.info()` already contains the text.
@@ -43,7 +28,7 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
     let out_path = tmp_dir.path().join("qr.apng");
     let file = File::create(&out_path).unwrap();
     let w = &mut BufWriter::new(file);
-    let mut encoder = Encoder::new(w, in_info.width, in_info.height);
+    let mut encoder = png::Encoder::new(w, in_info.width, in_info.height);
     encoder.set_color(in_info.color_type);
     encoder.set_depth(in_info.bit_depth);
     if let Some(palette) = in_info.palette.clone() {
@@ -56,6 +41,7 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
         encoder.set_frame_delay(frame.delay_num, frame.delay_den)?;
     }
     encoder.add_ztxt_chunk(SOURCE.to_string(), serde_json::to_string(source)?)?;
+    encoder.set_compression(png::Compression::Best);
 
     let mut writer = encoder.write_header().unwrap();
 
@@ -74,10 +60,6 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
 
 // Read source metadata from zTXt chunks
 pub(crate) fn read_png_source(path: &Path) -> Result<Option<Source>> {
-    let path_str = path.as_os_str().to_str().unwrap();
-
-    log::debug!("read_png_source({})", path_str);
-
     let decoder = png::Decoder::new(File::open(path).unwrap());
     let reader = decoder.read_info().unwrap();
     // If the text chunk is before the image data frames, `reader.info()` already contains the text.

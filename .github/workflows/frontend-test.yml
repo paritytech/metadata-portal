@@ -13,9 +13,6 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v3
 
-      - name: 🔧 Install yarn
-        run: npm install -g yarn prettier
-
       - name: Get yarn cache path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
@@ -30,9 +27,7 @@ jobs:
         run: yarn
 
       - name: Check lint
-        run: |
-          yarn lint --max-warnings=0
-          prettier --check "src/**/*.(tsx|ts)"
+        run: yarn lint
 
       - name: Pretend we have data.json and run tests
         run: cp public/test-file.json public/data.json && yarn test

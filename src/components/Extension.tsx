@@ -9,11 +9,11 @@ import {
 import { ChainSpec } from "../scheme";
 import Dropdown from "./Dropdown";
 import Button from "./Button";
-import { title } from "../utils";
+import { formatTitle } from "../utils";
 
 export default function Extension(chainSpec: ChainSpec) {
   const [selected, setSelected] = useState<InjectedExtension | undefined>(
-    undefined
+    undefined,
   );
   const [extensions, setExtensions] = useState<InjectedExtension[]>([]);
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Extension(chainSpec: ChainSpec) {
   }
 
   const meta: MetadataDef = {
-    chain: title(chainSpec.title),
+    chain: formatTitle(chainSpec.title),
     genesisHash: chainSpec.genesisHash,
     icon: chainSpec.logo,
     specVersion: chainSpec.liveMetaVersion,
@@ -73,7 +73,7 @@ interface ExtensionWithMeta {
 }
 
 async function extensionsToUpdate(
-  chainSpec: ChainSpec
+  chainSpec: ChainSpec,
 ): Promise<InjectedExtension[]> {
   const allInjected = await web3Enable("Metadata Portal");
 
@@ -84,13 +84,13 @@ async function extensionsToUpdate(
         injectedExtension: injected,
         metadata: metas,
       } as ExtensionWithMeta;
-    })
+    }),
   );
 
   return extensions
     .filter((extension) => {
       const current = extension.metadata.find(
-        ({ genesisHash }) => genesisHash === chainSpec.genesisHash
+        ({ genesisHash }) => genesisHash === chainSpec.genesisHash,
       );
       if (!current) {
         return true;

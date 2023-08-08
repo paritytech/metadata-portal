@@ -38,9 +38,9 @@ export const FAQ = () => (
           <p>
             Polkadot Vault is a cold storage solution that turns your iOS or
             Android device into a dedicated hardware wallet for Polkadot,
-            Kusama, Frequency, and other Substrate-based chains. Your keys are
-            kept secure (i.e. offline) at all times, and transactions are signed
-            in an air-gapped way via QR-codes.
+            Frequency, and other Substrate-based chains. Your keys are kept
+            secure (i.e. offline) at all times, and transactions are signed in
+            an air-gapped way via QR-codes.
           </p>
         </Disclosure.Panel>
       </Disclosure>
@@ -56,28 +56,37 @@ export const FAQ = () => (
             <li className="flex items-top">
               <OrdinalNumber>1</OrdinalNumber>
               <div className="pt-1">
-                Select the{" "}
-                <strong className="font-bold">{'"Chain Specs"'}</strong> tab if
-                it isn&apos;t already selected.
+                The first step is to locate the network that needs metadata
+                updating in <strong className="font-bold">Parity</strong> or{" "}
+                <strong className="font-bold">Novasama</strong>. Note: To
+                navigate between the two portals, use the Metadata Portal
+                dropdown at the top of the page.
               </div>
             </li>
             <li className="flex items-top">
               <OrdinalNumber>2</OrdinalNumber>
               <div className="pt-1">
-                Open the scanner tab from your Polkadot Vault device and scan
-                the network’s{" "}
-                <strong className="font-bold">{'"Chain Specs" QR code'}</strong>
+                Then select the{" "}
+                <strong className="font-bold">{'"Chain Spec"'}</strong> tab
               </div>
             </li>
             <li className="flex items-top">
               <OrdinalNumber>3</OrdinalNumber>
+              <div className="pt-1">
+                Open the scanner tab from your Polkadot Vault device and scan
+                the network’s{" "}
+                <strong className="font-bold">{'"Chain Spec" QR code'}</strong>
+              </div>
+            </li>
+            <li className="flex items-top">
+              <OrdinalNumber>4</OrdinalNumber>
               <div className="pt-1">
                 Review the verifier certificate, and{" "}
                 <strong className="font-bold">{'Select "Approve"'}</strong>
               </div>
             </li>
             <li className="flex items-top">
-              <OrdinalNumber>4</OrdinalNumber>
+              <OrdinalNumber>5</OrdinalNumber>
               <div className="pt-1">
                 Select the{" "}
                 <strong className="font-bold">{'"Metadata" tab'}</strong> at the
@@ -85,7 +94,7 @@ export const FAQ = () => (
               </div>
             </li>
             <li className="flex items-top">
-              <OrdinalNumber>5</OrdinalNumber>
+              <OrdinalNumber>6</OrdinalNumber>
               <div className="pt-1">
                 Open the scanner tab in your Polkadot Vault device again and{" "}
                 <strong className="font-bold">
@@ -94,14 +103,14 @@ export const FAQ = () => (
               </div>
             </li>
             <li className="flex items-top">
-              <OrdinalNumber>6</OrdinalNumber>
+              <OrdinalNumber>7</OrdinalNumber>
               <div className="pt-1">
                 <strong className="font-bold">Scan the Metadata QR code</strong>
                 . Note: this can take a few minutes to complete.
               </div>
             </li>
             <li className="flex items-top">
-              <OrdinalNumber>7</OrdinalNumber>
+              <OrdinalNumber>8</OrdinalNumber>
               <div className="pt-1">
                 Finally, review the verifier certificate and{" "}
                 <strong className="font-bold">{'Select "Approve"'}</strong>

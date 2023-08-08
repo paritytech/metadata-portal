@@ -1,13 +1,13 @@
-name: Auto Sign
+name: Auto Sign and Merge Update
 
 concurrency:
   group: ${{github.workflow}}
   cancel-in-progress: true
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # via manual trigger
   schedule:
-    - cron: '0 0 * * *' # at midnight
+    - cron: '47 * * * *' # every hour on the 47th minute to avoid high load 0 times
 
 env:
   BRANCH_PREFIX: auto-signed
@@ -39,44 +39,27 @@ jobs:
           echo "hasbranch=$hasbranch" >> $GITHUB_OUTPUT
 
       - name: ⚙ Clean metadata-cli
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
-        with:
-          command: clean
-          args: --release
+        run: cargo clean --release
 
       - name: ⚙ Build metadata-cli
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
-        with:
-          command: build
-          args: --release
+        run: cargo build --release
 
       - name: ⚙ Autosign QRs from RPC nodes
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         env:
           SIGNING_SEED_PHRASE: ${{secrets.SIGNING_SEED_PHRASE}}
-        with:
-          command: run
-          args: --release -- auto-sign --source node
+        run: cargo run --release -- auto-sign --source node
 
-      - name: ⚙ Autosign QRs from GitHub releases
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
-        env:
-          SIGNING_SEED_PHRASE: ${{secrets.SIGNING_SEED_PHRASE}}
-        with:
-          command: run
-          args: --release -- auto-sign --source github
+      # Skip Github releases for now as the UI doesn't support future metadata anymore
+      # - name: ⚙ Autosign QRs from GitHub releases
+      #   env:
+      #     SIGNING_SEED_PHRASE: ${{secrets.SIGNING_SEED_PHRASE}}
+      #   run: cargo run --release -- auto-sign --source github
 
       - name: ⚙ Run Collector
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
-        with:
-          command: run
-          args: --release -- collect
+        run: cargo run --release -- collect
 
       - name: ⚙ Run Cleaner
-        uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
-        with:
-          command: run
-          args: --release -- clean
+        run: cargo run --release -- clean
 
       - name: 📌 Commit changes if PR branch exists
         if: ${{ steps.checkout-pr-branch.outputs.hasbranch == 'true' }}
@@ -103,38 +86,9 @@ jobs:
           title: '[Automated] Updated signed metadata QR image files'
           body: |
             If the Metadata Portal needs updated data, inspect the data.json file to determine whether it is correct and then merge this PR.
-          draft: true
+          draft: false
 
-  check-deployment:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🛎 Checkout
-        uses: actions/checkout@v3
-
-      - name: 🔧 Install rust dependencies
-        uses: ./.github/workflows/rust-install
-
-      - name: ⚙ Check existing deployment
-        id: check-deployment
-        run: |
-          cargo run --release -- check-deployment
-          exit_code=$?
-          if [ $exit_code -eq 12 ]
-          then
-            redeploy='true'
-            echo "redeploy=$redeploy" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-            redeploy='false'
-            echo "redeploy=$redeploy" >> $GITHUB_OUTPUT
-          exit $exit_code
-        shell: bash {0}
-
-      - name: ⚙ Run collector
-        if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
-        run: make collector
-
-      - if: ${{ steps.check-deployment.outputs.redeploy == 'true' }}
-        uses: ./.github/workflows/deploy
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Enable Pull Request Automerge
+        run: gh pr merge --squash --auto ${{ steps.cpr.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ github.token }}

@@ -26,7 +26,8 @@
       "path": "qr/frequency_specs.png",
       "signedBy": "Frequency",
       "source": null
-    }
+    },
+    "relayChain": null
   },
   "frequency-rococo": {
     "title": "frequency-rococo",
@@ -37,16 +38,16 @@
     "base58prefix": 42,
     "logo": "frequency-rococo",
     "decimals": 8,
-    "liveMetaVersion": 47,
+    "liveMetaVersion": 48,
     "metadataQr": {
-      "version": 47,
+      "version": 48,
       "file": {
-        "path": "qr/frequency-rococo_metadata_47.apng",
+        "path": "qr/frequency-rococo_metadata_48.apng",
         "signedBy": "Frequency",
         "source": {
           "type": "Wasm",
           "github_repo": "LibertyDSNP/frequency",
-          "hash": "0xe5f5ca8905716ea454763085257c9eb57688e628120164372b3b89d316579524"
+          "hash": "0x89edced12fd470f82c3b59968aa2f6f79fd5fe0d0e57fc2eaed76026abfe0f0f"
         }
       }
     },
@@ -55,6 +56,7 @@
       "path": "qr/frequency-rococo_specs.png",
       "signedBy": "Frequency",
       "source": null
-    }
+    },
+    "relayChain": null
   }
 }

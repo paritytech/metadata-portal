@@ -1,6 +1,7 @@
 name: Deploy Main
 
 on:
+  workflow_dispatch: # via manual trigger
   push:
     branches:
       - main

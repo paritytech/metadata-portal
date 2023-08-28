@@ -213,18 +213,8 @@
     "base58prefix": 2,
     "logo": "encointer-parachain",
     "decimals": 12,
-    "liveMetaVersion": 12,
-    "metadataQr": {
-      "version": 12,
-      "file": {
-        "path": "qr/kusama-encointer-parachain_metadata_12.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x7c96d5c5dbe5da9e5cbb7705144598e2d91241c611909aabdd0b041732b40791"
-        }
-      }
-    },
+    "liveMetaVersion": 15,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-encointer-parachain_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-encointer-parachain_specs.png",

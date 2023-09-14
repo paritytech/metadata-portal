@@ -115,3 +115,18 @@ rpc_endpoints = ['wss://picasso-rpc.composable.finance']
 testnet = false
 verifier = 'insipx'
 
+[[chains]]
+name = 'enjin Matrixchain'
+title = 'Enjin Matrixchain'
+color = '#42d5de'
+rpc_endpoints = ['wss://rpc.matrix.blockchain.enjin.io']
+testnet = false
+verifier = 'insipx'
+
+[[chains]]
+name = 'Enjin Relaychain'
+title = 'Enjin Relaychain'
+color = '#42d5de'
+rpc_endpoints = ['wss://rpc.relay.blockchain.enjin.io']
+testnet = false
+verifier = 'insipx'

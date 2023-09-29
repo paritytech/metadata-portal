@@ -213,7 +213,7 @@
     "base58prefix": 2,
     "logo": "encointer-parachain",
     "decimals": 12,
-    "liveMetaVersion": 15,
+    "liveMetaVersion": 16,
     "metadataQr": null,
     "latestMetadata": "qr/kusama-encointer-parachain_metadata_latest.apng",
     "specsQr": {

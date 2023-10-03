@@ -58,8 +58,9 @@ export const FAQ = () => (
               <div className="pt-1">
                 The first step is to locate the network that needs metadata
                 updating in <strong className="font-bold">Parity</strong> or{" "}
-                <strong className="font-bold">Novasama</strong>. Note: To
-                navigate between the two portals, use the Metadata Portal
+                <strong className="font-bold">Novasama</strong>, or{" "}
+                <strong className="font-bold">OpenTensor</strong>. Note: To
+                navigate between the three portals, use the Metadata Portal
                 dropdown at the top of the page.
               </div>
             </li>
@@ -128,7 +129,7 @@ export const FAQ = () => (
         </Disclosure.Button>
         <Disclosure.Panel className="px-6 pt-0 pb-8 max-w-3xl">
           <p className="pb-4">
-            Metadata about networks chain specs is stored in two places:
+            Metadata about networks chain specs is stored in three places:
           </p>
           <ol className="space-y-2 pb-4">
             <li className="flex items-top">
@@ -155,6 +156,19 @@ export const FAQ = () => (
                   Novasama
                 </a>{" "}
                 for Parachains and Solochains
+              </div>
+            </li>
+            <li className="flex items-top">
+              <OrdinalNumber>3</OrdinalNumber>
+              <div className="pt-1">
+                <a
+                  href="https://metadata.opentensor.ai/#/"
+                  rel="noopener noreferrer"
+                  className="font-bold underline"
+                >
+                  OpenTensor
+                </a>{" "}
+                for Bittensor (as signed by the OpenTensor Foundation)
               </div>
             </li>
           </ol>

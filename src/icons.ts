@@ -1,5 +1,6 @@
 import polkadotSrc from "./assets/icons/polkadot.svg";
 import assetHubSrc from "./assets/icons/asset-hub.svg";
+import bittensorSrc from "./assets/icons/bittensor.svg";
 import bridgeHubSrc from "./assets/icons/bridge-hub.svg";
 import bridgeHubBlackSrc from "./assets/icons/bridge-hub-black.svg";
 import collectivesSrc from "./assets/icons/collectives.svg";
@@ -26,6 +27,7 @@ const ICONS = {
   "rococo-bridge-hub-rococo": bridgeHubBlackSrc,
   "rococo-contracts-rococo": contractsPNG,
   "rococo-encointer-parachain": nodesEncointerBlueSVG,
+  'node-subtensor': bittensorSrc,
 };
 
 export function icon(network: string) {

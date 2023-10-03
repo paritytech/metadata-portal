@@ -20,6 +20,6 @@ export function currentPortalKey(portals: Portals) {
 
   return (
     keys.find((key) => new URL(portals[key].url).host === location.host) ||
-    keys[0]
+    keys[2]
   );
 }

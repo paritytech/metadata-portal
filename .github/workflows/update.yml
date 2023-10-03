@@ -3,11 +3,11 @@ name: Check updates
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 */2 * * *'
 
 env:
   BRANCH_PREFIX: sign-me
-  NOTIFY_MATRIX: true
+  NOTIFY_MATRIX: false
 
 jobs:
   update:

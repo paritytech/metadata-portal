@@ -49,7 +49,7 @@ export const Network = ({
 
   const createGithubIssueLink = (
     <a
-      href="https://github.com/paritytech/metadata-portal/issues/new"
+      href="https://github.com/opentensor/metadata-portal/issues/new"
       className="block mt-10 font-extrabold"
       style={{
         color: `${spec.color}`,

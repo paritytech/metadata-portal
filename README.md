@@ -31,17 +31,28 @@ This flow is important for all users who want to always have the latest metadata
 - Github action is triggered to regenerate and re-deploy the Github Page
 
 ### 2. Showing manually uploaded and signed QR codes via PRs
+This is the flow we are doing currently (2022-11-25):   
 
 This flow is for security-oriented users and Parity itself. It allows chain owners to sign their metadata updates and host QR codes for their users.
 
 - Release manager generates a new signed QR code manually in an air-gapped environment using his signing device
+  - See: #manually-generating-new-metadata-and-spec
 - He opens a PR and signs commits by his YubiKey to prove its validity
 - Owner of the repository accepts the PR
 - Github action is triggered to regenerate and re-deploy the Github Page
 
+#### Manually generating new metadata and spec
+Requires: parity-signer with signing key, signing pubkey in `config.toml`, device with webcam access 
+You can manually generate the new signed QR codes for the metadata and spec as follows:  
+1. `make updater` (generates new (unsigned) metadata and spec QR code(s) and puts them in `public/qr/`)
+2. `make signer`; run for both metadata and spec (generates a signed copy of each QR code using parity-signer)
+  - sign using airgapped parity-signer and webcam
+3. (Optional) `make collector` to generate the files for running the web portal locally
+
 ## Deployment
 ### Requirements
 1. install https://github.com/paritytech/parity-signer to your signing device
+2. Have the chain wasm runtime in the releases of it's github repository
 
 ### Steps
 

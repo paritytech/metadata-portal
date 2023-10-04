@@ -4,8 +4,7 @@ use std::path::PathBuf;
 
 use anyhow::Context;
 
-use crate::export::read_export_file;
-use crate::qrs::{metadata_files, spec_files};
+use crate::file::files_to_keep;
 use crate::AppConfig;
 
 pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>> {
@@ -14,40 +13,17 @@ pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>
         .map(|f| f.unwrap().path())
         .collect();
 
-    let mut keep_files: HashSet<PathBuf> = HashSet::new();
-    let all_metadata = metadata_files(&config.qr_dir)?;
-    let all_specs = spec_files(&config.qr_dir)?;
-    let chain_specs = read_export_file(config)?;
-
-    for chain in &config.chains {
-        let latest_version = match &chain_specs
-            .get(&chain.name)
-            .context(format!("No data found for {}", chain.name))?
-            .metadata_qr
-        {
-            Some(qr) => qr.version,
-            None => continue,
-        };
-        let metadata_to_keep = all_metadata
-            .get(&chain.name)
-            .map(|map| {
-                map.iter()
-                    .filter(|(&v, _)| v >= latest_version)
-                    .map(|(_, qr)| qr.to_path_buf())
-                    .collect::<HashSet<_>>()
-            })
-            .context("Could not get metadata to keep")?;
-        keep_files.extend(metadata_to_keep);
-        if let Some(qr) = all_specs.get(&chain.name) {
-            keep_files.insert(qr.to_path_buf());
-        }
-    }
+    let keep_files = files_to_keep(config)?
+        .iter()
+        .map(|qr| qr.to_path_buf())
+        .collect::<HashSet<_>>();
     Ok(all_files.difference(&keep_files).cloned().collect())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::config::Chain;
 
     #[test]
     fn keep_future_versions() {
@@ -93,5 +69,23 @@ mod tests {
         let to_remove = files_to_remove(&config).unwrap();
         assert_eq!(to_remove.len(), 1);
         assert_eq!(to_remove[0], config.qr_dir.join("kusama_metadata_9.apng"));
+    }
+
+    #[test]
+    fn works_with_parachain_qrs() {
+        let mut config = AppConfig::default();
+        config.chains = vec![
+            Chain::default(),
+            Chain {
+                name: "statemint".to_string(),
+                relay_chain: Some("polkadot".to_string()),
+                ..Chain::default()
+            },
+        ];
+        config.qr_dir = PathBuf::from("./src/cleaner/for_tests/test5/qrs");
+        config.data_file = config.qr_dir.join("../data.json");
+
+        let to_remove = files_to_remove(&config).unwrap();
+        assert_eq!(to_remove.len(), 0);
     }
 }

@@ -2,7 +2,7 @@ import { Listbox } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { icon } from "../icons";
 import { Chains, Portals } from "../scheme";
-import { capitalizeFirstLetter, cn, currentPortalKey } from "../utils";
+import { cn, currentPortalKey, formatTitle } from "../utils";
 import { ChevronIcon } from "./ChevronIcon";
 import { Hr } from "./Hr";
 
@@ -49,7 +49,7 @@ export const NetworkAndPortalSelectMobile = ({
                         <div
                           className={cn(
                             "flex items-center space-x-2 px-2 py-1",
-                            selected && "bg-neutral-100 rounded-full"
+                            selected && "bg-neutral-100 rounded-full",
                           )}
                         >
                           <div className="text-xl">{portals[portal].name}</div>
@@ -58,7 +58,7 @@ export const NetworkAndPortalSelectMobile = ({
                         <a
                           className={cn(
                             "flex items-center space-x-2 px-2 py-1",
-                            selected && "bg-neutral-100 rounded-full"
+                            selected && "bg-neutral-100 rounded-full",
                           )}
                           href={portals[portal].url}
                         >
@@ -81,11 +81,7 @@ export const NetworkAndPortalSelectMobile = ({
               Selected Network
             </div>
             <div className="flex items-center justify-between w-full text-lg">
-              <span>
-                {currentChain === "node-subtensor"
-                  ? "Bittensor"
-                  : capitalizeFirstLetter(chains[currentChain]?.title)}
-              </span>
+              <span>{formatTitle(chains[currentChain]?.title)}</span>
               <ChevronIcon />
             </div>
           </Listbox.Button>
@@ -102,14 +98,13 @@ export const NetworkAndPortalSelectMobile = ({
                   <div
                     className={cn(
                       "flex items-center space-x-2 px-2 py-1",
-                      selected && "bg-neutral-100 rounded-full"
+                      chains[chain].relayChain && "pl-8",
+                      selected && "bg-neutral-100 rounded-full",
                     )}
                   >
                     <img src={icon(chain)} className="w-8 rounded-full" />
                     <div className="text-xl">
-                      {chain === "node-subtensor"
-                        ? "Bittensor"
-                        : capitalizeFirstLetter(chains[chain].title)}
+                      {formatTitle(chains[chain].title)}
                     </div>
                   </div>
                 )}

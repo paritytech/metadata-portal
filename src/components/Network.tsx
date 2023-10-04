@@ -1,7 +1,7 @@
 import { Tab } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { ChainSpec, RpcSource, WasmSource } from "../scheme";
-import { capitalizeFirstLetter, cn } from "../utils";
+import { cn, formatTitle } from "../utils";
 import Copyable, { hashSlicer, keepHeadSlicer } from "./Copyable";
 import { Hr } from "./Hr";
 import { Links } from "./Links";
@@ -21,7 +21,13 @@ function setTabToSearch(v: number) {
   window.history.replaceState(null, "", url);
 }
 
-export const Network = ({ spec }: { spec: ChainSpec }) => {
+export const Network = ({
+  spec,
+  chainPortalId,
+}: {
+  spec: ChainSpec;
+  chainPortalId: string;
+}) => {
   const [selectedTab, setSelectedTab] = useState(tabFromSearch());
   const metadataQr = spec.metadataQr;
 
@@ -43,7 +49,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
 
   const createGithubIssueLink = (
     <a
-      href="https://github.com/paritytech/metadata-portal/issues/new"
+      href="https://github.com/opentensor/metadata-portal/issues/new"
       className="block mt-10 font-extrabold"
       style={{
         color: `${spec.color}`,
@@ -60,13 +66,13 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
       <div className="hidden xl:flex items-center justify-between mb-10">
         <div className="flex items-center space-x-2 text-[40px] leading-none unbounded">
           <img
-            src={icon(spec.title)}
+            src={icon(chainPortalId)}
             className="w-14 h-14 rounded-full bg-neutral-200"
           />
           <span>
-            {spec.title === "node-subtensor"
-              ? "Bittensor"
-              : capitalizeFirstLetter(spec.title)}
+            {formatTitle(
+              spec.title === "node-subtensor" ? "Bittensor" : spec.title,
+            )}
           </span>
         </div>
         <Links />
@@ -131,7 +137,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
                     <button
                       className={cn(
                         "flex-1 p-3 rounded-full focus:outline-none",
-                        selected && "text-white"
+                        selected && "text-white",
                       )}
                       style={{ backgroundColor: selected ? spec.color : "" }}
                     >

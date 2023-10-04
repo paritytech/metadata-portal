@@ -25,6 +25,7 @@
       "path": "for_tests/polkadot_specs.png",
       "signedBy": "Test Verifier",
       "source": null
-    }
+    },
+    "relayChain": null
   }
 }

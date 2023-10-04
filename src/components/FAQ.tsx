@@ -57,7 +57,7 @@ export const FAQ = () => (
               <OrdinalNumber>1</OrdinalNumber>
               <div className="pt-1">
                 The first step is to locate the network that needs metadata
-                updating in <strong className="font-bold">Parity</strong>,{" "}
+                updating in <strong className="font-bold">Parity</strong> or{" "}
                 <strong className="font-bold">Novasama</strong>, or{" "}
                 <strong className="font-bold">OpenTensor</strong>. Note: To
                 navigate between the three portals, use the Metadata Portal
@@ -168,7 +168,7 @@ export const FAQ = () => (
                 >
                   OpenTensor
                 </a>{" "}
-                for Bittensor (signed by the OpenTensor Foundation)
+                for Bittensor (as signed by the OpenTensor Foundation)
               </div>
             </li>
           </ol>

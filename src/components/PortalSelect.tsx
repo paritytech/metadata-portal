@@ -17,7 +17,7 @@ export const PortalSelect = ({ portals }: { portals: Portals }) => {
           className={({ open }) =>
             cn(
               "w-full bordered-action py-3 hover:bg-neutral-100 transition-colors",
-              open && "bg-neutral-100"
+              open && "bg-neutral-100",
             )
           }
         >
@@ -46,7 +46,7 @@ export const PortalSelect = ({ portals }: { portals: Portals }) => {
                       className={cn(
                         "flex items-center space-x-2 p-2 rounded-md hover:bg-neutral-100 transition-colors",
                         selected && "bg-neutral-100",
-                        selected ? "cursor-default" : "cursor-pointer"
+                        selected ? "cursor-default" : "cursor-pointer",
                       )}
                     >
                       {portals[portal].name}
@@ -56,7 +56,7 @@ export const PortalSelect = ({ portals }: { portals: Portals }) => {
                       className={cn(
                         "flex items-center space-x-2 p-2 rounded-md hover:bg-neutral-100 transition-colors",
                         selected && "bg-neutral-100",
-                        selected ? "cursor-default" : "cursor-pointer"
+                        selected ? "cursor-default" : "cursor-pointer",
                       )}
                       href={portals[portal].url}
                     >

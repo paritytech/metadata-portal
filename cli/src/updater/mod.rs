@@ -23,9 +23,9 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
 
     let mut is_changed = false;
     for chain in config.chains {
-        if !specs_qrs.contains_key(chain.name.as_str()) {
+        if !specs_qrs.contains_key(&chain.portal_id()) {
             let specs = fetcher.fetch_specs(&chain)?;
-            generate_spec_qr(&specs, &config.qr_dir)?;
+            generate_spec_qr(&specs, &config.qr_dir, &chain.portal_id())?;
             is_changed = true;
         }
 
@@ -33,7 +33,7 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
         let version = fetched_meta.meta_values.version;
 
         // Skip if already have QR for the same version
-        if let Some(map) = metadata_qrs.get(&chain.name) {
+        if let Some(map) = metadata_qrs.get(&chain.portal_id()) {
             if map.contains_key(&version) {
                 continue;
             }
@@ -42,6 +42,7 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
             &fetched_meta.meta_values,
             &fetched_meta.genesis_hash,
             &config.qr_dir,
+            &chain.portal_id(),
         )?;
         let source = Source::Rpc {
             block: fetched_meta.block_hash,
@@ -66,8 +67,8 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
             continue;
         }
 
-        let github_repo = chain.github_release.unwrap();
-        let wasm = fetch_latest_runtime(&github_repo, &chain.name).await?;
+        let github_repo = chain.github_release.as_ref().unwrap();
+        let wasm = fetch_latest_runtime(github_repo, &chain.name).await?;
         if wasm.is_none() {
             warn!("🤨 No releases found");
             continue;
@@ -77,7 +78,7 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
         let genesis_hash = H256::from_str(&github_repo.genesis_hash).unwrap();
 
         // Skip if already have QR for the same version
-        if let Some(map) = metadata_qrs.get(&chain.name) {
+        if let Some(map) = metadata_qrs.get(&chain.portal_id()) {
             if map.contains_key(&wasm.version) || map.keys().min().unwrap_or(&0) > &wasm.version {
                 info!("🎉 {} is up to date!", chain.name);
                 continue;
@@ -86,7 +87,12 @@ pub(crate) async fn update_from_github(config: AppConfig) -> anyhow::Result<()> 
         let wasm_bytes = download_wasm(wasm.to_owned()).await?;
         let meta_hash = blake2b(32, &[], &wasm_bytes).as_bytes().to_vec();
         let meta_values = meta_values_from_wasm_bytes(&wasm_bytes)?;
-        let path = generate_metadata_qr(&meta_values, &genesis_hash, &config.qr_dir)?;
+        let path = generate_metadata_qr(
+            &meta_values,
+            &genesis_hash,
+            &config.qr_dir,
+            &chain.portal_id(),
+        )?;
         let source = Source::Wasm {
             github_repo: format!("{}/{}", github_repo.owner, github_repo.repo),
             hash: format!("0x{}", hex::encode(meta_hash)),

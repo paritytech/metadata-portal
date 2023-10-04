@@ -69,7 +69,11 @@ export const Network = ({
             src={icon(chainPortalId)}
             className="w-14 h-14 rounded-full bg-neutral-200"
           />
-          <span>{formatTitle(spec.title)}</span>
+          <span>
+            {formatTitle(
+              spec.title === "node-subtensor" ? "Bittensor" : spec.title,
+            )}
+          </span>
         </div>
         <Links />
       </div>

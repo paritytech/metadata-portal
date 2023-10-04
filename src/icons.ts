@@ -27,7 +27,7 @@ const ICONS = {
   "rococo-bridge-hub-rococo": bridgeHubBlackSrc,
   "rococo-contracts-rococo": contractsPNG,
   "rococo-encointer-parachain": nodesEncointerBlueSVG,
-  'node-subtensor': bittensorSrc,
+  "node-subtensor": bittensorSrc,
 };
 
 export function icon(network: string) {

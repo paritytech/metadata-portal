@@ -1,6 +1,4 @@
-const LINKS = [
-  ["GitHub", "https://github.com/opentensor/metadata-portal"]
-];
+const LINKS = [["GitHub", "https://github.com/opentensor/metadata-portal"]];
 
 export const Links = () => {
   return (

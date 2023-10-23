@@ -9,7 +9,17 @@
     "logo": "polkadot",
     "decimals": 10,
     "liveMetaVersion": 9431,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 9431,
+      "file": {
+        "path": "qr/polkadot_metadata_9431.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x79005aa2c711955cf2ca02ab5335ecf9b7752c5c4f9018a14181f6b9b19ff9c6"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",
@@ -203,7 +213,17 @@
     "logo": "encointer-parachain",
     "decimals": 12,
     "liveMetaVersion": 16,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 16,
+      "file": {
+        "path": "qr/kusama-encointer-parachain_metadata_16.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xd35aefae032a9474dea01ffc862bf628da1d2d9f374d6743ffaf5f220ae04e61"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama-encointer-parachain_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-encointer-parachain_specs.png",
@@ -309,7 +329,17 @@
     "logo": "rococo",
     "decimals": 12,
     "liveMetaVersion": 102000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 102000,
+      "file": {
+        "path": "qr/rococo_metadata_102000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xde59f021e9fe2b36f9d7254637c1937d7f6f238dedb454cfe4b3dd82f577b72f"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo_specs.png",
@@ -328,7 +358,17 @@
     "logo": "statemine",
     "decimals": 12,
     "liveMetaVersion": 10005,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 10005,
+      "file": {
+        "path": "qr/rococo-statemine_metadata_10005.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x83986e078ee443c66b699d4cfb6fbbeb46cb5a73bb51025a0debab5e9b51c12c"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-statemine_specs.png",
@@ -405,7 +445,17 @@
     "logo": "encointer-parachain",
     "decimals": 12,
     "liveMetaVersion": 16,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 16,
+      "file": {
+        "path": "qr/rococo-encointer-parachain_metadata_16.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x734fd617ed0378315187b0e850cafa18debec7dbf6636dfa86127a7548999783"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-encointer-parachain_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-encointer-parachain_specs.png",

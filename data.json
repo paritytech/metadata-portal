@@ -353,21 +353,11 @@
     "rpcEndpoint": "wss://rococo-asset-hub-rpc.polkadot.io",
     "genesisHash": "0x7c34d42fc815d392057c78b49f2755c753440ccd38bcb0405b3bcfb601d08734",
     "unit": "ROC",
-    "base58prefix": 2,
+    "base58prefix": 42,
     "logo": "statemine",
     "decimals": 12,
-    "liveMetaVersion": 10005,
-    "metadataQr": {
-      "version": 10005,
-      "file": {
-        "path": "qr/rococo-statemine_metadata_10005.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x83986e078ee443c66b699d4cfb6fbbeb46cb5a73bb51025a0debab5e9b51c12c"
-        }
-      }
-    },
+    "liveMetaVersion": 1003000,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-statemine_specs.png",

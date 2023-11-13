@@ -29,7 +29,14 @@ pub(crate) fn update_from_node(config: AppConfig, fetcher: impl Fetcher) -> anyh
             is_changed = true;
         }
 
-        let fetched_meta = fetcher.fetch_metadata(&chain)?;
+        info!("🔍 Checking for updates for {}", chain.name);
+        let fetched_meta = match fetcher.fetch_metadata(&chain) {
+            Ok(meta) => meta,
+            Err(e) => {
+                warn!("🤨 Failed to fetch metadata: {:?}", e);
+                continue;
+            }
+        };
         let version = fetched_meta.meta_values.version;
 
         // Skip if already have QR for the same version

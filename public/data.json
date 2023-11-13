@@ -38,15 +38,15 @@
     "base58prefix": 42,
     "logo": "frequency-rococo",
     "decimals": 8,
-    "liveMetaVersion": 56,
+    "liveMetaVersion": 60,
     "metadataQr": {
-      "version": 56,
+      "version": 60,
       "file": {
-        "path": "qr/frequency-rococo_metadata_56.apng",
+        "path": "qr/frequency-rococo_metadata_60.apng",
         "signedBy": "Frequency",
         "source": {
           "type": "Rpc",
-          "block": "0x27c6a1f52d89e154ae206c752f4de4d6a4e8aff80a0a30d0ef08de6c756b1da5"
+          "block": "0x8979b5abde34bd9615561b0ee1b1e36b992b5295cf3e0a4c224cbae881368df0"
         }
       }
     },

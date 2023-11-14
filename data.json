@@ -414,15 +414,15 @@
     "base58prefix": 42,
     "logo": "contracts-rococo",
     "decimals": 12,
-    "liveMetaVersion": 10000,
+    "liveMetaVersion": 10001,
     "metadataQr": {
-      "version": 10000,
+      "version": 10001,
       "file": {
-        "path": "qr/rococo-contracts-rococo_metadata_10000.apng",
+        "path": "qr/rococo-contracts-rococo_metadata_10001.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0xddbae4d651c628fb4d4460a65a549bc38d33d926a963dad3420abf8b24416922"
+          "block": "0x23d52f3f7817eab794a88ac29a3f3b39da9959b603fc243693edc28ff4f27d80"
         }
       }
     },

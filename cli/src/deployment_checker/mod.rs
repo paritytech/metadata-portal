@@ -2,16 +2,10 @@ use std::process::exit;
 
 use anyhow::Result;
 use log::{info, warn};
-use serde::{Deserialize, Serialize};
 
 use crate::collector::export::export_specs;
 use crate::fetch::{fetch_deployed_data, RpcFetcher};
 use crate::AppConfig;
-
-#[derive(Serialize, Deserialize)]
-struct PkgJson {
-    homepage: String,
-}
 
 // Check whether the deployment is up to date.
 // Exit code 12 if re-deploy is required

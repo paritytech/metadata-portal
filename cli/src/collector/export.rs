@@ -27,7 +27,7 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
                 if let Some(online_specs) = online.as_ref() {
                     if let Some(online_chain_specs) = online_specs.get(&chain.portal_id()) {
                         warn!(
-                            "Unable to fetch specs for {}. Keep current online specs: {}.",
+                            "Unable to fetch specs for {}. Keep current online specs. Err: {}.",
                             chain.name, e
                         );
                         export_specs.insert(chain.portal_id(), online_chain_specs.clone());

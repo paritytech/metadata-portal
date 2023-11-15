@@ -4,23 +4,39 @@ use std::path::PathBuf;
 
 use anyhow::{Context, Result};
 use indexmap::IndexMap;
-use log::info;
+use log::{info, warn};
 
 use crate::common::path::{ContentType, QrPath};
 use crate::common::types::MetaVersion;
 use crate::export::{ExportChainSpec, ExportData, MetadataQr, QrCode, ReactAssetPath};
-use crate::fetch::Fetcher;
+use crate::fetch::{fetch_deployed_data, Fetcher};
 use crate::qrs::{collect_metadata_qrs, metadata_files, spec_files};
 use crate::AppConfig;
 
 pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<ExportData> {
     let all_specs = spec_files(&config.qr_dir)?;
     let all_metadata = metadata_files(&config.qr_dir)?;
+    let online = fetch_deployed_data(config).ok();
 
     let mut export_specs = IndexMap::new();
     for chain in &config.chains {
         info!("Collecting {} info...", chain.name);
-        let specs = fetcher.fetch_specs(chain)?;
+        let specs = match fetcher.fetch_specs(chain) {
+            Ok(specs) => specs,
+            Err(e) => {
+                if let Some(online_specs) = online.as_ref() {
+                    if let Some(online_chain_specs) = online_specs.get(&chain.portal_id()) {
+                        warn!(
+                            "Unable to fetch specs for {}. Keep current online specs. Err: {}.",
+                            chain.name, e
+                        );
+                        export_specs.insert(chain.portal_id(), online_chain_specs.clone());
+                        continue;
+                    }
+                }
+                return Err(e);
+            }
+        };
         let meta = fetcher.fetch_metadata(chain)?;
         let live_meta_version = meta.meta_values.version;
 

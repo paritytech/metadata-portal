@@ -31,7 +31,7 @@ impl fmt::Display for ReactAssetPath {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ExportChainSpec {
     pub(crate) title: String,
@@ -51,7 +51,7 @@ pub(crate) struct ExportChainSpec {
     pub(crate) relay_chain: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MetadataQr {
     pub(crate) version: u32,

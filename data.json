@@ -298,18 +298,8 @@
     "base58prefix": 0,
     "logo": "collectives",
     "decimals": 12,
-    "liveMetaVersion": 9430,
-    "metadataQr": {
-      "version": 9430,
-      "file": {
-        "path": "qr/westend-collectives_metadata_9430.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x7aa2ab80d8d3be7af253c509d6569f767afa9351514d01d2a356fbca69b464a0"
-        }
-      }
-    },
+    "liveMetaVersion": 1000000,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-collectives_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-collectives_specs.png",

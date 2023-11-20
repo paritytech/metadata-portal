@@ -8,16 +8,15 @@
     "base58prefix": 90,
     "logo": "frequency",
     "decimals": 8,
-    "liveMetaVersion": 48,
+    "liveMetaVersion": 56,
     "metadataQr": {
-      "version": 48,
+      "version": 56,
       "file": {
-        "path": "qr/frequency_metadata_48.apng",
+        "path": "qr/frequency_metadata_56.apng",
         "signedBy": "Frequency",
         "source": {
-          "type": "Wasm",
-          "github_repo": "LibertyDSNP/frequency",
-          "hash": "0x968681974762c4dbaf591c05c4cd50d15e94f876bda8d5582e4de4fd361fbf63"
+          "type": "Rpc",
+          "block": "0xa2719f4ed890b743cd7f317b74495a0a9b8f369dcf574f76ccb549425d571f98"
         }
       }
     },

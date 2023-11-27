@@ -328,7 +328,17 @@
     "logo": "rococo",
     "decimals": 12,
     "liveMetaVersion": 104000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 104000,
+      "file": {
+        "path": "qr/rococo_metadata_104000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x9acad55ada6ae96d2209d9c7d8e7cf34aaacdb34ef678f6a50fc0ce3b89765d0"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo_specs.png",
@@ -347,7 +357,17 @@
     "logo": "statemine",
     "decimals": 12,
     "liveMetaVersion": 1004000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1004000,
+      "file": {
+        "path": "qr/rococo-statemine_metadata_1004000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xc8b6ee60ed9b0ab29f68686c526b8004251952161d93f6e9b31a8b9380b1c922"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-statemine_specs.png",
@@ -366,7 +386,17 @@
     "logo": "bridge-hub-rococo",
     "decimals": 12,
     "liveMetaVersion": 1004000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1004000,
+      "file": {
+        "path": "qr/rococo-bridge-hub-rococo_metadata_1004000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x990b5f2830be6b7c454ddb9d5822bf8131320e71914c34bf12c8ede1f298f39c"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-bridge-hub-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-bridge-hub-rococo_specs.png",

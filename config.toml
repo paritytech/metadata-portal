@@ -84,7 +84,7 @@ color = "#77bb77"
 relay_chain = "westend"
 
 [[chains]]
-name = "collectives"
+name = "collectives-westend"
 rpc_endpoint = "wss://westend-collectives-rpc.polkadot.io"
 color = "#e6777a"
 relay_chain = "westend"

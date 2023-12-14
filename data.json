@@ -328,7 +328,17 @@
     "logo": "rococo",
     "decimals": 12,
     "liveMetaVersion": 1005000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1005000,
+      "file": {
+        "path": "qr/rococo_metadata_1005000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xcaa365779ac297bdf1b14ca35642891873db497897d8fa95c7e6a12875ccb32c"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo_specs.png",

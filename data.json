@@ -270,7 +270,17 @@
     "logo": "westmint",
     "decimals": 12,
     "liveMetaVersion": 1005000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1005000,
+      "file": {
+        "path": "qr/westend-westmint_metadata_1005000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x440ed9b2ae5df962196b8f4457be55acd39abebb9ae64089cfde4fd9263b718a"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-westmint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-westmint_specs.png",
@@ -289,7 +299,17 @@
     "logo": "collectives-westend",
     "decimals": 12,
     "liveMetaVersion": 1005000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1005000,
+      "file": {
+        "path": "qr/westend-collectives-westend_metadata_1005000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x85627dae79286708c57c9a2bd64b66bfdcf0336245a145dd3f9cb1dea60350e3"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-collectives-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-collectives-westend_specs.png",

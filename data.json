@@ -346,18 +346,8 @@
     "base58prefix": 42,
     "logo": "statemine",
     "decimals": 12,
-    "liveMetaVersion": 1005001,
-    "metadataQr": {
-      "version": 1005001,
-      "file": {
-        "path": "qr/rococo-statemine_metadata_1005001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x6ca9190263c45f2b355f0e9b562e0e7904ca4db4f8830f520b653a1e545ce774"
-        }
-      }
-    },
+    "liveMetaVersion": 1006000,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-statemine_specs.png",
@@ -375,7 +365,7 @@
     "base58prefix": 42,
     "logo": "bridge-hub-rococo",
     "decimals": 12,
-    "liveMetaVersion": 1005002,
+    "liveMetaVersion": 1006000,
     "metadataQr": null,
     "latestMetadata": "qr/rococo-bridge-hub-rococo_metadata_latest.apng",
     "specsQr": {

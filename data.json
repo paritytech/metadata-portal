@@ -356,18 +356,8 @@
     "base58prefix": 42,
     "logo": "statemine",
     "decimals": 12,
-    "liveMetaVersion": 1006000,
-    "metadataQr": {
-      "version": 1006000,
-      "file": {
-        "path": "qr/rococo-statemine_metadata_1006000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x56df6230a17a89998c27c3360f207128d89ea652ced0561599da7b159bb904d0"
-        }
-      }
-    },
+    "liveMetaVersion": 1007000,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-statemine_specs.png",

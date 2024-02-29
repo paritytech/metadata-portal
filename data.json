@@ -270,7 +270,17 @@
     "logo": "westmint",
     "decimals": 12,
     "liveMetaVersion": 1008000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1008000,
+      "file": {
+        "path": "qr/westend-westmint_metadata_1008000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x64b8f3218ad29100b94bce1762e3b215ffca13b0a71a1179b8346acbaa415808"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-westmint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-westmint_specs.png",

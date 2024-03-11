@@ -34,5 +34,5 @@ jobs:
           yarn lint --max-warnings=0
           prettier --check "src/**/*.(tsx|ts)"
 
-      - name: Pretend we have data.json and run tests
+      - name: Pretend we have chains.json and run tests
         run: cp public/test-file.json src/chains.json && yarn test

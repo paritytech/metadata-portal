@@ -51,6 +51,7 @@ export function getChains(): Chains {
   const chainList = Object.values(jsonData).map((chain: object) =>
     Object.assign({} as ChainSpec, chain)
   );
+
   return chainList.reduce((obj: Chains, chain: ChainSpec) => {
     return {
       ...obj,

@@ -1,9 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import {QrInfo} from "../scheme";
+import { QrInfo } from "../scheme";
 
 export default function AddToSigner({ path }: QrInfo) {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -68,7 +68,11 @@ export default function AddToSigner({ path }: QrInfo) {
                   Scan this code with your signer device
                 </Dialog.Title>
                 <div className="min-h-[180px]">
-                  <img src={process.env.PUBLIC_URL + path} className="ml-auto mr-auto" alt="Qr code" />
+                  <img
+                    src={process.env.PUBLIC_URL + path}
+                    className="ml-auto mr-auto"
+                    alt="Qr code"
+                  />
                 </div>
 
                 <div>

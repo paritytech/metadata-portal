@@ -1,5 +1,8 @@
 import { QrInfo } from "../scheme";
-import { CheckBadgeIcon, ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import {
+  CheckBadgeIcon,
+  ExclamationCircleIcon,
+} from "@heroicons/react/24/solid";
 
 export default function QrCode({ path, signedBy }: QrInfo) {
   const svgClass = "inline mr-2 h-7";

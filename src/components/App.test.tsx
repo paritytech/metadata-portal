@@ -6,7 +6,7 @@ test("renders ok", () => {
   render(
     <Router>
       <App />
-    </Router>,
+    </Router>
   );
 });
 

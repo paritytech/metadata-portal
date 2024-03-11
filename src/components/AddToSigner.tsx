@@ -1,6 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import React from "react";
 import {QrInfo} from "../scheme";
 
 export default function AddToSigner({ path }: QrInfo) {

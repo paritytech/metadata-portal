@@ -1,19 +1,31 @@
 {
-  "polkadot": {
-    "name": "polkadot",
-    "rpcEndpoint": "wss://rpc.polkadot.io",
-    "genesisHash": "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3",
-    "unit": "DOT",
-    "base58prefix": 0,
-    "logo": "polkadot",
-    "decimals": 10,
-    "metadataVersion": 9,
+  "centrifuge": {
+    "title": "centrifuge",
+    "color": "#fcc367",
+    "rpcEndpoint": "wss://fullnode.parachain.centrifuge.io",
+    "genesisHash": "0xb3db41421702df9a7fcac62b53ffeac85f7853cc4e689e0b93aeb3db18c09d82",
+    "unit": "CFG",
+    "base58prefix": 36,
+    "logo": "centrifuge",
+    "decimals": 18,
+    "liveMetaVersion": 1024,
     "metadataQr": {
-      "path": "/qr/polkadot_metadata_9.apng",
-      "signedBy": "Parity"
+      "version": 1024,
+      "file": {
+        "path": "qr/unsigned_centrifuge_metadata_1024.apng",
+        "signedBy": null,
+        "source": {
+          "type": "Rpc",
+          "block": "0x81b3bd1668456944fb723e7955e79dd07ff0d1e65ea452f417dea6d01afcf8bf"
+        }
+      }
     },
-    "nextMetadataVersion": null,
-    "nextMetadataQr": null,
-    "specsQr": { "path": "/qr/polkadot_specs.png", "signedBy": "Parity" }
+    "latestMetadata": "qr/centrifuge_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/centrifuge_specs.png",
+      "signedBy": "Centrifuge",
+      "source": null
+    },
+    "relayChain": null
   }
 }

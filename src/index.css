@@ -2,28 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter&family=Unbounded&display=swap");
-/*
 @font-face {
   font-family: "Web3-Regular";
-  src: url("./assets/fonts/Web3-Regular.woff") format("woff"),
-    url("./assets/fonts/Web3-Regular.woff2") format("woff2");
+  src: url("./fonts/Web3-Regular.woff2") format("woff2");
 }
-
-.web3-regular {
-  font-family: "Web3-Regular";
-} */
 
 body {
-  font-family: "Inter";
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.unbounded {
-  font-family: "Unbounded";
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-@layer components {
-  .bordered-action {
-    @apply px-4 py-2 border border-neutral-200 rounded-4xl;
-  }
+.web3-icon {
+  font-family: "Web3-Regular";
 }

@@ -1,4 +1,4 @@
-data_file = "public/data.json"
+data_file = "src/chains.json"
 public_dir = "public"
 qr_dir = "public/qr"
 

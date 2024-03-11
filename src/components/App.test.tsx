@@ -11,5 +11,5 @@ test("renders ok", () => {
 });
 
 test("data file exists", async () => {
-  require("../../public/data.json");
+  require("../chains.json");
 });

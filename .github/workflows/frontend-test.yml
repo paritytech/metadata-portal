@@ -31,6 +31,7 @@ jobs:
 
       - name: Check lint
         run: |
+          yarn cache clean
           yarn lint --max-warnings=0
           prettier --check "src/**/*.(tsx|ts)"
 

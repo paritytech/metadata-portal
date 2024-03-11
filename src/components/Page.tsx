@@ -22,11 +22,13 @@ export default function Page({ allChains, currentName }: Props) {
       <div className="flex flex-row flex-wrap justify-center gap-10">
         {metadataQr && (
           <>
-            <QrCode {...metadataQr} />
+            <QrCode {...metadataQr.file} />
             <div className="text-white overflow-auto">
-              <h1 className="text-3xl sm:text-5xl mb-5">Metadata #{metadataQr.version}</h1>
+              <h1 className="text-3xl sm:text-5xl mb-5">
+                Metadata #{metadataQr.version}
+              </h1>
               <Specs {...chain} />
-                {specsQr && <AddToSigner {...specsQr} />}
+              {specsQr && <AddToSigner {...specsQr} />}
             </div>
           </>
         )}

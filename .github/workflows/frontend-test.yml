@@ -1,0 +1,38 @@
+name: Frontend test
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  frontend-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Install yarn
+        run: npm install -g yarn prettier
+
+      - name: Get yarn cache path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: ⚡ NPM Cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+
+      - name: 🔧 Install dependencies
+        run: yarn
+
+      - name: Check lint
+        run: |
+          yarn lint --max-warnings=0
+          yarn prettier --check "src/**/*.(tsx|ts)"
+
+      - name: Pretend we have chains.json and run tests
+        run: cp public/test-file.json src/chains.json && yarn test

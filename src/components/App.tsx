@@ -1,9 +1,6 @@
-import React from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import { getChains } from "../scheme";
 import Page from "./Page";
-// @ts-ignore
-import GitHubForkRibbon from "react-github-fork-ribbon";
 
 export default function App() {
   const allChains = getChains();
@@ -24,14 +21,6 @@ export default function App() {
         />
         {routes}
       </Routes>
-      <GitHubForkRibbon
-        href="https://github.com/paritytech/metadata-portal"
-        target="_blank"
-        color="black"
-        position="right-bottom"
-      >
-        Fork me on GitHub
-      </GitHubForkRibbon>
     </HashRouter>
   );
 }

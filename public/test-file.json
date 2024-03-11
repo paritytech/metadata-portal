@@ -1,0 +1,31 @@
+{
+  "centrifuge": {
+    "title": "centrifuge",
+    "color": "#fcc367",
+    "rpcEndpoint": "wss://fullnode.parachain.centrifuge.io",
+    "genesisHash": "0xb3db41421702df9a7fcac62b53ffeac85f7853cc4e689e0b93aeb3db18c09d82",
+    "unit": "CFG",
+    "base58prefix": 36,
+    "logo": "centrifuge",
+    "decimals": 18,
+    "liveMetaVersion": 1024,
+    "metadataQr": {
+      "version": 1024,
+      "file": {
+        "path": "qr/unsigned_centrifuge_metadata_1024.apng",
+        "signedBy": null,
+        "source": {
+          "type": "Rpc",
+          "block": "0x81b3bd1668456944fb723e7955e79dd07ff0d1e65ea452f417dea6d01afcf8bf"
+        }
+      }
+    },
+    "latestMetadata": "qr/centrifuge_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/centrifuge_specs.png",
+      "signedBy": "Centrifuge",
+      "source": null
+    },
+    "relayChain": null
+  }
+}

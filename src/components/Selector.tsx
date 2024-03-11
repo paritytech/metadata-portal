@@ -1,6 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { Chains, ChainSpec } from "../scheme";
 
@@ -19,7 +19,7 @@ function ChainLogo(props: { chain: ChainSpec; className?: string }) {
       className={`web3-icon mr-2 ${props.className}`}
       style={{ color: props.chain.color }}
     >
-      {props.chain.name}
+      {props.chain.title}
     </span>
   );
 }
@@ -50,7 +50,7 @@ export default function Selector({ selectedName, allChains }: Props) {
         <div>
           <Menu.Button className="inline-flex justify-center w-full items-center px-4 py-2 bg-white rounded-md border-2 border-black hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <ChainLogo chain={selected} className="" />
-            {capitalizeFirstLetter(selected.name)}
+            {capitalizeFirstLetter(selected.title)}
             <ChevronDownIcon
               className="w-5 h-5 ml-2 text-3xl"
               aria-hidden="true"

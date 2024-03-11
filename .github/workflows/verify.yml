@@ -1,19 +1,21 @@
-name: Verify signed QRs
+name: Verify
 
 on:
   pull_request:
     branches:
       - master
+    paths:
+      - 'public/qr/**'
+      - 'config.toml'
 
 jobs:
   verify:
     runs-on: ubuntu-latest
-
     steps:
       - name: 🛎 Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - uses: ./.github/workflows/rust-install
 
       - name: ⚙ Run verifier
-        run: make verifier
+        run: cargo run --release -- verify

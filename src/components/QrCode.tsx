@@ -1,5 +1,8 @@
 import { QrInfo } from "../scheme";
-import { BadgeCheckIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
+import {
+  CheckBadgeIcon,
+  ExclamationCircleIcon,
+} from "@heroicons/react/24/solid";
 
 export default function QrCode({ path, signedBy }: QrInfo) {
   const svgClass = "inline mr-2 h-7";
@@ -9,7 +12,7 @@ export default function QrCode({ path, signedBy }: QrInfo) {
       <div className="flex justify-center text-lg font-medium">
         {signedBy ? (
           <div className="text-green-700">
-            <BadgeCheckIcon className={svgClass} />
+            <CheckBadgeIcon className={svgClass} />
             Signed by {signedBy}
           </div>
         ) : (

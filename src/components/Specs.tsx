@@ -7,7 +7,7 @@ export default function Specs(chainSpec: ChainSpec) {
       {row("Genesis hash", chainSpec.genesisHash)}
       {row("Color", chainSpec.color)}
       {row("Unit", chainSpec.unit)}
-      {row("Address prefix", chainSpec.addressPrefix)}
+      {row("Address prefix", chainSpec.base58prefix)}
     </ul>
   );
 }

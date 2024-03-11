@@ -4,9 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 test("renders ok", () => {
   render(
-    <Router>
       <App />
-    </Router>
   );
 });
 

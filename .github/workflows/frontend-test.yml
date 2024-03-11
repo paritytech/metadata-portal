@@ -31,9 +31,8 @@ jobs:
 
       - name: Check lint
         run: |
-          yarn cache clean
           yarn lint --max-warnings=0
-          prettier --check "src/**/*.(tsx|ts)"
+          yarn prettier --check "src/**/*.(tsx|ts)"
 
       - name: Pretend we have chains.json and run tests
         run: cp public/test-file.json src/chains.json && yarn test

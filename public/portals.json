@@ -1,4 +1,12 @@
 {
+  "centrifuge": {
+    "name": "Centrifuge",
+    "url": "https://centrifuge.github.io/metadata-portal/"
+  },
+  "altair": {
+    "name": "Altair",
+    "url": "https://centrifuge.github.io/metadata-portal/"
+  },
   "parity": {
     "name": "Parity",
     "url": "https://metadata.parity.io/"

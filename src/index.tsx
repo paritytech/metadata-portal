@@ -1,15 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./components/App";
+import "./index.css";
 
-// Assert that the element is non-null with `!`
-const container = document.getElementById("root")!;
-// Now TypeScript knows `container` is not null
-const root = createRoot(container);
-
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+createRoot(document.getElementById("root") as HTMLElement).render(
+  <Router>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Router>
 );

@@ -1,5 +1,3 @@
-import jsonData from "./chains.json"; // Dynamically generated datafile. Run `make collector` to create
-
 export interface ChainSpec {
   title: string;
   color: string;
@@ -43,19 +41,20 @@ export interface RpcSource extends SourceBase {
   block: string;
 }
 
-export interface Chains {
-  [title: string]: ChainSpec;
+export interface AddToSignerInterface {
+  path: string;
+  color: string;
+  name: string;
 }
 
-export function getChains(): Chains {
-  const chainList = Object.values(jsonData).map((chain: object) =>
-    Object.assign({} as ChainSpec, chain)
-  );
+export interface Chains {
+  [name: string]: ChainSpec;
+}
 
-  return chainList.reduce((obj: Chains, chain: ChainSpec) => {
-    return {
-      ...obj,
-      [chain.title]: chain,
-    };
-  }, {});
+export type Portal = {
+  name: string;
+  url: string;
+};
+export interface Portals {
+  [name: string]: Portal;
 }

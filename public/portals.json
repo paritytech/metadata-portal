@@ -1,0 +1,14 @@
+{
+  "parity": {
+    "name": "Parity",
+    "url": "https://metadata.parity.io/"
+  },
+  "k-factory": {
+    "name": "Centrifuge",
+    "url": "https://centrifuge.github.io/metadata-portal/"
+  },
+  "novasama": {
+    "name": "Novasama",
+    "url": "https://metadata.novasama.io/"
+  }
+}

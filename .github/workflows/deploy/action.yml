@@ -1,0 +1,38 @@
+inputs:
+  token:
+    description: 'Github token'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: 🔧 Install yarn
+      run: npm install -g yarn
+      shell: bash
+
+    - name: Get yarn cache path
+      id: yarn-cache-dir-path
+      run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: ⚡ NPM Cache
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+
+    - name: 🔧 Install dependencies
+      run: yarn
+      shell: bash
+
+    - name: Run tests
+      run: yarn test
+      shell: bash
+
+    - name: 🚀 Deploy
+      run: |
+        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        yarn deploy -u "GitHub Action <action@github.com>"
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+      shell: bash

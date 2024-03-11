@@ -11,25 +11,9 @@ jobs:
 
     steps:
       - name: 🛎 Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - uses: ./.github/workflows/rust-install
-
-      - name: 🔧 Install yarn
-        run: npm install -g yarn
-
-      - name: Get yarn cache path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: ⚡ NPM Cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-
-      - name: 🔧 Install dependancies
-        run: yarn
 
       - name: ⚙ Run verifier
         run: make verifier
@@ -37,9 +21,6 @@ jobs:
       - name: ⚙ Run collector
         run: make collector
 
-      - name: 🚀 Deploy
-        run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          yarn deploy -u "GitHub Action <action@github.com>"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./.github/workflows/deploy
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

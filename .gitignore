@@ -26,4 +26,10 @@ yarn-error.log*
 .idea
 
 # Auto-generated data file for frontend
-src/chains.json
+public/data.json
+
+# Rust build
+target
+
+# symlink QRs
+public/qr/*_latest.apng

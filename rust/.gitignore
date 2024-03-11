@@ -1,5 +1,0 @@
-target
-rust/*/target
-qrcode_static/*.png
-files/for_signing/*
-files/signed/*

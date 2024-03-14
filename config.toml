@@ -19,7 +19,7 @@ repo = "frequency"
 genesis_hash = "0x4a587bf17a404e3572747add7aab7bbe56e805a5479c6c436f07f36fcc8d3ae1"
 
 [[chains]]
-vanity_name = "Frequency Rococo"
+vanity_name = "Frequency Testnet"
 name = "frequency-testnet"
 rpc_endpoint = "wss://rpc.rococo.frequency.xyz"
 color = "#29FD47"

@@ -28,30 +28,20 @@
     },
     "relayChain": null
   },
-  "frequency-rococo": {
-    "title": "frequency-rococo",
+  "frequency-testnet": {
+    "title": "frequency-testnet",
     "color": "#29FD47",
     "rpcEndpoint": "wss://rpc.rococo.frequency.xyz",
     "genesisHash": "0x0c33dfffa907de5683ae21cc6b4af899b5c4de83f3794ed75b2dc74e1b088e72",
     "unit": "XRQCY",
     "base58prefix": 42,
-    "logo": "frequency-rococo",
+    "logo": "frequency-testnet",
     "decimals": 8,
-    "liveMetaVersion": 67,
-    "metadataQr": {
-      "version": 67,
-      "file": {
-        "path": "qr/frequency-rococo_metadata_67.apng",
-        "signedBy": "Frequency",
-        "source": {
-          "type": "Rpc",
-          "block": "0x71ea7855a7e29050b5e90db1e3b9df0243b4a65c1eeb27b012adc7c442e528b0"
-        }
-      }
-    },
-    "latestMetadata": "qr/frequency-rococo_metadata_latest.apng",
+    "liveMetaVersion": 74,
+    "metadataQr": null,
+    "latestMetadata": "qr/frequency-testnet_metadata_latest.apng",
     "specsQr": {
-      "path": "qr/frequency-rococo_specs.png",
+      "path": "qr/frequency-testnet_specs.png",
       "signedBy": "Frequency",
       "source": null
     },

@@ -37,11 +37,11 @@
     "base58prefix": 42,
     "logo": "frequency-testnet",
     "decimals": 8,
-    "liveMetaVersion": 74,
+    "liveMetaVersion": 73,
     "metadataQr": {
       "version": 74,
       "file": {
-        "path": "qr/frequency-testnet_metadata_74.apng",
+        "path": "qr/frequency-testnet_metadata_73.apng",
         "signedBy": "Frequency",
         "source": {
           "type": "Rpc",

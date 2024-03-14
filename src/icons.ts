@@ -4,7 +4,7 @@ import frequencySrc from "./assets/icons/frequency.svg";
 const ICONS = {
   polkadot: polkadotSrc,
   frequency: frequencySrc,
-  "frequency-rococo": frequencySrc,
+  "frequency-testnet": frequencySrc,
 };
 
 export function icon(network: string) {

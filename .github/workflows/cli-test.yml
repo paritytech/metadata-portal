@@ -5,14 +5,14 @@ on:
     branches:
       - main
     paths:
-      - 'cli/**'
+      - "cli/**"
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: 🛎 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔧 Install rust dependencies
         uses: ./.github/workflows/rust-install

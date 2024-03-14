@@ -7,7 +7,7 @@ concurrency:
 on:
   workflow_dispatch: # via manual trigger
   schedule:
-    - cron: '47 * * * *' # every hour on the 47th minute to avoid high load 0 times
+    - cron: "47 * * * *" # every hour on the 47th minute to avoid high load 0 times
 
 env:
   BRANCH_PREFIX: auto-signed
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🛎 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -65,7 +65,7 @@ jobs:
         if: ${{ steps.checkout-pr-branch.outputs.hasbranch == 'true' }}
         uses: ./.github/workflows/commit-changes
         with:
-          message: 'metadata update'
+          message: "metadata update"
 
       - name: Create name for new PR branch if it doesn't already exist
         if: ${{ steps.checkout-pr-branch.outputs.hasbranch == 'false' }}
@@ -83,7 +83,7 @@ jobs:
           branch: ${{ steps.new-branch.outputs.branchname }}
           delete-branch: true
           base: main
-          title: '[Automated] Updated signed metadata QR image files'
+          title: "[Automated] Updated signed metadata QR image files"
           body: |
             If the Metadata Portal needs updated data, inspect the data.json file to determine whether it is correct and then merge this PR.
           draft: false

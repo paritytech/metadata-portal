@@ -38,7 +38,17 @@
     "logo": "frequency-testnet",
     "decimals": 8,
     "liveMetaVersion": 74,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 74,
+      "file": {
+        "path": "qr/frequency-testnet_metadata_74.apng",
+        "signedBy": "Frequency",
+        "source": {
+          "type": "Rpc",
+          "block": "0x4195af9bac551bd6f5a6b8b61306a1581225830fc871daa0fc81b567a0b9c879"
+        }
+      }
+    },
     "latestMetadata": "qr/frequency-testnet_metadata_latest.apng",
     "specsQr": {
       "path": "qr/frequency-testnet_specs.png",

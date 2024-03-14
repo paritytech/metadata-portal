@@ -5,15 +5,15 @@ on:
     branches:
       - main
     paths:
-      - 'public/qr/**'
-      - 'config.toml'
+      - "public/qr/**"
+      - "config.toml"
 
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
       - name: 🛎 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: ./.github/workflows/rust-install
 

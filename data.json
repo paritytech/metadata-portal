@@ -443,18 +443,8 @@
     "base58prefix": 2,
     "logo": "encointer-parachain",
     "decimals": 12,
-    "liveMetaVersion": 1002000,
-    "metadataQr": {
-      "version": 1002000,
-      "file": {
-        "path": "qr/rococo-encointer-parachain_metadata_1002000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x0df950bd6e6e1d791e9ac9cff5d0a3142f1c28e516e837aabbf21949afbeb3e2"
-        }
-      }
-    },
+    "liveMetaVersion": 1002001,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-encointer-parachain_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-encointer-parachain_specs.png",

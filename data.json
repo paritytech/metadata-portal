@@ -444,7 +444,17 @@
     "logo": "encointer-parachain",
     "decimals": 12,
     "liveMetaVersion": 1002001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1002001,
+      "file": {
+        "path": "qr/rococo-encointer-parachain_metadata_1002001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x06ac4d47f0afc24e71e79304142a6166d403b3c08de114594d70807a6196f4ad"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-encointer-parachain_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-encointer-parachain_specs.png",

@@ -328,7 +328,17 @@
     "logo": "rococo",
     "decimals": 12,
     "liveMetaVersion": 1009000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1009000,
+      "file": {
+        "path": "qr/rococo_metadata_1009000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xa6388e8141dbaeef231132c543f7782e8cf0629ced4a8089084b6afc64be9be4"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo_specs.png",
@@ -347,7 +357,17 @@
     "logo": "statemine",
     "decimals": 12,
     "liveMetaVersion": 1009000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1009000,
+      "file": {
+        "path": "qr/rococo-statemine_metadata_1009000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x80d7fb79f50cb74cf34f19ccee267d9fba5a3da94bff42b6e8fc8ad0496730fb"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-statemine_specs.png",
@@ -366,7 +386,17 @@
     "logo": "bridge-hub-rococo",
     "decimals": 12,
     "liveMetaVersion": 1009000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1009000,
+      "file": {
+        "path": "qr/rococo-bridge-hub-rococo_metadata_1009000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xa92d36a31b21376d2e674aaf5cf3d02855e5952da67bcec8854da061a013cf94"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-bridge-hub-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-bridge-hub-rococo_specs.png",
@@ -385,7 +415,17 @@
     "logo": "contracts-rococo",
     "decimals": 12,
     "liveMetaVersion": 1009000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1009000,
+      "file": {
+        "path": "qr/rococo-contracts-rococo_metadata_1009000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x3e0332db90266ad5b8d51097214f6d364fa324e1a861903ba4955eff8365845c"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-contracts-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-contracts-rococo_specs.png",

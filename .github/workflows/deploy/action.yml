@@ -1,6 +1,6 @@
 inputs:
   token:
-    description: 'Github token'
+    description: "Github token"
     required: true
 
 runs:
@@ -16,7 +16,7 @@ runs:
       shell: bash
 
     - name: ⚡ NPM Cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}

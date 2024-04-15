@@ -77,7 +77,7 @@ jobs:
       - name: Create PR branch if it doesn't already exist
         if: ${{ steps.checkout-pr-branch.outputs.hasbranch == 'false' }}
         id: cpr
-        uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04
+        uses: peter-evans/create-pull-request@c55203cfde3e5c11a452d352b4393e68b85b4533
         with:
           commit-message: add signed QR image files
           branch: ${{ steps.new-branch.outputs.branchname }}

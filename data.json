@@ -125,7 +125,17 @@
     "logo": "kusama",
     "decimals": 12,
     "liveMetaVersion": 1002000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1002000,
+      "file": {
+        "path": "qr/kusama_metadata_1002000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x81c34ca74defac15feaf6092aa5abfe77d2bb847f304038a272a74f261e0f87f"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",
@@ -143,18 +153,8 @@
     "base58prefix": 2,
     "logo": "statemine",
     "decimals": 12,
-    "liveMetaVersion": 1001002,
-    "metadataQr": {
-      "version": 1001002,
-      "file": {
-        "path": "qr/kusama-statemine_metadata_1001002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x644b98abced1d016e781e2dc3e8626ced78b455f805721a78822479e1673a076"
-        }
-      }
-    },
+    "liveMetaVersion": 1002000,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-statemine_specs.png",
@@ -172,18 +172,8 @@
     "base58prefix": 2,
     "logo": "bridge-hub-kusama",
     "decimals": 12,
-    "liveMetaVersion": 1001000,
-    "metadataQr": {
-      "version": 1001000,
-      "file": {
-        "path": "qr/kusama-bridge-hub-kusama_metadata_1001000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xe6bf08231444ead1c739c48918e42befce5508740a42a5677c4969acd943d536"
-        }
-      }
-    },
+    "liveMetaVersion": 1002000,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-bridge-hub-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-bridge-hub-kusama_specs.png",
@@ -201,18 +191,8 @@
     "base58prefix": 2,
     "logo": "encointer-parachain",
     "decimals": 12,
-    "liveMetaVersion": 16,
-    "metadataQr": {
-      "version": 16,
-      "file": {
-        "path": "qr/kusama-encointer-parachain_metadata_16.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xd35aefae032a9474dea01ffc862bf628da1d2d9f374d6743ffaf5f220ae04e61"
-        }
-      }
-    },
+    "liveMetaVersion": 1002000,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-encointer-parachain_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-encointer-parachain_specs.png",

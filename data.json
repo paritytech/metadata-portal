@@ -9,7 +9,17 @@
     "logo": "polkadot",
     "decimals": 10,
     "liveMetaVersion": 1002000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1002000,
+      "file": {
+        "path": "qr/polkadot_metadata_1002000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xe82286d7f8e585e2820856b6e990d88ceb138f3c180af77118ccb2cc1d27a3c0"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",
@@ -28,7 +38,17 @@
     "logo": "statemint",
     "decimals": 10,
     "liveMetaVersion": 1002000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1002000,
+      "file": {
+        "path": "qr/polkadot-statemint_metadata_1002000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x80992b0033d7d8a89405d2724c29b64aed395c715da090cba2075b8585d47fce"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-statemint_specs.png",
@@ -47,7 +67,17 @@
     "logo": "bridge-hub-polkadot",
     "decimals": 10,
     "liveMetaVersion": 1002000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1002000,
+      "file": {
+        "path": "qr/polkadot-bridge-hub-polkadot_metadata_1002000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xbc175c34abdc9ef4cc44e588dd584e8222bf3e550176fd21969f1c8bff7da5a4"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-bridge-hub-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bridge-hub-polkadot_specs.png",
@@ -66,7 +96,17 @@
     "logo": "collectives",
     "decimals": 10,
     "liveMetaVersion": 1002000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1002000,
+      "file": {
+        "path": "qr/polkadot-collectives_metadata_1002000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x5030889d007ca488fee70c37ed40a6970209d51cc437bf6d41af943f561dea74"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-collectives_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-collectives_specs.png",

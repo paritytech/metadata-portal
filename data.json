@@ -365,18 +365,8 @@
     "base58prefix": 42,
     "logo": "bridge-hub-rococo",
     "decimals": 12,
-    "liveMetaVersion": 1010000,
-    "metadataQr": {
-      "version": 1010000,
-      "file": {
-        "path": "qr/rococo-bridge-hub-rococo_metadata_1010000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xb8674259b64cf11815db273d99ef15dd65f2d2d1e9b6f7c12522f9b6a4c308ca"
-        }
-      }
-    },
+    "liveMetaVersion": 1011000,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-bridge-hub-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-bridge-hub-rococo_specs.png",

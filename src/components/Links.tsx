@@ -1,5 +1,5 @@
 const LINKS = [
-  ["GitHub", "https://github.com/LibertyDSNP/metadata-portal"],
+  ["GitHub", "https://github.com/frequency-chain/metadata-portal"],
   ["Terms of Service", "https://www.parity.io/terms/"],
 ];
 

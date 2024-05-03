@@ -14,7 +14,7 @@ color = "#4B64FF"
 testnet = false
 
 [chains.github_release]
-owner = "LibertyDSNP"
+owner = "frequency-chain"
 repo = "frequency"
 genesis_hash = "0x4a587bf17a404e3572747add7aab7bbe56e805a5479c6c436f07f36fcc8d3ae1"
 
@@ -26,6 +26,6 @@ color = "#29FD47"
 testnet = true
 
 [chains.github_release]
-owner = "LibertyDSNP"
+owner = "frequency-chain"
 repo = "frequency"
 genesis_hash = "0x0c33dfffa907de5683ae21cc6b4af899b5c4de83f3794ed75b2dc74e1b088e72"

@@ -90,9 +90,8 @@ jobs:
           body: |
             If the Metadata Portal needs updated data, inspect the data.json file to determine whether it is correct and then merge this PR.
           draft: false
-
-      - name: Enable Pull Request Automerge
-        if: ${{ steps.cpr.outputs.pull-request-number > 1 }}
-        run: gh pr merge --squash --auto ${{ steps.cpr.outputs.pull-request-number }}
-        env:
-          GH_TOKEN: ${{ github.token }}
+          reviewers: |
+            wilwade
+            shannonwells
+            enddynayn
+            aramikm

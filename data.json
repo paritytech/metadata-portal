@@ -125,7 +125,17 @@
     "logo": "kusama",
     "decimals": 12,
     "liveMetaVersion": 1002001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1002001,
+      "file": {
+        "path": "qr/kusama_metadata_1002001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xbd45ae6d11400c0e40fbc82a32c21aee3e76e6306eb0654aaf92db3593e28c23"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",

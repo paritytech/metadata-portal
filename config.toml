@@ -10,7 +10,7 @@ public_key = "4402e2896c0aa61006b223f7f9b5e3703080c2f172642fd0c43de9892df76d79"
 vanity_name = "Frequency"
 name = "frequency"
 rpc_endpoint = "wss://1.rpc.frequency.xyz"
-color = "#4B64FF"
+color = "#19455E"
 testnet = false
 
 [chains.github_release]
@@ -22,7 +22,7 @@ genesis_hash = "0x4a587bf17a404e3572747add7aab7bbe56e805a5479c6c436f07f36fcc8d3a
 vanity_name = "Frequency Testnet"
 name = "frequency-testnet"
 rpc_endpoint = "wss://0.rpc.testnet.amplica.io"
-color = "#19455E"
+color = "#00b6af"
 testnet = true
 
 [chains.github_release]

@@ -1,22 +1,22 @@
 {
   "frequency": {
     "title": "frequency",
-    "color": "#4B64FF",
+    "color": "#19455E",
     "rpcEndpoint": "wss://1.rpc.frequency.xyz",
     "genesisHash": "0x4a587bf17a404e3572747add7aab7bbe56e805a5479c6c436f07f36fcc8d3ae1",
     "unit": "FRQCY",
     "base58prefix": 90,
     "logo": "frequency",
     "decimals": 8,
-    "liveMetaVersion": 74,
+    "liveMetaVersion": 78,
     "metadataQr": {
-      "version": 74,
+      "version": 78,
       "file": {
-        "path": "qr/frequency_metadata_74.apng",
+        "path": "qr/frequency_metadata_78.apng",
         "signedBy": "Frequency",
         "source": {
           "type": "Rpc",
-          "block": "0xc221605c6e339c4544421392d339564cbbc464d7f6febf700e6493732ddb0ea4"
+          "block": "0x0caedb84805aea918904b1b4c19fd2eb033c2bbad859074980b2015b7a67036f"
         }
       }
     },
@@ -30,7 +30,7 @@
   },
   "frequency-testnet": {
     "title": "frequency-testnet",
-    "color": "#19455E",
+    "color": "#00b6af",
     "rpcEndpoint": "wss://0.rpc.testnet.amplica.io",
     "genesisHash": "0x203c6838fc78ea3660a2f298a58d859519c72a5efdc0f194abd6f0d5ce1838e0",
     "unit": "XRQCY",

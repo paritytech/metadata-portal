@@ -1,7 +1,7 @@
 import iconSrc from "../assets/icons/vault.svg";
 import { useEffect, useState } from "react";
 
-const LINK = "https://www.parity.io/technologies/signer/";
+const LINK = "https://vault.novasama.io/";
 
 const HIDE_BANNER_KEY = "hideBanner";
 

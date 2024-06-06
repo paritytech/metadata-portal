@@ -38,7 +38,7 @@ export const Network = ({
 
   const vaultLink = (
     <a
-      href="https://parity.io/signer/"
+      href="https://vault.novasama.io/"
       className="font-bold"
       target="_blank"
       rel="noreferrer"

@@ -154,7 +154,17 @@
     "logo": "statemine",
     "decimals": 12,
     "liveMetaVersion": 1002006,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1002006,
+      "file": {
+        "path": "qr/kusama-statemine_metadata_1002006.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x8828a42affea7aaa19f90a1696d85fa5d2b09d9b5bf82b9d878cd4375ffb5e9a"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-statemine_specs.png",

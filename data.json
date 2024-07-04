@@ -404,18 +404,8 @@
     "base58prefix": 42,
     "logo": "contracts-rococo",
     "decimals": 12,
-    "liveMetaVersion": 1013000,
-    "metadataQr": {
-      "version": 1013000,
-      "file": {
-        "path": "qr/rococo-contracts-rococo_metadata_1013000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x2bb3f8b7b731d0b957afdf7491b9ac2d7e9bdb83c8ec3797363f3fffb3302d3d"
-        }
-      }
-    },
+    "liveMetaVersion": 1014000,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-contracts-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-contracts-rococo_specs.png",

@@ -299,7 +299,17 @@
     "logo": "collectives-westend",
     "decimals": 12,
     "liveMetaVersion": 1014000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1014000,
+      "file": {
+        "path": "qr/westend-collectives-westend_metadata_1014000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xc790e9c70f90cfbd754bae85bfacafa92b8aeeaefcd2722688f1bdd33da4c9a3"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-collectives-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-collectives-westend_specs.png",

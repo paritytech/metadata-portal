@@ -295,21 +295,11 @@
     "rpcEndpoint": "wss://westend-collectives-rpc.polkadot.io",
     "genesisHash": "0x713daf193a6301583ff467be736da27ef0a72711b248927ba413f573d2b38e44",
     "unit": "WND",
-    "base58prefix": 0,
+    "base58prefix": 42,
     "logo": "collectives-westend",
     "decimals": 12,
-    "liveMetaVersion": 1013000,
-    "metadataQr": {
-      "version": 1013000,
-      "file": {
-        "path": "qr/westend-collectives-westend_metadata_1013000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x0bf9177c17082f823327207289151c67516d823ec22c632f252a39272ebb77c1"
-        }
-      }
-    },
+    "liveMetaVersion": 1014000,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-collectives-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-collectives-westend_specs.png",

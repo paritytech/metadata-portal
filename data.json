@@ -8,15 +8,15 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "liveMetaVersion": 1002006,
+    "liveMetaVersion": 1002007,
     "metadataQr": {
-      "version": 1002006,
+      "version": 1002007,
       "file": {
-        "path": "qr/polkadot_metadata_1002006.apng",
+        "path": "qr/polkadot_metadata_1002007.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0xe498e3c5f9253a13cb162d50a66347b5da64f0f0fe4cdc7b7ad48b38c186a1c7"
+          "block": "0x1bda5563a35eb839170295b2bbe4dd5af0e757684b24ca81bc7b75fa48600031"
         }
       }
     },

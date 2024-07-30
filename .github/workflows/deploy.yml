@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Deploy Main
 
 on:
@@ -15,6 +16,9 @@ jobs:
         uses: actions/checkout@v4
 
       - uses: ./.github/workflows/rust-install
+
+      - name: ⚙ Run clean
+        run: cargo clean
 
       - name: ⚙ Run verifier
         run: make verifier

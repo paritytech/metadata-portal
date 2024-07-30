@@ -17,5 +17,8 @@ jobs:
 
       - uses: ./.github/workflows/rust-install
 
+      - name: ⚙ Run clean
+        run: cargo clean
+
       - name: ⚙ Run verifier
         run: cargo run --release -- verify

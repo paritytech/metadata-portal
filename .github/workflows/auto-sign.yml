@@ -44,9 +44,6 @@ jobs:
       - name: ⚙ Clean metadata-cli
         run: cargo clean --release
 
-      - name: ⚙ Build metadata-cli
-        run: cargo build --release
-
       - name: ⚙ Autosign QRs from RPC nodes
         env:
           SIGNING_SEED_PHRASE: ${{secrets.SIGNING_SEED_PHRASE}}

@@ -44,3 +44,6 @@ indexmap = {version="1", features=["serde"]}
 version = "0.83.0"
 default-features = false
 features = ["videoio", "imgproc", "highgui"]
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(ocvrs_opencv_branch_32)'] }

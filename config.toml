@@ -120,3 +120,10 @@ title = "Encointer"
 rpc_endpoint = "wss://rococo.api.encointer.org"
 color = "#0000cc"
 relay_chain = "rococo"
+
+[[chains]]
+name = "people-polkadot"
+title = "Polkadot People"
+rpc_endpoint = "wss://polkadot-people-rpc.polkadot.io"
+color = "#000000"
+relay_chain = "polkadot"

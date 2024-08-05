@@ -462,5 +462,63 @@
       "source": null
     },
     "relayChain": "rococo"
+  },
+  "polkadot-people-polkadot": {
+    "title": "polkadot Polkadot People",
+    "color": "#000000",
+    "rpcEndpoint": "wss://polkadot-people-rpc.polkadot.io",
+    "genesisHash": "0x67fa177a097bfa18f77ea95ab56e9bcdfeb0e5b8a40e46298bb93e16b6fc5008",
+    "unit": "DOT",
+    "base58prefix": 0,
+    "logo": "people-polkadot",
+    "decimals": 10,
+    "liveMetaVersion": 1002007,
+    "metadataQr": {
+      "version": 1002007,
+      "file": {
+        "path": "qr/polkadot-people-polkadot_metadata_1002007.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xb064771bc8210f48b61cec8a92c559d66bd5b963b8ac076fe4b963f76d3cb933"
+        }
+      }
+    },
+    "latestMetadata": "qr/polkadot-people-polkadot_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/polkadot-people-polkadot_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "polkadot"
+  },
+  "kusama-people-kusama": {
+    "title": "kusama Kusama People",
+    "color": "#000000",
+    "rpcEndpoint": "wss://kusama-people-rpc.polkadot.io",
+    "genesisHash": "0xc1af4cb4eb3918e5db15086c0cc5ec17fb334f728b7c65dd44bfe1e174ff8b3f",
+    "unit": "KSM",
+    "base58prefix": 2,
+    "logo": "people-kusama",
+    "decimals": 12,
+    "liveMetaVersion": 1002006,
+    "metadataQr": {
+      "version": 1002006,
+      "file": {
+        "path": "qr/kusama-people-kusama_metadata_1002006.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x3b19c95b41c7bd38bfe991cdbd4eb5977ac05f2c10f8b6845f3e16462862e887"
+        }
+      }
+    },
+    "latestMetadata": "qr/kusama-people-kusama_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/kusama-people-kusama_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "kusama"
   }
 }

@@ -37,6 +37,13 @@ color = "#e6777a"
 relay_chain = "polkadot"
 
 [[chains]]
+name = "people-polkadot"
+title = "People"
+rpc_endpoint = "wss://polkadot-people-rpc.polkadot.io"
+color = "#000000"
+relay_chain = "polkadot"
+
+[[chains]]
 name = "kusama"
 rpc_endpoint = "wss://kusama-rpc.polkadot.io"
 color = "#000000"
@@ -67,6 +74,13 @@ color = "#0000cc"
 relay_chain = "kusama"
 
 [[chains]]
+name = "people-kusama"
+title = "People"
+rpc_endpoint = "wss://kusama-people-rpc.polkadot.io"
+color = "#000000"
+relay_chain = "kusama"
+
+[[chains]]
 name = "westend"
 rpc_endpoint = "wss://westend-rpc.polkadot.io"
 color = "#f27230"
@@ -85,6 +99,7 @@ relay_chain = "westend"
 
 [[chains]]
 name = "collectives-westend"
+title = "Collectives"
 rpc_endpoint = "wss://westend-collectives-rpc.polkadot.io"
 color = "#e6777a"
 relay_chain = "westend"
@@ -120,17 +135,3 @@ title = "Encointer"
 rpc_endpoint = "wss://rococo.api.encointer.org"
 color = "#0000cc"
 relay_chain = "rococo"
-
-[[chains]]
-name = "people-polkadot"
-title = "Polkadot People"
-rpc_endpoint = "wss://polkadot-people-rpc.polkadot.io"
-color = "#000000"
-relay_chain = "polkadot"
-
-[[chains]]
-name = "people-kusama"
-title = "Kusama People"
-rpc_endpoint = "wss://kusama-people-rpc.polkadot.io"
-color = "#000000"
-relay_chain = "kusama"

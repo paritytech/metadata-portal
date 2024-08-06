@@ -8,19 +8,22 @@ import westendSrc from "./assets/icons/westend.svg";
 import rococoSrc from "./assets/icons/rococo.svg";
 import { nodesEncointerBlueSVG } from "./assets/icons/encointer-SVG";
 import { contractsPNG } from "./assets/icons/contracts-PNG";
+import peopleSrc from "./assets/icons/people.svg";
 
 const ICONS = {
   polkadot: polkadotSrc,
   "polkadot-statemint": assetHubSrc,
   "polkadot-bridge-hub-polkadot": bridgeHubSrc,
   "polkadot-collectives": collectivesSrc,
+  "polkadot-people-polkadot": peopleSrc,
   kusama: kusamaSrc,
   "kusama-statemine": assetHubSrc,
   "kusama-bridge-hub-kusama": bridgeHubBlackSrc,
   "kusama-encointer-parachain": nodesEncointerBlueSVG,
+  "kusama-people-kusama": peopleSrc,
   westend: westendSrc,
   "westend-westmint": assetHubSrc,
-  "westend-collectives": collectivesSrc,
+  "westend-collectives-westend": collectivesSrc,
   rococo: rococoSrc,
   "rococo-statemine": assetHubSrc,
   "rococo-bridge-hub-rococo": bridgeHubBlackSrc,

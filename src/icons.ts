@@ -28,12 +28,14 @@ const ICONS = {
   "westend-bridge-hub-westend": bridgeHubSrc,
   "westend-collectives-westend": collectivesSrc,
   "westend-coretime-westend": coretimeSrc,
+  "westend-people-westend": peopleSrc,
   rococo: rococoSrc,
   "rococo-statemine": assetHubSrc,
   "rococo-bridge-hub-rococo": bridgeHubBlackSrc,
   "rococo-contracts-rococo": contractsPNG,
   "rococo-coretime-rococo": coretimeSrc,
   "rococo-encointer-parachain": nodesEncointerBlueSVG,
+  "rococo-people-rococo": peopleSrc,
 };
 
 export function icon(network: string) {

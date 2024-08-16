@@ -125,6 +125,13 @@ color = "#82B7B7"
 relay_chain = "westend"
 
 [[chains]]
+name = "people-westend"
+title = "People"
+rpc_endpoint = "wss://westend-people-rpc.polkadot.io"
+color = "#0A672A"
+relay_chain = "westend"
+
+[[chains]]
 name = "rococo"
 rpc_endpoint = "wss://rococo-rpc.polkadot.io"
 color = "#6f36dc"
@@ -161,4 +168,11 @@ name = "encointer-parachain"
 title = "Encointer"
 rpc_endpoint = "wss://rococo.api.encointer.org"
 color = "#0000cc"
+relay_chain = "rococo"
+
+[[chains]]
+name = "people-rococo"
+title = "People"
+rpc_endpoint = "wss://rococo-people-rpc.polkadot.io"
+color = "#391BC9"
 relay_chain = "rococo"

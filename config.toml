@@ -104,10 +104,31 @@ color = "#77bb77"
 relay_chain = "westend"
 
 [[chains]]
+name = "bridge-hub-westend"
+title = "Bridge Hub"
+rpc_endpoint = "wss://westend-bridge-hub-rpc.polkadot.io"
+color = "#B878B4"
+relay_chain = "westend"
+
+[[chains]]
 name = "collectives-westend"
 title = "Collectives"
 rpc_endpoint = "wss://westend-collectives-rpc.polkadot.io"
 color = "#e6777a"
+relay_chain = "westend"
+
+[[chains]]
+name = "coretime-westend"
+title = "Coretime"
+rpc_endpoint = "wss://westend-coretime-rpc.polkadot.io"
+color = "#82B7B7"
+relay_chain = "westend"
+
+[[chains]]
+name = "people-westend"
+title = "People"
+rpc_endpoint = "wss://westend-people-rpc.polkadot.io"
+color = "#0A672A"
 relay_chain = "westend"
 
 [[chains]]
@@ -136,8 +157,22 @@ color = "#000000"
 relay_chain = "rococo"
 
 [[chains]]
+name = "coretime-rococo"
+title = "Coretime"
+rpc_endpoint = "wss://rococo-coretime-rpc.polkadot.io"
+color = "#50FB4B"
+relay_chain = "rococo"
+
+[[chains]]
 name = "encointer-parachain"
 title = "Encointer"
 rpc_endpoint = "wss://rococo.api.encointer.org"
 color = "#0000cc"
+relay_chain = "rococo"
+
+[[chains]]
+name = "people-rococo"
+title = "People"
+rpc_endpoint = "wss://rococo-people-rpc.polkadot.io"
+color = "#391BC9"
 relay_chain = "rococo"

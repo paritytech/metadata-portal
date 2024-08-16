@@ -231,6 +231,35 @@
     },
     "relayChain": "kusama"
   },
+  "kusama-coretime-kusama": {
+    "title": "kusama Coretime",
+    "color": "#000000",
+    "rpcEndpoint": "wss://kusama-coretime-rpc.polkadot.io",
+    "genesisHash": "0x638cd2b9af4b3bb54b8c1f0d22711fc89924ca93300f0caf25a580432b29d050",
+    "unit": "KSM",
+    "base58prefix": 2,
+    "logo": "coretime-kusama",
+    "decimals": 12,
+    "liveMetaVersion": 1002005,
+    "metadataQr": {
+      "version": 1002005,
+      "file": {
+        "path": "qr/kusama-coretime-kusama_metadata_1002005.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xab3a9a60277df72e6dec8bae4d1b2bc27f604f59da075f1e641d8acfb6f8815e"
+        }
+      }
+    },
+    "latestMetadata": "qr/kusama-coretime-kusama_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/kusama-coretime-kusama_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "kusama"
+  },
   "kusama-encointer-parachain": {
     "title": "kusama Encointer",
     "color": "#0000cc",

@@ -376,6 +376,35 @@
     },
     "relayChain": "westend"
   },
+  "westend-bridge-hub-westend": {
+    "title": "westend Bridge Hub",
+    "color": "#B878B4",
+    "rpcEndpoint": "wss://westend-bridge-hub-rpc.polkadot.io",
+    "genesisHash": "0x0441383e31d1266a92b4cb2ddd4c2e3661ac476996db7e5844c52433b81fe782",
+    "unit": "WND",
+    "base58prefix": 42,
+    "logo": "bridge-hub-westend",
+    "decimals": 12,
+    "liveMetaVersion": 1015000,
+    "metadataQr": {
+      "version": 1015000,
+      "file": {
+        "path": "qr/westend-bridge-hub-westend_metadata_1015000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x34ef0864c27f4f7f3517f39a63b8873cc378a4e30fbb979f694d661f10515270"
+        }
+      }
+    },
+    "latestMetadata": "qr/westend-bridge-hub-westend_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/westend-bridge-hub-westend_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "westend"
+  },
   "westend-collectives-westend": {
     "title": "westend Collectives",
     "color": "#e6777a",
@@ -400,6 +429,64 @@
     "latestMetadata": "qr/westend-collectives-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-collectives-westend_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "westend"
+  },
+  "westend-coretime-westend": {
+    "title": "westend Coretime",
+    "color": "#82B7B7",
+    "rpcEndpoint": "wss://westend-coretime-rpc.polkadot.io",
+    "genesisHash": "0xf938510edee7c23efa6e9db74f227c827a1b518bffe92e2f6c9842dc53d38840",
+    "unit": "WND",
+    "base58prefix": 42,
+    "logo": "coretime-westend",
+    "decimals": 12,
+    "liveMetaVersion": 1015000,
+    "metadataQr": {
+      "version": 1015000,
+      "file": {
+        "path": "qr/westend-coretime-westend_metadata_1015000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x8ca263c806200ec1bbb747daeef9e834924161039f3cd759a18bfd320424774a"
+        }
+      }
+    },
+    "latestMetadata": "qr/westend-coretime-westend_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/westend-coretime-westend_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "westend"
+  },
+  "westend-people-westend": {
+    "title": "westend People",
+    "color": "#0A672A",
+    "rpcEndpoint": "wss://westend-people-rpc.polkadot.io",
+    "genesisHash": "0x1eb6fb0ba5187434de017a70cb84d4f47142df1d571d0ef9e7e1407f2b80b93c",
+    "unit": "WND",
+    "base58prefix": 42,
+    "logo": "people-westend",
+    "decimals": 12,
+    "liveMetaVersion": 1015000,
+    "metadataQr": {
+      "version": 1015000,
+      "file": {
+        "path": "qr/westend-people-westend_metadata_1015000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x5c24a199d75a081153435a05ab737a802e91c20c2778b1393c832e16a00bfca2"
+        }
+      }
+    },
+    "latestMetadata": "qr/westend-people-westend_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/westend-people-westend_specs.png",
       "signedBy": "Parity",
       "source": null
     },
@@ -521,6 +608,35 @@
     },
     "relayChain": "rococo"
   },
+  "rococo-coretime-rococo": {
+    "title": "rococo Coretime",
+    "color": "#50FB4B",
+    "rpcEndpoint": "wss://rococo-coretime-rpc.polkadot.io",
+    "genesisHash": "0xc079ad1435652801e6789aa485ca8b13616716bcefb7f77395e889dc6d98e8c5",
+    "unit": "ROC",
+    "base58prefix": 42,
+    "logo": "coretime-rococo",
+    "decimals": 12,
+    "liveMetaVersion": 1015000,
+    "metadataQr": {
+      "version": 1015000,
+      "file": {
+        "path": "qr/rococo-coretime-rococo_metadata_1015000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x623ad373335946f73eafa24a37b33eb01a6c82296c7ff514e3bb3c5ff67fdefa"
+        }
+      }
+    },
+    "latestMetadata": "qr/rococo-coretime-rococo_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/rococo-coretime-rococo_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "rococo"
+  },
   "rococo-encointer-parachain": {
     "title": "rococo Encointer",
     "color": "#0000cc",
@@ -545,6 +661,35 @@
     "latestMetadata": "qr/rococo-encointer-parachain_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-encointer-parachain_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "rococo"
+  },
+  "rococo-people-rococo": {
+    "title": "rococo People",
+    "color": "#391BC9",
+    "rpcEndpoint": "wss://rococo-people-rpc.polkadot.io",
+    "genesisHash": "0xcaa036a5a771a7d6ea800c2988f4e3478b98de3ba9dab786db15e3e5e5b67886",
+    "unit": "ROC",
+    "base58prefix": 42,
+    "logo": "people-rococo",
+    "decimals": 12,
+    "liveMetaVersion": 1015000,
+    "metadataQr": {
+      "version": 1015000,
+      "file": {
+        "path": "qr/rococo-people-rococo_metadata_1015000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x14a24b3bd2961325a97deb8e87ee68a9cb02ed1825d3fc781e7665aef91db639"
+        }
+      }
+    },
+    "latestMetadata": "qr/rococo-people-rococo_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/rococo-people-rococo_specs.png",
       "signedBy": "Parity",
       "source": null
     },

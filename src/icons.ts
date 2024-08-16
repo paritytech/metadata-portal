@@ -9,6 +9,7 @@ import rococoSrc from "./assets/icons/rococo.svg";
 import { nodesEncointerBlueSVG } from "./assets/icons/encointer-SVG";
 import { contractsPNG } from "./assets/icons/contracts-PNG";
 import peopleSrc from "./assets/icons/people.svg";
+import kusamaCoretimeSrc from "./assets/icons/kusama-coretime.svg";
 
 const ICONS = {
   polkadot: polkadotSrc,
@@ -19,6 +20,7 @@ const ICONS = {
   kusama: kusamaSrc,
   "kusama-statemine": assetHubSrc,
   "kusama-bridge-hub-kusama": bridgeHubBlackSrc,
+  "kusama-coretime-kusama": kusamaCoretimeSrc,
   "kusama-encointer-parachain": nodesEncointerBlueSVG,
   "kusama-people-kusama": peopleSrc,
   westend: westendSrc,

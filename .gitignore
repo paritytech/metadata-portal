@@ -24,6 +24,7 @@ yarn-error.log*
 
 #IDEs
 .idea
+.vscode
 
 # Auto-generated data file for frontend
 public/data.json

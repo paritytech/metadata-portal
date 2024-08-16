@@ -111,6 +111,13 @@ color = "#e6777a"
 relay_chain = "westend"
 
 [[chains]]
+name = "coretime-westend"
+title = "Coretime"
+rpc_endpoint = "wss://westend-coretime-rpc.polkadot.io"
+color = "#82B7B7"
+relay_chain = "westend"
+
+[[chains]]
 name = "rococo"
 rpc_endpoint = "wss://rococo-rpc.polkadot.io"
 color = "#6f36dc"
@@ -133,6 +140,13 @@ name = "contracts-rococo"
 title = "Contracts"
 rpc_endpoint = "wss://rococo-contracts-rpc.polkadot.io"
 color = "#000000"
+relay_chain = "rococo"
+
+[[chains]]
+name = "coretime-rococo"
+title = "Coretime"
+rpc_endpoint = "wss://rococo-coretime-rpc.polkadot.io"
+color = "#50FB4B"
 relay_chain = "rococo"
 
 [[chains]]

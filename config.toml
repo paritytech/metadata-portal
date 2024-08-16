@@ -67,6 +67,12 @@ rpc_endpoint = "wss://kusama-bridge-hub-rpc.polkadot.io"
 relay_chain = "kusama"
 
 [[chains]]
+name = "coretime-kusama"
+title = "Coretime"
+rpc_endpoint = "wss://kusama-coretime-rpc.polkadot.io"
+relay_chain = "kusama"
+
+[[chains]]
 name = "encointer-parachain"
 title = "Encointer"
 rpc_endpoint = "wss://kusama.api.encointer.org"

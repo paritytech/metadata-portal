@@ -25,6 +25,7 @@ const ICONS = {
   "kusama-people-kusama": peopleSrc,
   westend: westendSrc,
   "westend-westmint": assetHubSrc,
+  "westend-bridge-hub-westend": bridgeHubSrc,
   "westend-collectives-westend": collectivesSrc,
   "westend-coretime-westend": coretimeSrc,
   rococo: rococoSrc,

@@ -37,18 +37,8 @@
     "base58prefix": 0,
     "logo": "statemint",
     "decimals": 10,
-    "liveMetaVersion": 1002006,
-    "metadataQr": {
-      "version": 1002006,
-      "file": {
-        "path": "qr/polkadot-statemint_metadata_1002006.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x4f21666066546ab5ba470f9092d48916b1dbbcb8c68fd65b9b5213c4a1100c4b"
-        }
-      }
-    },
+    "liveMetaVersion": 1003000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-statemint_specs.png",

@@ -327,18 +327,8 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "liveMetaVersion": 1016000,
-    "metadataQr": {
-      "version": 1016000,
-      "file": {
-        "path": "qr/westend_metadata_1016000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xfe7dddb1705712a83b11e0285223130e4d8bfcbd57a56491f46c05f6f6d1c26d"
-        }
-      }
-    },
+    "liveMetaVersion": 1016001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend_specs.png",
@@ -501,18 +491,8 @@
     "base58prefix": 42,
     "logo": "rococo",
     "decimals": 12,
-    "liveMetaVersion": 1016000,
-    "metadataQr": {
-      "version": 1016000,
-      "file": {
-        "path": "qr/rococo_metadata_1016000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x1d81f47062ad3cd370f4ff488ae2a07c670a5bfefb5f1e5cbe944506caec094a"
-        }
-      }
-    },
+    "liveMetaVersion": 1016001,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo_specs.png",
@@ -530,18 +510,8 @@
     "base58prefix": 42,
     "logo": "statemine",
     "decimals": 12,
-    "liveMetaVersion": 1016000,
-    "metadataQr": {
-      "version": 1016000,
-      "file": {
-        "path": "qr/rococo-statemine_metadata_1016000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x2b346f71a99145f86568fe306c61277d193ff4a36375918369b847c05f2db73c"
-        }
-      }
-    },
+    "liveMetaVersion": 1016001,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-statemine_specs.png",
@@ -559,18 +529,8 @@
     "base58prefix": 42,
     "logo": "bridge-hub-rococo",
     "decimals": 12,
-    "liveMetaVersion": 1016000,
-    "metadataQr": {
-      "version": 1016000,
-      "file": {
-        "path": "qr/rococo-bridge-hub-rococo_metadata_1016000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x5f3ad616c34bf029a0a53efb698084abacd54728c8bfb5b90aa32f4be38ac158"
-        }
-      }
-    },
+    "liveMetaVersion": 1016001,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-bridge-hub-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-bridge-hub-rococo_specs.png",
@@ -588,18 +548,8 @@
     "base58prefix": 42,
     "logo": "contracts-rococo",
     "decimals": 12,
-    "liveMetaVersion": 1016000,
-    "metadataQr": {
-      "version": 1016000,
-      "file": {
-        "path": "qr/rococo-contracts-rococo_metadata_1016000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xe088b9bfabc39ccfb7b7dad293a1a69284f2c6b2e984c683e8bce695e3e7717b"
-        }
-      }
-    },
+    "liveMetaVersion": 1016001,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-contracts-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-contracts-rococo_specs.png",
@@ -617,18 +567,8 @@
     "base58prefix": 42,
     "logo": "coretime-rococo",
     "decimals": 12,
-    "liveMetaVersion": 1016000,
-    "metadataQr": {
-      "version": 1016000,
-      "file": {
-        "path": "qr/rococo-coretime-rococo_metadata_1016000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xdc2fe099aaea25b49abbfd71c42779abee5d13eee104c736affe1664576c5aa3"
-        }
-      }
-    },
+    "liveMetaVersion": 1016001,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-coretime-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-coretime-rococo_specs.png",
@@ -675,18 +615,8 @@
     "base58prefix": 42,
     "logo": "people-rococo",
     "decimals": 12,
-    "liveMetaVersion": 1016000,
-    "metadataQr": {
-      "version": 1016000,
-      "file": {
-        "path": "qr/rococo-people-rococo_metadata_1016000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x1218be9ffa25873570ab971dadd6166166955de2347860449ff7fd3d2df13802"
-        }
-      }
-    },
+    "liveMetaVersion": 1016001,
+    "metadataQr": null,
     "latestMetadata": "qr/rococo-people-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-people-rococo_specs.png",

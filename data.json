@@ -328,7 +328,17 @@
     "logo": "westend",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/westend_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x2cbd01ef7a1f1caaeda6398c018b439a267e4e1641f4755d666b6da8126f13b9"
+        }
+      }
+    },
     "latestMetadata": "qr/westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend_specs.png",
@@ -347,7 +357,17 @@
     "logo": "westmint",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/westend-westmint_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xd492e1cf01aac2cc4f206794270cf9c589d340b5eddbb7b0d1243c42c08c6ccf"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-westmint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-westmint_specs.png",
@@ -366,7 +386,17 @@
     "logo": "bridge-hub-westend",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/westend-bridge-hub-westend_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x26f506982ae1908bb61d97beb9ad9ded8637291039759840d75218049f9a9cd2"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-bridge-hub-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-bridge-hub-westend_specs.png",
@@ -385,7 +415,17 @@
     "logo": "collectives-westend",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/westend-collectives-westend_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x45d25e7e88413628ce239932691d841e4d8c8c647e12a115e7f75b30b924196a"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-collectives-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-collectives-westend_specs.png",
@@ -404,7 +444,17 @@
     "logo": "coretime-westend",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/westend-coretime-westend_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x0d91c89cb008641ce185ce7a8dd72214e2b64669612346594a285cbec249de99"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-coretime-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-coretime-westend_specs.png",
@@ -423,7 +473,17 @@
     "logo": "people-westend",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/westend-people-westend_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x01fea84ca9074f5136472308d71ad2b229f3db77e63e5b7eca1f4c985e90d16e"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-people-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-people-westend_specs.png",
@@ -442,7 +502,17 @@
     "logo": "rococo",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/rococo_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xfa7f2f70834d1d679584b21f3f0e46e368f4913067057430b75109c6e1c496d1"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo_specs.png",
@@ -461,7 +531,17 @@
     "logo": "statemine",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/rococo-statemine_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x68115eb54733acb23a729e8c70a6963d0e35b049f0852dbc34828f2873239d28"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-statemine_specs.png",
@@ -480,7 +560,17 @@
     "logo": "bridge-hub-rococo",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/rococo-bridge-hub-rococo_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x82b27752baf808a46e80c2b0571718a541b1e58ef0218efac7bf972ebd073965"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-bridge-hub-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-bridge-hub-rococo_specs.png",
@@ -499,7 +589,17 @@
     "logo": "contracts-rococo",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/rococo-contracts-rococo_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x87377c176fadc30f4e5a43d5b207100290ec1ee2bdd6c2cbca2b8eeb56762a2d"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-contracts-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-contracts-rococo_specs.png",
@@ -518,7 +618,17 @@
     "logo": "coretime-rococo",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/rococo-coretime-rococo_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xe9322f1f2eb1b5fdeacf251b27795241e50242901af18e430d8b8a7221a5e967"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-coretime-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-coretime-rococo_specs.png",
@@ -566,7 +676,17 @@
     "logo": "people-rococo",
     "decimals": 12,
     "liveMetaVersion": 1016001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1016001,
+      "file": {
+        "path": "qr/rococo-people-rococo_metadata_1016001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x858fa8e6109151633e4b70b691e4c51fdbaa86ec1df15045a5c6dcac62c6a024"
+        }
+      }
+    },
     "latestMetadata": "qr/rococo-people-rococo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/rococo-people-rococo_specs.png",

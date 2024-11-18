@@ -8,18 +8,8 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "liveMetaVersion": 1003003,
-    "metadataQr": {
-      "version": 1003003,
-      "file": {
-        "path": "qr/polkadot_metadata_1003003.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x6bd29130e7e0ba1f2370b89daab42ea98459ac730d8c53542103f98780a5e32d"
-        }
-      }
-    },
+    "liveMetaVersion": 1003004,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",
@@ -153,18 +143,8 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "liveMetaVersion": 1003000,
-    "metadataQr": {
-      "version": 1003000,
-      "file": {
-        "path": "qr/kusama_metadata_1003000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xc74fcc5ccaefb59bb2b8b00f437bdd79e14a283547dfd201fc9b6622fe3f6d9b"
-        }
-      }
-    },
+    "liveMetaVersion": 1003003,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",

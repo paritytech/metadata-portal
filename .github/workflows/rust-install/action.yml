@@ -3,8 +3,8 @@ runs:
   steps:
     - name: 🛠️Install system dependencies
       run: |
-        apt update
-        apt install -y clang libclang-dev libopencv-dev
+        sudo apt update
+        sudo apt install -y clang libclang-dev libopencv-dev
       shell: bash
 
     # - name: 🔧 Install Rust (Stable)

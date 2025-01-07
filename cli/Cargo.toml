@@ -19,11 +19,11 @@ anyhow = "1.0"
 toml = "0.7.3"
 serde = { version = "1.0", features = ["derive"] }
 dialoguer = "0.10"
-qr_reader_phone = {git = "https://github.com/paritytech/parity-signer", rev = "020583b"}
-qr_reader_pc = {git = "https://github.com/paritytech/parity-signer", rev = "020583b"}
-definitions = {git = "https://github.com/paritytech/parity-signer", rev = "020583b"}
-generate_message = {git = "https://github.com/paritytech/parity-signer", rev = "020583b"}
-transaction_parsing = {git = "https://github.com/paritytech/parity-signer", rev = "020583b"}
+qr_reader_phone = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
+qr_reader_pc = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
+definitions = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
+generate_message = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
+transaction_parsing = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
 tempfile = "3.5"
 sp-core = {git = "https://github.com/paritytech/substrate", default-features = false, features = ["full_crypto"]}
 parity-scale-codec = "3.4.0"
@@ -41,7 +41,7 @@ blake2-rfc = "0.2.18"
 indexmap = {version="1", features=["serde"]}
 
 [dependencies.opencv]
-version = "0.83.0"
+version = "0.88.9"
 default-features = false
 features = ["videoio", "imgproc", "highgui"]
 

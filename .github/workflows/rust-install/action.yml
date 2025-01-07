@@ -7,10 +7,10 @@ runs:
         apt install -y clang libclang-dev libopencv-dev
       shell: bash
 
-    # - name: 🔧 Install Rust (Stable)
-    #   run: |
-    #     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    #   shell: bash
+    - name: 🔧 Install Rust (Stable)
+      run: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      shell: bash
 
     - name: 💾 Rust Cache
       uses: Swatinem/rust-cache@v2

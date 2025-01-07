@@ -11,8 +11,6 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    container:
-      image: docker.io/paritytech/ci-unified:bullseye-1.81.0-2024-11-19-v202411281558
 
     steps:
       - name: 🛎 Checkout

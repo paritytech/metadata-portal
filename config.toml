@@ -2,131 +2,26 @@ data_file = "public/data.json"
 public_dir = "public"
 qr_dir = "public/qr"
 
-[verifier]
-name = "Parity"
-public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+[verifiers.ipchain]
+name = "IP Chain"
+public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
+ethereum_public_key = "0x1F7D61fEbF41A8841fA0E5b35b2232978213A018"
 
 [[chains]]
-name = "polkadot"
-rpc_endpoint = "wss://rpc.polkadot.io"
-color = "#e6007a"
-
-[chains.github_release]
-owner = "paritytech"
-repo = "polkadot"
-genesis_hash = "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3"
-
-[[chains]]
-name = "statemint"
-title = "Asset Hub"
-rpc_endpoint = "wss://polkadot-asset-hub-rpc.polkadot.io"
-color = "#86e62a"
-relay_chain = "polkadot"
+name = "ipchain-testnet"
+title = "IP Chain Testnet"
+color = "#00cc99"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/moonbeam.svg"
+rpc_endpoints = ["wss://test.openlicense.ai/rpc"]
+testnet = true
+encryption = "ethereum"
+verifier = "ipchain"
 
 [[chains]]
-name = "bridge-hub-polkadot"
-title = "Bridge Hub"
-rpc_endpoint = "wss://polkadot-bridge-hub-rpc.polkadot.io"
-relay_chain = "polkadot"
-
-[[chains]]
-name = "collectives"
-title = "Collectives"
-rpc_endpoint = "wss://polkadot-collectives-rpc.polkadot.io"
-color = "#e6777a"
-relay_chain = "polkadot"
-
-[[chains]]
-name = "people-polkadot"
-title = "People"
-rpc_endpoint = "wss://polkadot-people-rpc.polkadot.io"
-color = "#000000"
-relay_chain = "polkadot"
-
-[[chains]]
-name = "kusama"
-rpc_endpoint = "wss://kusama-rpc.polkadot.io"
-color = "#000000"
-
-[chains.github_release]
-owner = "paritytech"
-repo = "polkadot"
-genesis_hash = "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"
-
-[[chains]]
-name = "statemine"
-title = "Asset Hub"
-rpc_endpoint = "wss://kusama-asset-hub-rpc.polkadot.io"
-color = "#113911"
-relay_chain = "kusama"
-
-[[chains]]
-name = "bridge-hub-kusama"
-title = "Bridge Hub"
-rpc_endpoint = "wss://kusama-bridge-hub-rpc.polkadot.io"
-relay_chain = "kusama"
-
-[[chains]]
-name = "coretime-kusama"
-title = "Coretime"
-rpc_endpoint = "wss://kusama-coretime-rpc.polkadot.io"
-relay_chain = "kusama"
-
-[[chains]]
-name = "encointer-parachain"
-title = "Encointer"
-rpc_endpoint = "wss://kusama.api.encointer.org"
-color = "#0000cc"
-relay_chain = "kusama"
-
-[[chains]]
-name = "people-kusama"
-title = "People"
-rpc_endpoint = "wss://kusama-people-rpc.polkadot.io"
-color = "#000000"
-relay_chain = "kusama"
-
-[[chains]]
-name = "westend"
-rpc_endpoint = "wss://westend-rpc.polkadot.io"
-color = "#f27230"
-
-[chains.github_release]
-owner = "paritytech"
-repo = "polkadot"
-genesis_hash = "0xe143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e"
-
-[[chains]]
-name = "westmint"
-title = "Asset Hub"
-rpc_endpoint = "wss://westend-asset-hub-rpc.polkadot.io"
-color = "#77bb77"
-relay_chain = "westend"
-
-[[chains]]
-name = "bridge-hub-westend"
-title = "Bridge Hub"
-rpc_endpoint = "wss://westend-bridge-hub-rpc.polkadot.io"
-color = "#B878B4"
-relay_chain = "westend"
-
-[[chains]]
-name = "collectives-westend"
-title = "Collectives"
-rpc_endpoint = "wss://westend-collectives-rpc.polkadot.io"
-color = "#e6777a"
-relay_chain = "westend"
-
-[[chains]]
-name = "coretime-westend"
-title = "Coretime"
-rpc_endpoint = "wss://westend-coretime-rpc.polkadot.io"
-color = "#82B7B7"
-relay_chain = "westend"
-
-[[chains]]
-name = "people-westend"
-title = "People"
-rpc_endpoint = "wss://westend-people-rpc.polkadot.io"
-color = "#0A672A"
-relay_chain = "westend"
+name = "ipchain-testnet-base"
+title = "IP Chain Testnet ss58"
+color = "#00cc99"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/moonbeam.svg"
+rpc_endpoints = ["wss://test.openlicense.ai/rpc"]
+testnet = true
+verifier = "ipchain"

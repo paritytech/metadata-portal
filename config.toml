@@ -2,7 +2,7 @@ data_file = "public/data.json"
 public_dir = "public"
 qr_dir = "public/qr"
 
-[verifiers.ipchain]
+[verifiers]
 name = "IP Chain"
 public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
 ethereum_public_key = "0x1F7D61fEbF41A8841fA0E5b35b2232978213A018"

@@ -4,7 +4,7 @@ qr_dir = "public/qr"
 
 [verifier]
 name = "IP Blockchain"
-public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+public_key = "eafdcd394f66a2043dd4dd44f0280831a383c9dd2ddef29a79599aada87f3d77"
 
 [[chains]]
 name = "ipblockchain-testnet"

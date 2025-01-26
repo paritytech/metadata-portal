@@ -3,14 +3,23 @@ public_dir = "public"
 qr_dir = "public/qr"
 
 [verifier]
-name = "Parity"
-public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+name = "IP Blockchain"
+public_key = "eafdcd394f66a2043dd4dd44f0280831a383c9dd2ddef29a79599aada87f3d77"
 
 [[chains]]
-name = "ipchain"
-title = "IP Chain Testnet"
-color = "#00cc99"
+name = "ipblockchain-testnet"
+title = "IP Blockchain Testnet"
+color = "#00ccBB"
 icon = "https://storage.openlicense.ai/public/ipchain.svg"
 rpc_endpoints = ["wss://test.openlicense.ai/rpc"]
+testnet = true
+encryption = "ethereum"
+
+[[chains]]
+name = "ipblockchain"
+title = "IP Blockchain"
+color = "#00cc99"
+icon = "https://storage.openlicense.ai/public/ipchain.svg"
+rpc_endpoints = ["wss://openlicense.ai/rpc"]
 testnet = true
 encryption = "ethereum"

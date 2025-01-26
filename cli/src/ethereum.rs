@@ -4,6 +4,8 @@ const ETHEREUM_CHAINS: [&str; 10] = [
     "moonbeam",
     "moonriver",
     "moonshadow",
+    "ipblockchain",
+    "ipblockchain-testnet",
     "alt-producer",
     "flash-layer",
     "armonia-eva",

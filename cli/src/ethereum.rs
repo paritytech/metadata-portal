@@ -1,4 +1,4 @@
-const ETHEREUM_CHAINS: [&str; 10] = [
+const ETHEREUM_CHAINS: [&str; 12] = [
     "jaz",
     "moonbase",
     "moonbeam",

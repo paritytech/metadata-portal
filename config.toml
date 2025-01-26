@@ -7,18 +7,10 @@ name = "Parity"
 public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
 
 [[chains]]
-name = "ipchain-testnet"
+name = "ipchain"
 title = "IP Chain Testnet"
 color = "#00cc99"
-icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/moonbeam.svg"
+icon = "https://storage.openlicense.ai/public/ipchain.svg"
 rpc_endpoints = ["wss://test.openlicense.ai/rpc"]
 testnet = true
 encryption = "ethereum"
-
-[[chains]]
-name = "ipchain-testnet-base"
-title = "IP Chain Testnet ss58"
-color = "#00cc99"
-icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/moonbeam.svg"
-rpc_endpoints = ["wss://test.openlicense.ai/rpc"]
-testnet = true

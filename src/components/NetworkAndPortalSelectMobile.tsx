@@ -81,7 +81,11 @@ export const NetworkAndPortalSelectMobile = ({
               Selected Network
             </div>
             <div className="flex items-center justify-between w-full text-lg">
-              <span>{formatTitle(chains[currentChain]?.title)}</span>
+              {formatTitle(
+                chains[currentChain]?.title === "node-subtensor"
+                  ? "Bittensor"
+                  : chains[currentChain]?.title,
+              )}
               <ChevronIcon />
             </div>
           </Listbox.Button>
@@ -104,7 +108,11 @@ export const NetworkAndPortalSelectMobile = ({
                   >
                     <img src={icon(chain)} className="w-8 rounded-full" />
                     <div className="text-xl">
-                      {formatTitle(chains[chain].title)}
+                    {formatTitle(
+                      chains[chain].title === "node-subtensor"
+                        ? "Bittensor"
+                        : chains[chain].title,
+                    )}
                     </div>
                   </div>
                 )}

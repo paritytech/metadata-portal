@@ -49,7 +49,11 @@ export const NetworkSelect = ({
                 >
                   <img src={icon(chain)} className="w-8 rounded-full" />
                   <div className="text-lg">
-                    {formatTitle(chains[chain].title)}
+                  {formatTitle(
+                      chains[chain].title === "node-subtensor"
+                        ? "Bittensor"
+                        : chains[chain].title,
+                    )}
                   </div>
                 </div>
               )}

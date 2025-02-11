@@ -1,5 +1,6 @@
 import polkadotSrc from "./assets/icons/polkadot.svg";
 import assetHubSrc from "./assets/icons/asset-hub.svg";
+import bittensorSrc from "./assets/icons/bittensor.svg";
 import bridgeHubSrc from "./assets/icons/bridge-hub.svg";
 import bridgeHubBlackSrc from "./assets/icons/bridge-hub-black.svg";
 import collectivesSrc from "./assets/icons/collectives.svg";
@@ -10,6 +11,7 @@ import peopleSrc from "./assets/icons/people.svg";
 import coretimeSrc from "./assets/icons/coretime.svg";
 
 const ICONS = {
+  "node-subtensor": bittensorSrc,
   polkadot: polkadotSrc,
   "polkadot-statemint": assetHubSrc,
   "polkadot-bridge-hub-polkadot": bridgeHubSrc,

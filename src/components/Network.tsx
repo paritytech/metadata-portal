@@ -49,7 +49,7 @@ export const Network = ({
 
   const createGithubIssueLink = (
     <a
-      href="https://github.com/paritytech/metadata-portal/issues/new"
+      href="https://github.com/opentensor/metadata-portal/issues/new"
       className="block mt-10 font-extrabold"
       style={{
         color: `${spec.color}`,
@@ -69,7 +69,11 @@ export const Network = ({
             src={icon(chainPortalId)}
             className="w-14 h-14 rounded-full bg-neutral-200"
           />
-          <span>{formatTitle(spec.title)}</span>
+           <span>
+            {formatTitle(
+              spec.title === "node-subtensor" ? "Bittensor" : spec.title,
+            )}
+          </span>
         </div>
         <Links />
       </div>
@@ -100,7 +104,7 @@ export const Network = ({
                 {!metadataQr && (
                   <div className="flex aspect-square text-center">
                     <div className="m-auto">
-                      The metadata for {spec.title} Network is out of date.
+                      The metadata for {spec.title === "node-subtensor" ? "Bittensor" : spec.title} Network is out of date.
                       Request the new metadata version by creating a Github
                       issue.
                       {createGithubIssueLink}

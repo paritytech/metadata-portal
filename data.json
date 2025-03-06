@@ -360,11 +360,11 @@
     "metadataQr": {
       "version": 1018000,
       "file": {
-        "path": "qr/unsigned_westend-westmint_metadata_1018000.apng",
-        "signedBy": null,
+        "path": "qr/westend-westmint_metadata_1018000.apng",
+        "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0xcccb90440a703445a629cecd3488f8d9bae08b46958b9b950693af9617edafc0"
+          "block": "0x58bafceae08354f10f39911dfc45e98faf46bb4e1e6b42c756fa9a17a27361a1"
         }
       }
     },

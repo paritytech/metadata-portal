@@ -4,25 +4,8 @@ runs:
     - name: 🛠️Install system dependencies
       run: |
         sudo apt update
-        sudo apt install -y clang libclang-dev
-        # libopencv-dev
+        sudo apt install -y clang libclang-dev libopencv-dev libssl-dev
       shell: bash
-
-    - name: 🔧 Install vcpkg
-        run: |
-          git clone https://github.com/microsoft/vcpkg.git
-          ./vcpkg/bootstrap-vcpkg.sh
-
-      - name: 🔧 Install OpenCV using vcpkg
-        run: |
-          ./vcpkg/vcpkg install opencv4
-
-      - name: 🔧 Set up environment variables
-        run: |
-          echo "VCPKG_ROOT=$(pwd)/vcpkg" >> $GITHUB_ENV
-          echo "PKG_CONFIG_PATH=$(pwd)/vcpkg/installed/x64-linux/lib/pkgconfig" >> $GITHUB_ENV
-          echo "OpenCV_DIR=$(pwd)/vcpkg/installed/x64-linux/share/opencv" >> $GITHUB_ENV
-
 
     - name: 🔧 Install Rust (Stable)
       run: |

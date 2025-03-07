@@ -327,18 +327,8 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "liveMetaVersion": 1018000,
-    "metadataQr": {
-      "version": 1018000,
-      "file": {
-        "path": "qr/westend_metadata_1018000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x52b7a946b7440b55a3f87b07267d37f21a469ad474b5f2c457707ba79047011d"
-        }
-      }
-    },
+    "liveMetaVersion": 1018001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend_specs.png",

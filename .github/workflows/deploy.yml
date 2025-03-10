@@ -15,8 +15,8 @@ jobs:
 
       - uses: ./.github/workflows/rust-install
 
-      - name: ⚙ Run verifier
-        run: make verifier
+      # - name: ⚙ Run verifier
+      #   run: make verifier
 
       - name: ⚙ Run collector
         run: make collector

@@ -19,11 +19,11 @@ anyhow = "1.0"
 toml = "0.7.3"
 serde = { version = "1.0", features = ["derive"] }
 dialoguer = "0.10"
-qr_reader_phone = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
-qr_reader_pc = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
-definitions = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
-generate_message = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
-transaction_parsing = {git = "https://github.com/paritytech/parity-signer", rev = "4226ba6"}
+qr_reader_phone = {git = "https://github.com/paritytech/parity-signer", rev = "082d469"}
+qr_reader_pc = {git = "https://github.com/paritytech/parity-signer", rev = "082d469"}
+definitions = {git = "https://github.com/paritytech/parity-signer", rev = "082d469"}
+generate_message = {git = "https://github.com/paritytech/parity-signer", rev = "082d469"}
+transaction_parsing = {git = "https://github.com/paritytech/parity-signer", rev = "082d469"}
 tempfile = "3.5"
 sp-core = {git = "https://github.com/paritytech/substrate", default-features = false, features = ["full_crypto"]}
 parity-scale-codec = "3.4.0"

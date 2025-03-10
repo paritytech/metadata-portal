@@ -601,7 +601,7 @@ checksum = "245097e9a4535ee1e3e3931fcfcd55a796a44c643e8596ff6566d68f09b87bbc"
 [[package]]
 name = "constants"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "hex",
 ]
@@ -811,7 +811,7 @@ dependencies = [
 [[package]]
 name = "db_handling"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "anyhow",
  "constants",
@@ -834,7 +834,7 @@ dependencies = [
 [[package]]
 name = "defaults"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "definitions",
  "lazy_static",
@@ -847,7 +847,7 @@ dependencies = [
 [[package]]
 name = "definitions"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "constants",
  "frame-metadata",
@@ -1388,7 +1388,7 @@ dependencies = [
 [[package]]
 name = "generate_message"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "clap",
  "constants",
@@ -2810,7 +2810,7 @@ dependencies = [
 [[package]]
 name = "parser"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "bitvec",
  "definitions",
@@ -3010,7 +3010,7 @@ dependencies = [
 [[package]]
 name = "printing_balance"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 
 [[package]]
 name = "proc-macro-crate"
@@ -3061,7 +3061,7 @@ dependencies = [
 [[package]]
 name = "qr_reader_pc"
 version = "0.2.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "anyhow",
  "hex",
@@ -3075,11 +3075,10 @@ dependencies = [
 [[package]]
 name = "qr_reader_phone"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "banana_recovery",
  "constants",
- "db_handling",
  "definitions",
  "hex",
  "nom",
@@ -3091,7 +3090,7 @@ dependencies = [
 [[package]]
 name = "qrcode_rtx"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "bitvec",
  "constants",
@@ -3106,7 +3105,7 @@ dependencies = [
 [[package]]
 name = "qrcode_static"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "anyhow",
  "bitvec",
@@ -3220,9 +3219,9 @@ dependencies = [
 
 [[package]]
 name = "raptorq"
-version = "2.0.0"
+version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "90b1b1fad69672f0b901b5004863ea4307f03d168a3db5f2bcba4d3dfed88e97"
+checksum = "7cc8cd0bcb2d520fff368264b5a6295e064c60955349517d09b14473afae4856"
 
 [[package]]
 name = "rayon"
@@ -4837,7 +4836,7 @@ dependencies = [
 [[package]]
 name = "transaction_parsing"
 version = "0.1.0"
-source = "git+https://github.com/paritytech/parity-signer?rev=4226ba6#4226ba61cdcf3449bfa0113b40b60f056505f03a"
+source = "git+https://github.com/paritytech/parity-signer?rev=082d469#082d469986b5588db35f0181e8eda055607cbd64"
 dependencies = [
  "constants",
  "db_handling",

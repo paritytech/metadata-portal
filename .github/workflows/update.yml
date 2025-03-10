@@ -112,6 +112,8 @@ jobs:
       - name: 🔧 Install Rust (Stable)
         run: |
           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          rustup install 1.81.0
+          rustup override set 1.81.0
         shell: bash
 
       - name: ⚙ Check existing deployment

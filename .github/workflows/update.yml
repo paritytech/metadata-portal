@@ -21,16 +21,6 @@ jobs:
 
       - name: 🔧 Install rust dependencies
         uses: ./.github/workflows/rust-install
-      # - name: 🛠️Install system dependencies
-      #   run: |
-      #     sudo apt update
-      #     sudo apt-get install -y clang libclang-dev libopencv-dev libssl-dev
-      #   shell: bash
-
-      # - name: 🔧 Install Rust (Stable)
-      #   run: |
-      #     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-      #   shell: bash
 
       - name: Try to checkout exising PR branch
         id: checkout-pr
@@ -101,20 +91,8 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v4
 
-      # - name: 🔧 Install rust dependencies
-      #   uses: ./.github/workflows/rust-install
-      - name: 🛠️Install system dependencies
-        run: |
-          sudo apt update
-          sudo apt-get install -y clang libclang-dev libopencv-dev libssl-dev
-        shell: bash
-
-      - name: 🔧 Install Rust (Stable)
-        run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-          rustup install 1.81.0
-          rustup override set 1.81.0
-        shell: bash
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
 
       - name: ⚙ Check existing deployment
         id: check-deployment

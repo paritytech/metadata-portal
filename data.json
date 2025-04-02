@@ -38,7 +38,17 @@
     "logo": "statemint",
     "decimals": 10,
     "liveMetaVersion": 1004002,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1004002,
+      "file": {
+        "path": "qr/polkadot-statemint_metadata_1004002.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x44b0f7fa6d350d3b480413a28329e414feb73907a53eb427c2fca1a3b716435d"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-statemint_specs.png",
@@ -86,7 +96,17 @@
     "logo": "collectives",
     "decimals": 10,
     "liveMetaVersion": 1004002,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1004002,
+      "file": {
+        "path": "qr/polkadot-collectives_metadata_1004002.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x57eea66acb6479841e08e6cdb4ee6897717478197d4788b226ef57f2e6612f9b"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-collectives_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-collectives_specs.png",

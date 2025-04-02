@@ -583,7 +583,7 @@ checksum = "245097e9a4535ee1e3e3931fcfcd55a796a44c643e8596ff6566d68f09b87bbc"
 [[package]]
 name = "constants"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "hex",
 ]
@@ -728,7 +728,7 @@ dependencies = [
 [[package]]
 name = "db_handling"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "anyhow",
  "constants",
@@ -751,7 +751,7 @@ dependencies = [
 [[package]]
 name = "defaults"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "definitions",
  "lazy_static",
@@ -764,7 +764,7 @@ dependencies = [
 [[package]]
 name = "definitions"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "constants",
  "frame-metadata",
@@ -1214,7 +1214,7 @@ dependencies = [
 [[package]]
 name = "generate_message"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "clap",
  "constants",
@@ -2540,7 +2540,7 @@ dependencies = [
 [[package]]
 name = "parser"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "bitvec",
  "definitions",
@@ -2753,7 +2753,7 @@ dependencies = [
 [[package]]
 name = "printing_balance"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 
 [[package]]
 name = "proc-macro-crate"
@@ -2795,7 +2795,7 @@ dependencies = [
 [[package]]
 name = "qr_reader_pc"
 version = "0.2.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "anyhow",
  "hex",
@@ -2809,7 +2809,7 @@ dependencies = [
 [[package]]
 name = "qr_reader_phone"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "banana_recovery",
  "constants",
@@ -2825,7 +2825,7 @@ dependencies = [
 [[package]]
 name = "qrcode_rtx"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "bitvec",
  "constants",
@@ -2840,7 +2840,7 @@ dependencies = [
 [[package]]
 name = "qrcode_static"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "anyhow",
  "bitvec",
@@ -4591,7 +4591,7 @@ dependencies = [
 [[package]]
 name = "transaction_parsing"
 version = "0.1.0"
-source = "git+https://github.com/novasamatech/parity-signer?rev=905506c#905506ca2f0214decaf0a3c106a6e82982a138ba"
+source = "git+https://github.com/Analog-Labs/parity-signer?rev=67ebb18b3344aef1efd7890e599d80125e06e580#67ebb18b3344aef1efd7890e599d80125e06e580"
 dependencies = [
  "constants",
  "db_handling",

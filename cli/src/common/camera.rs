@@ -4,7 +4,7 @@ use anyhow::bail;
 use image::{GrayImage, ImageBuffer, Luma};
 use indicatif::ProgressBar;
 use opencv::{
-    imgproc::{cvt_color, COLOR_BGR2GRAY},
+    imgproc::{cvt_color_def, COLOR_BGR2GRAY},
     prelude::*,
     videoio,
 };
@@ -70,7 +70,7 @@ fn camera_capture(camera: &mut videoio::VideoCapture) -> anyhow::Result<GrayImag
     let mut image: GrayImage = ImageBuffer::new(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     let mut ocv_gray_image = Mat::default();
 
-    cvt_color(&frame, &mut ocv_gray_image, COLOR_BGR2GRAY, 0)?;
+    cvt_color_def(&frame, &mut ocv_gray_image, COLOR_BGR2GRAY)?;
 
     for y in 0..ocv_gray_image.rows() {
         for x in 0..ocv_gray_image.cols() {

@@ -44,6 +44,12 @@ color = "#000000"
 relay_chain = "polkadot"
 
 [[chains]]
+name = "coretime-polkadot"
+title = "Coretime"
+rpc_endpoint = "wss://polkadot-coretime-rpc.polkadot.io"
+relay_chain = "polkadot"
+
+[[chains]]
 name = "kusama"
 rpc_endpoint = "wss://kusama-rpc.polkadot.io"
 color = "#000000"

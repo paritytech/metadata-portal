@@ -102,7 +102,9 @@ OS can't find libclang.dylib dynamic library because it resides in a non-standar
 ### Frontend
 Before running the frontend locally, you need to generate a data file:
 
-    make collector
+    ```bash
+      make updater &&  make collector
+    ```
 
  And then run the app in the development mode
 

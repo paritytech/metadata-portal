@@ -37,6 +37,12 @@ color = "#e6777a"
 relay_chain = "polkadot"
 
 [[chains]]
+name = "coretime-polkadot"
+title = "Coretime"
+rpc_endpoint = "wss://polkadot-coretime-rpc.polkadot.io"
+relay_chain = "polkadot"
+
+[[chains]]
 name = "people-polkadot"
 title = "People"
 rpc_endpoint = "wss://polkadot-people-rpc.polkadot.io"

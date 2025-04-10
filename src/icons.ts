@@ -14,6 +14,7 @@ const ICONS = {
   "polkadot-statemint": assetHubSrc,
   "polkadot-bridge-hub-polkadot": bridgeHubSrc,
   "polkadot-collectives": collectivesSrc,
+  "polkadot-coretime-polkadot": coretimeSrc,
   "polkadot-people-polkadot": peopleSrc,
   kusama: kusamaSrc,
   "kusama-statemine": assetHubSrc,

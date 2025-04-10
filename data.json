@@ -115,6 +115,35 @@
     },
     "relayChain": "polkadot"
   },
+  "polkadot-coretime-polkadot": {
+    "title": "polkadot Coretime",
+    "color": "#000000",
+    "rpcEndpoint": "wss://polkadot-coretime-rpc.polkadot.io",
+    "genesisHash": "0xefb56e30d9b4a24099f88820987d0f45fb645992416535d87650d98e00f46fc4",
+    "unit": "DOT",
+    "base58prefix": 0,
+    "logo": "coretime-polkadot",
+    "decimals": 10,
+    "liveMetaVersion": 1004000,
+    "metadataQr": {
+      "version": 1004000,
+      "file": {
+        "path": "qr/polkadot-coretime-polkadot_metadata_1004000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xf127796b0f37b061900183dc9102a712a9f5963abc635ce8e46c8f999c8980fc"
+        }
+      }
+    },
+    "latestMetadata": "qr/polkadot-coretime-polkadot_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/polkadot-coretime-polkadot_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "polkadot"
+  },
   "polkadot-people-polkadot": {
     "title": "polkadot People",
     "color": "#000000",

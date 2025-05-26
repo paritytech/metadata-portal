@@ -8,18 +8,8 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "liveMetaVersion": 1004001,
-    "metadataQr": {
-      "version": 1004001,
-      "file": {
-        "path": "qr/polkadot_metadata_1004001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x183ab1c04932e883874edea3d7b4cf1aae863bf402f24b5695f7cd4bc23d3d27"
-        }
-      }
-    },
+    "liveMetaVersion": 1005001,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",

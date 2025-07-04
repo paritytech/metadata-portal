@@ -270,7 +270,17 @@
     "logo": "coretime-kusama",
     "decimals": 12,
     "liveMetaVersion": 1006000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1006000,
+      "file": {
+        "path": "qr/kusama-coretime-kusama_metadata_1006000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x9c445c1bc402068a0bf650de654e694a5ad4a932d368480d89a4dbb8ba258025"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama-coretime-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-coretime-kusama_specs.png",

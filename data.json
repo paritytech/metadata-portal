@@ -240,18 +240,8 @@
     "base58prefix": 2,
     "logo": "bridge-hub-kusama",
     "decimals": 12,
-    "liveMetaVersion": 1005001,
-    "metadataQr": {
-      "version": 1005001,
-      "file": {
-        "path": "qr/kusama-bridge-hub-kusama_metadata_1005001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x941534acf4c3a5149011ba9f3ee3724f03a4337219147d1d7e7aa5c6a6418306"
-        }
-      }
-    },
+    "liveMetaVersion": 1006001,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-bridge-hub-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-bridge-hub-kusama_specs.png",
@@ -317,18 +307,8 @@
     "base58prefix": 2,
     "logo": "people-kusama",
     "decimals": 12,
-    "liveMetaVersion": 1005001,
-    "metadataQr": {
-      "version": 1005001,
-      "file": {
-        "path": "qr/kusama-people-kusama_metadata_1005001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x7c461a9d1410ca208507a87df24a6d8c0c6fc7fc7cef44a1ffa1c14fe10d7782"
-        }
-      }
-    },
+    "liveMetaVersion": 1006001,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-people-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-people-kusama_specs.png",

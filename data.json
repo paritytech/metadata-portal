@@ -37,18 +37,8 @@
     "base58prefix": 0,
     "logo": "statemint",
     "decimals": 10,
-    "liveMetaVersion": 1005001,
-    "metadataQr": {
-      "version": 1005001,
-      "file": {
-        "path": "qr/polkadot-statemint_metadata_1005001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xf8a11e9d0be96b9f64247dc21e5ac40cc728030f205b0f63daeca1faf333e901"
-        }
-      }
-    },
+    "liveMetaVersion": 1006000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-statemint_specs.png",
@@ -66,18 +56,8 @@
     "base58prefix": 0,
     "logo": "bridge-hub-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 1005001,
-    "metadataQr": {
-      "version": 1005001,
-      "file": {
-        "path": "qr/polkadot-bridge-hub-polkadot_metadata_1005001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xa8f40aae30381407380cb825b4433e95cc155b784832134063e6deaacf968729"
-        }
-      }
-    },
+    "liveMetaVersion": 1006001,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-bridge-hub-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bridge-hub-polkadot_specs.png",
@@ -95,18 +75,8 @@
     "base58prefix": 0,
     "logo": "collectives",
     "decimals": 10,
-    "liveMetaVersion": 1005001,
-    "metadataQr": {
-      "version": 1005001,
-      "file": {
-        "path": "qr/polkadot-collectives_metadata_1005001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x782c9d5ead8b318a3613f011ab4332cfd1598f202b5bc1c81225bc0c1c9c7146"
-        }
-      }
-    },
+    "liveMetaVersion": 1006001,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-collectives_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-collectives_specs.png",
@@ -124,18 +94,8 @@
     "base58prefix": 0,
     "logo": "coretime-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 1006000,
-    "metadataQr": {
-      "version": 1006000,
-      "file": {
-        "path": "qr/polkadot-coretime-polkadot_metadata_1006000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x65aaf1e8276a2063ccac85c94fcebf0e182a3924e188e04527352f16601d306d"
-        }
-      }
-    },
+    "liveMetaVersion": 1006001,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-coretime-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-coretime-polkadot_specs.png",

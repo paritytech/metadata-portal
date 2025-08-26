@@ -154,7 +154,17 @@
     "logo": "people-polkadot",
     "decimals": 10,
     "liveMetaVersion": 1006001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1006001,
+      "file": {
+        "path": "qr/polkadot-people-polkadot_metadata_1006001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xf7ff546e2eb1bf3b9ce96db60543b56eedde8b113e12f6880e3d12516bb1e704"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-people-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-people-polkadot_specs.png",

@@ -9,7 +9,17 @@
     "logo": "polkadot",
     "decimals": 10,
     "liveMetaVersion": 1006002,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1006002,
+      "file": {
+        "path": "qr/polkadot_metadata_1006002.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xd98a866e06e9e2e533dcab6aea943359fbf34246d1e6b82a642db526d962fbfe"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",

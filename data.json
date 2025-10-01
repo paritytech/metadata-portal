@@ -67,7 +67,17 @@
     "logo": "bridge-hub-polkadot",
     "decimals": 10,
     "liveMetaVersion": 1007001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1007001,
+      "file": {
+        "path": "qr/polkadot-bridge-hub-polkadot_metadata_1007001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x9254502acc198b4a0dbc21640a83e8107467847a97bfcb75b558640bf59ab10e"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-bridge-hub-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bridge-hub-polkadot_specs.png",

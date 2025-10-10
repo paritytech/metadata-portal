@@ -415,7 +415,17 @@
     "logo": "bridge-hub-westend",
     "decimals": 12,
     "liveMetaVersion": 1020002,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1020002,
+      "file": {
+        "path": "qr/westend-bridge-hub-westend_metadata_1020002.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xb45f281006c104c67e7d46abe35cb5058624c8252687f2233e1635c043aa1516"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-bridge-hub-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-bridge-hub-westend_specs.png",

@@ -183,7 +183,17 @@
     "logo": "kusama",
     "decimals": 12,
     "liveMetaVersion": 1009002,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1009002,
+      "file": {
+        "path": "qr/kusama_metadata_1009002.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xa4327bd3a8c7e1be1aa15065100757d542f6a333082153d611a67d4b7d0edaf3"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",
@@ -202,7 +212,17 @@
     "logo": "statemine",
     "decimals": 12,
     "liveMetaVersion": 1009002,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1009002,
+      "file": {
+        "path": "qr/kusama-statemine_metadata_1009002.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xb901fe3efd228541591996f60672b9eb03dc6819f8638965124717c922266f35"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-statemine_specs.png",

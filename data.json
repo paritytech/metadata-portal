@@ -211,18 +211,8 @@
     "base58prefix": 2,
     "logo": "statemine",
     "decimals": 12,
-    "liveMetaVersion": 1009002,
-    "metadataQr": {
-      "version": 1009002,
-      "file": {
-        "path": "qr/kusama-statemine_metadata_1009002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xb901fe3efd228541591996f60672b9eb03dc6819f8638965124717c922266f35"
-        }
-      }
-    },
+    "liveMetaVersion": 1009003,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-statemine_specs.png",

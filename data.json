@@ -66,18 +66,8 @@
     "base58prefix": 0,
     "logo": "bridge-hub-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 1007001,
-    "metadataQr": {
-      "version": 1007001,
-      "file": {
-        "path": "qr/polkadot-bridge-hub-polkadot_metadata_1007001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x9254502acc198b4a0dbc21640a83e8107467847a97bfcb75b558640bf59ab10e"
-        }
-      }
-    },
+    "liveMetaVersion": 2000000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-bridge-hub-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bridge-hub-polkadot_specs.png",
@@ -95,18 +85,8 @@
     "base58prefix": 0,
     "logo": "collectives",
     "decimals": 10,
-    "liveMetaVersion": 1007001,
-    "metadataQr": {
-      "version": 1007001,
-      "file": {
-        "path": "qr/polkadot-collectives_metadata_1007001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x8aa78dd2aee961b7234fee417357c58e5b95cffcf1758a13b4bd2a545e3f9079"
-        }
-      }
-    },
+    "liveMetaVersion": 2000000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-collectives_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-collectives_specs.png",
@@ -124,18 +104,8 @@
     "base58prefix": 0,
     "logo": "coretime-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 1007001,
-    "metadataQr": {
-      "version": 1007001,
-      "file": {
-        "path": "qr/polkadot-coretime-polkadot_metadata_1007001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xbcc0d64131111279c372dfa9b4d88dfcf522d26149796d28b510502d42658543"
-        }
-      }
-    },
+    "liveMetaVersion": 2000000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-coretime-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-coretime-polkadot_specs.png",
@@ -153,18 +123,8 @@
     "base58prefix": 0,
     "logo": "people-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 1007001,
-    "metadataQr": {
-      "version": 1007001,
-      "file": {
-        "path": "qr/polkadot-people-polkadot_metadata_1007001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x43a6dbed154f4bd373435fb692fe86869c1ff393eda8b9065bb8ecbcd4e2c465"
-        }
-      }
-    },
+    "liveMetaVersion": 2000000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-people-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-people-polkadot_specs.png",

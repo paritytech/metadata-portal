@@ -9,7 +9,17 @@
     "logo": "polkadot",
     "decimals": 10,
     "liveMetaVersion": 2000001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000001,
+      "file": {
+        "path": "qr/polkadot_metadata_2000001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x3f4bfea06728d56e7f3e49f7ae319dadadca0a8d3762d167640f8bd8b1283de1"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",
@@ -28,7 +38,17 @@
     "logo": "statemint",
     "decimals": 10,
     "liveMetaVersion": 2000001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000001,
+      "file": {
+        "path": "qr/polkadot-statemint_metadata_2000001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xcba9d9470fe07882426244ec7a5b8782286acd41f2c6de0ccb3048ff8cfc4cb5"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-statemint_specs.png",

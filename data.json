@@ -299,7 +299,17 @@
     "logo": "encointer-parachain",
     "decimals": 12,
     "liveMetaVersion": 2000000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000000,
+      "file": {
+        "path": "qr/kusama-encointer-parachain_metadata_2000000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x989f425304436d3e541143346f17efb3932265827ac8da5af5caf4ce1eeb5b3f"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama-encointer-parachain_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-encointer-parachain_specs.png",

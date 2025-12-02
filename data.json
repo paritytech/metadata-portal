@@ -38,7 +38,17 @@
     "logo": "statemint",
     "decimals": 10,
     "liveMetaVersion": 2000003,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000003,
+      "file": {
+        "path": "qr/polkadot-statemint_metadata_2000003.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x7c0064b9247578cc96ca3fa760a75f09ce304e6842219cb7a5f95be6448dd731"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-statemint_specs.png",
@@ -57,7 +67,17 @@
     "logo": "bridge-hub-polkadot",
     "decimals": 10,
     "liveMetaVersion": 2000003,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000003,
+      "file": {
+        "path": "qr/polkadot-bridge-hub-polkadot_metadata_2000003.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x11c5abf43b28e38a23dca13b7c8f5da3c57173260cef30dfdc77fda170e4ff70"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-bridge-hub-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bridge-hub-polkadot_specs.png",

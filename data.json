@@ -356,18 +356,8 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "liveMetaVersion": 1021000,
-    "metadataQr": {
-      "version": 1021000,
-      "file": {
-        "path": "qr/westend_metadata_1021000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x8db47ae472edf68171e3dc3e28b1f9142418f00371967563b732614d5d1a1bc4"
-        }
-      }
-    },
+    "liveMetaVersion": 1021001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend_specs.png",
@@ -443,18 +433,8 @@
     "base58prefix": 42,
     "logo": "collectives-westend",
     "decimals": 12,
-    "liveMetaVersion": 1021000,
-    "metadataQr": {
-      "version": 1021000,
-      "file": {
-        "path": "qr/westend-collectives-westend_metadata_1021000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xc87e17cde89b72b1e954338d0d001525a7d0fd99a9a25639af0f665202d8dd36"
-        }
-      }
-    },
+    "liveMetaVersion": 1021001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-collectives-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-collectives-westend_specs.png",
@@ -472,18 +452,8 @@
     "base58prefix": 42,
     "logo": "coretime-westend",
     "decimals": 12,
-    "liveMetaVersion": 1021000,
-    "metadataQr": {
-      "version": 1021000,
-      "file": {
-        "path": "qr/westend-coretime-westend_metadata_1021000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x5d0571a4961d77f424f0062c0a8628c479abc8208c19825c0688fbc2e232b713"
-        }
-      }
-    },
+    "liveMetaVersion": 1021001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-coretime-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-coretime-westend_specs.png",
@@ -501,18 +471,8 @@
     "base58prefix": 42,
     "logo": "people-westend",
     "decimals": 12,
-    "liveMetaVersion": 1021000,
-    "metadataQr": {
-      "version": 1021000,
-      "file": {
-        "path": "qr/westend-people-westend_metadata_1021000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x824756406e928c25a1983e69410b4ff07a5eeab68fb3b8903351f4ad1c149321"
-        }
-      }
-    },
+    "liveMetaVersion": 1021001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-people-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-people-westend_specs.png",

@@ -9,7 +9,17 @@
     "logo": "polkadot",
     "decimals": 10,
     "liveMetaVersion": 2000005,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000005,
+      "file": {
+        "path": "qr/polkadot_metadata_2000005.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x5377033c39aaa13072406c5742d484849a3352bc6f2d1e005d8b4e8e3bcc6704"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",
@@ -28,7 +38,17 @@
     "logo": "statemint",
     "decimals": 10,
     "liveMetaVersion": 2000005,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000005,
+      "file": {
+        "path": "qr/polkadot-statemint_metadata_2000005.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xe68ef30311db014f49267614b2d87d43bcd418e9ce5166c2ee53d7e16651cc3b"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-statemint_specs.png",
@@ -47,7 +67,17 @@
     "logo": "bridge-hub-polkadot",
     "decimals": 10,
     "liveMetaVersion": 2000005,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000005,
+      "file": {
+        "path": "qr/polkadot-bridge-hub-polkadot_metadata_2000005.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x3be672007c2cc48f58867c5ac96cf5d5d00ea8d0c45ef1d71936446302efc703"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-bridge-hub-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bridge-hub-polkadot_specs.png",
@@ -66,7 +96,17 @@
     "logo": "collectives",
     "decimals": 10,
     "liveMetaVersion": 2000005,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000005,
+      "file": {
+        "path": "qr/polkadot-collectives_metadata_2000005.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x6d5e477e13b44ca635b3752a44549b55860240c9077b69cd50073c78e277dedd"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-collectives_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-collectives_specs.png",
@@ -85,7 +125,17 @@
     "logo": "coretime-polkadot",
     "decimals": 10,
     "liveMetaVersion": 2000005,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000005,
+      "file": {
+        "path": "qr/polkadot-coretime-polkadot_metadata_2000005.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x2fccd4a62400201b9d705462f9337b3a46eddbcf99fea59c554dd12ba566e2c3"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-coretime-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-coretime-polkadot_specs.png",
@@ -104,7 +154,17 @@
     "logo": "people-polkadot",
     "decimals": 10,
     "liveMetaVersion": 2000005,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2000005,
+      "file": {
+        "path": "qr/polkadot-people-polkadot_metadata_2000005.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x7ed7208f67e7221d6c4fade9dd595d0da5ff31e8f9c484dfa308af5e46c75065"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-people-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-people-polkadot_specs.png",

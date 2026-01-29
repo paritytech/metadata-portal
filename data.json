@@ -385,18 +385,8 @@
     "base58prefix": 42,
     "logo": "westmint",
     "decimals": 12,
-    "liveMetaVersion": 1021000,
-    "metadataQr": {
-      "version": 1021000,
-      "file": {
-        "path": "qr/westend-westmint_metadata_1021000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x879512f5d531e3399a6cafedea561ca5bf1d3aa36ee41ff3720a37ffbf95fed6"
-        }
-      }
-    },
+    "liveMetaVersion": 1021002,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-westmint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-westmint_specs.png",
@@ -414,18 +404,8 @@
     "base58prefix": 42,
     "logo": "bridge-hub-westend",
     "decimals": 12,
-    "liveMetaVersion": 1021000,
-    "metadataQr": {
-      "version": 1021000,
-      "file": {
-        "path": "qr/westend-bridge-hub-westend_metadata_1021000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xc841d763984b9137079a7d48cb5a709de46207711c74cd574a8d104296151562"
-        }
-      }
-    },
+    "liveMetaVersion": 1021001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-bridge-hub-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-bridge-hub-westend_specs.png",

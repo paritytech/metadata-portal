@@ -269,18 +269,8 @@
     "base58prefix": 2,
     "logo": "coretime-kusama",
     "decimals": 12,
-    "liveMetaVersion": 2000004,
-    "metadataQr": {
-      "version": 2000004,
-      "file": {
-        "path": "qr/kusama-coretime-kusama_metadata_2000004.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x9aa9580737b41656500f08d8f437837da853ba3fc1163049533e408be7fefee2"
-        }
-      }
-    },
+    "liveMetaVersion": 2000006,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-coretime-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-coretime-kusama_specs.png",
@@ -327,18 +317,8 @@
     "base58prefix": 2,
     "logo": "people-kusama",
     "decimals": 12,
-    "liveMetaVersion": 2000004,
-    "metadataQr": {
-      "version": 2000004,
-      "file": {
-        "path": "qr/kusama-people-kusama_metadata_2000004.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x150d055ac5d6e3fe503335c8d957dc9491bb8c6f2d414656a94aa12e2b0b2a9f"
-        }
-      }
-    },
+    "liveMetaVersion": 2000006,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-people-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-people-kusama_specs.png",

@@ -10,10 +10,6 @@ use opencv::{
 };
 use qr_reader_phone::process_payload::{process_decoded_payload, InProgress, Ready};
 
-// Default camera settings
-const DEFAULT_WIDTH: u32 = 640;
-const DEFAULT_HEIGHT: u32 = 480;
-
 pub(crate) fn read_qr_file(source_file: &Path) -> anyhow::Result<String> {
     let mut camera = create_camera(source_file)?;
 
@@ -67,7 +63,8 @@ fn camera_capture(camera: &mut videoio::VideoCapture) -> anyhow::Result<GrayImag
         Err(e) => bail!("Can`t read camera. {}", e),
     };
 
-    let mut image: GrayImage = ImageBuffer::new(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    let mut image: GrayImage =
+        ImageBuffer::new(frame.size()?.width as u32, frame.size()?.height as u32);
     let mut ocv_gray_image = Mat::default();
 
     cvt_color_def(&frame, &mut ocv_gray_image, COLOR_BGR2GRAY)?;

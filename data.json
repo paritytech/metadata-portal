@@ -211,18 +211,8 @@
     "base58prefix": 2,
     "logo": "statemine",
     "decimals": 12,
-    "liveMetaVersion": 2000007,
-    "metadataQr": {
-      "version": 2000007,
-      "file": {
-        "path": "qr/kusama-statemine_metadata_2000007.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x6c28114000e722d191e8d7a9f3248568c3c62d6251ec049b79c5e1fdb358be62"
-        }
-      }
-    },
+    "liveMetaVersion": 2001000,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-statemine_specs.png",
@@ -240,18 +230,8 @@
     "base58prefix": 2,
     "logo": "bridge-hub-kusama",
     "decimals": 12,
-    "liveMetaVersion": 2000007,
-    "metadataQr": {
-      "version": 2000007,
-      "file": {
-        "path": "qr/kusama-bridge-hub-kusama_metadata_2000007.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x186dcffc09b16fb41b071e2b87d01144faacdae3a01ae9ebc0ef21f7c5ea6a8c"
-        }
-      }
-    },
+    "liveMetaVersion": 2001000,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-bridge-hub-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-bridge-hub-kusama_specs.png",
@@ -269,18 +249,8 @@
     "base58prefix": 2,
     "logo": "coretime-kusama",
     "decimals": 12,
-    "liveMetaVersion": 2000007,
-    "metadataQr": {
-      "version": 2000007,
-      "file": {
-        "path": "qr/kusama-coretime-kusama_metadata_2000007.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xbcd8d35053ee3640cc31db9ccde2da1856dec48968b506a43ac2724fd3cd5198"
-        }
-      }
-    },
+    "liveMetaVersion": 2001000,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-coretime-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-coretime-kusama_specs.png",
@@ -327,18 +297,8 @@
     "base58prefix": 2,
     "logo": "people-kusama",
     "decimals": 12,
-    "liveMetaVersion": 2000007,
-    "metadataQr": {
-      "version": 2000007,
-      "file": {
-        "path": "qr/kusama-people-kusama_metadata_2000007.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x0c6fc2649ceb96671320a9ef227e7489f67f8c32848add42b0514e4b53575dd1"
-        }
-      }
-    },
+    "liveMetaVersion": 2001000,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama-people-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-people-kusama_specs.png",

@@ -212,7 +212,17 @@
     "logo": "statemine",
     "decimals": 12,
     "liveMetaVersion": 2001000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2001000,
+      "file": {
+        "path": "qr/kusama-statemine_metadata_2001000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x3a29a621596c2d62f6440b5941ffe1cab3412c1e443776901a922a5eff27ce65"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama-statemine_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-statemine_specs.png",
@@ -231,7 +241,17 @@
     "logo": "bridge-hub-kusama",
     "decimals": 12,
     "liveMetaVersion": 2001000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2001000,
+      "file": {
+        "path": "qr/kusama-bridge-hub-kusama_metadata_2001000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x1e0480b849aa436dea5cd40898d29b0c47f9fa623c768304f9eb0c18cadb7f88"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama-bridge-hub-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-bridge-hub-kusama_specs.png",
@@ -250,7 +270,17 @@
     "logo": "coretime-kusama",
     "decimals": 12,
     "liveMetaVersion": 2001000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2001000,
+      "file": {
+        "path": "qr/kusama-coretime-kusama_metadata_2001000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x03e357180fb19048bd16a1c15c315202d812f720c6ab66b7faab9aceeddf773e"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama-coretime-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-coretime-kusama_specs.png",
@@ -298,7 +328,17 @@
     "logo": "people-kusama",
     "decimals": 12,
     "liveMetaVersion": 2001000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2001000,
+      "file": {
+        "path": "qr/kusama-people-kusama_metadata_2001000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x1b017c4e4af526adcf7afe31713bd7bc65c7f4689135041573a505796d63e37e"
+        }
+      }
+    },
     "latestMetadata": "qr/kusama-people-kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama-people-kusama_specs.png",

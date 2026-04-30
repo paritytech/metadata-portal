@@ -153,18 +153,8 @@
     "base58prefix": 0,
     "logo": "people-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2002001,
-    "metadataQr": {
-      "version": 2002001,
-      "file": {
-        "path": "qr/polkadot-people-polkadot_metadata_2002001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x693063efec5822dd2e51f0d06e2a6cb98cf07ea810c1aa54e88511bb06b1c45a"
-        }
-      }
-    },
+    "liveMetaVersion": 2002002,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-people-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-people-polkadot_specs.png",

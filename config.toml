@@ -50,6 +50,13 @@ color = "#000000"
 relay_chain = "polkadot"
 
 [[chains]]
+name = "bulletin-polkadot"
+title = "Bulletin"
+rpc_endpoint = "wss://bulletin-rpc.polkadot.io"
+color = "#6B2D84"
+relay_chain = "polkadot"
+
+[[chains]]
 name = "kusama"
 rpc_endpoint = "wss://kusama-rpc.polkadot.io"
 color = "#000000"

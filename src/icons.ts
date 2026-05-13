@@ -8,6 +8,7 @@ import westendSrc from "./assets/icons/westend.svg";
 import { nodesEncointerBlueSVG } from "./assets/icons/encointer-SVG";
 import peopleSrc from "./assets/icons/people.svg";
 import coretimeSrc from "./assets/icons/coretime.svg";
+import bulletinSrc from "./assets/icons/bulletin.svg";
 
 const ICONS = {
   polkadot: polkadotSrc,
@@ -16,6 +17,7 @@ const ICONS = {
   "polkadot-collectives": collectivesSrc,
   "polkadot-coretime-polkadot": coretimeSrc,
   "polkadot-people-polkadot": peopleSrc,
+  "polkadot-bulletin-polkadot": bulletinSrc,
   kusama: kusamaSrc,
   "kusama-statemine": assetHubSrc,
   "kusama-bridge-hub-kusama": bridgeHubBlackSrc,

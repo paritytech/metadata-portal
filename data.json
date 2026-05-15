@@ -173,6 +173,35 @@
     },
     "relayChain": "polkadot"
   },
+  "polkadot-bulletin-polkadot": {
+    "title": "polkadot Bulletin",
+    "color": "#6B2D84",
+    "rpcEndpoint": "wss://bulletin-rpc.polkadot.io",
+    "genesisHash": "0x2761c95259d59e55ae3daf756c1413b46e45a5a2987299f8ef8e5d8e4776cbc4",
+    "unit": "DOT",
+    "base58prefix": 0,
+    "logo": "bulletin-polkadot",
+    "decimals": 10,
+    "liveMetaVersion": 2002001,
+    "metadataQr": {
+      "version": 2002001,
+      "file": {
+        "path": "qr/polkadot-bulletin-polkadot_metadata_2002001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xe54f2446ecef2f7c20c48ff2829d7a4bc940e30a30400fabcf105833e29191ef"
+        }
+      }
+    },
+    "latestMetadata": "qr/polkadot-bulletin-polkadot_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/polkadot-bulletin-polkadot_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "polkadot"
+  },
   "kusama": {
     "title": "kusama",
     "color": "#000000",
@@ -386,7 +415,17 @@
     "logo": "westmint",
     "decimals": 12,
     "liveMetaVersion": 1022006,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1022006,
+      "file": {
+        "path": "qr/westend-westmint_metadata_1022006.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xf78ae9805e7e06f54d09b83ac5a96a07cdb32a1e86566fed3b64d9e4526b834c"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-westmint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-westmint_specs.png",

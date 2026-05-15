@@ -1,9 +1,10 @@
 {
   "files": {
     "main.css": "/static/css/main.f7107ecb.css",
-    "main.js": "/static/js/main.4eb24317.js",
+    "main.js": "/static/js/main.b604a5f8.js",
     "static/media/coretime.svg": "/static/media/coretime.d107c88a6b5374006398c17826208261.svg",
     "static/media/people.svg": "/static/media/people.0079e62a86a6d8ad3dc5133593a7926d.svg",
+    "static/media/bulletin.svg": "/static/media/bulletin.47d081bc608e08fed1389880f493b0db.svg",
     "static/media/bridge-hub.svg": "/static/media/bridge-hub.92f312b2affe1462e255ab05c14993bd.svg",
     "static/media/bridge-hub-black.svg": "/static/media/bridge-hub-black.e96e06cfb9b460db558f030745c57079.svg",
     "static/media/polkadot.svg": "/static/media/polkadot.7e356a76d93533052931dda2c013650e.svg",
@@ -14,10 +15,10 @@
     "static/media/vault.svg": "/static/media/vault.1aa02aa17789e8cf6d405b6deddda21c.svg",
     "static/media/westend.svg": "/static/media/westend.d2256c4fb719c6738bbe03f24408a797.svg",
     "main.f7107ecb.css.map": "/static/css/main.f7107ecb.css.map",
-    "main.4eb24317.js.map": "/static/js/main.4eb24317.js.map"
+    "main.b604a5f8.js.map": "/static/js/main.b604a5f8.js.map"
   },
   "entrypoints": [
     "static/css/main.f7107ecb.css",
-    "static/js/main.4eb24317.js"
+    "static/js/main.b604a5f8.js"
   ]
 }

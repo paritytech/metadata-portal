@@ -38,7 +38,17 @@
     "logo": "statemint",
     "decimals": 10,
     "liveMetaVersion": 2003001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2003001,
+      "file": {
+        "path": "qr/polkadot-statemint_metadata_2003001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xabf5018dcc096411893c7c22e0b2e81b42bda9533b7bfe8478bb041bdae5c28a"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-statemint_specs.png",

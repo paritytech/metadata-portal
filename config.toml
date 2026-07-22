@@ -166,3 +166,13 @@ rpc_endpoint = [
 ]
 color = "#000000"
 relay_chain = "paseo"
+
+[[chains]]
+name = "bulletin-paseo"
+title = "Bulletin"
+rpc_endpoint = [
+    "wss://bulletin-paseo.tservices.es:8443",
+    "wss://bulletin-paseo-02.tservices.es:9443",
+]
+color = "#6B2D84"
+relay_chain = "paseo"

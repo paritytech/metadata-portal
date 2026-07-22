@@ -34,6 +34,7 @@ const ICONS = {
   paseo: paseoSrc,
   "paseo-asset-hub-paseo": assetHubSrc,
   "paseo-people-paseo": peopleSrc,
+  "paseo-bulletin-paseo": bulletinSrc,
 };
 
 export function icon(network: string) {

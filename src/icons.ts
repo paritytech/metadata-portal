@@ -9,6 +9,7 @@ import { nodesEncointerBlueSVG } from "./assets/icons/encointer-SVG";
 import peopleSrc from "./assets/icons/people.svg";
 import coretimeSrc from "./assets/icons/coretime.svg";
 import bulletinSrc from "./assets/icons/bulletin.svg";
+import paseoSrc from "./assets/icons/paseo.svg";
 
 const ICONS = {
   polkadot: polkadotSrc,
@@ -30,6 +31,10 @@ const ICONS = {
   "westend-collectives-westend": collectivesSrc,
   "westend-coretime-westend": coretimeSrc,
   "westend-people-westend": peopleSrc,
+  paseo: paseoSrc,
+  "paseo-asset-hub-paseo": assetHubSrc,
+  "paseo-people-paseo": peopleSrc,
+  "paseo-bulletin-paseo": bulletinSrc,
 };
 
 export function icon(network: string) {

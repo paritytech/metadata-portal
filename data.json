@@ -549,5 +549,121 @@
       "source": null
     },
     "relayChain": "westend"
+  },
+  "paseo": {
+    "title": "paseo",
+    "color": "#1F2937",
+    "rpcEndpoint": "wss://paseo-v2.rpc.turboflakes.io",
+    "genesisHash": "0x374057be67b355151f271ff70c3db98308c62c8adc48dc6724b6a009a1a014fd",
+    "unit": "PAS",
+    "base58prefix": 42,
+    "logo": "paseo",
+    "decimals": 10,
+    "liveMetaVersion": 2003001,
+    "metadataQr": {
+      "version": 2003001,
+      "file": {
+        "path": "qr/paseo_metadata_2003001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x7ee89b7e0769fdb9ee99e01042372220230303056d2c35d3a18f9b14e4ea0b7e"
+        }
+      }
+    },
+    "latestMetadata": "qr/paseo_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/paseo_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": null
+  },
+  "paseo-asset-hub-paseo": {
+    "title": "paseo Asset Hub",
+    "color": "#86e62a",
+    "rpcEndpoint": "wss://asset-hub-paseo-rpc.n.dwellir.com",
+    "genesisHash": "0xd6eec26135305a8ad257a20d003357284c8aa03d0bdb2b357ab0a22371e11ef2",
+    "unit": "PAS",
+    "base58prefix": 42,
+    "logo": "asset-hub-paseo",
+    "decimals": 10,
+    "liveMetaVersion": 2004002,
+    "metadataQr": {
+      "version": 2004002,
+      "file": {
+        "path": "qr/paseo-asset-hub-paseo_metadata_2004002.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x9860492a81a0d008f0b7ad7384c3238220425f7de09eaa04b51c2c5aa1ec20f2"
+        }
+      }
+    },
+    "latestMetadata": "qr/paseo-asset-hub-paseo_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/paseo-asset-hub-paseo_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "paseo"
+  },
+  "paseo-people-paseo": {
+    "title": "paseo People",
+    "color": "#000000",
+    "rpcEndpoint": "wss://rpc.interweb-it.com/people-paseo",
+    "genesisHash": "0xe6c30d6e148f250b887105237bcaa5cb9f16dd203bf7b5b9d4f1da7387cb86ec",
+    "unit": "PAS",
+    "base58prefix": 42,
+    "logo": "people-paseo",
+    "decimals": 10,
+    "liveMetaVersion": 2004003,
+    "metadataQr": {
+      "version": 2004003,
+      "file": {
+        "path": "qr/paseo-people-paseo_metadata_2004003.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x9e8789bd3ac203aed2c53019267ffc4f0566ed0411f0f33e2d9ccd4faca33d30"
+        }
+      }
+    },
+    "latestMetadata": "qr/paseo-people-paseo_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/paseo-people-paseo_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "paseo"
+  },
+  "paseo-bulletin-paseo": {
+    "title": "paseo Bulletin",
+    "color": "#6B2D84",
+    "rpcEndpoint": "wss://bulletin-paseo.tservices.es:8443",
+    "genesisHash": "0xe101f0fa4627d29a257645e02be86d80378fea1a2bf8fa6a918d150ebc760a59",
+    "unit": "PAS",
+    "base58prefix": 42,
+    "logo": "bulletin-paseo",
+    "decimals": 10,
+    "liveMetaVersion": 2003001,
+    "metadataQr": {
+      "version": 2003001,
+      "file": {
+        "path": "qr/paseo-bulletin-paseo_metadata_2003001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x19565303cdc0d58a7a625b6743c28e300f94867ea655c7906f310852dfdfb0aa"
+        }
+      }
+    },
+    "latestMetadata": "qr/paseo-bulletin-paseo_metadata_latest.apng",
+    "specsQr": {
+      "path": "qr/paseo-bulletin-paseo_specs.png",
+      "signedBy": "Parity",
+      "source": null
+    },
+    "relayChain": "paseo"
   }
 }

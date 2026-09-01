@@ -9,7 +9,17 @@
     "logo": "polkadot",
     "decimals": 10,
     "liveMetaVersion": 2004000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2004000,
+      "file": {
+        "path": "qr/polkadot_metadata_2004000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x9b4d4e2512dfba115dd6f54a37b8ff076e0ee839f55d7d901d98c8b79fd98106"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",
@@ -27,18 +37,8 @@
     "base58prefix": 0,
     "logo": "statemint",
     "decimals": 10,
-    "liveMetaVersion": 2003002,
-    "metadataQr": {
-      "version": 2003002,
-      "file": {
-        "path": "qr/polkadot-statemint_metadata_2003002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x461820ce94aca9ee8e3a1c3b81bf4a565b5bbaa2d19d44da0fe4a0cf3c1fe946"
-        }
-      }
-    },
+    "liveMetaVersion": 2004000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-statemint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-statemint_specs.png",
@@ -56,18 +56,8 @@
     "base58prefix": 0,
     "logo": "bridge-hub-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2003002,
-    "metadataQr": {
-      "version": 2003002,
-      "file": {
-        "path": "qr/polkadot-bridge-hub-polkadot_metadata_2003002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x84d646775c352179cb8eb54ab79947f9d0e49aa7ac4cd8295284d4366afb07cd"
-        }
-      }
-    },
+    "liveMetaVersion": 2004000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-bridge-hub-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bridge-hub-polkadot_specs.png",
@@ -85,18 +75,8 @@
     "base58prefix": 0,
     "logo": "collectives",
     "decimals": 10,
-    "liveMetaVersion": 2003002,
-    "metadataQr": {
-      "version": 2003002,
-      "file": {
-        "path": "qr/polkadot-collectives_metadata_2003002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xd082a9fcd8b7490a30bc820b7e38a39326c5f9475b28bac83f2bb6d2171e6771"
-        }
-      }
-    },
+    "liveMetaVersion": 2004000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-collectives_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-collectives_specs.png",
@@ -114,18 +94,8 @@
     "base58prefix": 0,
     "logo": "coretime-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2003002,
-    "metadataQr": {
-      "version": 2003002,
-      "file": {
-        "path": "qr/polkadot-coretime-polkadot_metadata_2003002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x9510c8713be09ae924c0249e991b103ecaa094722da2726ac6d84770c6c37ec0"
-        }
-      }
-    },
+    "liveMetaVersion": 2004000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-coretime-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-coretime-polkadot_specs.png",
@@ -143,18 +113,8 @@
     "base58prefix": 0,
     "logo": "people-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2003002,
-    "metadataQr": {
-      "version": 2003002,
-      "file": {
-        "path": "qr/polkadot-people-polkadot_metadata_2003002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x2f4debf672ed9ece854af4ae510ca8773ab1d42049e5ac6f0fc17ae3a4bfa232"
-        }
-      }
-    },
+    "liveMetaVersion": 2004000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-people-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-people-polkadot_specs.png",
@@ -172,18 +132,8 @@
     "base58prefix": 0,
     "logo": "bulletin-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2002001,
-    "metadataQr": {
-      "version": 2002001,
-      "file": {
-        "path": "qr/polkadot-bulletin-polkadot_metadata_2002001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xe54f2446ecef2f7c20c48ff2829d7a4bc940e30a30400fabcf105833e29191ef"
-        }
-      }
-    },
+    "liveMetaVersion": 2004000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-bulletin-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bulletin-polkadot_specs.png",

@@ -502,7 +502,17 @@
     "logo": "coretime-westend",
     "decimals": 12,
     "liveMetaVersion": 1025000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 1025000,
+      "file": {
+        "path": "qr/westend-coretime-westend_metadata_1025000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x6bdfa6c4b197014da0d6ed00f9318d7fe9222f4d3ee3cd2d61b3bda065a6de5f"
+        }
+      }
+    },
     "latestMetadata": "qr/westend-coretime-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-coretime-westend_specs.png",

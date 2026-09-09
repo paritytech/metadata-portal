@@ -617,18 +617,8 @@
     "base58prefix": 42,
     "logo": "people-paseo",
     "decimals": 10,
-    "liveMetaVersion": 2005000,
-    "metadataQr": {
-      "version": 2005000,
-      "file": {
-        "path": "qr/paseo-people-paseo_metadata_2005000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x5899ed55f563ab884b5d8dbac086ca5379ee4a2325d8952a86aea29c19b06c1c"
-        }
-      }
-    },
+    "liveMetaVersion": 2005001,
+    "metadataQr": null,
     "latestMetadata": "qr/paseo-people-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-people-paseo_specs.png",

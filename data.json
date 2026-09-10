@@ -9,7 +9,17 @@
     "logo": "polkadot",
     "decimals": 10,
     "liveMetaVersion": 2005000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2005000,
+      "file": {
+        "path": "qr/polkadot_metadata_2005000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x282e36bb62b15267eaa7a9b796c730d6a7a915100f871ffd911baad7a12ee0b8"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",
@@ -123,7 +133,17 @@
     "logo": "bulletin-polkadot",
     "decimals": 10,
     "liveMetaVersion": 2005000,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2005000,
+      "file": {
+        "path": "qr/polkadot-bulletin-polkadot_metadata_2005000.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x05cb08673e7cadea461a9528e5f07fd82cf3cf23215d58464b333702b3634baf"
+        }
+      }
+    },
     "latestMetadata": "qr/polkadot-bulletin-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bulletin-polkadot_specs.png",
@@ -519,7 +539,17 @@
     "logo": "asset-hub-paseo",
     "decimals": 10,
     "liveMetaVersion": 2005002,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2005002,
+      "file": {
+        "path": "qr/paseo-asset-hub-paseo_metadata_2005002.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x29f8b30a0c38d3206165782807e5fb4a62aa5cf580c1dfddd7efedbcc6a24f02"
+        }
+      }
+    },
     "latestMetadata": "qr/paseo-asset-hub-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-asset-hub-paseo_specs.png",
@@ -538,7 +568,17 @@
     "logo": "people-paseo",
     "decimals": 10,
     "liveMetaVersion": 2005002,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2005002,
+      "file": {
+        "path": "qr/paseo-people-paseo_metadata_2005002.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0xcacd6566f4e6973507da9538753f62efb12076fb8907d9f477ba21c6d80a208e"
+        }
+      }
+    },
     "latestMetadata": "qr/paseo-people-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-people-paseo_specs.png",

@@ -8,18 +8,8 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2004000,
-    "metadataQr": {
-      "version": 2004000,
-      "file": {
-        "path": "qr/polkadot_metadata_2004000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x9b4d4e2512dfba115dd6f54a37b8ff076e0ee839f55d7d901d98c8b79fd98106"
-        }
-      }
-    },
+    "liveMetaVersion": 2005000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot_specs.png",
@@ -588,18 +578,8 @@
     "base58prefix": 42,
     "logo": "asset-hub-paseo",
     "decimals": 10,
-    "liveMetaVersion": 2005000,
-    "metadataQr": {
-      "version": 2005000,
-      "file": {
-        "path": "qr/paseo-asset-hub-paseo_metadata_2005000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xfee2416898c60e7ea2314e32a477d1c34cb51d807c34ebc0e51f5027706e59c0"
-        }
-      }
-    },
+    "liveMetaVersion": 2005002,
+    "metadataQr": null,
     "latestMetadata": "qr/paseo-asset-hub-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-asset-hub-paseo_specs.png",
@@ -617,18 +597,8 @@
     "base58prefix": 42,
     "logo": "people-paseo",
     "decimals": 10,
-    "liveMetaVersion": 2005001,
-    "metadataQr": {
-      "version": 2005001,
-      "file": {
-        "path": "qr/paseo-people-paseo_metadata_2005001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x20e12f05248a2ae0f19719c8e715a546a6e5ce34faf135e5dc9543086f1de7aa"
-        }
-      }
-    },
+    "liveMetaVersion": 2005002,
+    "metadataQr": null,
     "latestMetadata": "qr/paseo-people-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-people-paseo_specs.png",

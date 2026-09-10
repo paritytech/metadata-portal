@@ -618,7 +618,17 @@
     "logo": "people-paseo",
     "decimals": 10,
     "liveMetaVersion": 2005001,
-    "metadataQr": null,
+    "metadataQr": {
+      "version": 2005001,
+      "file": {
+        "path": "qr/paseo-people-paseo_metadata_2005001.apng",
+        "signedBy": "Parity",
+        "source": {
+          "type": "Rpc",
+          "block": "0x20e12f05248a2ae0f19719c8e715a546a6e5ce34faf135e5dc9543086f1de7aa"
+        }
+      }
+    },
     "latestMetadata": "qr/paseo-people-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-people-paseo_specs.png",

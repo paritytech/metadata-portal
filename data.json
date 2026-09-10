@@ -172,18 +172,8 @@
     "base58prefix": 0,
     "logo": "bulletin-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2004000,
-    "metadataQr": {
-      "version": 2004000,
-      "file": {
-        "path": "qr/polkadot-bulletin-polkadot_metadata_2004000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x8963639f06e04843f194769103bb91b3c1820c7cad882cde5ae927d3d326a3d1"
-        }
-      }
-    },
+    "liveMetaVersion": 2005000,
+    "metadataQr": null,
     "latestMetadata": "qr/polkadot-bulletin-polkadot_metadata_latest.apng",
     "specsQr": {
       "path": "qr/polkadot-bulletin-polkadot_specs.png",

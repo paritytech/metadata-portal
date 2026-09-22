@@ -385,18 +385,8 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "liveMetaVersion": 1025000,
-    "metadataQr": {
-      "version": 1025000,
-      "file": {
-        "path": "qr/westend_metadata_1025000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xa43f4d7f2511f04f6d2184c1d9fee2f6f83c3e58bce3a3b45a537157b672d692"
-        }
-      }
-    },
+    "liveMetaVersion": 1025001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend_specs.png",
@@ -414,18 +404,8 @@
     "base58prefix": 42,
     "logo": "westmint",
     "decimals": 12,
-    "liveMetaVersion": 1025000,
-    "metadataQr": {
-      "version": 1025000,
-      "file": {
-        "path": "qr/westend-westmint_metadata_1025000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x773ffd11d1ab7dbe7aeb0a31b1e596523adef10ebba099e11e0c2eceeae56034"
-        }
-      }
-    },
+    "liveMetaVersion": 1025001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-westmint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-westmint_specs.png",
@@ -472,18 +452,8 @@
     "base58prefix": 42,
     "logo": "collectives-westend",
     "decimals": 12,
-    "liveMetaVersion": 1025000,
-    "metadataQr": {
-      "version": 1025000,
-      "file": {
-        "path": "qr/westend-collectives-westend_metadata_1025000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xe7cbb1f40c88111f33c4e1ccf1f5e446584d814f5965a809fb3c44130a3a4a16"
-        }
-      }
-    },
+    "liveMetaVersion": 1025001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-collectives-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-collectives-westend_specs.png",
@@ -501,18 +471,8 @@
     "base58prefix": 42,
     "logo": "coretime-westend",
     "decimals": 12,
-    "liveMetaVersion": 1025000,
-    "metadataQr": {
-      "version": 1025000,
-      "file": {
-        "path": "qr/westend-coretime-westend_metadata_1025000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x6bdfa6c4b197014da0d6ed00f9318d7fe9222f4d3ee3cd2d61b3bda065a6de5f"
-        }
-      }
-    },
+    "liveMetaVersion": 1025001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-coretime-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-coretime-westend_specs.png",
@@ -530,18 +490,8 @@
     "base58prefix": 42,
     "logo": "people-westend",
     "decimals": 12,
-    "liveMetaVersion": 1025000,
-    "metadataQr": {
-      "version": 1025000,
-      "file": {
-        "path": "qr/westend-people-westend_metadata_1025000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x4009f22bd16c8a542d09ebb8437a1f20eeab5731d34c606639eeaa4aff3b9a8d"
-        }
-      }
-    },
+    "liveMetaVersion": 1025001,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-people-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-people-westend_specs.png",

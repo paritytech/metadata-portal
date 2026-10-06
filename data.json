@@ -588,18 +588,8 @@
     "base58prefix": 42,
     "logo": "asset-hub-paseo",
     "decimals": 10,
-    "liveMetaVersion": 2005002,
-    "metadataQr": {
-      "version": 2005002,
-      "file": {
-        "path": "qr/paseo-asset-hub-paseo_metadata_2005002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x29f8b30a0c38d3206165782807e5fb4a62aa5cf580c1dfddd7efedbcc6a24f02"
-        }
-      }
-    },
+    "liveMetaVersion": 2005003,
+    "metadataQr": null,
     "latestMetadata": "qr/paseo-asset-hub-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-asset-hub-paseo_specs.png",

@@ -646,18 +646,8 @@
     "base58prefix": 42,
     "logo": "bulletin-paseo",
     "decimals": 10,
-    "liveMetaVersion": 2004000,
-    "metadataQr": {
-      "version": 2004000,
-      "file": {
-        "path": "qr/paseo-bulletin-paseo_metadata_2004000.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xdfd60f06274979613eb0a26cf1c09c2fa23b46c1e7d0ae7e99887e6c559d8f7b"
-        }
-      }
-    },
+    "liveMetaVersion": 2003001,
+    "metadataQr": null,
     "latestMetadata": "qr/paseo-bulletin-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-bulletin-paseo_specs.png",

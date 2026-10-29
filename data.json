@@ -211,18 +211,8 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "liveMetaVersion": 2003002,
-    "metadataQr": {
-      "version": 2003002,
-      "file": {
-        "path": "qr/kusama_metadata_2003002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x6b20e1711766ef837c35f7e43266629ce4068cf9ad679560b25e523a47085ef4"
-        }
-      }
-    },
+    "liveMetaVersion": 2005001,
+    "metadataQr": null,
     "latestMetadata": "qr/kusama_metadata_latest.apng",
     "specsQr": {
       "path": "qr/kusama_specs.png",

@@ -91,7 +91,14 @@ Additionally, please make sure to install `clang` package or its derivative that
 
 #### MacOs:
 
-`brew install opencv`
+`brew install opencv@4`
+
+Homebrew's plain `opencv` formula is OpenCV 5, which the `opencv` Rust crate version pinned by this project
+(via `qr_reader_pc` from parity-signer) does not support, so install the versioned `opencv@4` formula instead.
+It is keg-only (not symlinked into `/opt/homebrew`); the `Makefile` sets `PKG_CONFIG_PATH` to it automatically,
+so prefer `make <target>` over raw `cargo`. If you run `cargo` directly, export it yourself:
+
+`export PKG_CONFIG_PATH="$(brew --prefix opencv@4)/lib/pkgconfig"`
 
 If you're getting `dyld: Library not loaded: @rpath/libclang.dylib`:
 OS can't find libclang.dylib dynamic library because it resides in a non-standard path, set up the DYLD_FALLBACK_LIBRARY_PATH environment variable to point to the path where libclang.dylib can be found, e.g. for XCode:

@@ -66,6 +66,6 @@ Edit `config.toml`. A new entry needs `name`, `rpc_endpoint`, optional `title`, 
 
 ## Platform notes
 
-- **macOS:** OpenCV via `brew install opencv`. The `Makefile` exports `DYLD_FALLBACK_LIBRARY_PATH` to the Xcode toolchain so `libclang.dylib` resolves. Prefer `make <target>` over raw `cargo` for CLI work locally.
+- **macOS:** OpenCV via `brew install opencv@4` (the plain `opencv` formula is OpenCV 5, unsupported by the pinned `opencv` crate 0.94.x that `qr_reader_pc` requires). `opencv@4` is keg-only, so the `Makefile` exports `PKG_CONFIG_PATH` to its `lib/pkgconfig` and `DYLD_FALLBACK_LIBRARY_PATH` to the Xcode toolchain so `libclang.dylib` resolves. Prefer `make <target>` over raw `cargo` for CLI work locally.
 - **Linux:** `libopencv-dev clang libclang-dev` (Ubuntu).
 - The CLI uses Unix `symlink` in `collector/export.rs` (latest-metadata pointer) — Windows is not supported.

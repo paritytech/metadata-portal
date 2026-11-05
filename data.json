@@ -549,18 +549,8 @@
     "base58prefix": 42,
     "logo": "paseo",
     "decimals": 10,
-    "liveMetaVersion": 2003001,
-    "metadataQr": {
-      "version": 2003001,
-      "file": {
-        "path": "qr/paseo_metadata_2003001.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x7ee89b7e0769fdb9ee99e01042372220230303056d2c35d3a18f9b14e4ea0b7e"
-        }
-      }
-    },
+    "liveMetaVersion": 2005005,
+    "metadataQr": null,
     "latestMetadata": "qr/paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo_specs.png",
@@ -578,18 +568,8 @@
     "base58prefix": 42,
     "logo": "asset-hub-paseo",
     "decimals": 10,
-    "liveMetaVersion": 2005004,
-    "metadataQr": {
-      "version": 2005004,
-      "file": {
-        "path": "qr/paseo-asset-hub-paseo_metadata_2005004.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x593dd32003fb93e252df7af491ca72e2f50a7e7723ac863281bd85866f04a8d0"
-        }
-      }
-    },
+    "liveMetaVersion": 2005005,
+    "metadataQr": null,
     "latestMetadata": "qr/paseo-asset-hub-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-asset-hub-paseo_specs.png",
@@ -607,18 +587,8 @@
     "base58prefix": 42,
     "logo": "people-paseo",
     "decimals": 10,
-    "liveMetaVersion": 2005004,
-    "metadataQr": {
-      "version": 2005004,
-      "file": {
-        "path": "qr/paseo-people-paseo_metadata_2005004.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x279f916db9ec9e04ad8730b3b153f4123c22b6ea2a4509fb877f39b9cb5ba938"
-        }
-      }
-    },
+    "liveMetaVersion": 2005005,
+    "metadataQr": null,
     "latestMetadata": "qr/paseo-people-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-people-paseo_specs.png",
@@ -636,18 +606,8 @@
     "base58prefix": 42,
     "logo": "bulletin-paseo",
     "decimals": 10,
-    "liveMetaVersion": 2005004,
-    "metadataQr": {
-      "version": 2005004,
-      "file": {
-        "path": "qr/paseo-bulletin-paseo_metadata_2005004.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xf3b4965e9381b36fc9fa54783ad534423e83d79a2332f4915f126b5f7e5e51ca"
-        }
-      }
-    },
+    "liveMetaVersion": 2005005,
+    "metadataQr": null,
     "latestMetadata": "qr/paseo-bulletin-paseo_metadata_latest.apng",
     "specsQr": {
       "path": "qr/paseo-bulletin-paseo_specs.png",

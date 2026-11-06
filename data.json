@@ -568,7 +568,7 @@
     "base58prefix": 42,
     "logo": "asset-hub-paseo",
     "decimals": 10,
-    "liveMetaVersion": 2005005,
+    "liveMetaVersion": 2005006,
     "metadataQr": null,
     "latestMetadata": "qr/paseo-asset-hub-paseo_metadata_latest.apng",
     "specsQr": {

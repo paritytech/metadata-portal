@@ -385,18 +385,8 @@
     "base58prefix": 42,
     "logo": "westend",
     "decimals": 12,
-    "liveMetaVersion": 1025002,
-    "metadataQr": {
-      "version": 1025002,
-      "file": {
-        "path": "qr/westend_metadata_1025002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0xeb7ca99bd095c7b314642e90b41a15187bd40487820ed8b0d7d7a378580492aa"
-        }
-      }
-    },
+    "liveMetaVersion": 1026000,
+    "metadataQr": null,
     "latestMetadata": "qr/westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend_specs.png",
@@ -414,18 +404,8 @@
     "base58prefix": 42,
     "logo": "westmint",
     "decimals": 12,
-    "liveMetaVersion": 1025006,
-    "metadataQr": {
-      "version": 1025006,
-      "file": {
-        "path": "qr/westend-westmint_metadata_1025006.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x3d62dcf51968ba36e9e0f18c457f10f1bf78376a729b1b2d3950317683ff2ec3"
-        }
-      }
-    },
+    "liveMetaVersion": 1026000,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-westmint_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-westmint_specs.png",
@@ -472,18 +452,8 @@
     "base58prefix": 42,
     "logo": "collectives-westend",
     "decimals": 12,
-    "liveMetaVersion": 1025002,
-    "metadataQr": {
-      "version": 1025002,
-      "file": {
-        "path": "qr/westend-collectives-westend_metadata_1025002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x94e45720f4e954fe2753d8b1324bb4af51973df28fb90f7f2d00f98f1eba663a"
-        }
-      }
-    },
+    "liveMetaVersion": 1026000,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-collectives-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-collectives-westend_specs.png",
@@ -501,18 +471,8 @@
     "base58prefix": 42,
     "logo": "coretime-westend",
     "decimals": 12,
-    "liveMetaVersion": 1025002,
-    "metadataQr": {
-      "version": 1025002,
-      "file": {
-        "path": "qr/westend-coretime-westend_metadata_1025002.apng",
-        "signedBy": "Parity",
-        "source": {
-          "type": "Rpc",
-          "block": "0x5863d9abaec7545623471aff6b728b01ea77102838e2f716618e7e02af02248f"
-        }
-      }
-    },
+    "liveMetaVersion": 1026000,
+    "metadataQr": null,
     "latestMetadata": "qr/westend-coretime-westend_metadata_latest.apng",
     "specsQr": {
       "path": "qr/westend-coretime-westend_specs.png",

@@ -7,6 +7,15 @@ runs:
         sudo apt install -y clang libclang-dev libopencv-dev libssl-dev
       shell: bash
 
+    # The cached build output of the `opencv` crate hardcodes the list of OpenCV
+    # libraries to link against. That list changes between OpenCV versions, so
+    # the cache must not be reused after the system package changes (e.g. when
+    # `ubuntu-latest` moves to a new image).
+    - name: 🔎 Detect OpenCV version
+      id: opencv
+      run: echo "version=$(dpkg-query -W -f='${Version}' libopencv-dev)" >> "$GITHUB_OUTPUT"
+      shell: bash
+
     - name: 🔧 Install Rust (Stable)
       run: |
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -14,3 +23,5 @@ runs:
 
     - name: 💾 Rust Cache
       uses: Swatinem/rust-cache@v2
+      with:
+        key: opencv-${{ steps.opencv.outputs.version }}

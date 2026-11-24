@@ -8,15 +8,15 @@
     "base58prefix": 0,
     "logo": "polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2005003,
+    "liveMetaVersion": 2006000,
     "metadataQr": {
-      "version": 2005003,
+      "version": 2006000,
       "file": {
-        "path": "qr/polkadot_metadata_2005003.apng",
+        "path": "qr/polkadot_metadata_2006000.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0xa0a2d7f7ef4f9f15795e6c044e813fc34daaabdeb1335dd24ac8db81aa84fa9a"
+          "block": "0xea56a40a17f333cf306cf198989acc0d480e4f85e0333ba906a760efc0909592"
         }
       }
     },
@@ -37,15 +37,15 @@
     "base58prefix": 0,
     "logo": "statemint",
     "decimals": 10,
-    "liveMetaVersion": 2005003,
+    "liveMetaVersion": 2006000,
     "metadataQr": {
-      "version": 2005003,
+      "version": 2006000,
       "file": {
-        "path": "qr/polkadot-statemint_metadata_2005003.apng",
+        "path": "qr/polkadot-statemint_metadata_2006000.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0x3fde0c5b795135de97236a484a65d1dc90c055b680ba9489414694505b13ec2c"
+          "block": "0x45eae6eaed58f892e56edc037a8fd1ed3ae0571fdf8f206586128b240712a9ad"
         }
       }
     },
@@ -66,15 +66,15 @@
     "base58prefix": 0,
     "logo": "bridge-hub-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2005003,
+    "liveMetaVersion": 2006000,
     "metadataQr": {
-      "version": 2005003,
+      "version": 2006000,
       "file": {
-        "path": "qr/polkadot-bridge-hub-polkadot_metadata_2005003.apng",
+        "path": "qr/polkadot-bridge-hub-polkadot_metadata_2006000.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0x8b87dfbe636b03c34b124a32b7b16e1ab70c13b20b9711496cb1b86122970031"
+          "block": "0xf642e45e92eb9bdcc8725b608780d49a9169777794e6e99f44c794180e8a0b80"
         }
       }
     },
@@ -95,15 +95,15 @@
     "base58prefix": 0,
     "logo": "collectives",
     "decimals": 10,
-    "liveMetaVersion": 2005003,
+    "liveMetaVersion": 2006000,
     "metadataQr": {
-      "version": 2005003,
+      "version": 2006000,
       "file": {
-        "path": "qr/polkadot-collectives_metadata_2005003.apng",
+        "path": "qr/polkadot-collectives_metadata_2006000.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0xff6280a70b50cd9b711ee58dd72087387dd864dee3c609abd8fddd85de5f7d5f"
+          "block": "0x5f3bd6af5898f9d0a0625d71d660126c1b7f183c6a2de386e50ee73859b80ed5"
         }
       }
     },
@@ -124,15 +124,15 @@
     "base58prefix": 0,
     "logo": "coretime-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2005003,
+    "liveMetaVersion": 2006000,
     "metadataQr": {
-      "version": 2005003,
+      "version": 2006000,
       "file": {
-        "path": "qr/polkadot-coretime-polkadot_metadata_2005003.apng",
+        "path": "qr/polkadot-coretime-polkadot_metadata_2006000.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0x2e240cd97d5791379727d9186957cccb38dc206da76b10d122ff24b6c0562ec0"
+          "block": "0x4fd3d97ea749f0c549bd11b5d5fcccb718ca436bfff6b1dfa6f371ce1c8922b7"
         }
       }
     },
@@ -153,15 +153,15 @@
     "base58prefix": 0,
     "logo": "people-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2005003,
+    "liveMetaVersion": 2006000,
     "metadataQr": {
-      "version": 2005003,
+      "version": 2006000,
       "file": {
-        "path": "qr/polkadot-people-polkadot_metadata_2005003.apng",
+        "path": "qr/polkadot-people-polkadot_metadata_2006000.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0x11d2fdadcde154fcfefce153532e5e43c504bf9b641d5c71cd3ea2c6518d4fff"
+          "block": "0xf260fa912eecc857ca5cecdc20d18904f01382a8b6a0f3dad78f4348d4c34d8a"
         }
       }
     },
@@ -182,15 +182,15 @@
     "base58prefix": 0,
     "logo": "bulletin-polkadot",
     "decimals": 10,
-    "liveMetaVersion": 2005003,
+    "liveMetaVersion": 2006000,
     "metadataQr": {
-      "version": 2005003,
+      "version": 2006000,
       "file": {
-        "path": "qr/polkadot-bulletin-polkadot_metadata_2005003.apng",
+        "path": "qr/polkadot-bulletin-polkadot_metadata_2006000.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0x055928742b4dc9fbd52b554b8ab6be57165895f8e3b667ddc6aea4ee1d0155ce"
+          "block": "0xf24ac2c27d55b6ed7acc943e0e0b26b8b7fdf0a308cdaf2ea5bf2b9b3e315d7e"
         }
       }
     },
@@ -211,15 +211,15 @@
     "base58prefix": 2,
     "logo": "kusama",
     "decimals": 12,
-    "liveMetaVersion": 2005001,
+    "liveMetaVersion": 2005003,
     "metadataQr": {
-      "version": 2005001,
+      "version": 2005003,
       "file": {
-        "path": "qr/kusama_metadata_2005001.apng",
+        "path": "qr/kusama_metadata_2005003.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0x4267f4542f0f9dcad8394aa4459e28c05bc96d92a11296bb070251ecf2dbde66"
+          "block": "0x61d067e8bb2f2522458f01739d8693dcd4d9699dbd284d56f3ab3c8c9fd45801"
         }
       }
     },
@@ -240,15 +240,15 @@
     "base58prefix": 2,
     "logo": "statemine",
     "decimals": 12,
-    "liveMetaVersion": 2005001,
+    "liveMetaVersion": 2005003,
     "metadataQr": {
-      "version": 2005001,
+      "version": 2005003,
       "file": {
-        "path": "qr/kusama-statemine_metadata_2005001.apng",
+        "path": "qr/kusama-statemine_metadata_2005003.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0xf46af63a8a7782ac9585fdfab3124b30c3273d0e307d61157939e365d8b0be7c"
+          "block": "0x0eee1b4b8a23b87519357d2b9c3b40de27806c17dadd8349c8af888a1321ab31"
         }
       }
     },
@@ -269,15 +269,15 @@
     "base58prefix": 2,
     "logo": "bridge-hub-kusama",
     "decimals": 12,
-    "liveMetaVersion": 2005001,
+    "liveMetaVersion": 2005003,
     "metadataQr": {
-      "version": 2005001,
+      "version": 2005003,
       "file": {
-        "path": "qr/kusama-bridge-hub-kusama_metadata_2005001.apng",
+        "path": "qr/kusama-bridge-hub-kusama_metadata_2005003.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0x2eb4bc472bacc84e0fd151cc0bbb75404282c7fdb1a39844fc634bbfc41247fd"
+          "block": "0xd40f5efa12312cafd02c86bfa11d8647d03de8bf0716389a33639e5f230a41da"
         }
       }
     },
@@ -298,15 +298,15 @@
     "base58prefix": 2,
     "logo": "coretime-kusama",
     "decimals": 12,
-    "liveMetaVersion": 2005001,
+    "liveMetaVersion": 2005003,
     "metadataQr": {
-      "version": 2005001,
+      "version": 2005003,
       "file": {
-        "path": "qr/kusama-coretime-kusama_metadata_2005001.apng",
+        "path": "qr/kusama-coretime-kusama_metadata_2005003.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0xe23f3c9a10804efeeb9ef142a102d514763568461b8ae94b9b29bf11007248f6"
+          "block": "0xbf95ddebd9f2e967401dd55c254d1f238ba092d3eac9ea608743b6e0dd6af4c2"
         }
       }
     },
@@ -327,15 +327,15 @@
     "base58prefix": 2,
     "logo": "encointer-parachain",
     "decimals": 12,
-    "liveMetaVersion": 2003000,
+    "liveMetaVersion": 2005003,
     "metadataQr": {
-      "version": 2003000,
+      "version": 2005003,
       "file": {
-        "path": "qr/kusama-encointer-parachain_metadata_2003000.apng",
+        "path": "qr/kusama-encointer-parachain_metadata_2005003.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0xf0dc95e5ff3d5ff781bcd7c3b8bfa4069c97fb0a3e38144c16864286d2e7ca47"
+          "block": "0xadb46aaefa2b536776a514c86f8739362f30b86f924b0e31604c928466ea5853"
         }
       }
     },
@@ -356,15 +356,15 @@
     "base58prefix": 2,
     "logo": "people-kusama",
     "decimals": 12,
-    "liveMetaVersion": 2005001,
+    "liveMetaVersion": 2005003,
     "metadataQr": {
-      "version": 2005001,
+      "version": 2005003,
       "file": {
-        "path": "qr/kusama-people-kusama_metadata_2005001.apng",
+        "path": "qr/kusama-people-kusama_metadata_2005003.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0x10e1100873a7228cebca54231a2dbef2cab9077a57674f129f2fd93e220ebb85"
+          "block": "0x514857ec070296957975086613baad9c57804e049e92f810ad2fc6f13da12792"
         }
       }
     },
@@ -414,15 +414,15 @@
     "base58prefix": 42,
     "logo": "westmint",
     "decimals": 12,
-    "liveMetaVersion": 1025005,
+    "liveMetaVersion": 1025006,
     "metadataQr": {
-      "version": 1025005,
+      "version": 1025006,
       "file": {
-        "path": "qr/westend-westmint_metadata_1025005.apng",
+        "path": "qr/westend-westmint_metadata_1025006.apng",
         "signedBy": "Parity",
         "source": {
           "type": "Rpc",
-          "block": "0x799c988c5671d7cd33a75756ccbcddc3adbbf6e115c9631bec686c16dcfa7c98"
+          "block": "0x3d62dcf51968ba36e9e0f18c457f10f1bf78376a729b1b2d3950317683ff2ec3"
         }
       }
     },

@@ -54,7 +54,8 @@ pub(crate) fn save_source_info(path: &Path, source: &Source) -> Result<()> {
 
     writer.finish()?;
     // Replace the original file with the patched one.
-    fs::rename(out_path, path)?;
+    fs::copy(&out_path, path)?;
+    fs::remove_file(&out_path)?;
     Ok(())
 }
 
